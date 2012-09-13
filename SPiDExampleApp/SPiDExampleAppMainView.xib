@@ -45,7 +45,7 @@
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -82,9 +82,10 @@
 								<object class="IBUIButton" id="783454794">
 									<reference key="NSNextResponder" ref="564495667"/>
 									<int key="NSvFlags">292</int>
-									<string key="NSFrame">{{99, 189}, {123, 37}}</string>
+									<string key="NSFrame">{{99, 152}, {123, 37}}</string>
 									<reference key="NSSuperview" ref="564495667"/>
-									<reference key="NSNextKeyView"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="839029463"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<bool key="IBUIOpaque">NO</bool>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -92,7 +93,7 @@
 									<int key="IBUIContentVerticalAlignment">0</int>
 									<int key="IBUIButtonType">1</int>
 									<string key="IBUINormalTitle">Login to SPiD</string>
-									<object class="NSColor" key="IBUIHighlightedTitleColor">
+									<object class="NSColor" key="IBUIHighlightedTitleColor" id="181817313">
 										<int key="NSColorSpace">3</int>
 										<bytes key="NSWhite">MQA</bytes>
 									</object>
@@ -100,23 +101,46 @@
 										<int key="NSColorSpace">1</int>
 										<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 									</object>
-									<object class="NSColor" key="IBUINormalTitleShadowColor">
+									<object class="NSColor" key="IBUINormalTitleShadowColor" id="190020746">
 										<int key="NSColorSpace">3</int>
 										<bytes key="NSWhite">MC41AA</bytes>
 									</object>
-									<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<object class="IBUIFontDescription" key="IBUIFontDescription" id="319842537">
 										<int key="type">2</int>
 										<double key="pointSize">15</double>
 									</object>
-									<object class="NSFont" key="IBUIFont">
+									<object class="NSFont" key="IBUIFont" id="141136261">
 										<string key="NSName">Helvetica-Bold</string>
 										<double key="NSSize">15</double>
 										<int key="NSfFlags">16</int>
 									</object>
 								</object>
+								<object class="IBUIButton" id="839029463">
+									<reference key="NSNextResponder" ref="564495667"/>
+									<int key="NSvFlags">292</int>
+									<string key="NSFrame">{{119, 203}, {82, 37}}</string>
+									<reference key="NSSuperview" ref="564495667"/>
+									<reference key="NSWindow"/>
+									<string key="NSReuseIdentifierKey">_NS:9</string>
+									<bool key="IBUIOpaque">NO</bool>
+									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<int key="IBUIContentHorizontalAlignment">0</int>
+									<int key="IBUIContentVerticalAlignment">0</int>
+									<int key="IBUIButtonType">1</int>
+									<string key="IBUINormalTitle">Get /me</string>
+									<reference key="IBUIHighlightedTitleColor" ref="181817313"/>
+									<object class="NSColor" key="IBUINormalTitleColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+									</object>
+									<reference key="IBUINormalTitleShadowColor" ref="190020746"/>
+									<reference key="IBUIFontDescription" ref="319842537"/>
+									<reference key="IBUIFont" ref="141136261"/>
+								</object>
 							</array>
 							<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 							<reference key="NSSuperview"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="783454794"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<object class="NSColor" key="IBUIBackgroundColor">
@@ -129,6 +153,7 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="98146103">
+							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">SPiD ExampleApp</string>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -176,6 +201,40 @@
 						<reference key="destination" ref="233808000"/>
 					</object>
 					<int key="connectionID">42</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">loginButton</string>
+						<reference key="source" ref="222846700"/>
+						<reference key="destination" ref="783454794"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">meButton</string>
+						<reference key="source" ref="222846700"/>
+						<reference key="destination" ref="839029463"/>
+					</object>
+					<int key="connectionID">51</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">loginToSPiDClicked:</string>
+						<reference key="source" ref="783454794"/>
+						<reference key="destination" ref="222846700"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">meButtonClicked:</string>
+						<reference key="source" ref="839029463"/>
+						<reference key="destination" ref="222846700"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">52</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -242,12 +301,18 @@
 						<reference key="object" ref="564495667"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="783454794"/>
+							<reference ref="839029463"/>
 						</array>
 						<reference key="parent" ref="222846700"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">45</int>
 						<reference key="object" ref="783454794"/>
+						<reference key="parent" ref="564495667"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">50</int>
+						<reference key="object" ref="839029463"/>
 						<reference key="parent" ref="564495667"/>
 					</object>
 				</array>
@@ -267,14 +332,76 @@
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">46</int>
+			<int key="maxID">52</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">SPiDExampleAppDelegate</string>
+					<string key="superclassName">UIResponder</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="rootViewController">UINavigationController</string>
+						<string key="window">UIWindow</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="rootViewController">
+							<string key="name">rootViewController</string>
+							<string key="candidateClassName">UINavigationController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="window">
+							<string key="name">window</string>
+							<string key="candidateClassName">UIWindow</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPiDExampleAppDelegate.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SPiDExampleAppMainView</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="loginToSPiDClicked:">id</string>
+						<string key="meButtonClicked:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="loginToSPiDClicked:">
+							<string key="name">loginToSPiDClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="meButtonClicked:">
+							<string key="name">meButtonClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="loginButton">UIButton</string>
+						<string key="meButton">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="loginButton">
+							<string key="name">loginButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="meButton">
+							<string key="name">meButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPiDExampleAppMainView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">

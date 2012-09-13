@@ -7,9 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPiDAPI.h"
+#import "SPiDClient.h"
 
 @interface SPiDExampleAppMainView : UIViewController <UINavigationControllerDelegate>
 
+@property (strong, nonatomic) SPiDAPI *api;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIButton *meButton;
+
+- (IBAction)loginToSPiDClicked:(id)sender;
+- (IBAction)meButtonClicked:(id)sender;
 
 @end
