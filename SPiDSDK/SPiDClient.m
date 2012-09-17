@@ -149,6 +149,10 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     }
 }
 
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Error: %@", [error description]);
+}
+
 - (void)handleOpenURL:(NSURL *)url {
     if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
 #if DEBUG
@@ -164,6 +168,7 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"Loading request in WebView");
     NSURL *url = [request URL];
     if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
 #if DEBUG

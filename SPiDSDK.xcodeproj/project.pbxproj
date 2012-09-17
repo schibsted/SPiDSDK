@@ -29,6 +29,8 @@
 		537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D223E15FF2374000ABCA6 /* InfoPlist.strings */; };
 		537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */; };
 		537D224C15FF23BD000ABCA6 /* SPiDSDKLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */; };
+		53989FBF1607186B00CB1BDD /* SPiDLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */; };
+		53989FC31607199A00CB1BDD /* SPiDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */; };
 		53A690E4160084BE00ECFA5E /* SPiDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A690E3160084BE00ECFA5E /* SPiDAPI.m */; };
 		53A690EB1600B5D100ECFA5E /* SPiDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A690E3160084BE00ECFA5E /* SPiDAPI.m */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
@@ -114,6 +116,9 @@
 		537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDExampleAppTests.m; sourceTree = "<group>"; };
 		537D224A15FF23BD000ABCA6 /* SPiDSDKLoginTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDSDKLoginTests.h; path = ../../SPiDSDK_old/SPiDSDKTests/SPiDSDKLoginTests.h; sourceTree = "<group>"; };
 		537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDSDKLoginTests.m; path = ../../SPiDSDK_old/SPiDSDKTests/SPiDSDKLoginTests.m; sourceTree = "<group>"; };
+		53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDLoginView.xib; sourceTree = "<group>"; };
+		53989FC11607199A00CB1BDD /* SPiDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDLoginViewController.h; sourceTree = "<group>"; };
+		53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDLoginViewController.m; sourceTree = "<group>"; };
 		53A690E2160084BE00ECFA5E /* SPiDAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAPI.h; sourceTree = "<group>"; };
 		53A690E3160084BE00ECFA5E /* SPiDAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAPI.m; sourceTree = "<group>"; };
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -292,6 +297,8 @@
 				537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */,
 				53C83FF415FF5BBB00C8EB9C /* SPiDExampleAppMainView.h */,
 				53C83FF515FF5BBB00C8EB9C /* SPiDExampleAppMainView.m */,
+				53989FC11607199A00CB1BDD /* SPiDLoginViewController.h */,
+				53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */,
 			);
 			path = SPiDExampleApp;
 			sourceTree = "<group>";
@@ -303,6 +310,7 @@
 				537D222615FF2374000ABCA6 /* SPiDExampleApp-Info.plist */,
 				537D222A15FF2374000ABCA6 /* main.m */,
 				537D222C15FF2374000ABCA6 /* SPiDExampleApp-Prefix.pch */,
+				53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -445,6 +453,7 @@
 			files = (
 				535AA9B815FF377E00D9F52B /* SPiDExampleAppMainView.xib in Resources */,
 				53C8400415FF702900C8EB9C /* GTMOAuth2ViewTouch.xib in Resources */,
+				53989FBF1607186B00CB1BDD /* SPiDLoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +535,7 @@
 				E304E6DEFC56FB37971BDFC4 /* SPiDURL.m in Sources */,
 				E304E93E9C13B42754259DEF /* SPiDWebView.m in Sources */,
 				E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */,
+				53989FC31607199A00CB1BDD /* SPiDLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
