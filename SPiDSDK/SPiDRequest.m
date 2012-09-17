@@ -33,10 +33,22 @@
     [self doAuthenticatedSPiDGetRequestWithURL:url];
 }
 
+- (void)doAuthenticatedLogoutRequestWithCompletionHandler:completionHandler {
+    NSLog(@"Trying to logout");
+    NSURL *redirectUrl = [SPiDURL urlEncodeString:[[[SPiDClient sharedInstance] redirectURL] absoluteString]];
+    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/logout?redirect_uri=%@&oauth_token=%@", [redirectUrl absoluteString], [[SPiDClient sharedInstance] accessToken]];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [self setUrl:url];
+    [self setHttpMethod:@"GET"];
+    [self setCompletionHandler:completionHandler];
+    [self doAuthenticatedSPiDGetRequestWithURL:url];
+}
+
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
 
     [request setHTTPMethod:[self httpMethod]];
+    NSLog(@"URL: %@", [url absoluteString]);
     [self setReceivedData:[[NSMutableData alloc] init]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
@@ -48,28 +60,39 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     NSLog(@"Data received");
-    //NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     [[self receivedData] appendData:data];
-/*
-    NSError *jsonError = nil;
-    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+}
 
-    if (!jsonError && [jsonObject objectForKey:@"access_token"]) {
-        [self setAccessToken:[jsonObject objectForKey:@"access_token"]];
-        NSLog(@"Got access_token: %@", [self accessToken]);
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    NSLog(@"redirecting to : %@", [request URL]);
+    NSString *redirectUrl = [[[SPiDClient sharedInstance] redirectURL] absoluteString];
+    if ([[[request URL] absoluteString] hasPrefix:redirectUrl]) {
+        // TODO: should check for token when making api calls
+        [[SPiDClient sharedInstance] setAccessToken:nil];
+        return nil;
+    } else {
+        return request;
     }
-    */
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Done request");
+    NSLog(@"Done Request");
     NSError *jsonError = nil;
-    NSLog(@"%@", [self receivedData]);
-    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[self receivedData] options:kNilOptions error:&jsonError];
+    NSLog(@"Request %@", [[NSString alloc] initWithData:[self receivedData] encoding:NSUTF8StringEncoding]);
+    NSDictionary *jsonObject = nil;
+    if ([[self receivedData] length] > 0) {
+        jsonObject = [NSJSONSerialization JSONObjectWithData:[self receivedData] options:kNilOptions error:&jsonError];
+    }
 
     if (!jsonError) {
         _completionHandler(jsonObject);
+    } else {
+        NSLog(@"Error: %@", [jsonError description]);
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Error: %@", [error description]);
 }
 
 

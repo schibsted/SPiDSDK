@@ -24,7 +24,9 @@ static NSString *const kTokenURL = @"https://stage.payment.schibsted.no/oauth/to
 
 - (IBAction)loginByRedirect:(id)sender {
     [[SPiDClient sharedInstance] setAuthorizationURL:[NSURL URLWithString:kAuthorizationURL]];
-    [[SPiDClient sharedInstance] requestAuthorizationCodeByBrowserRedirect];
+    [[SPiDClient sharedInstance] requestAuthorizationCodeByBrowserRedirectWithCompletionHandler:^(void) {
+        NSLog(@"asdf");
+    }];
 }
 
 - (IBAction)loginByWebView:(id)sender {
@@ -32,8 +34,8 @@ static NSString *const kTokenURL = @"https://stage.payment.schibsted.no/oauth/to
     [[SPiDClient sharedInstance] setFailureURL:[NSURL URLWithString:kFailureURL]];
     [[SPiDClient sharedInstance] setTokenURL:[NSURL URLWithString:kTokenURL]];
     [[SPiDClient sharedInstance] setInitialHTMLString:@"<html><body>Loading</body><html>"];
-    UIWebView *webView = [[SPiDClient sharedInstance] requestAuthorizationCodeWithWebView];
-    [[self view] addSubview:webView];
+    //UIWebView *webView = [[SPiDClient sharedInstance] requestAuthorizationCodeWithWebView];
+    //[[self view] addSubview:webView];
 }
 
 - (IBAction)loginByNative:(id)sender {

@@ -12,7 +12,7 @@
 
 typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 
-@interface SPiDClient : NSObject <UIWebViewDelegate>
+@interface SPiDClient : NSObject <UIWebViewDelegate, NSURLConnectionDelegate>
 
 @property(strong, nonatomic) NSString *clientID;
 @property(strong, nonatomic) NSString *clientSecret;
@@ -24,6 +24,8 @@ typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 @property(strong, nonatomic) NSURL *tokenURL;
 @property(strong, nonatomic) NSString *initialHTMLString;
 @property(strong, nonatomic) NSMutableData *receivedData;
+@property(strong, nonatomic) UIWebView *webView;
+@property(copy) void (^completionHandler)(void);
 
 + (SPiDClient *)sharedInstance;
 
@@ -31,10 +33,10 @@ typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 
 - (void)handleOpenURL:(NSURL *)url;
 
-- (void)requestAuthorizationCodeByBrowserRedirect;
+- (void)requestAuthorizationCodeByBrowserRedirectWithCompletionHandler:(void (^)(void))completionHandler;
 
 - (void)requestAuthorizationCodeWithAuthorizationURLHandler:(SPiDAuthorizationURLHandler)authorizationURLHandler;
 
-- (UIWebView *)requestAuthorizationCodeWithWebView;
+- (UIWebView *)requestAuthorizationCodeWithWebViewWithCompletionHandler:(void (^)(void))completionHandler;
 
 @end

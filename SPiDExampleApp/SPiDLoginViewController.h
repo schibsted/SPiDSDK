@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPiDExampleAppDelegate.h"
 #import "SPiDClient.h"
 
 @interface SPiDLoginViewController : UIViewController

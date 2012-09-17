@@ -7,7 +7,6 @@
 //
 
 #import "SPiDClient.h"
-#import "SPiDRequest.h"
 
 static NSString *const kClientIDKey = @"client_id";
 static NSString *const kClientSecretKey = @"client_secret";
@@ -31,6 +30,8 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 @synthesize tokenURL = _tokenURL;
 @synthesize initialHTMLString = _initialHTMLString;
 @synthesize receivedData = _receivedData;
+@synthesize completionHandler = _completionHandler;
+@synthesize webView = _webView;
 
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;
@@ -66,13 +67,14 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     return data;
 }
 
-- (void)requestAuthorizationCodeByBrowserRedirect {
+- (void)requestAuthorizationCodeByBrowserRedirectWithCompletionHandler:(void (^)(void))completionHandler {
     // validate parameters
 # if DEBUG
     NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
 #endif
     requestURL = [self generateAuthorizationRequestURL];
 
+    [self setCompletionHandler:completionHandler];
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
@@ -84,13 +86,15 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     authorizationURLHandler(requestURL);
 }
 
-- (UIWebView *)requestAuthorizationCodeWithWebView {
+- (UIWebView *)requestAuthorizationCodeWithWebViewWithCompletionHandler:(void (^)(void))completionHandler {
     requestURL = [self generateAuthorizationRequestURL];
 # if DEBUG
     NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
 #endif
 
+    [self setCompletionHandler:completionHandler];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 480, 480)];
+    [self setWebView:webView];
     [webView setDelegate:self];
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 
@@ -135,17 +139,20 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"Done");
     NSError *jsonError = nil;
-    NSLog(@"%@", [self receivedData]);
+    NSLog(@"Client: %@", [self receivedData]);
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[self receivedData] options:kNilOptions error:&jsonError];
 
     if (!jsonError && [jsonObject objectForKey:@"access_token"]) {
         [self setAccessToken:[jsonObject objectForKey:@"access_token"]];
         NSLog(@"Got access_token: %@", [self accessToken]);
-        SPiDRequest *request = [[SPiDRequest alloc] init];
-        [request doAuthenticatedMeRequestWithCompletionHandler:^(NSDictionary *data) {
+        //SPiDRequest *request = [[SPiDRequest alloc] init];
+        self.completionHandler();
+        /*[request doAuthenticatedMeRequestWithCompletionHandler:^(NSDictionary *data) {
             NSLog(@"Finished me with data: %@", data);
 
-        }];
+        }];*/
+        //NSLog(@"%@", self.completionHandler);
+        //self.completionHandler();
     }
 }
 
@@ -179,6 +186,7 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
         }
         [self setCode:[SPiDURL getUrlParameter:url forKey:@"code"]];
         [self requestAccessToken];
+        [[self webView] removeFromSuperview];
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
 #if DEBUG
