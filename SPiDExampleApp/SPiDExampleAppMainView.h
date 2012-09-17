@@ -12,11 +12,11 @@
 
 @interface SPiDExampleAppMainView : UIViewController <UINavigationControllerDelegate>
 
-@property (strong, nonatomic) SPiDAPI *api;
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
-@property (strong, nonatomic) IBOutlet UIButton *meButton;
+- (IBAction)loginByRedirect:(id)sender;
 
-- (IBAction)loginToSPiDClicked:(id)sender;
-- (IBAction)meButtonClicked:(id)sender;
+- (IBAction)loginByWebView:(id)sender;
+
+- (IBAction)loginByNative:(id)sender;
+
 
 @end

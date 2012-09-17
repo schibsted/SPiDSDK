@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
+		535AA9B815FF377E00D9F52B /* SPiDExampleAppMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 535AA9B715FF377E00D9F52B /* SPiDExampleAppMainView.xib */; };
 		537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D21F815FF224C000ABCA6 /* SPiDSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 537D21F715FF224C000ABCA6 /* SPiDSDK.h */; };
 		537D21FA15FF224C000ABCA6 /* SPiDSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D21F915FF224C000ABCA6 /* SPiDSDK.m */; };
@@ -16,6 +18,37 @@
 		537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		537D220E15FF224C000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D220C15FF224C000ABCA6 /* InfoPlist.strings */; };
 		537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D221015FF224C000ABCA6 /* SPiDSDKTests.m */; };
+		537D222015FF2374000ABCA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220315FF224C000ABCA6 /* UIKit.framework */; };
+		537D222115FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
+		537D222315FF2374000ABCA6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D222215FF2374000ABCA6 /* CoreGraphics.framework */; };
+		537D222B15FF2374000ABCA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D222A15FF2374000ABCA6 /* main.m */; };
+		537D222F15FF2374000ABCA6 /* SPiDExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */; };
+		537D223615FF2374000ABCA6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
+		537D223715FF2374000ABCA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220315FF224C000ABCA6 /* UIKit.framework */; };
+		537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
+		537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D223E15FF2374000ABCA6 /* InfoPlist.strings */; };
+		537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */; };
+		537D224C15FF23BD000ABCA6 /* SPiDSDKLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */; };
+		53A690E4160084BE00ECFA5E /* SPiDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A690E3160084BE00ECFA5E /* SPiDAPI.m */; };
+		53A690EB1600B5D100ECFA5E /* SPiDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A690E3160084BE00ECFA5E /* SPiDAPI.m */; };
+		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
+		53C83FF615FF5BBB00C8EB9C /* SPiDExampleAppMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C83FF515FF5BBB00C8EB9C /* SPiDExampleAppMainView.m */; };
+		53C83FFE15FF701400C8EB9C /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C83FFB15FF701400C8EB9C /* GTMOAuth2Authentication.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		53C83FFF15FF701400C8EB9C /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C83FFD15FF701400C8EB9C /* GTMOAuth2SignIn.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		53C8400315FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C8400115FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		53C8400415FF702900C8EB9C /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53C8400215FF702900C8EB9C /* GTMOAuth2ViewTouch.xib */; };
+		53C8400715FF8B5200C8EB9C /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C8400615FF8B5200C8EB9C /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		E304E0AC7DD307B5B65448E4 /* SPiDURL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDURL.h */; };
+		E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
+		E304E5165265A410C773381C /* SPiDWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E1241AE0A4F884DA84A7 /* SPiDWebView.h */; };
+		E304E576D7107A613412403E /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E4982E853578FCF6177F /* SPiDWebView.m */; };
+		E304E65255E106B7B790EB6F /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
+		E304E6CE390767859B6A31AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
+		E304E6DEFC56FB37971BDFC4 /* SPiDURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDURL.m */; };
+		E304E93E9C13B42754259DEF /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E4982E853578FCF6177F /* SPiDWebView.m */; };
+		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
+		E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
+		E304ECB0B148F9752A1A638B /* SPiDURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDURL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +58,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
 			remoteInfo = SPiDSDK;
+		};
+		537D223915FF2374000ABCA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537D221D15FF2374000ABCA6;
+			remoteInfo = SPiDExampleApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -36,12 +76,18 @@
 			dstSubfolderSpec = 16;
 			files = (
 				537D21F815FF224C000ABCA6 /* SPiDSDK.h in CopyFiles */,
+				E304E0AC7DD307B5B65448E4 /* SPiDURL.h in CopyFiles */,
+				E304E5165265A410C773381C /* SPiDWebView.h in CopyFiles */,
+				E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		535AA9B415FF31AD00D9F52B /* SPiDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDClient.h; sourceTree = "<group>"; };
+		535AA9B515FF31AD00D9F52B /* SPiDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDClient.m; sourceTree = "<group>"; };
+		535AA9B715FF377E00D9F52B /* SPiDExampleAppMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDExampleAppMainView.xib; sourceTree = "<group>"; };
 		537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPiDSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D21F215FF224C000ABCA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPiDSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -54,6 +100,41 @@
 		537D220D15FF224C000ABCA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDSDKTests.h; sourceTree = "<group>"; };
 		537D221015FF224C000ABCA6 /* SPiDSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDSDKTests.m; sourceTree = "<group>"; };
+		537D221E15FF2374000ABCA6 /* SPiDExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPiDExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		537D222215FF2374000ABCA6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		537D222615FF2374000ABCA6 /* SPiDExampleApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDExampleApp-Info.plist"; sourceTree = "<group>"; };
+		537D222A15FF2374000ABCA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		537D222C15FF2374000ABCA6 /* SPiDExampleApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPiDExampleApp-Prefix.pch"; sourceTree = "<group>"; };
+		537D222D15FF2374000ABCA6 /* SPiDExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDExampleAppDelegate.h; sourceTree = "<group>"; };
+		537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDExampleAppDelegate.m; sourceTree = "<group>"; };
+		537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDExampleAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		537D223D15FF2374000ABCA6 /* SPiDExampleAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDExampleAppTests-Info.plist"; sourceTree = "<group>"; };
+		537D223F15FF2374000ABCA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		537D224115FF2374000ABCA6 /* SPiDExampleAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDExampleAppTests.h; sourceTree = "<group>"; };
+		537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDExampleAppTests.m; sourceTree = "<group>"; };
+		537D224A15FF23BD000ABCA6 /* SPiDSDKLoginTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDSDKLoginTests.h; path = ../../SPiDSDK_old/SPiDSDKTests/SPiDSDKLoginTests.h; sourceTree = "<group>"; };
+		537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDSDKLoginTests.m; path = ../../SPiDSDK_old/SPiDSDKTests/SPiDSDKLoginTests.m; sourceTree = "<group>"; };
+		53A690E2160084BE00ECFA5E /* SPiDAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAPI.h; sourceTree = "<group>"; };
+		53A690E3160084BE00ECFA5E /* SPiDAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAPI.m; sourceTree = "<group>"; };
+		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		53C83FF415FF5BBB00C8EB9C /* SPiDExampleAppMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDExampleAppMainView.h; sourceTree = "<group>"; };
+		53C83FF515FF5BBB00C8EB9C /* SPiDExampleAppMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDExampleAppMainView.m; sourceTree = "<group>"; };
+		53C83FFA15FF701400C8EB9C /* GTMOAuth2Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2Authentication.h; path = "gtm-oauth2-read-only/Source/GTMOAuth2Authentication.h"; sourceTree = "<group>"; };
+		53C83FFB15FF701400C8EB9C /* GTMOAuth2Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2Authentication.m; path = "gtm-oauth2-read-only/Source/GTMOAuth2Authentication.m"; sourceTree = "<group>"; };
+		53C83FFC15FF701400C8EB9C /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2SignIn.h; path = "gtm-oauth2-read-only/Source/GTMOAuth2SignIn.h"; sourceTree = "<group>"; };
+		53C83FFD15FF701400C8EB9C /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2SignIn.m; path = "gtm-oauth2-read-only/Source/GTMOAuth2SignIn.m"; sourceTree = "<group>"; };
+		53C8400015FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2ViewControllerTouch.h; path = "gtm-oauth2-read-only/Source/Touch/GTMOAuth2ViewControllerTouch.h"; sourceTree = "<group>"; };
+		53C8400115FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2ViewControllerTouch.m; path = "gtm-oauth2-read-only/Source/Touch/GTMOAuth2ViewControllerTouch.m"; sourceTree = "<group>"; };
+		53C8400215FF702900C8EB9C /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = "gtm-oauth2-read-only/Source/Touch/GTMOAuth2ViewTouch.xib"; sourceTree = "<group>"; };
+		53C8400515FF8B5200C8EB9C /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMHTTPFetcher.h; path = "gtm-oauth2-read-only/HTTPFetcher/GTMHTTPFetcher.h"; sourceTree = "<group>"; };
+		53C8400615FF8B5200C8EB9C /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPFetcher.m; path = "gtm-oauth2-read-only/HTTPFetcher/GTMHTTPFetcher.m"; sourceTree = "<group>"; };
+		E304E1241AE0A4F884DA84A7 /* SPiDWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDWebView.h; sourceTree = "<group>"; };
+		E304E27376450C44AB802870 /* SPiDURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDURL.h; sourceTree = "<group>"; };
+		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
+		E304E4982E853578FCF6177F /* SPiDWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDWebView.m; sourceTree = "<group>"; };
+		E304E682B974C240DE9BC5E1 /* SPiDURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDURL.m; sourceTree = "<group>"; };
+		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
+		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,14 +157,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		537D221B15FF2374000ABCA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */,
+				537D222015FF2374000ABCA6 /* UIKit.framework in Frameworks */,
+				537D222115FF2374000ABCA6 /* Foundation.framework in Frameworks */,
+				537D222315FF2374000ABCA6 /* CoreGraphics.framework in Frameworks */,
+				E304E6CE390767859B6A31AB /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537D223115FF2374000ABCA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				537D223615FF2374000ABCA6 /* SenTestingKit.framework in Frameworks */,
+				537D223715FF2374000ABCA6 /* UIKit.framework in Frameworks */,
+				537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		535AA9AA15FF271C00D9F52B /* GTMOAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				53C8400515FF8B5200C8EB9C /* GTMHTTPFetcher.h */,
+				53C8400615FF8B5200C8EB9C /* GTMHTTPFetcher.m */,
+				53C8400015FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.h */,
+				53C8400115FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.m */,
+				53C8400215FF702900C8EB9C /* GTMOAuth2ViewTouch.xib */,
+				53C83FFA15FF701400C8EB9C /* GTMOAuth2Authentication.h */,
+				53C83FFB15FF701400C8EB9C /* GTMOAuth2Authentication.m */,
+				53C83FFC15FF701400C8EB9C /* GTMOAuth2SignIn.h */,
+				53C83FFD15FF701400C8EB9C /* GTMOAuth2SignIn.m */,
+			);
+			name = GTMOAuth2;
+			sourceTree = "<group>";
+		};
 		537D21E415FF224C000ABCA6 = {
 			isa = PBXGroup;
 			children = (
+				535AA9AA15FF271C00D9F52B /* GTMOAuth2 */,
 				537D21F415FF224C000ABCA6 /* SPiDSDK */,
 				537D220915FF224C000ABCA6 /* SPiDSDKTests */,
+				537D222415FF2374000ABCA6 /* SPiDExampleApp */,
+				537D223B15FF2374000ABCA6 /* SPiDExampleAppTests */,
 				537D21F115FF224C000ABCA6 /* Frameworks */,
 				537D21F015FF224C000ABCA6 /* Products */,
 			);
@@ -94,6 +216,8 @@
 			children = (
 				537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */,
 				537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */,
+				537D221E15FF2374000ABCA6 /* SPiDExampleApp.app */,
+				537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,9 +225,12 @@
 		537D21F115FF224C000ABCA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E304ECEC953C2E9C143FD9E2 /* Security.framework */,
+				53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */,
 				537D21F215FF224C000ABCA6 /* Foundation.framework */,
 				537D220115FF224C000ABCA6 /* SenTestingKit.framework */,
 				537D220315FF224C000ABCA6 /* UIKit.framework */,
+				537D222215FF2374000ABCA6 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,9 +238,19 @@
 		537D21F415FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E304E29BE892318CE0CCF648 /* SPiDRequest.h */,
+				E304EB249FB072F13F1947F9 /* SPiDRequest.m */,
+				E304E1241AE0A4F884DA84A7 /* SPiDWebView.h */,
+				E304E4982E853578FCF6177F /* SPiDWebView.m */,
+				E304E27376450C44AB802870 /* SPiDURL.h */,
+				E304E682B974C240DE9BC5E1 /* SPiDURL.m */,
 				537D21F715FF224C000ABCA6 /* SPiDSDK.h */,
 				537D21F915FF224C000ABCA6 /* SPiDSDK.m */,
 				537D21F515FF224C000ABCA6 /* Supporting Files */,
+				535AA9B415FF31AD00D9F52B /* SPiDClient.h */,
+				535AA9B515FF31AD00D9F52B /* SPiDClient.m */,
+				53A690E2160084BE00ECFA5E /* SPiDAPI.h */,
+				53A690E3160084BE00ECFA5E /* SPiDAPI.m */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -129,9 +266,11 @@
 		537D220915FF224C000ABCA6 /* SPiDSDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				537D220A15FF224C000ABCA6 /* Supporting Files */,
 				537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */,
 				537D221015FF224C000ABCA6 /* SPiDSDKTests.m */,
-				537D220A15FF224C000ABCA6 /* Supporting Files */,
+				537D224A15FF23BD000ABCA6 /* SPiDSDKLoginTests.h */,
+				537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */,
 			);
 			path = SPiDSDKTests;
 			sourceTree = "<group>";
@@ -141,6 +280,48 @@
 			children = (
 				537D220B15FF224C000ABCA6 /* SPiDSDKTests-Info.plist */,
 				537D220C15FF224C000ABCA6 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		537D222415FF2374000ABCA6 /* SPiDExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				537D222515FF2374000ABCA6 /* Supporting Files */,
+				537D222D15FF2374000ABCA6 /* SPiDExampleAppDelegate.h */,
+				537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */,
+				53C83FF415FF5BBB00C8EB9C /* SPiDExampleAppMainView.h */,
+				53C83FF515FF5BBB00C8EB9C /* SPiDExampleAppMainView.m */,
+			);
+			path = SPiDExampleApp;
+			sourceTree = "<group>";
+		};
+		537D222515FF2374000ABCA6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				535AA9B715FF377E00D9F52B /* SPiDExampleAppMainView.xib */,
+				537D222615FF2374000ABCA6 /* SPiDExampleApp-Info.plist */,
+				537D222A15FF2374000ABCA6 /* main.m */,
+				537D222C15FF2374000ABCA6 /* SPiDExampleApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		537D223B15FF2374000ABCA6 /* SPiDExampleAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				537D224115FF2374000ABCA6 /* SPiDExampleAppTests.h */,
+				537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */,
+				537D223C15FF2374000ABCA6 /* Supporting Files */,
+			);
+			path = SPiDExampleAppTests;
+			sourceTree = "<group>";
+		};
+		537D223C15FF2374000ABCA6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				537D223D15FF2374000ABCA6 /* SPiDExampleAppTests-Info.plist */,
+				537D223E15FF2374000ABCA6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -184,6 +365,42 @@
 			productReference = 537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		537D221D15FF2374000ABCA6 /* SPiDExampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537D224415FF2374000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDExampleApp" */;
+			buildPhases = (
+				537D221A15FF2374000ABCA6 /* Sources */,
+				537D221B15FF2374000ABCA6 /* Frameworks */,
+				537D221C15FF2374000ABCA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPiDExampleApp;
+			productName = SPiDExampleApp;
+			productReference = 537D221E15FF2374000ABCA6 /* SPiDExampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		537D223415FF2374000ABCA6 /* SPiDExampleAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537D224715FF2374000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDExampleAppTests" */;
+			buildPhases = (
+				537D223015FF2374000ABCA6 /* Sources */,
+				537D223115FF2374000ABCA6 /* Frameworks */,
+				537D223215FF2374000ABCA6 /* Resources */,
+				537D223315FF2374000ABCA6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				537D223A15FF2374000ABCA6 /* PBXTargetDependency */,
+			);
+			name = SPiDExampleAppTests;
+			productName = SPiDExampleAppTests;
+			productReference = 537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +424,8 @@
 			targets = (
 				537D21EE15FF224C000ABCA6 /* SPiDSDK */,
 				537D21FF15FF224C000ABCA6 /* SPiDSDKTests */,
+				537D221D15FF2374000ABCA6 /* SPiDExampleApp */,
+				537D223415FF2374000ABCA6 /* SPiDExampleAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,10 +439,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		537D221C15FF2374000ABCA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				535AA9B815FF377E00D9F52B /* SPiDExampleAppMainView.xib in Resources */,
+				53C8400415FF702900C8EB9C /* GTMOAuth2ViewTouch.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537D223215FF2374000ABCA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		537D21FE15FF224C000ABCA6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		537D223315FF2374000ABCA6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -244,6 +493,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				537D21FA15FF224C000ABCA6 /* SPiDSDK.m in Sources */,
+				535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */,
+				53A690E4160084BE00ECFA5E /* SPiDAPI.m in Sources */,
+				E304ECB0B148F9752A1A638B /* SPiDURL.m in Sources */,
+				E304E576D7107A613412403E /* SPiDWebView.m in Sources */,
+				E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +506,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */,
+				537D224C15FF23BD000ABCA6 /* SPiDSDKLoginTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537D221A15FF2374000ABCA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53A690EB1600B5D100ECFA5E /* SPiDAPI.m in Sources */,
+				537D222B15FF2374000ABCA6 /* main.m in Sources */,
+				537D222F15FF2374000ABCA6 /* SPiDExampleAppDelegate.m in Sources */,
+				53C83FF615FF5BBB00C8EB9C /* SPiDExampleAppMainView.m in Sources */,
+				53C83FFE15FF701400C8EB9C /* GTMOAuth2Authentication.m in Sources */,
+				53C83FFF15FF701400C8EB9C /* GTMOAuth2SignIn.m in Sources */,
+				53C8400315FF702900C8EB9C /* GTMOAuth2ViewControllerTouch.m in Sources */,
+				53C8400715FF8B5200C8EB9C /* GTMHTTPFetcher.m in Sources */,
+				E304E65255E106B7B790EB6F /* SPiDClient.m in Sources */,
+				E304E6DEFC56FB37971BDFC4 /* SPiDURL.m in Sources */,
+				E304E93E9C13B42754259DEF /* SPiDWebView.m in Sources */,
+				E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537D223015FF2374000ABCA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +545,11 @@
 			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
 			targetProxy = 537D220615FF224C000ABCA6 /* PBXContainerItemProxy */;
 		};
+		537D223A15FF2374000ABCA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537D221D15FF2374000ABCA6 /* SPiDExampleApp */;
+			targetProxy = 537D223915FF2374000ABCA6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -270,6 +557,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				537D220D15FF224C000ABCA6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		537D223E15FF2374000ABCA6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				537D223F15FF2374000ABCA6 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -285,6 +580,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/builds/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -299,6 +595,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -311,6 +608,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/builds/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -318,6 +616,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -377,6 +676,75 @@
 			};
 			name = Release;
 		};
+		537D224515FF2374000ABCA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
+				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		537D224615FF2374000ABCA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
+				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		537D224815FF2374000ABCA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SPiDExampleApp.app/SPiDExampleApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
+				INFOPLIST_FILE = "SPiDExampleAppTests/SPiDExampleAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		537D224915FF2374000ABCA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SPiDExampleApp.app/SPiDExampleApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
+				INFOPLIST_FILE = "SPiDExampleAppTests/SPiDExampleAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -396,6 +764,7 @@
 				537D221615FF224C000ABCA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		537D221715FF224C000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDSDKTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +773,25 @@
 				537D221915FF224C000ABCA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		537D224415FF2374000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDExampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537D224515FF2374000ABCA6 /* Debug */,
+				537D224615FF2374000ABCA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		537D224715FF2374000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDExampleAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537D224815FF2374000ABCA6 /* Debug */,
+				537D224915FF2374000ABCA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

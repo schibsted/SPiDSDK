@@ -8,36 +8,36 @@
 
 #import "SPiDExampleAppMainView.h"
 
-static NSString *const kServiceProvider = @"iOSSDK";
-static NSString *const kTokenURL = @"https://stage.payment.schibsted.no/oauth/token";
-static NSString *const kRedirectURL = @"sdktest://login";
 static NSString *const kClientID = @"504dffb6efd04b4512000000";
-static NSString *const kClientSecret = @"payment";
+static NSString *const kClientSecret = @"iossecret";
+static NSString *const kRedirectURL = @"sdktest://login";
+static NSString *const kAuthorizationURL = @"https://stage.payment.schibsted.no/auth/start";
+static NSString *const kFailureURL = @"sdktest://failure";
+static NSString *const kTokenURL = @"https://stage.payment.schibsted.no/oauth/token";
 
 @implementation SPiDExampleAppMainView
 
-@synthesize api = _api;
-@synthesize loginButton = _loginButton;
-@synthesize meButton = _meButton;
-
-- (void) authorizeWithSPiD {
- 
-    GTMOAuth2Authentication *auth = [GTMOAuth2Authentication authenticationWithServiceProvider:kServiceProvider tokenURL:[NSURL URLWithString:kTokenURL] redirectURI:kRedirectURL clientID:kClientID clientSecret:kClientSecret];
-
-    self.api = [[SPiDAPI alloc ] initWithGTMOauth2Authentication:auth];
-    
-    UIViewController *viewController = [self.api authorize];
-    [[self navigationController] pushViewController:viewController animated:YES];
-    
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [[SPiDClient sharedInstance] setClientID:kClientID andClientSecret:kClientSecret andRedirectURL:[NSURL URLWithString:kRedirectURL]];
 }
 
-- (IBAction)loginToSPiDClicked:(id)sender {
-    [self authorizeWithSPiD];
+- (IBAction)loginByRedirect:(id)sender {
+    [[SPiDClient sharedInstance] setAuthorizationURL:[NSURL URLWithString:kAuthorizationURL]];
+    [[SPiDClient sharedInstance] requestAuthorizationCodeByBrowserRedirect];
 }
 
-- (IBAction)meButtonClicked:(id)sender {
-    [self.api doAnAuthenticatedAPIFetch];
+- (IBAction)loginByWebView:(id)sender {
+    [[SPiDClient sharedInstance] setAuthorizationURL:[NSURL URLWithString:kAuthorizationURL]];
+    [[SPiDClient sharedInstance] setFailureURL:[NSURL URLWithString:kFailureURL]];
+    [[SPiDClient sharedInstance] setTokenURL:[NSURL URLWithString:kTokenURL]];
+    [[SPiDClient sharedInstance] setInitialHTMLString:@"<html><body>Loading</body><html>"];
+    UIWebView *webView = [[SPiDClient sharedInstance] requestAuthorizationCodeWithWebView];
+    [[self view] addSubview:webView];
 }
 
+- (IBAction)loginByNative:(id)sender {
+
+}
 
 @end
