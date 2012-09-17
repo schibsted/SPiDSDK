@@ -21,4 +21,6 @@
 
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler;
 
+- (void)doAuthenticatedLoginsRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler andUserID:(NSString *)userID;
+
 @end

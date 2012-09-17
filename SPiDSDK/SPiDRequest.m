@@ -33,6 +33,16 @@
     [self doAuthenticatedSPiDGetRequestWithURL:url];
 }
 
+- (void)doAuthenticatedLoginsRequestWithCompletionHandler:completionHandler andUserID:userID {
+    //https://stage.payment.schibsted.no/api/2/user/101912/logins?oauth_token=
+    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/api/2/user/%@/logins?oauth_token=%@", userID, [[SPiDClient sharedInstance] accessToken]];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [self setUrl:url];
+    [self setHttpMethod:@"GET"];
+    [self setCompletionHandler:completionHandler];
+    [self doAuthenticatedSPiDGetRequestWithURL:url];
+}
+
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:completionHandler {
     NSLog(@"Trying to logout");
     NSURL *redirectUrl = [SPiDURL urlEncodeString:@"sdktest://logout"];

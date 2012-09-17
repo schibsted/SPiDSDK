@@ -14,5 +14,8 @@
 
 @property(strong, nonatomic) IBOutlet UILabel *tokenLabel;
 @property(strong, nonatomic) IBOutlet UILabel *userLabel;
+@property(strong, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property(strong, nonatomic) NSString *userID;
 
 @end
