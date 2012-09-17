@@ -26,6 +26,7 @@ typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 @property(strong, nonatomic) NSMutableData *receivedData;
 @property(strong, nonatomic) UIWebView *webView;
 @property(copy) void (^completionHandler)(void);
+@property BOOL useWebView;
 
 + (SPiDClient *)sharedInstance;
 

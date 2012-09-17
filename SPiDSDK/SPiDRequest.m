@@ -35,13 +35,17 @@
 
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:completionHandler {
     NSLog(@"Trying to logout");
-    NSURL *redirectUrl = [SPiDURL urlEncodeString:[[[SPiDClient sharedInstance] redirectURL] absoluteString]];
+    NSURL *redirectUrl = [SPiDURL urlEncodeString:@"sdktest://logout"];
     NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/logout?redirect_uri=%@&oauth_token=%@", [redirectUrl absoluteString], [[SPiDClient sharedInstance] accessToken]];
     NSURL *url = [NSURL URLWithString:urlStr];
-    [self setUrl:url];
-    [self setHttpMethod:@"GET"];
-    [self setCompletionHandler:completionHandler];
-    [self doAuthenticatedSPiDGetRequestWithURL:url];
+    if ([[SPiDClient sharedInstance] useWebView]) {
+        [self setUrl:url];
+        [self setHttpMethod:@"GET"];
+        [self setCompletionHandler:completionHandler];
+        [self doAuthenticatedSPiDGetRequestWithURL:url];
+    } else { // Safari redirect
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url {
@@ -54,8 +58,8 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"response");
-    NSLog([[response URL] absoluteString]);
+    NSLog(@"Request response");
+    NSLog(@"URL: %@", [[response URL] absoluteString]);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -66,7 +70,7 @@
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
     NSLog(@"redirecting to : %@", [request URL]);
     NSString *redirectUrl = [[[SPiDClient sharedInstance] redirectURL] absoluteString];
-    if ([[[request URL] absoluteString] hasPrefix:redirectUrl]) {
+    if ([[[request URL] absoluteString] hasPrefix:@"sdktest://logout"]) {
         // TODO: should check for token when making api calls
         [[SPiDClient sharedInstance] setAccessToken:nil];
         return nil;

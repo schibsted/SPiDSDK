@@ -32,6 +32,7 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 @synthesize receivedData = _receivedData;
 @synthesize completionHandler = _completionHandler;
 @synthesize webView = _webView;
+@synthesize useWebView = _useWebView;
 
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;
@@ -53,6 +54,8 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     url = [SPiDURL addToURL:url parameterKey:kClientIDKey withValue:[self clientID]];
     url = [SPiDURL addToURL:url parameterKey:kResponseTypeKey withValue:@"code"];
     url = [SPiDURL addToURL:url parameterKey:kRedirectURLKey withValue:[[self redirectURL] absoluteString]];
+    url = [SPiDURL addToURL:url parameterKey:@"platform" withValue:@"mobile"];
+    url = [SPiDURL addToURL:url parameterKey:@"force" withValue:@"1"];
     return [NSURL URLWithString:url];
 }
 
@@ -75,6 +78,7 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     requestURL = [self generateAuthorizationRequestURL];
 
     [self setCompletionHandler:completionHandler];
+    [self setUseWebView:NO];
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
@@ -93,7 +97,8 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 #endif
 
     [self setCompletionHandler:completionHandler];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 480, 480)];
+    [self setUseWebView:YES];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [self setWebView:webView];
     [webView setDelegate:self];
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
