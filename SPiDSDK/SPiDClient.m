@@ -8,11 +8,14 @@
 
 #import "SPiDClient.h"
 
-static NSString *const kClientIDKey = @"client_id";
-static NSString *const kClientSecretKey = @"client_secret";
-static NSString *const kResponseTypeKey = @"response_type";
-static NSString *const kGrantTypeKey = @"grant_type";
-static NSString *const kRedirectURLKey = @"redirect_uri";
+static NSString *const SPiDClientIDKey = @"client_id";
+static NSString *const SPiDClientSecretKey = @"client_secret";
+static NSString *const SPiDResponseTypeKey = @"response_type";
+static NSString *const SPiDGrantTypeKey = @"grant_type";
+static NSString *const SPiDRedirectURLKey = @"redirect_uri";
+static NSString *const SPiDCodeKey = @"code";
+static NSString *const SPiDPlatformKey = @"platform";
+static NSString *const SPiDForceKey = @"force";
 
 @implementation SPiDClient {
 @private
@@ -62,33 +65,34 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 
 - (NSURL *)generateAuthorizationRequestURL {
     NSString *url = [[self authorizationURL] absoluteString];
-    url = [SPiDURL addToURL:url parameterKey:kClientIDKey withValue:[self clientID]];
-    url = [SPiDURL addToURL:url parameterKey:kResponseTypeKey withValue:@"code"];
-    url = [SPiDURL addToURL:url parameterKey:kRedirectURLKey withValue:[[self redirectURL] absoluteString]];
-    url = [SPiDURL addToURL:url parameterKey:@"platform" withValue:@"mobile"];
-    url = [SPiDURL addToURL:url parameterKey:@"force" withValue:@"1"];
+    url = [SPiDURL addToURL:url parameterKey:SPiDClientIDKey withValue:[self clientID]];
+    url = [SPiDURL addToURL:url parameterKey:SPiDResponseTypeKey withValue:@"code"];
+    url = [SPiDURL addToURL:url parameterKey:SPiDRedirectURLKey withValue:[[self redirectURL] absoluteString]];
+    url = [SPiDURL addToURL:url parameterKey:SPiDPlatformKey withValue:@"mobile"];
+    url = [SPiDURL addToURL:url parameterKey:SPiDForceKey withValue:@"1"];
     return [NSURL URLWithString:url];
 }
 
 - (NSString *)generateAccessTokenPostData {
     NSString *data = [NSString string];
-    data = [data stringByAppendingFormat:@"%@=%@&", kClientIDKey, [self clientID]];
-    data = [data stringByAppendingFormat:@"%@=%@&", kRedirectURLKey, [SPiDURL urlEncodeString:[[self redirectURL] absoluteString]]];
-    data = [data stringByAppendingFormat:@"%@=%@&", kGrantTypeKey, @"authorization_code"];
-    data = [data stringByAppendingFormat:@"%@=%@&", kClientSecretKey, [self clientSecret]];
-    data = [data stringByAppendingFormat:@"%@=%@", @"code", [self code]];
-    NSLog(@"Postdata: %@", data);
+    data = [data stringByAppendingFormat:@"%@=%@&", SPiDClientIDKey, [self clientID]];
+    data = [data stringByAppendingFormat:@"%@=%@&", SPiDRedirectURLKey, [SPiDURL urlEncodeString:[[self redirectURL] absoluteString]]];
+    data = [data stringByAppendingFormat:@"%@=%@&", SPiDGrantTypeKey, @"authorization_code"];
+    data = [data stringByAppendingFormat:@"%@=%@&", SPiDClientSecretKey, [self clientSecret]];
+    data = [data stringByAppendingFormat:@"%@=%@", SPiDCodeKey, [self code]];
     return data;
 }
 
 - (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)())completionHandler {
-    // validate parameters
-# if DEBUG
-    //NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
-#endif
+    // TODO: validate parameters
+    // Validate that url starts with http?
+
     requestURL = [self generateAuthorizationRequestURL];
 
+#if DEBUG
     NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
+#endif
+
     [self setCompletionHandler:completionHandler];
     [[UIApplication sharedApplication] openURL:requestURL];
 }
