@@ -5,10 +5,10 @@
 //
 
 
-#import "SPiDLogoutViewController.h"
+#import "SPiDMainViewController.h"
 
 
-@implementation SPiDLogoutViewController
+@implementation SPiDMainViewController
 
 @synthesize userID = _userID;
 

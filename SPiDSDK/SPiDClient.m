@@ -24,15 +24,14 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 @synthesize clientSecret = _clientSecret;
 @synthesize code = _code;
 @synthesize accessToken = _accessToken;
+@synthesize appURLScheme = _appURLScheme;
 @synthesize redirectURL = _redirectURL;
 @synthesize failureURL = _failureURL;
+@synthesize spidURL = spidURL;
 @synthesize authorizationURL = _authorizationURL;
 @synthesize tokenURL = _tokenURL;
-@synthesize initialHTMLString = _initialHTMLString;
 @synthesize receivedData = _receivedData;
 @synthesize completionHandler = _completionHandler;
-@synthesize webView = _webView;
-@synthesize useWebView = _useWebView;
 
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;
@@ -43,10 +42,18 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     return sharedSPiDClientInstance;
 }
 
-- (void)setClientID:(NSString *)clientID andClientSecret:(NSString *)clientSecret andRedirectURL:(NSURL *)redirectURL {
+//
+- (void)setClientID:(NSString *)clientID
+    andClientSecret:(NSString *)clientSecret
+    andAppURLScheme:(NSString *)appURLScheme
+         andSPiDURL:(NSURL *)spidURL {
+    // TODO: Use call to set property
     self.clientID = clientID;
     self.clientSecret = clientSecret;
-    self.redirectURL = redirectURL;
+    self.appURLScheme = appURLScheme;
+    //self.redirectURL = redirectURL;
+    self.spidURL = spidURL;
+    //self.failureURL = failureURL;
 }
 
 - (NSURL *)generateAuthorizationRequestURL {
@@ -70,7 +77,7 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     return data;
 }
 
-- (void)requestAuthorizationCodeByBrowserRedirectWithCompletionHandler:(void (^)(void))completionHandler {
+- (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)())completionHandler {
     // validate parameters
 # if DEBUG
     NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
@@ -78,42 +85,7 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     requestURL = [self generateAuthorizationRequestURL];
 
     [self setCompletionHandler:completionHandler];
-    [self setUseWebView:NO];
     [[UIApplication sharedApplication] openURL:requestURL];
-}
-
-- (void)requestAuthorizationCodeWithAuthorizationURLHandler:(SPiDAuthorizationURLHandler)authorizationURLHandler {
-    requestURL = [self generateAuthorizationRequestURL];
-# if DEBUG
-    NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
-#endif
-    authorizationURLHandler(requestURL);
-}
-
-- (UIWebView *)requestAuthorizationCodeWithWebViewWithCompletionHandler:(void (^)(void))completionHandler {
-    requestURL = [self generateAuthorizationRequestURL];
-# if DEBUG
-    NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
-#endif
-
-    [self setCompletionHandler:completionHandler];
-    [self setUseWebView:YES];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    [self setWebView:webView];
-    [webView setDelegate:self];
-    [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-
-    // On iOS 5+, UIWebView will ignore loadHTMLString: if it's followed by
-    // a loadRequest: call, so if there is a "loading" message we defer
-    // the loadRequest: until after after we've drawn the "loading" message.
-    if ([[self initialHTMLString] length] > 0) {
-        isPending = YES;
-        [webView loadHTMLString:[self initialHTMLString] baseURL:nil];
-    } else {
-        isPending = NO;
-        [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
-    }
-    return webView;
 }
 
 - (void)requestAccessToken {
@@ -176,48 +148,6 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 #if DEBUG
         NSLog(@"Safari failure url: %@", [url absoluteString]);
 #endif
-    }
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"Loading request in WebView");
-    NSURL *url = [request URL];
-    if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
-#if DEBUG
-        NSLog(@"Webview redirect url: %@", [[request URL] absoluteString]);
-#endif
-        if ([webView isLoading]) {
-            [webView stopLoading];
-        }
-        [self setCode:[SPiDURL getUrlParameter:url forKey:@"code"]];
-        [self requestAccessToken];
-        [[self webView] removeFromSuperview];
-        return NO;
-    } else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
-#if DEBUG
-        NSLog(@"Webview failure url: %@", [[request URL] absoluteString]);
-#endif
-        return NO;
-    }
-    return YES;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    // Are we showing a loading screen?
-    if (isPending) {
-        isPending = NO;
-        [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
-    }
-#if DEBUG
-    NSLog(@"Finished loading");
-#endif
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    // WebKitErrorFrameLoadInterruptedByPolicyChange = 102
-    // this is caused by policy change after WebView is finished and can safely be ignored
-    if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
-        NSLog(@"WebViewFailLoadWithError: %@", [error description]);
     }
 }
 

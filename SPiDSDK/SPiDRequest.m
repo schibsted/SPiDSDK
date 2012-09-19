@@ -49,14 +49,16 @@
     NSURL *redirectUrl = [SPiDURL urlEncodeString:@"sdktest://logout"];
     NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/logout?redirect_uri=%@&oauth_token=%@", [redirectUrl absoluteString], [[SPiDClient sharedInstance] accessToken]];
     NSURL *url = [NSURL URLWithString:urlStr];
+    /*
     if ([[SPiDClient sharedInstance] useWebView]) {
         [self setUrl:url];
         [self setHttpMethod:@"GET"];
         [self setCompletionHandler:completionHandler];
         [self doAuthenticatedSPiDGetRequestWithURL:url];
-    } else { // Safari redirect
-        [[UIApplication sharedApplication] openURL:url];
-    }
+    } else { */
+    // Safari redirect
+    [[UIApplication sharedApplication] openURL:url];
+    //}
 }
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url {

@@ -8,36 +8,33 @@
 
 #import <Foundation/Foundation.h>
 #import "SPiDURL.h"
-#import "SPiDWebView.h"
 
 typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 
-@interface SPiDClient : NSObject <UIWebViewDelegate, NSURLConnectionDelegate>
+@interface SPiDClient : NSObject <NSURLConnectionDelegate>
 
 @property(strong, nonatomic) NSString *clientID;
 @property(strong, nonatomic) NSString *clientSecret;
-@property(strong, nonatomic) NSString *code;
-@property(strong, nonatomic) NSString *accessToken;
+@property(strong, nonatomic) NSString *code; // TODO: Should be private
+@property(strong, nonatomic) NSString *accessToken; // TODO: Should be private
+@property(strong, nonatomic) NSString *appURLScheme;
 @property(strong, nonatomic) NSURL *redirectURL;
 @property(strong, nonatomic) NSURL *failureURL;
+@property(strong, nonatomic) NSURL *spidURL;
 @property(strong, nonatomic) NSURL *authorizationURL;
 @property(strong, nonatomic) NSURL *tokenURL;
-@property(strong, nonatomic) NSString *initialHTMLString;
-@property(strong, nonatomic) NSMutableData *receivedData;
-@property(strong, nonatomic) UIWebView *webView;
-@property(copy) void (^completionHandler)(void);
-@property BOOL useWebView;
+@property(strong, nonatomic) NSMutableData *receivedData; // TODO: move to new auth class
+@property(copy) void (^completionHandler)(void); // TODO: should be typedef
 
 + (SPiDClient *)sharedInstance;
 
-- (void)setClientID:(NSString *)clientID andClientSecret:(NSString *)clientSecret andRedirectURL:(NSURL *)redirectURL;
+- (void)setClientID:(NSString *)clientID
+    andClientSecret:(NSString *)clientSecret
+    andAppURLScheme:(NSString *)appURLSchema
+         andSPiDURL:(NSURL *)spidURL;
 
 - (void)handleOpenURL:(NSURL *)url;
 
-- (void)requestAuthorizationCodeByBrowserRedirectWithCompletionHandler:(void (^)(void))completionHandler;
-
-- (void)requestAuthorizationCodeWithAuthorizationURLHandler:(SPiDAuthorizationURLHandler)authorizationURLHandler;
-
-- (UIWebView *)requestAuthorizationCodeWithWebViewWithCompletionHandler:(void (^)(void))completionHandler;
+- (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)(void))completionHandler; // TODO: block as typedef?
 
 @end

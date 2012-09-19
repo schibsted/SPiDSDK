@@ -10,7 +10,7 @@
 #include "SPiDRequest.h"
 
 
-@interface SPiDLogoutViewController : UIViewController
+@interface SPiDMainViewController : UIViewController
 
 @property(strong, nonatomic) IBOutlet UILabel *tokenLabel;
 @property(strong, nonatomic) IBOutlet UILabel *userLabel;

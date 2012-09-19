@@ -17,20 +17,10 @@
 
 - (IBAction)loginByRedirect:(id)sender {
 
-    [[SPiDClient sharedInstance] requestAuthorizationCodeByBrowserRedirectWithCompletionHandler:^(void) {
+    [[SPiDClient sharedInstance] requestSPiDAuthorizationWithCompletionHandler:^(void) {
         SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
         [[self navigationController] pushViewController:[appDelegate logoutView] animated:YES];
     }];
 }
-
-- (IBAction)loginByWebView:(id)sender {
-    [[SPiDClient sharedInstance] setInitialHTMLString:@"<html><body>Loading</body><html>"];
-    UIWebView *webView = [[SPiDClient sharedInstance] requestAuthorizationCodeWithWebViewWithCompletionHandler:^(void) {
-        SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
-        [[self navigationController] pushViewController:[appDelegate logoutView] animated:YES];
-    }];
-    [[self view] addSubview:webView];
-}
-
 
 @end
