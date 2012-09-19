@@ -22,6 +22,7 @@
         NSURL *url = [NSURL URLWithString:urlStr];
         [self doAuthenticatedSPiDGetRequestWithURL:url];
     }
+    return self;
 }
 
 - (void)doAuthenticatedMeRequestWithCompletionHandler:completionHandler {
@@ -64,7 +65,7 @@
     [request setHTTPMethod:[self httpMethod]];
     NSLog(@"URL: %@", [url absoluteString]);
     [self setReceivedData:[[NSMutableData alloc] init]];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
