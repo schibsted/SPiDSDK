@@ -19,7 +19,7 @@
 
     [[SPiDClient sharedInstance] requestSPiDAuthorizationWithCompletionHandler:^(void) {
         SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
-        [[self navigationController] pushViewController:[appDelegate logoutView] animated:YES];
+        [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
     }];
 }
 
