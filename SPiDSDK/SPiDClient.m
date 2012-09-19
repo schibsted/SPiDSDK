@@ -47,12 +47,16 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     andClientSecret:(NSString *)clientSecret
     andAppURLScheme:(NSString *)appURLScheme
          andSPiDURL:(NSURL *)spidURL {
-    // TODO: Use call to set property
-    self.clientID = clientID;
-    self.clientSecret = clientSecret;
-    self.appURLScheme = appURLScheme;
+    [self setClientID:clientID];
+    [self setClientSecret:clientSecret];
+    [self setAppURLScheme:appURLScheme];
+    [self setSpidURL:spidURL];
+
+    [self setRedirectURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://login", [self appURLScheme]]]];
+    [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self spidURL]]]];
+    [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self spidURL]]]];
+
     //self.redirectURL = redirectURL;
-    self.spidURL = spidURL;
     //self.failureURL = failureURL;
 }
 
@@ -80,10 +84,11 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
 - (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)())completionHandler {
     // validate parameters
 # if DEBUG
-    NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
+    //NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
 #endif
     requestURL = [self generateAuthorizationRequestURL];
 
+    NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
     [self setCompletionHandler:completionHandler];
     [[UIApplication sharedApplication] openURL:requestURL];
 }
@@ -137,17 +142,16 @@ static NSString *const kRedirectURLKey = @"redirect_uri";
     NSLog(@"Error: %@", [error description]);
 }
 
-- (void)handleOpenURL:(NSURL *)url {
-    if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
+- (BOOL)handleOpenURL:(NSURL *)url {
 #if DEBUG
-        NSLog(@"Safari redirect url: %@", [url absoluteString]);
+    NSLog(@"SPiD SDK received: %@", [url absoluteString]);
 #endif
+    if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
         [self setCode:[SPiDURL getUrlParameter:url forKey:@"code"]];
         [self requestAccessToken];
+        return YES;
     } else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
-#if DEBUG
-        NSLog(@"Safari failure url: %@", [url absoluteString]);
-#endif
+        return NO;
     }
 }
 

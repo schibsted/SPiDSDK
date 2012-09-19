@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"Logged into SPiD"];
+    [self setTitle:@"SPiD Example App"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

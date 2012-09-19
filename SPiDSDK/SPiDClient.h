@@ -33,7 +33,7 @@ typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
     andAppURLScheme:(NSString *)appURLSchema
          andSPiDURL:(NSURL *)spidURL;
 
-- (void)handleOpenURL:(NSURL *)url;
+- (BOOL)handleOpenURL:(NSURL *)url;
 
 - (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)(void))completionHandler; // TODO: block as typedef?
 

@@ -12,10 +12,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"Login to SPiD"];
+    [self setTitle:@"SPiD Example App"];
 }
 
-- (IBAction)loginByRedirect:(id)sender {
+- (IBAction)loginToSPiD:(id)sender {
 
     [[SPiDClient sharedInstance] requestSPiDAuthorizationWithCompletionHandler:^(void) {
         SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
