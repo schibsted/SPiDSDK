@@ -10,14 +10,17 @@
 
 // OAuth 2.0 errors
 extern NSInteger const SPiDOAuth2RedirectURIMismatchErrorCode;
-extern NSInteger const SPiDOAuth2InvalidClientErrorCode;
 extern NSInteger const SPiDOAuth2UnauthorizedClientErrorCode;
 extern NSInteger const SPiDOAuth2AccessDeniedErrorCode;
 extern NSInteger const SPiDOAuth2InvalidRequestErrorCode;
-extern NSInteger const SPiDOAuth2InvalidClientIDErrorCode;
 extern NSInteger const SPiDOAuth2UnsupportedResponseTypeErrorCode;
 extern NSInteger const SPiDOAuth2InvalidScopeErrorCode;
 extern NSInteger const SPiDOAuth2InvalidGrantErrorCode;
+extern NSInteger const SPiDOAuth2InvalidClientErrorCode;
+// These to are replaced by "invalid_client" in draft 10 of OAuth 2.0
+extern NSInteger const SPiDOAuth2InvalidClientIDErrorCode;
+extern NSInteger const SPiDOAuth2InvalidClientCredentialsErrorCode;
+
 
 // Protected resource errors
 extern NSInteger const SPiDOAuth2InvalidTokenErrorCode;
