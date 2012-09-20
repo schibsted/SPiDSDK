@@ -19,7 +19,6 @@ static NSString *const SPiDForceKey = @"force";
 
 @implementation SPiDClient {
 @private
-    BOOL isPending;
     NSURL *requestURL;
 }
 
@@ -29,7 +28,6 @@ static NSString *const SPiDForceKey = @"force";
 @synthesize accessToken = _accessToken;
 @synthesize appURLScheme = _appURLScheme;
 @synthesize redirectURL = _redirectURL;
-@synthesize failureURL = _failureURL;
 @synthesize spidURL = spidURL;
 @synthesize authorizationURL = _authorizationURL;
 @synthesize tokenURL = _tokenURL;
@@ -55,12 +53,15 @@ static NSString *const SPiDForceKey = @"force";
     [self setAppURLScheme:appURLScheme];
     [self setSpidURL:spidURL];
 
-    [self setRedirectURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://login", [self appURLScheme]]]];
-    [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self spidURL]]]];
-    [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self spidURL]]]];
+    // Generates URL default urls
+    if (![self redirectURL])
+        [self setRedirectURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://login", [self appURLScheme]]]];
 
-    //self.redirectURL = redirectURL;
-    //self.failureURL = failureURL;
+    if (![self authorizationURL])
+        [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self spidURL]]]];
+
+    if (![self tokenURL])
+        [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self spidURL]]]];
 }
 
 - (NSURL *)generateAuthorizationRequestURL {
@@ -83,14 +84,19 @@ static NSString *const SPiDForceKey = @"force";
     return data;
 }
 
-- (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)())completionHandler {
-    // TODO: validate parameters
-    // Validate that url starts with http?
+- (void)requestSPiDAuthorizationWithCompletionHandler:(SPiDCompletionHandler)completionHandler {
+    // Sanity check
+    NSAssert([self authorizationURL], @"SPiDOAuth2 missing authorization URL.");
+    NSAssert([self clientID], @"SPiDOAuth2 missing client ID.");
+    NSAssert([self clientSecret], @"SPiDOAuth2 missing client secret.");
+    NSAssert([self redirectURL], @"SPiDOAuth2 missing redirect url.");
+
+    // TODO: Should we validate that url starts with https?
 
     requestURL = [self generateAuthorizationRequestURL];
 
 #if DEBUG
-    NSLog(@"Authorizing using url: %@", requestURL.absoluteString);
+    NSLog(@"SPiDSDK authorizing using url: %@", requestURL.absoluteString);
 #endif
 
     [self setCompletionHandler:completionHandler];
@@ -98,16 +104,24 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)requestAccessToken {
-#if DEBUG
-    NSLog(@"Requesting token");
-#endif
+    // Sanity check
+    NSAssert([self clientID], @"SPiDOAuth2 missing client ID.");
+    NSAssert([self redirectURL], @"SPiDOAuth2 missing redirect url.");
+    NSAssert([self clientSecret], @"SPiDOAuth2 missing client secret.");
+    NSAssert([self code], @"SPiDOAuth2 missing code, this should not happen.");
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self tokenURL]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
 
+    NSString *postString = [self generateAccessTokenPostData];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[[self generateAccessTokenPostData] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+
+#if DEBUG
+    NSLog(@"SPiDSDK requesting token with url: %@ and postdata: %@", [self tokenURL], postString);
+#endif
+
     [self setReceivedData:[[NSMutableData alloc] init]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
@@ -123,7 +137,6 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Done");
     NSError *jsonError = nil;
     NSLog(@"Client: %@", [self receivedData]);
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[self receivedData] options:kNilOptions error:&jsonError];
@@ -131,14 +144,7 @@ static NSString *const SPiDForceKey = @"force";
     if (!jsonError && [jsonObject objectForKey:@"access_token"]) {
         [self setAccessToken:[jsonObject objectForKey:@"access_token"]];
         NSLog(@"Got access_token: %@", [self accessToken]);
-        //SPiDRequest *request = [[SPiDRequest alloc] init];
-        self.completionHandler();
-        /*[request doAuthenticatedMeRequestWithCompletionHandler:^(NSDictionary *data) {
-            NSLog(@"Finished me with data: %@", data);
-
-        }];*/
-        //NSLog(@"%@", self.completionHandler);
-        //self.completionHandler();
+        self.completionHandler(nil);
     }
 }
 
@@ -146,17 +152,19 @@ static NSString *const SPiDForceKey = @"force";
     NSLog(@"Error: %@", [error description]);
 }
 
+// TODO: Should keep track of current request and handle if it is a logout
 - (BOOL)handleOpenURL:(NSURL *)url {
 #if DEBUG
-    NSLog(@"SPiD SDK received: %@", [url absoluteString]);
+    NSLog(@"SPiDSDK received url: %@", [url absoluteString]);
 #endif
     if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
         [self setCode:[SPiDURL getUrlParameter:url forKey:@"code"]];
         [self requestAccessToken];
         return YES;
-    } else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
+    } /*else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
         return NO;
-    }
+    }*/
+    return YES;
 }
 
 @end

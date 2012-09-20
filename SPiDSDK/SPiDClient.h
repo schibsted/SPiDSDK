@@ -11,6 +11,8 @@
 
 typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 
+typedef void (^SPiDCompletionHandler)(NSError *error);
+
 @interface SPiDClient : NSObject <NSURLConnectionDelegate>
 
 @property(strong, nonatomic) NSString *clientID;
@@ -18,13 +20,12 @@ typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 @property(strong, nonatomic) NSString *code; // TODO: Should be private
 @property(strong, nonatomic) NSString *accessToken; // TODO: Should be private
 @property(strong, nonatomic) NSString *appURLScheme;
-@property(strong, nonatomic) NSURL *redirectURL;
-@property(strong, nonatomic) NSURL *failureURL;
+@property(strong, nonatomic) NSURL *redirectURL; // TODO: Default to appURLScheme://SPiD/{login|logout|failure}
 @property(strong, nonatomic) NSURL *spidURL;
 @property(strong, nonatomic) NSURL *authorizationURL;
 @property(strong, nonatomic) NSURL *tokenURL;
 @property(strong, nonatomic) NSMutableData *receivedData; // TODO: move to new auth class
-@property(copy) void (^completionHandler)(void); // TODO: should be typedef
+@property(copy) SPiDCompletionHandler completionHandler; // TODO: should be typedef
 
 + (SPiDClient *)sharedInstance;
 
@@ -35,6 +36,6 @@ typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
 
 - (BOOL)handleOpenURL:(NSURL *)url;
 
-- (void)requestSPiDAuthorizationWithCompletionHandler:(void (^)(void))completionHandler; // TODO: block as typedef?
+- (void)requestSPiDAuthorizationWithCompletionHandler:(SPiDCompletionHandler)completionHandler; // TODO: block as typedef?
 
 @end

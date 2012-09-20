@@ -53,14 +53,15 @@
     if ([[SPiDClient sharedInstance] useWebView]) {
         [self setUrl:url];
         [self setHttpMethod:@"GET"];
-        [self setCompletionHandler:completionHandler];
         [self doAuthenticatedSPiDGetRequestWithURL:url];
     } else { */
     // Safari redirect
+    [self setCompletionHandler:completionHandler];
     [[UIApplication sharedApplication] openURL:url];
     //}
 }
 
+// TODO: Should check token expiration and handle invalid tokens
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
 
@@ -93,9 +94,8 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Done Request");
     NSError *jsonError = nil;
-    NSLog(@"Request %@", [[NSString alloc] initWithData:[self receivedData] encoding:NSUTF8StringEncoding]);
+    //NSLog(@"Request %@", [[NSString alloc] initWithData:[self receivedData] encoding:NSUTF8StringEncoding]);
     NSDictionary *jsonObject = nil;
     if ([[self receivedData] length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:[self receivedData] options:kNilOptions error:&jsonError];
@@ -104,12 +104,12 @@
     if (!jsonError) {
         _completionHandler(jsonObject);
     } else {
-        NSLog(@"Error: %@", [jsonError description]);
+        NSLog(@"SPiDSDK error: %@", [jsonError description]);
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Error: %@", [error description]);
+    NSLog(@"SPiDSDK error: %@", [error description]);
 }
 
 

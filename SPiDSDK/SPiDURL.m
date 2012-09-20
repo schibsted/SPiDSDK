@@ -18,7 +18,6 @@
 }
 
 + (NSURL *)urlEncodeString:(NSString *)unescaped {
-    NSLog(@"Got string: %@", unescaped);
     NSString *escapedString = (NSString *) CFBridgingRelease((CFTypeRef) CFURLCreateStringByAddingPercentEscapes(
             NULL,
             (__bridge CFStringRef) unescaped,

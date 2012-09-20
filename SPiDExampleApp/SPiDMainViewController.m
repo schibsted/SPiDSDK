@@ -18,9 +18,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[self tokenLabel] setText:[[SPiDClient sharedInstance] accessToken]];
     [[self userLabel] setText:@"Unknown user"];
-    [[self timeLabel] setText:@""];
     [[self navigationItem] setHidesBackButton:YES];
 
     SPiDRequest *request = [[SPiDRequest alloc] init];
@@ -39,7 +37,7 @@
         NSArray *data = [dict objectForKey:@"data"];
         NSDictionary *latestLogin = [data objectAtIndex:0];
         NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
-        [[self timeLabel] setText:time];
+        NSLog(@"Received time: %@", time);
     }                                                andUserID:[self userID]];
 }
 

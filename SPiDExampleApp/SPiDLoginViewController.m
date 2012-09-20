@@ -17,7 +17,7 @@
 
 - (IBAction)loginToSPiD:(id)sender {
 
-    [[SPiDClient sharedInstance] requestSPiDAuthorizationWithCompletionHandler:^(void) {
+    [[SPiDClient sharedInstance] requestSPiDAuthorizationWithCompletionHandler:^(NSError *error) {
         SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
         [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
     }];
