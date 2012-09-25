@@ -10,6 +10,8 @@
 #import "SPiDAccessToken.h"
 
 @interface SPiDRequest ()
+
+// NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
@@ -20,22 +22,35 @@
 
 @implementation SPiDRequest
 
-- (id)initWithURL:(NSString *)urlInput andHTTPMethod:(NSString *)method andCompletionHandler:(id)handler {
+- (id)initGetRequestWithPath:(NSString *)requestPath andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
+    return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andAccessToken:accessToken andCompletionHandler:handler];
+}
 
-    if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) {
-        NSString *urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlInput, @"asdf"];
-        url = [NSURL URLWithString:urlStr];
-        [self doAuthenticatedSPiDGetRequestWithURL:url];
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler __unused {
+    return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andAccessToken:accessToken andCompletionHandler:handler];
+}
+
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
+    self = [super init];
+    if (self) {
+        NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] spidURL] absoluteString], requestPath];
+        if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
+            NSString *urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", requestURL, accessToken.accessToken];
+            url = [NSURL URLWithString:urlStr];
+            httpMethod = @"GET";
+        } else if ([method isEqualToString:@"POST"]) {
+            url = [NSURL URLWithString:requestURL];
+            // TODO: add token to postdata
+            httpMethod = @"POST";
+            httpBody = body;
+        }
     }
     return self;
 }
 
 // TODO: Should be init methods
-- (void)doAuthenticatedMeRequestWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
-    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/api/2/me?oauth_token=%@", accessToken.accessToken];
-    url = [NSURL URLWithString:urlStr];
-    httpMethod = @"GET";
-    completionHandler = handler;
+- (id)doAuthenticatedMeRequestWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
+    [self initGetRequestWithPath:@"/api/2/me" andAccessToken:accessToken andCompletionHandler:handler];
     [self doAuthenticatedSPiDGetRequestWithURL:url];
 }
 
@@ -49,6 +64,7 @@
     [self doAuthenticatedSPiDGetRequestWithURL:url];
 }
 
+// TODO: Should be in SPiDClient
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler {
     NSLog(@"Trying to logout");
     NSURL *redirectUri = [SPiDUtils urlEncodeString:@"sdktest://logout"];
@@ -79,6 +95,16 @@
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
+- (void)doRequest {
+    receivedData = [[NSMutableData alloc] init];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [request setHTTPMethod:httpMethod];
+    if (httpBody) {
+        [request setHTTPBody:httpBody];
+    }
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
 #pragma mark Private methods
 /*
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -92,7 +118,6 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Finished");
     NSError *jsonError = nil;
     NSLog(@"Request %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
     NSDictionary *jsonObject = nil;
@@ -106,6 +131,7 @@
     }
 
     if (!jsonError) {
+        // TODO: Create SPiDResponse
         completionHandler(jsonObject, nil);
     } else {
         NSLog(@"SPiDSDK error: %@", [jsonError description]);

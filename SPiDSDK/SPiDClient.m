@@ -94,8 +94,8 @@ typedef void (^SPiDAuthorizationURLHandler)(NSMutableData *response, NSError *er
 
 - (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler {
     NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
-    SPiDRequest *request = [[SPiDRequest alloc] init];
-    [request doAuthenticatedMeRequestWithAccessToken:accessToken andCompletionHandler:completionHandler];
+    SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:@"/api/2/me" andAccessToken:accessToken andCompletionHandler:completionHandler];
+    [request doRequest];
 }
 
 

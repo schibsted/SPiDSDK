@@ -15,11 +15,22 @@
 @private
     NSURL *url;
     NSString *httpMethod;
+    NSString *httpBody;
     NSMutableData *receivedData;
     SPiDCompletionHandler completionHandler;
 }
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url;
+
+- (void)doRequest;
+
+
+- (id)initGetRequestWithPath:(NSString *)requestPath andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
+
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
+
+
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
 
 
 - (void)doAuthenticatedMeRequestWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;

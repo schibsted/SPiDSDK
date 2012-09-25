@@ -147,7 +147,7 @@ static NSString *const SPiDForceKey = @"force";
         // TODO: save to keychain
         completionHandler(accessToken, nil); // TODO: add error
     } else {
-        NSLog(@"SPiDSDK error: %@", [jsonError description]);
+        NSLog(@"SPiDSDK json error: %@", [jsonError description]);
         completionHandler(nil, jsonError);
     }
 }
