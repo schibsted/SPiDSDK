@@ -8,6 +8,7 @@
 
 #import "SPiDRequest.h"
 #import "SPiDAccessToken.h"
+#import "SPiDResponse.h"
 
 @interface SPiDRequest ()
 
@@ -44,17 +45,12 @@
             httpMethod = @"POST";
             httpBody = body;
         }
+        completionHandler = handler;
     }
     return self;
 }
 
-// TODO: Should be init methods
-- (id)doAuthenticatedMeRequestWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
-    [self initGetRequestWithPath:@"/api/2/me" andAccessToken:accessToken andCompletionHandler:handler];
-    [self doAuthenticatedSPiDGetRequestWithURL:url];
-}
-
-
+// TODO: Should be init methods like /ME
 - (void)doAuthenticatedLoginsRequestWithCompletionHandler:(SPiDCompletionHandler)handler andUserID:(NSString *)userID {
     //https://stage.payment.schibsted.no/api/2/user/101912/logins?oauth_token=
     NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/api/2/user/%@/logins?oauth_token=%@", userID, @"asdf"];
@@ -100,7 +96,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:httpMethod];
     if (httpBody) {
-        [request setHTTPBody:httpBody];
+        [request setHTTPBody:[httpBody dataUsingEncoding:NSUTF8StringEncoding]];
     }
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
@@ -131,8 +127,10 @@
     }
 
     if (!jsonError) {
+        SPiDResponse *response = [[SPiDResponse alloc] init];
+        //SPiDResponse *response = [[SPiDResponse alloc] initWithJSON];
         // TODO: Create SPiDResponse
-        completionHandler(jsonObject, nil);
+        completionHandler(response, nil);
     } else {
         NSLog(@"SPiDSDK error: %@", [jsonError description]);
     }
