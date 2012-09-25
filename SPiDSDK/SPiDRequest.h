@@ -14,18 +14,16 @@
     NSURL *url;
     NSString *httpMethod;
     NSMutableData *receivedData;
-
-    void (^completionHandler)(NSDictionary *dict);
-
+    SPiDCompletionHandler completionHandler;
 }
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url;
 
-- (void)doAuthenticatedMeRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler;
+- (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)handler;
 
-- (void)doAuthenticatedLogoutRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler;
+- (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler;
 
-- (void)doAuthenticatedLoginsRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler andUserID:(NSString *)userID;
+- (void)doAuthenticatedLoginsRequestWithCompletionHandler:(SPiDCompletionHandler)handler andUserID:(NSString *)userID;
 
 // TODO: Should have retry method
 
