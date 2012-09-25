@@ -8,14 +8,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SPiDURL : NSObject
+@interface SPiDUtils : NSObject
 
-+ (NSString *)addToURL:(NSString *)url parameterKey:(NSString *)parameterKey withValue:(NSString *)parameterValue;
+//+ (NSString *)addParameterToString:(NSString *)string withParameterKey:(NSString *)parameterKey withValue:(NSString *)parameterValue;
 
 + (NSURL *)urlEncodeString:(NSString *)unescaped;
 
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key;
 
-+ (NSURL *)stripQueryFromURL:(NSURL *)url;
+//+ (NSURL *)stripQueryFromURL:(NSURL *)url;
 
 @end

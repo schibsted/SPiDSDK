@@ -7,25 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPiDURL.h"
+#import "SPiDConstants.h"
+#import "SPiDUtils.h"
 
-typedef void (^SPiDAuthorizationURLHandler)(NSURL *preparedURL);
+@class SPiDAuthorizationRequest;
+@class SPiDResponse;
 
-typedef void (^SPiDCompletionHandler)(NSError *error);
+typedef void (^SPiDAuthorizationCompletionHandler)(NSError *error);
 
-@interface SPiDClient : NSObject <NSURLConnectionDelegate>
+typedef void (^SPiDCompletionHandler)(SPiDResponse *response, NSError *error); // TODO: Should be SPiDResponse
+
+@interface SPiDClient : NSObject
 
 @property(strong, nonatomic) NSString *clientID;
 @property(strong, nonatomic) NSString *clientSecret;
-@property(strong, nonatomic) NSString *code; // TODO: Should be private
-@property(strong, nonatomic) NSString *accessToken; // TODO: Should be private
 @property(strong, nonatomic) NSString *appURLScheme;
-@property(strong, nonatomic) NSURL *redirectURL; // TODO: Default to appURLScheme://SPiD/{login|logout|failure}
+@property(strong, nonatomic) NSURL *redirectURI; // TODO: Default to appURLScheme://SPiD/{login|logout|failure}
 @property(strong, nonatomic) NSURL *spidURL;
 @property(strong, nonatomic) NSURL *authorizationURL;
 @property(strong, nonatomic) NSURL *tokenURL;
-@property(strong, nonatomic) NSMutableData *receivedData; // TODO: move to new auth class
-@property(copy) SPiDCompletionHandler completionHandler; // TODO: should be typedef
+@property(nonatomic) BOOL saveToKeychain;
 
 + (SPiDClient *)sharedInstance;
 
@@ -36,6 +37,6 @@ typedef void (^SPiDCompletionHandler)(NSError *error);
 
 - (BOOL)handleOpenURL:(NSURL *)url;
 
-- (void)requestSPiDAuthorizationWithCompletionHandler:(SPiDCompletionHandler)completionHandler; // TODO: block as typedef?
+- (void)requestSPiDAuthorizationWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
 
 @end

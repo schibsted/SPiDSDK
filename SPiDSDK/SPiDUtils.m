@@ -4,18 +4,18 @@
 // To change the template use AppCode | Preferences | File Templates.
 //
 
-#import "SPiDURL.h"
+#import "SPiDUtils.h"
 
-@implementation SPiDURL
+@implementation SPiDUtils
 
-+ (NSString *)addToURL:(NSString *)url parameterKey:(NSString *)parameterKey withValue:(NSString *)parameterValue {
-    if ([url rangeOfString:@"?"].location == NSNotFound) {
-        url = [NSString stringWithFormat:@"%@?%@=%@", url, parameterKey, [self urlEncodeString:parameterValue]];
+/*
++ (NSString *)addParameterToString:(NSString *)string withParameterKey:(NSString *)parameterKey withValue:(NSString *)parameterValue {
+    if ([string length] > 0) {
+        return [NSString stringWithFormat:@"%@&%@=%@", string, parameterKey, [self urlEncodeString:parameterValue]];
     } else {
-        url = [NSString stringWithFormat:@"%@&%@=%@", url, parameterKey, [self urlEncodeString:parameterValue]];
+        return [NSString stringWithFormat:@"%@=%@", parameterKey, [self urlEncodeString:parameterValue]];
     }
-    return url;
-}
+}*/
 
 + (NSURL *)urlEncodeString:(NSString *)unescaped {
     NSString *escapedString = (NSString *) CFBridgingRelease((CFTypeRef) CFURLCreateStringByAddingPercentEscapes(
@@ -39,7 +39,7 @@
     }
     return nil;
 }
-
+/*
 + (NSURL *)stripQueryFromURL:(NSURL *)url {
     NSString *query = [url query];
 
@@ -52,6 +52,6 @@
                                   options:NSBackwardsSearch
                                     range:NSMakeRange(0, [urlString length])];
     return [NSURL URLWithString:urlString];
-}
+}*/
 
 @end

@@ -8,12 +8,15 @@
 #import <Foundation/Foundation.h>
 #import "SPiDClient.h"
 
-@interface SPiDRequest : NSObject <NSURLConnectionDelegate>
+@interface SPiDRequest : NSObject <NSURLConnectionDelegate> {
+@private
+    NSURL *url;
+    NSString *httpMethod;
+    NSMutableData *receivedData;
 
-@property(strong, nonatomic) NSURL *url;
-@property(strong, nonatomic) NSString *httpMethod;
-@property(copy) void (^completionHandler)(NSDictionary *dict);
-@property(strong, nonatomic) NSMutableData *receivedData;
+    void (^completionHandler)(NSDictionary *dict);
+
+}
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url;
 
@@ -22,5 +25,7 @@
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler;
 
 - (void)doAuthenticatedLoginsRequestWithCompletionHandler:(void (^)(NSDictionary *dict))completionHandler andUserID:(NSString *)userID;
+
+// TODO: Should have retry method
 
 @end
