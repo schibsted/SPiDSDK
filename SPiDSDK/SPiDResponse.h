@@ -1,12 +1,12 @@
 //
-// Created by mikaellindstrom on 9/19/12.
+//  SPiDResponse.h
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by Mikael Lindström on 9/19/12.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
-
 
 #import <Foundation/Foundation.h>
-
 
 @interface SPiDResponse : NSObject
 @end

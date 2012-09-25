@@ -1,21 +1,14 @@
 //
-// Created by mikaellindstrom on 9/13/12.
+//  SPiDUtils.m
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by Mikael Lindström on 9/13/12.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
 #import "SPiDUtils.h"
 
 @implementation SPiDUtils
-
-/*
-+ (NSString *)addParameterToString:(NSString *)string withParameterKey:(NSString *)parameterKey withValue:(NSString *)parameterValue {
-    if ([string length] > 0) {
-        return [NSString stringWithFormat:@"%@&%@=%@", string, parameterKey, [self urlEncodeString:parameterValue]];
-    } else {
-        return [NSString stringWithFormat:@"%@=%@", parameterKey, [self urlEncodeString:parameterValue]];
-    }
-}*/
 
 + (NSURL *)urlEncodeString:(NSString *)unescaped {
     NSString *escapedString = (NSString *) CFBridgingRelease((CFTypeRef) CFURLCreateStringByAddingPercentEscapes(
@@ -39,19 +32,5 @@
     }
     return nil;
 }
-/*
-+ (NSURL *)stripQueryFromURL:(NSURL *)url {
-    NSString *query = [url query];
-
-    if (!query || ![query length]) {
-        return [url copy];
-    }
-    NSMutableString *urlString = [NSMutableString stringWithString:[url absoluteString]];
-    [urlString replaceOccurrencesOfString:[NSString stringWithFormat:@"?%@", [url query]]
-                               withString:@""
-                                  options:NSBackwardsSearch
-                                    range:NSMakeRange(0, [urlString length])];
-    return [NSURL URLWithString:urlString];
-}*/
 
 @end

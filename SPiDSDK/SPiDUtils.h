@@ -1,21 +1,17 @@
 //
-// Created by mikaellindstrom on 9/13/12.
+//  SPiDUtils.h
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by Mikael Lindström on 9/13/12.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
-
 
 #import <Foundation/Foundation.h>
 
-
 @interface SPiDUtils : NSObject
-
-//+ (NSString *)addParameterToString:(NSString *)string withParameterKey:(NSString *)parameterKey withValue:(NSString *)parameterValue;
 
 + (NSURL *)urlEncodeString:(NSString *)unescaped;
 
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key;
-
-//+ (NSURL *)stripQueryFromURL:(NSURL *)url;
 
 @end

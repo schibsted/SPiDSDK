@@ -1,7 +1,9 @@
 //
-// Created by mikaellindstrom on 9/21/12.
+//  SPiDAuthorizationRequest.m
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by Mikael Lindström on 9/21/12.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
 static NSString *const SPiDClientIDKey = @"client_id";

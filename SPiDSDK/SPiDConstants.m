@@ -1,9 +1,10 @@
 //
-// Created by mikaellindstrom on 9/19/12.
+//  SPiDConstants.m
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by Mikael Lindström on 9/19/12.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
-
 
 #import "SPiDConstants.h"
 
