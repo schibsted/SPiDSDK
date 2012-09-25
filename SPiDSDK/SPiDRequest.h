@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SPiDClient.h"
 
+@class SPiDAccessToken;
+
 @interface SPiDRequest : NSObject <NSURLConnectionDelegate> {
 @private
     NSURL *url;
@@ -19,7 +21,8 @@
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url;
 
-- (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)handler;
+
+- (void)doAuthenticatedMeRequestWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
 
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler;
 

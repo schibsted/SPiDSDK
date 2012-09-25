@@ -8,6 +8,7 @@
 
 #import "SPiDClient.h"
 #import "SPiDAuthorizationRequest.h"
+#import "SPiDRequest.h"
 
 typedef void (^SPiDAuthorizationURLHandler)(NSMutableData *response, NSError *error);
 
@@ -79,15 +80,24 @@ typedef void (^SPiDAuthorizationURLHandler)(NSMutableData *response, NSError *er
 
     @synchronized (authorizationRequest) {
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
-            if (!error) {
-                [self authorizationComplete:accessToken];
+            if (error) {
+                authorizationRequest = nil;
+                completionHandler(error);
+            } else {
+                [self authorizationComplete:token];
                 completionHandler(nil);
             }
         }];
     }
-    // TODO: { completionHandler }
     [authorizationRequest authorize];
 }
+
+- (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler {
+    NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
+    SPiDRequest *request = [[SPiDRequest alloc] init];
+    [request doAuthenticatedMeRequestWithAccessToken:accessToken andCompletionHandler:completionHandler];
+}
+
 
 // TODO: Should keep track of current request and handle if it is a logout
 - (BOOL)handleOpenURL:(NSURL *)url {
@@ -95,7 +105,6 @@ typedef void (^SPiDAuthorizationURLHandler)(NSMutableData *response, NSError *er
     NSLog(@"SPiDSDK received url: %@", [url absoluteString]);
 #endif
     if ([[url absoluteString] hasPrefix:[[self redirectURI] absoluteString]]) {
-
         return [authorizationRequest handleOpenURL:url];
     } // TODO: check for failure?
     return NO;
@@ -107,6 +116,7 @@ typedef void (^SPiDAuthorizationURLHandler)(NSMutableData *response, NSError *er
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;
     }
+    NSLog(@"Token %@", accessToken);
 
     // TODO: Loop through waiting requests
 

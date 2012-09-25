@@ -23,7 +23,7 @@
     [[self navigationItem] setHidesBackButton:YES];
 
     SPiDRequest *request = [[SPiDRequest alloc] init];
-    [request doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response, NSError *error) {
+    [[SPiDClient sharedInstance] doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response, NSError *error) {
         if (!error) {
             //NSDictionary *data = [dict objectForKey:@"data"];
             //NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];

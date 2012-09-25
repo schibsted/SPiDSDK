@@ -39,4 +39,6 @@ typedef void (^SPiDCompletionHandler)(SPiDResponse *response, NSError *error); /
 
 - (void)requestSPiDAuthorizationWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
 
+- (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler;
+
 @end

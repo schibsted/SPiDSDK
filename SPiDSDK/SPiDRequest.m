@@ -7,6 +7,16 @@
 //
 
 #import "SPiDRequest.h"
+#import "SPiDAccessToken.h"
+
+@interface SPiDRequest ()
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
+@end
 
 @implementation SPiDRequest
 
@@ -21,8 +31,8 @@
 }
 
 // TODO: Should be init methods
-- (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)handler {
-    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/api/2/me?oauth_token=%@", @"asdf"];
+- (void)doAuthenticatedMeRequestWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
+    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/api/2/me?oauth_token=%@", accessToken.accessToken];
     url = [NSURL URLWithString:urlStr];
     httpMethod = @"GET";
     completionHandler = handler;
@@ -69,38 +79,29 @@
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
+#pragma mark Private methods
+/*
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"Request response");
     NSLog(@"URL: %@", [[response URL] absoluteString]);
 }
+*/
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"Data received");
     [receivedData appendData:data];
-}
-
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
-    //NSLog(@"redirecting to : %@", [request URL]);
-    //NSString *redirectUrl = [[[SPiDClient sharedInstance] redirectURI] absoluteString];
-    if ([[[request URL] absoluteString] hasPrefix:@"sdktest://logout"]) {
-        // TODO: should check for token when making api calls
-        //[[SPiDClient sharedInstance] setAccessToken:nil];
-        return nil;
-    } else {
-        return request;
-    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"Finished");
     NSError *jsonError = nil;
-    //NSLog(@"Request %@", [[NSString alloc] initWithData:[self receivedData] encoding:NSUTF8StringEncoding]);
+    NSLog(@"Request %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
     NSDictionary *jsonObject = nil;
     if ([receivedData length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     }
+    receivedData = nil; // Should not be needed since a request should not be reused
 
-    if ([jsonObject objectForKey:@"error"]) {
+    if (![jsonObject objectForKey:@"error"]) {
         NSLog(@"SPiDSDK error: %@", [jsonObject objectForKey:@"error"]);
     }
 
@@ -114,6 +115,5 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"SPiDSDK error: %@", [error description]);
 }
-
 
 @end
