@@ -27,7 +27,7 @@
     return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andAccessToken:accessToken andCompletionHandler:handler];
 }
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler __unused {
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
     return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andAccessToken:accessToken andCompletionHandler:handler];
 }
 
@@ -114,26 +114,20 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError *jsonError = nil;
-    NSLog(@"Request %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
-    NSDictionary *jsonObject = nil;
-    if ([receivedData length] > 0) {
-        jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
-    }
+    SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:receivedData];
     receivedData = nil; // Should not be needed since a request should not be reused
-
+/*
     if (![jsonObject objectForKey:@"error"]) {
         NSLog(@"SPiDSDK error: %@", [jsonObject objectForKey:@"error"]);
-    }
+    }*/
 
-    if (!jsonError) {
-        SPiDResponse *response = [[SPiDResponse alloc] init];
+    if (![response error]) {
         //SPiDResponse *response = [[SPiDResponse alloc] initWithJSON];
         // TODO: Create SPiDResponse
         completionHandler(response, nil);
-    } else {
+    } /*else {
         NSLog(@"SPiDSDK error: %@", [jsonError description]);
-    }
+    }*/
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

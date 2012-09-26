@@ -41,4 +41,6 @@ typedef void (^SPiDCompletionHandler)(SPiDResponse *response, NSError *error); /
 
 - (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler;
 
+- (void)doAuthenticatedLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(SPiDCompletionHandler)completionHandler;
+
 @end

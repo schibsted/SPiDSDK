@@ -60,13 +60,19 @@ static NSString *const SPiDForceKey = @"force";
         // completionHandler to return error!
         return NO;
     } else {
-        code = [SPiDUtils getUrlParameter:url forKey:@"code"];
-        NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
+        NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
+        NSLog(@"handle: %@", urlString);
+        if ([urlString hasSuffix:@"login"]) {
+            code = [SPiDUtils getUrlParameter:url forKey:@"code"];
+            NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
 #if DEBUG
-        NSLog(@"SPiDSK: Received code: %@", code);
+            NSLog(@"SPiDSK: Received code: %@", code);
 #endif
-        [self requestAccessToken];
-        return YES;
+            [self requestAccessToken];
+            return YES;
+        } else if ([urlString hasSuffix:@"logout"]) {
+            return YES;
+        }
     }
 }
 
@@ -76,7 +82,7 @@ static NSString *const SPiDForceKey = @"force";
     NSString *requestURL = [[client authorizationURL] absoluteString];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDClientIDKey, [client clientID]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"code"];
-    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[[client redirectURI] absoluteString]]];
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"]; // TODO: Does this work?
     return [NSURL URLWithString:requestURL];
@@ -86,7 +92,7 @@ static NSString *const SPiDForceKey = @"force";
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *data = [NSString string];
     data = [data stringByAppendingFormat:@"%@=%@", SPiDClientIDKey, [client clientID]];
-    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[[client redirectURI] absoluteString]]];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDGrantTypeKey, @"authorization_code"];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDCodeKey, code];
@@ -138,6 +144,9 @@ static NSString *const SPiDForceKey = @"force";
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     }
 
+    //TODO: if contains error
+
+    NSLog(@"Request %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
     if (!jsonError) {
         NSLog(@"We should now have a valid accessToken");
         SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];

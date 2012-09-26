@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString const *SPiDSKDVersion;
+
 // OAuth 2.0 errors
 extern NSInteger const SPiDOAuth2RedirectURIMismatchErrorCode;
 extern NSInteger const SPiDOAuth2UnauthorizedClientErrorCode;

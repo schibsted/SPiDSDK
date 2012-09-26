@@ -31,6 +31,7 @@
 		53989FC31607199A00CB1BDD /* SPiDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */; };
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
+		E304E02CA4CD4938A354514D /* SPiDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7E1D8AB4EFA3D56000E /* SPiDConstants.m */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
 		E304E0B5D79EFFA5427E6994 /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
@@ -516,6 +517,7 @@
 				E304EA1BDEB35A07C930E74D /* SPiDAuthorizationRequest.m in Sources */,
 				E304E39CA9CD8D4F4D912D82 /* SPiDAccessToken.m in Sources */,
 				E304E0B5D79EFFA5427E6994 /* SPiDResponse.m in Sources */,
+				E304E02CA4CD4938A354514D /* SPiDConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

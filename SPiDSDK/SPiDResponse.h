@@ -9,4 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface SPiDResponse : NSObject
+
+@property(strong, nonatomic) NSError *error;
+@property(strong, nonatomic) NSDictionary *data;
+@property(strong, nonatomic) NSString *rawJSON;
+
+- (id)initWithJSONData:(NSData *)data;
+
 @end

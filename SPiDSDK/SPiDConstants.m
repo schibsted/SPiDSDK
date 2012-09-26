@@ -8,6 +8,8 @@
 
 #import "SPiDConstants.h"
 
+NSString const *SPiDSKDVersion = @"2";
+
 // OAuth 2.0 errors invalid_client_credentials
 NSInteger const SPiDOAuth2RedirectURIMismatchErrorCode = -1000;
 NSInteger const SPiDOAuth2UnauthorizedClientErrorCode = -1001;

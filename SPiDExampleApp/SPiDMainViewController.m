@@ -22,27 +22,25 @@
     [[self userLabel] setText:@"Unknown user"];
     [[self navigationItem] setHidesBackButton:YES];
 
-    SPiDRequest *request = [[SPiDRequest alloc] init];
     [[SPiDClient sharedInstance] doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response, NSError *error) {
-        if (!error) {
-            //NSDictionary *data = [dict objectForKey:@"data"];
-            //NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
-            //[self setUserID:[data objectForKey:@"userId"]];
-            //[[self userLabel] setText:user];
+        if (![response error]) {
+            NSDictionary *data = [[response data] objectForKey:@"data"];
+            NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
+            [self setUserID:[data objectForKey:@"userId"]];
+            [[self userLabel] setText:user];
         }
     }];
 }
 
 - (IBAction)sendTimeRequest:(id)sender {
-    SPiDRequest *request = [[SPiDRequest alloc] init];
-    [request doAuthenticatedLoginsRequestWithCompletionHandler:^(SPiDResponse *dResponse, NSError *error) {
-        if (!error) {
-            //NSArray *data = [dict objectForKey:@"data"];
-            //NSDictionary *latestLogin = [data objectAtIndex:0];
-            //NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
-            //NSLog(@"Received time: %@", time);
+    [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:[self userID] andCompletionHandler:^(SPiDResponse *response, NSError *error) {
+        if (![response error]) {
+            NSArray *data = [[response data] objectForKey:@"data"];
+            NSDictionary *latestLogin = [data objectAtIndex:0];
+            NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
+            NSLog(@"Received time: %@", time);
         }
-    }                                                andUserID:[self userID]];
+    }];
 }
 
 - (IBAction)logoutFromSPiD:(id)sender {
