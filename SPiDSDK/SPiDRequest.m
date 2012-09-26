@@ -50,19 +50,8 @@
     return self;
 }
 
-// TODO: Should be init methods like /ME
-- (void)doAuthenticatedLoginsRequestWithCompletionHandler:(SPiDCompletionHandler)handler andUserID:(NSString *)userID {
-    //https://stage.payment.schibsted.no/api/2/user/101912/logins?oauth_token=
-    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/api/2/user/%@/logins?oauth_token=%@", userID, @"asdf"];
-    url = [NSURL URLWithString:urlStr];
-    httpMethod = @"GET";
-    completionHandler = handler;
-    [self doAuthenticatedSPiDGetRequestWithURL:url];
-}
-
 // TODO: Should be in SPiDClient
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler {
-    NSLog(@"Trying to logout");
     NSURL *redirectUri = [SPiDUtils urlEncodeString:@"sdktest://logout"];
     NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/logout?redirect_uri=%@&oauth_token=%@", [redirectUri absoluteString], @"asdf"];
     url = [NSURL URLWithString:urlStr];
@@ -79,18 +68,6 @@
 }
 
 // TODO: Should check token expiration and handle invalid tokens
-- (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)requestUrl {
-    // if expired token, refresh?
-    // if not logged in, throw error
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-
-    [request setHTTPMethod:httpMethod];
-    NSLog(@"URL: %@", [url absoluteString]);
-    receivedData = [[NSMutableData alloc] init];
-
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-}
-
 - (void)doRequestWithAccessToken:(SPiDAccessToken *)accessToken {
     NSString *urlStr = [url absoluteString];
     NSString *body;

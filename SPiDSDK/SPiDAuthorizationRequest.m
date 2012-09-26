@@ -54,14 +54,6 @@ static NSString *const SPiDForceKey = @"force";
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
-/*
-- (id)initRefreshWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDInternalAuthorizationCompletionHandler)handler {
-    return [self initWithCompletionHandler:handler];
-    [self doAccessTokenRefreshWithToken:accessToken];
-    return self;
-}
-*/
-
 - (void)doAccessTokenRefreshWithToken:(SPiDAccessToken *)accessToken {
     NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[SPiDClient sharedInstance] tokenURL]
@@ -79,11 +71,10 @@ static NSString *const SPiDForceKey = @"force";
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         NSLog(@"SPiDSK: Received error: %@", error);
-        // completionHandler to return error!
+        // TODO: completionHandler to return error!
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
-        NSLog(@"handle: %@", urlString);
         if ([urlString hasSuffix:@"login"]) {
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
