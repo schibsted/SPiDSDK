@@ -42,4 +42,8 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     return [self initWithAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
 }
 
+- (BOOL)hasTokenExpired {
+    return ([[NSDate date] earlierDate:[self expiresAt]] == [self expiresAt]);
+}
+
 @end

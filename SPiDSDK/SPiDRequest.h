@@ -22,14 +22,14 @@
 
 - (void)doAuthenticatedSPiDGetRequestWithURL:(NSURL *)url;
 
-- (void)doRequest;
+- (void)doRequestWithAccessToken:(SPiDAccessToken *)accessToken;
 
 
-- (id)initGetRequestWithPath:(NSString *)requestPath andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
+- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(SPiDCompletionHandler)handler;
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(SPiDCompletionHandler)handler;
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler;
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(SPiDCompletionHandler)handler;
 
 
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler;

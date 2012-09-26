@@ -23,21 +23,21 @@
 
 @implementation SPiDRequest
 
-- (id)initGetRequestWithPath:(NSString *)requestPath andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
-    return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andAccessToken:accessToken andCompletionHandler:handler];
+- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(SPiDCompletionHandler)handler {
+    return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:handler];
 }
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
-    return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andAccessToken:accessToken andCompletionHandler:handler];
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(SPiDCompletionHandler)handler {
+    return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:handler];
 }
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDCompletionHandler)handler {
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(SPiDCompletionHandler)handler {
     self = [super init];
     if (self) {
         NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] spidURL] absoluteString], requestPath];
         if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
-            NSString *urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", requestURL, accessToken.accessToken];
-            url = [NSURL URLWithString:urlStr];
+            //NSString *urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", requestURL, accessToken.accessToken];
+            url = [NSURL URLWithString:requestURL];
             httpMethod = @"GET";
         } else if ([method isEqualToString:@"POST"]) {
             url = [NSURL URLWithString:requestURL];
@@ -91,13 +91,21 @@
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (void)doRequest {
-    receivedData = [[NSMutableData alloc] init];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    [request setHTTPMethod:httpMethod];
-    if (httpBody) {
-        [request setHTTPBody:[httpBody dataUsingEncoding:NSUTF8StringEncoding]];
+- (void)doRequestWithAccessToken:(SPiDAccessToken *)accessToken {
+    NSString *urlStr = [url absoluteString];
+    NSString *body;
+    if ([httpMethod isEqualToString:@"GET"]) {
+        urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
+    } else if ([httpMethod isEqualToString:@"GET"]) {
+        body = [httpBody stringByAppendingFormat:@"&oauth_token=%@"];
     }
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [request setHTTPMethod:httpMethod];
+
+    if (body) {
+        [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 

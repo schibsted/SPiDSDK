@@ -69,6 +69,7 @@
     @synchronized (authorizationRequest) {
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
             if (error) {
+                // if error is token expired, refresh
                 authorizationRequest = nil;
                 completionHandler(error);
             } else {
@@ -82,25 +83,16 @@
 
 /*
 - (BOOL)refreshToken;
-
-- (BOOL)hasTokenExpired;
-{
-    return ([[NSDate date] earlierDate:expiresAt] == expiresAt);
-}
 */
 
 - (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler {
-    NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
     NSString *path = [NSString stringWithFormat:@"/api/%@/me", SPiDSKDVersion];
-    SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path andAccessToken:accessToken andCompletionHandler:completionHandler];
-    [request doRequest];
+    [self doAuthenticatedGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
 
 - (void)doAuthenticatedLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(SPiDCompletionHandler)completionHandler {
-    NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
     NSString *path = [NSString stringWithFormat:@"/api/%@/user/%@/logins", SPiDSKDVersion, userID];
-    SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path andAccessToken:accessToken andCompletionHandler:completionHandler];
-    [request doRequest];
+    [self doAuthenticatedGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
 
 // TODO: Should keep track of current request and handle if it is a logout
@@ -122,6 +114,25 @@
 }
 
 #pragma mark Private methods
+- (void)doAuthenticatedGetRequestWithPath:(NSString *)path andCompletionHandler:(SPiDCompletionHandler)completionHandler {
+    NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
+    SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path andCompletionHandler:completionHandler];
+    if ([accessToken hasTokenExpired]) {
+        if (!waitingRequests) {
+            waitingRequests = [[NSMutableArray alloc] init];
+        }
+        [waitingRequests addObject:request];
+        //@synchronized (authorizationRequest) {
+        //if (!authorizationRequest) {
+        //    authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithAccessToken:accessToken];
+        //    [authorizationRequest refreshToken];
+        //}
+        //}
+    } else {
+        [request doRequestWithAccessToken:accessToken];
+    }
+}
+
 - (void)authorizationComplete:(SPiDAccessToken *)token {
     accessToken = token;
     @synchronized (authorizationRequest) {

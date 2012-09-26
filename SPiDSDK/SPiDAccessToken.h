@@ -19,5 +19,6 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
+- (BOOL)hasTokenExpired;
 
 @end
