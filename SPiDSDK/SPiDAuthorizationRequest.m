@@ -12,6 +12,7 @@ static NSString *const SPiDResponseTypeKey = @"response_type";
 static NSString *const SPiDGrantTypeKey = @"grant_type";
 static NSString *const SPiDRedirectURIKey = @"redirect_uri";
 static NSString *const SPiDCodeKey = @"code";
+static NSString *const SPiDRefreshTokenKey = @"refresh_token";
 static NSString *const SPiDPlatformKey = @"platform";
 static NSString *const SPiDForceKey = @"force";
 
@@ -51,6 +52,28 @@ static NSString *const SPiDForceKey = @"force";
 - (void)authorize {
     NSURL *requestURL = [self generateAuthorizationRequestURL];
     [[UIApplication sharedApplication] openURL:requestURL];
+}
+
+- (id)initRefreshWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDInternalAuthorizationCompletionHandler)handler {
+    self = [self initWithCompletionHandler:handler];
+    [self doAccessTokenRefreshWithToken:accessToken];
+    return self;
+}
+
+- (void)doAccessTokenRefreshWithToken:(SPiDAccessToken *)accessToken {
+    NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[SPiDClient sharedInstance] tokenURL]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+
+    receivedData = [[NSMutableData alloc] init];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+    // since a code can only be used once, remove it after token request
+    code = nil;
 }
 
 - (BOOL)handleOpenURL:url {
@@ -97,6 +120,17 @@ static NSString *const SPiDForceKey = @"force";
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDGrantTypeKey, @"authorization_code"];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDCodeKey, code];
+    return data;
+}
+
+- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)token {
+    SPiDClient *client = [SPiDClient sharedInstance];
+    NSString *data = [NSString string];
+    data = [data stringByAppendingFormat:@"%@=%@", SPiDClientIDKey, [client clientID]];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDGrantTypeKey, @"refresh_token"];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRefreshTokenKey, token.refreshToken];
     return data;
 }
 

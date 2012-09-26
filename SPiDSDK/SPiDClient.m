@@ -13,7 +13,7 @@
 @implementation SPiDClient {
 @private
     NSMutableArray *waitingRequests;
-    NSInteger tokenRefreshRetryCount;
+    NSInteger tokenRefreshRetryCount; // TODO: implement retries
     SPiDAuthorizationRequest *authorizationRequest;
     SPiDAccessToken *accessToken;
 }
@@ -104,6 +104,7 @@
     NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
     if ([urlString hasPrefix:redirectURLString]) {
         if ([urlString hasSuffix:@"login"]) {
+            // Assert
             return [authorizationRequest handleOpenURL:url];
         } else if ([urlString hasSuffix:@"logout"]) {
             [self clearAccessToken];
@@ -122,18 +123,27 @@
             waitingRequests = [[NSMutableArray alloc] init];
         }
         [waitingRequests addObject:request];
-        //@synchronized (authorizationRequest) {
-        //if (!authorizationRequest) {
-        //    authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithAccessToken:accessToken];
-        //    [authorizationRequest refreshToken];
-        //}
-        //}
+
+        [self refreshAccessToken];
     } else {
         [request doRequestWithAccessToken:accessToken];
     }
 }
 
+- (void)refreshAccessToken {
+    @synchronized (authorizationRequest) {
+        if (!authorizationRequest) {
+            authorizationRequest = [[SPiDAuthorizationRequest alloc] initRefreshWithAccessToken:accessToken andCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+                if (!error) {
+                    [self authorizationComplete:token];
+                }
+            }];
+        }
+    }
+}
+
 - (void)authorizationComplete:(SPiDAccessToken *)token {
+    NSLog(@"Token.: %@", token.accessToken);
     accessToken = token;
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;

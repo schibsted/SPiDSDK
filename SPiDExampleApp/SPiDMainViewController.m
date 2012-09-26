@@ -43,6 +43,10 @@
     }];
 }
 
+- (IBAction)refreshToken:(id)sender {
+    [[SPiDClient sharedInstance] refreshAccessToken];
+}
+
 - (IBAction)logoutFromSPiD:(id)sender {
     SPiDRequest *request = [[SPiDRequest alloc] init];
     [request doAuthenticatedLogoutRequestWithCompletionHandler:^(SPiDResponse *response) {

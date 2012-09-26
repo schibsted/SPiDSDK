@@ -26,6 +26,8 @@ typedef void (^SPiDInternalAuthorizationCompletionHandler)(SPiDAccessToken *acce
 
 - (void)authorize;
 
+- (id)initRefreshWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDInternalAuthorizationCompletionHandler)handler;
+
 - (BOOL)handleOpenURL:(NSURL *)url;
 
 @end

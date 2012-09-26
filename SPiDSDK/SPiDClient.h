@@ -43,4 +43,6 @@ typedef void (^SPiDCompletionHandler)(SPiDResponse *response);
 
 - (void)doAuthenticatedLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(SPiDCompletionHandler)completionHandler;
 
+- (void)refreshAccessToken;
+
 @end
