@@ -88,7 +88,7 @@
     NSLog(@"URL: %@", [url absoluteString]);
     receivedData = [[NSMutableData alloc] init];
 
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (void)doRequest {
@@ -98,17 +98,10 @@
     if (httpBody) {
         [request setHTTPBody:[httpBody dataUsingEncoding:NSUTF8StringEncoding]];
     }
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 #pragma mark Private methods
-/*
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"Request response");
-    NSLog(@"URL: %@", [[response URL] absoluteString]);
-}
-*/
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [receivedData appendData:data];
 }
@@ -116,18 +109,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:receivedData];
     receivedData = nil; // Should not be needed since a request should not be reused
-/*
-    if (![jsonObject objectForKey:@"error"]) {
-        NSLog(@"SPiDSDK error: %@", [jsonObject objectForKey:@"error"]);
-    }*/
-
-    if (![response error]) {
-        //SPiDResponse *response = [[SPiDResponse alloc] initWithJSON];
-        // TODO: Create SPiDResponse
-        completionHandler(response, nil);
-    } /*else {
-        NSLog(@"SPiDSDK error: %@", [jsonError description]);
-    }*/
+    completionHandler(response);
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

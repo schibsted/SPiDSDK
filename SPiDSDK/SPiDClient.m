@@ -37,7 +37,6 @@
     return sharedSPiDClientInstance;
 }
 
-//
 - (void)setClientID:(NSString *)clientID
     andClientSecret:(NSString *)clientSecret
     andAppURLScheme:(NSString *)appURLScheme
@@ -113,10 +112,8 @@
     NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
     if ([urlString hasPrefix:redirectURLString]) {
         if ([urlString hasSuffix:@"login"]) {
-            NSLog(@"login?");
             return [authorizationRequest handleOpenURL:url];
         } else if ([urlString hasSuffix:@"logout"]) {
-            NSLog(@"logout?");
             [self clearAccessToken];
             return YES;
         }
@@ -130,8 +127,6 @@
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;
     }
-    NSLog(@"Token %@", accessToken);
-
     // TODO: Loop through waiting requests
 
 }

@@ -15,7 +15,7 @@
 
 typedef void (^SPiDAuthorizationCompletionHandler)(NSError *error);
 
-typedef void (^SPiDCompletionHandler)(SPiDResponse *response, NSError *error); // TODO: Should be SPiDResponse
+typedef void (^SPiDCompletionHandler)(SPiDResponse *response);
 
 @interface SPiDClient : NSObject
 

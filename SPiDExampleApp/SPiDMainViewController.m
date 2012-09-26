@@ -22,7 +22,7 @@
     [[self userLabel] setText:@"Unknown user"];
     [[self navigationItem] setHidesBackButton:YES];
 
-    [[SPiDClient sharedInstance] doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response, NSError *error) {
+    [[SPiDClient sharedInstance] doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response data] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
@@ -33,7 +33,7 @@
 }
 
 - (IBAction)sendTimeRequest:(id)sender {
-    [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:[self userID] andCompletionHandler:^(SPiDResponse *response, NSError *error) {
+    [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:[self userID] andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSArray *data = [[response data] objectForKey:@"data"];
             NSDictionary *latestLogin = [data objectAtIndex:0];
@@ -45,8 +45,8 @@
 
 - (IBAction)logoutFromSPiD:(id)sender {
     SPiDRequest *request = [[SPiDRequest alloc] init];
-    [request doAuthenticatedLogoutRequestWithCompletionHandler:^(SPiDResponse *response, NSError *error) {
-        if (!error) {
+    [request doAuthenticatedLogoutRequestWithCompletionHandler:^(SPiDResponse *response) {
+        if (![response error]) {
             [[self navigationController] popToRootViewControllerAnimated:YES];
         }
     }];

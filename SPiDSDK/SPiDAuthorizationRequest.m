@@ -74,6 +74,7 @@ static NSString *const SPiDForceKey = @"force";
             return YES;
         }
     }
+    return NO;
 }
 
 #pragma mark Private methods
@@ -109,7 +110,7 @@ static NSString *const SPiDForceKey = @"force";
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
 
     receivedData = [[NSMutableData alloc] init];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
     // since a code can only be used once, remove it after token request
     code = nil;
