@@ -54,11 +54,13 @@ static NSString *const SPiDForceKey = @"force";
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
+/*
 - (id)initRefreshWithAccessToken:(SPiDAccessToken *)accessToken andCompletionHandler:(SPiDInternalAuthorizationCompletionHandler)handler {
-    self = [self initWithCompletionHandler:handler];
+    return [self initWithCompletionHandler:handler];
     [self doAccessTokenRefreshWithToken:accessToken];
     return self;
 }
+*/
 
 - (void)doAccessTokenRefreshWithToken:(SPiDAccessToken *)accessToken {
     NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
@@ -71,9 +73,6 @@ static NSString *const SPiDForceKey = @"force";
 
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    // since a code can only be used once, remove it after token request
-    code = nil;
 }
 
 - (BOOL)handleOpenURL:url {
@@ -146,8 +145,7 @@ static NSString *const SPiDForceKey = @"force";
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
-    // since a code can only be used once, remove it after token request
-    code = nil;
+    code = nil; // Not really needed since the request should only be used once
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {

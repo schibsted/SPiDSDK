@@ -81,10 +81,6 @@
     [authorizationRequest authorize];
 }
 
-/*
-- (BOOL)refreshToken;
-*/
-
 - (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler {
     NSString *path = [NSString stringWithFormat:@"/api/%@/me", SPiDSKDVersion];
     [self doAuthenticatedGetRequestWithPath:path andCompletionHandler:completionHandler];
@@ -124,20 +120,23 @@
         }
         [waitingRequests addObject:request];
 
-        [self refreshAccessToken];
+        [self refreshAccessTokenWithCompletionHandler:^(NSError *error) {
+        }];
     } else {
         [request doRequestWithAccessToken:accessToken];
     }
 }
 
-- (void)refreshAccessToken {
+- (void)refreshAccessTokenWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler {
     @synchronized (authorizationRequest) {
         if (!authorizationRequest) {
-            authorizationRequest = [[SPiDAuthorizationRequest alloc] initRefreshWithAccessToken:accessToken andCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+            authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
                 if (!error) {
                     [self authorizationComplete:token];
                 }
+                completionHandler(nil);
             }];
+            [authorizationRequest doAccessTokenRefreshWithToken:accessToken];
         }
     }
 }
@@ -162,6 +161,20 @@
     } */
     // TODO: clear keychain
 
+}
+
+- (BOOL)hasTokenExpired {
+    if (accessToken) {
+        return accessToken.hasTokenExpired;
+    }
+    return NO;
+}
+
+- (NSDate *)tokenExpiresAt {
+    if (accessToken) {
+        return accessToken.expiresAt;
+    }
+    return [NSDate date];
 }
 
 @end

@@ -39,12 +39,21 @@
             NSDictionary *latestLogin = [data objectAtIndex:0];
             NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
             NSLog(@"Received time: %@", time);
+            [[self loginLabel] setText:time];
         }
     }];
 }
 
 - (IBAction)refreshToken:(id)sender {
-    [[SPiDClient sharedInstance] refreshAccessToken];
+    [[SPiDClient sharedInstance] refreshAccessTokenWithCompletionHandler:^(NSError *error) {
+        if (!error) {
+            NSLog(@"Refreshed token");
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString *text = [NSString stringWithFormat:@"Token expires at: %@", [formatter stringFromDate:[[SPiDClient sharedInstance] tokenExpiresAt]]];
+            [[self tokenLabel] setText:text];
+        }
+    }];
 }
 
 - (IBAction)logoutFromSPiD:(id)sender {
