@@ -9,6 +9,9 @@
 #import "SPiDClient.h"
 #import "SPiDAuthorizationRequest.h"
 #import "SPiDRequest.h"
+#import "SPiDKeychainWrapper.h"
+
+static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 @implementation SPiDClient {
 @private
@@ -35,6 +38,15 @@
         sharedSPiDClientInstance = [[self alloc] init];
     });
     return sharedSPiDClientInstance;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        accessToken = [SPiDKeychainWrapper getAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
+        NSLog(@"Keychain: %@", accessToken.accessToken);
+    }
+    return self;
 }
 
 - (void)setClientID:(NSString *)clientID
@@ -158,6 +170,9 @@
 - (void)authorizationComplete:(SPiDAccessToken *)token {
     NSLog(@"Token.: %@", token.accessToken);
     accessToken = token;
+
+    [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:token forIdentifier:AccessTokenKeychainIdentification];
+
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;
     }

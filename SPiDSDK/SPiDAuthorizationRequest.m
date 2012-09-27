@@ -169,11 +169,10 @@ static NSString *const SPiDForceKey = @"force";
             NSLog(@"SPiDSDK api error: %@", [jsonObject objectForKey:@"error"]);
             completionHandler(nil, [NSError errorWithDomain:@"SPiDSDK" code:1 userInfo:nil]);
         } else {
-            NSLog(@"We should now have a valid accessToken");
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
-
+#if DEBUG
             NSLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
-
+#endif
             // TODO: save to keychain
             completionHandler(accessToken, nil);
         }

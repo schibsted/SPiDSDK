@@ -382,21 +382,21 @@
 					<string key="className">SPiDMainViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="lastLoginButtonPressed:">id</string>
 						<string key="logoutFromSPiD:">id</string>
 						<string key="refreshToken:">id</string>
-						<string key="sendTimeRequest:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="lastLoginButtonPressed:">
+							<string key="name">lastLoginButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="logoutFromSPiD:">
 							<string key="name">logoutFromSPiD:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="refreshToken:">
 							<string key="name">refreshToken:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="sendTimeRequest:">
-							<string key="name">sendTimeRequest:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

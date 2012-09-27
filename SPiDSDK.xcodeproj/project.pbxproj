@@ -38,13 +38,16 @@
 		E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
 		E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
 		E304E39CA9CD8D4F4D912D82 /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
+		E304E49BFFFA328E63605B7A /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
 		E304E65255E106B7B790EB6F /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
 		E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */; };
 		E304E6CE390767859B6A31AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		E304E6DEFC56FB37971BDFC4 /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		E304E7872BB1D45953704EE5 /* SPiDConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EB694A6337B4A97E8779 /* SPiDConstants.h */; };
+		E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */; };
 		E304E8B07F0AB36216D2DCF4 /* SPiDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EA067760998928321774 /* SPiDMainViewController.m */; };
 		E304EA1BDEB35A07C930E74D /* SPiDAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */; };
+		E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
 		E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E74CE552DDD7DA85CADB /* SPiDResponse.h */; };
 		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
 		E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
@@ -84,6 +87,7 @@
 				E304E7872BB1D45953704EE5 /* SPiDConstants.h in CopyFiles */,
 				E304EF832C7AA71DD356B2E6 /* SPiDAuthorizationRequest.h in CopyFiles */,
 				E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */,
+				E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +133,7 @@
 		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDResponse.h; sourceTree = "<group>"; };
 		E304E7E1D8AB4EFA3D56000E /* SPiDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDConstants.m; sourceTree = "<group>"; };
 		E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessToken.h; sourceTree = "<group>"; };
+		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDKeychainWrapper.m; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
@@ -137,6 +142,7 @@
 		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E304EDA55B1715BF5E738193 /* SPiDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDResponse.m; sourceTree = "<group>"; };
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
+		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDKeychainWrapper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +229,8 @@
 		537D21F415FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */,
+				E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */,
 				E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */,
 				E304E9C449C522B81621B33E /* SPiDAccessToken.m */,
 				E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */,
@@ -491,6 +499,7 @@
 				E304EEA60D8FA9A7D0FC3296 /* SPiDConstants.m in Sources */,
 				E304EFAA285132C8F5AEACFD /* SPiDAuthorizationRequest.m in Sources */,
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
+				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +527,7 @@
 				E304E39CA9CD8D4F4D912D82 /* SPiDAccessToken.m in Sources */,
 				E304E0B5D79EFFA5427E6994 /* SPiDResponse.m in Sources */,
 				E304E02CA4CD4938A354514D /* SPiDConstants.m in Sources */,
+				E304E49BFFFA328E63605B7A /* SPiDKeychainWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

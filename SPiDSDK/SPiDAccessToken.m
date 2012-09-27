@@ -11,6 +11,7 @@
 
 static NSString *const AccessTokenKey = @"access_token";
 static NSString *const ExpiresInKey = @"expires_in";
+static NSString *const ExpiresAtKey = @"expires_at";
 static NSString *const RefreshTokenKey = @"refresh_token";
 
 @implementation SPiDAccessToken
@@ -40,6 +41,19 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     }
 
     return [self initWithAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    NSString *accessToken = [decoder decodeObjectForKey:AccessTokenKey];
+    NSDate *expiresAt = [decoder decodeObjectForKey:ExpiresAtKey];
+    NSString *refreshToken = [decoder decodeObjectForKey:RefreshTokenKey];
+    return [self initWithAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:[self accessToken] forKey:AccessTokenKey];
+    [coder encodeObject:[self expiresAt] forKey:ExpiresInKey];
+    [coder encodeObject:[self refreshToken] forKey:RefreshTokenKey];
 }
 
 - (BOOL)hasTokenExpired {
