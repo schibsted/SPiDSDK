@@ -9,8 +9,11 @@
 #import "SPiDKeychainWrapper.h"
 
 @interface SPiDKeychainWrapper ()
+
 + (NSString *)serviceNameForSPiD;
-//+ basicquery
+
++ (NSMutableDictionary *)setupSearchQueryForIdentifier:(NSString *)identifier;
+
 @end
 
 // Note that all keychain items are available in the iPhone simulator to all apps since the application is not signed!
@@ -19,13 +22,7 @@
 #pragma mark Public methods
 
 + (SPiDAccessToken *)getAccessTokenFromKeychainForIdentifier:(NSString *)identifier; {
-    NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
-    [query setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-
-    // set unique identification
-    [query setObject:identifier forKey:(__bridge id) kSecAttrGeneric];
-    [query setObject:identifier forKey:(__bridge id) kSecAttrAccount];
-    [query setObject:[self serviceNameForSPiD] forKey:(__bridge id) kSecAttrService];
+    NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
 
     // search attributes
     [query setObject:(__bridge id) kCFBooleanTrue forKey:(__bridge id) kSecMatchLimitOne];
@@ -45,13 +42,7 @@
 
 + (BOOL)storeInKeychainAccessTokenWithValue:(SPiDAccessToken *)accessToken forIdentifier:(NSString *)identifier {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accessToken];
-    NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
-    [query setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-
-    // set unique identification
-    [query setObject:identifier forKey:(__bridge id) kSecAttrGeneric];
-    [query setObject:identifier forKey:(__bridge id) kSecAttrAccount];
-    [query setObject:[self serviceNameForSPiD] forKey:(__bridge id) kSecAttrService];
+    NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
 
     // add data
     [query setObject:data forKey:(__bridge id) kSecValueData];
@@ -69,15 +60,8 @@
 
 + (BOOL)updateAccessTokenInKeychainWithValue:(SPiDAccessToken *)accessToken forIdentifier:(NSString *)identifier {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accessToken];
-    SPiDAccessToken *test = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    NSMutableDictionary *searchQuery = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *searchQuery = [self setupSearchQueryForIdentifier:identifier];
     NSMutableDictionary *updateQuery = [[NSMutableDictionary alloc] init];
-    [searchQuery setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-
-    // set unique identification
-    [searchQuery setObject:identifier forKey:(__bridge id) kSecAttrGeneric];
-    [searchQuery setObject:identifier forKey:(__bridge id) kSecAttrAccount];
-    [searchQuery setObject:[self serviceNameForSPiD] forKey:(__bridge id) kSecAttrService];
 
     // add data
     [updateQuery setObject:data forKey:(__bridge id) kSecValueData];
@@ -91,13 +75,7 @@
 }
 
 + (void)removeAccessTokenFromKeychainForIdentifier:(NSString *)identifier {
-    NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
-    [query setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-
-    // set unique identification
-    [query setObject:identifier forKey:(__bridge id) kSecAttrGeneric];
-    [query setObject:identifier forKey:(__bridge id) kSecAttrAccount];
-    [query setObject:[self serviceNameForSPiD] forKey:(__bridge id) kSecAttrService];
+    NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
 
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef) query);
     NSAssert(status == noErr, @"Error deleting item to keychain");
@@ -108,6 +86,19 @@
 + (NSString *)serviceNameForSPiD {
     NSString *appName = [[NSBundle mainBundle] bundleIdentifier];
     return [NSString stringWithFormat:@"%@-SPiD", appName];
+}
+
++ (NSMutableDictionary *)setupSearchQueryForIdentifier:(NSString *)identifier {
+    NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
+
+    [query setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
+
+    // set unique identification
+    [query setObject:identifier forKey:(__bridge id) kSecAttrGeneric];
+    [query setObject:identifier forKey:(__bridge id) kSecAttrAccount];
+    [query setObject:[self serviceNameForSPiD] forKey:(__bridge id) kSecAttrService];
+
+    return query;
 }
 
 @end
