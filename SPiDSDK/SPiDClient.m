@@ -183,12 +183,11 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 - (void)logoutComplete {
     accessToken = nil;
 
-    // clear
+    [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
 
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;
     }
-    // TODO: clear keychain
 }
 
 - (BOOL)hasTokenExpired {
