@@ -9,9 +9,10 @@
 #import "SPiDResponse.h"
 
 
-@implementation SPiDMainViewController
-
-@synthesize userID = _userID;
+@implementation SPiDMainViewController {
+@private
+    NSString *userID;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,7 +47,7 @@
         if (![response error]) {
             NSDictionary *data = [[response data] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
-            [self setUserID:[data objectForKey:@"userId"]];
+            userID = [data objectForKey:@"userId"];
             [[self userLabel] setText:user];
             [self getLastLogin];
         }
@@ -54,7 +55,7 @@
 }
 
 - (void)getLastLogin {
-    [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:[self userID] andCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSArray *data = [[response data] objectForKey:@"data"];
             NSDictionary *latestLogin = [data objectAtIndex:0];

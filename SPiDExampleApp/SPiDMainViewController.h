@@ -16,6 +16,4 @@
 @property(strong, nonatomic) IBOutlet UILabel *loginLabel;
 @property(strong, nonatomic) IBOutlet UILabel *tokenLabel;
 
-@property(strong, nonatomic) NSString *userID;
-
 @end
