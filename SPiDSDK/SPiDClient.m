@@ -91,6 +91,21 @@
     [self doAuthenticatedGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
 
+// TODO: logout clears all waiting requests
+- (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler {
+    @synchronized (authorizationRequest) {
+        if (!authorizationRequest) {
+            authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+                if (!error) {
+                    [self logoutComplete];
+                }
+                completionHandler(error);
+            }];
+            [authorizationRequest logoutWithAccessToken:accessToken];
+        }
+    }
+}
+
 // TODO: Should keep track of current request and handle if it is a logout
 - (BOOL)handleOpenURL:(NSURL *)url {
 #if DEBUG
@@ -103,8 +118,7 @@
             // Assert
             return [authorizationRequest handleOpenURL:url];
         } else if ([urlString hasSuffix:@"logout"]) {
-            [self clearAccessToken];
-            return YES;
+            return [authorizationRequest handleOpenURL:url];
         }
     } // TODO: check for failure?
     return NO;
@@ -151,16 +165,15 @@
 
 }
 
-- (void)clearAccessToken {
+- (void)logoutComplete {
     accessToken = nil;
 
     // clear
-    /*
+
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;
-    } */
+    }
     // TODO: clear keychain
-
 }
 
 - (BOOL)hasTokenExpired {

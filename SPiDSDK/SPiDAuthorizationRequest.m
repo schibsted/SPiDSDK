@@ -54,6 +54,11 @@ static NSString *const SPiDForceKey = @"force";
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
+- (void)logoutWithAccessToken:(SPiDAccessToken *)accessToken {
+    NSURL *requestURL = [self generateLogoutRequestURLWithAccessToken:accessToken];
+    [[UIApplication sharedApplication] openURL:requestURL];
+}
+
 - (void)doAccessTokenRefreshWithToken:(SPiDAccessToken *)accessToken {
     NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[SPiDClient sharedInstance] tokenURL]
@@ -71,7 +76,7 @@ static NSString *const SPiDForceKey = @"force";
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         NSLog(@"SPiDSK: Received error: %@", error);
-        // TODO: completionHandler to return error!
+        completionHandler(nil, [NSError errorWithDomain:@"SPiD" code:1 userInfo:nil]);
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -84,6 +89,7 @@ static NSString *const SPiDForceKey = @"force";
             [self requestAccessToken];
             return YES;
         } else if ([urlString hasSuffix:@"logout"]) {
+            completionHandler(nil, nil);
             return YES;
         }
     }
@@ -99,6 +105,15 @@ static NSString *const SPiDForceKey = @"force";
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"]; // TODO: Does this work?
+    return [NSURL URLWithString:requestURL];
+}
+
+- (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken {
+    SPiDClient *client = [SPiDClient sharedInstance];
+    NSString *requestURL = @"https://stage.payment.schibsted.no/logout";
+    requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
+    requestURL = [requestURL stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     return [NSURL URLWithString:requestURL];
 }
 

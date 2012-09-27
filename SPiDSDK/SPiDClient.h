@@ -43,6 +43,9 @@ typedef void (^SPiDCompletionHandler)(SPiDResponse *response);
 
 - (void)doAuthenticatedLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(SPiDCompletionHandler)completionHandler;
 
+- (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
+
+
 - (void)refreshAccessTokenWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
 
 - (BOOL)hasTokenExpired;

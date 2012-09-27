@@ -57,9 +57,8 @@
 }
 
 - (IBAction)logoutFromSPiD:(id)sender {
-    SPiDRequest *request = [[SPiDRequest alloc] init];
-    [request doAuthenticatedLogoutRequestWithCompletionHandler:^(SPiDResponse *response) {
-        if (![response error]) {
+    [[SPiDClient sharedInstance] doAuthenticatedLogoutRequestWithCompletionHandler:^(NSError *error) {
+        if (!error) {
             [[self navigationController] popToRootViewControllerAnimated:YES];
         }
     }];
