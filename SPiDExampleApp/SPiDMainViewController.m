@@ -22,17 +22,38 @@
     [[self userLabel] setText:@"Unknown user"];
     [[self navigationItem] setHidesBackButton:YES];
 
+    [self getUserName];
+    [self setTokenExpiresLabel];
+}
+
+- (IBAction)lastLoginButtonPressed:(id)sender {
+    [self getLastLogin];
+}
+
+
+- (IBAction)refreshToken:(id)sender {
+    [self refreshToken];
+}
+
+- (IBAction)logoutFromSPiD:(id)sender {
+    [self logout];
+}
+
+
+#pragma mark Private methods
+- (void)getUserName {
     [[SPiDClient sharedInstance] doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response data] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
             [self setUserID:[data objectForKey:@"userId"]];
             [[self userLabel] setText:user];
+            [self getLastLogin];
         }
     }];
 }
 
-- (IBAction)sendTimeRequest:(id)sender {
+- (void)getLastLogin {
     [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:[self userID] andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSArray *data = [[response data] objectForKey:@"data"];
@@ -44,19 +65,23 @@
     }];
 }
 
-- (IBAction)refreshToken:(id)sender {
+- (void)refreshToken {
     [[SPiDClient sharedInstance] refreshAccessTokenWithCompletionHandler:^(NSError *error) {
         if (!error) {
             NSLog(@"Refreshed token");
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            NSString *text = [NSString stringWithFormat:@"Token expires at: %@", [formatter stringFromDate:[[SPiDClient sharedInstance] tokenExpiresAt]]];
-            [[self tokenLabel] setText:text];
+            [self setTokenExpiresLabel];
         }
     }];
 }
 
-- (IBAction)logoutFromSPiD:(id)sender {
+- (void)setTokenExpiresLabel {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *text = [NSString stringWithFormat:@"Token expires at: %@", [formatter stringFromDate:[[SPiDClient sharedInstance] tokenExpiresAt]]];
+    [[self tokenLabel] setText:text];
+}
+
+- (void)logout {
     [[SPiDClient sharedInstance] doAuthenticatedLogoutRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [[self navigationController] popToRootViewControllerAnimated:YES];

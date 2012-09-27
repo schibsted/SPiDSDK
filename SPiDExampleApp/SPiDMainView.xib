@@ -260,7 +260,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">sendTimeRequest:</string>
+						<string key="label">lastLoginButtonPressed:</string>
 						<reference key="source" ref="17394955"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
