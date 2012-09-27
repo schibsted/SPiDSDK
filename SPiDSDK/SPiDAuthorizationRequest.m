@@ -24,11 +24,7 @@ static NSString *const SPiDForceKey = @"force";
 - (NSString *)generateAccessTokenPostData;
 
 // NSURLConnectionDelegate
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response;
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
@@ -114,6 +110,7 @@ static NSString *const SPiDForceKey = @"force";
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"]; // TODO: Does this work?
     return [NSURL URLWithString:requestURL];
 }
 
@@ -154,26 +151,8 @@ static NSString *const SPiDForceKey = @"force";
     code = nil; // Not really needed since the request should only be used once
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"Request response");
-    NSLog(@"URL: %@", [[response URL] absoluteString]);
-}
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"Data received");
     [receivedData appendData:data];
-}
-
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
-    //NSLog(@"redirecting to : %@", [request URL]);
-    //NSString *redirectUrl = [[[SPiDClient sharedInstance] redirectURI] absoluteString];
-    // TODO: only needed if not hard logout?
-    if ([[[request URL] absoluteString] hasPrefix:@"sdktest://logout"]) {
-        // TODO: should check for token when making api calls
-        return nil;
-    } else {
-        return request;
-    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -183,17 +162,21 @@ static NSString *const SPiDForceKey = @"force";
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     }
 
-    //TODO: if contains error
-
     NSLog(@"Request %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
     if (!jsonError) {
-        NSLog(@"We should now have a valid accessToken");
-        SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
+        if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
+            //TODO: return better error
+            NSLog(@"SPiDSDK api error: %@", [jsonObject objectForKey:@"error"]);
+            completionHandler(nil, [NSError errorWithDomain:@"SPiDSDK" code:1 userInfo:nil]);
+        } else {
+            NSLog(@"We should now have a valid accessToken");
+            SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
 
-        NSLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
+            NSLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
 
-        // TODO: save to keychain
-        completionHandler(accessToken, nil); // TODO: add error
+            // TODO: save to keychain
+            completionHandler(accessToken, nil);
+        }
     } else {
         NSLog(@"SPiDSDK json error: %@", [jsonError description]);
         completionHandler(nil, jsonError);
@@ -201,7 +184,10 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+#if DEBUG
     NSLog(@"SPiDSDK error: %@", [error description]);
+#endif
+    completionHandler(nil, error);
 }
 
 @end
