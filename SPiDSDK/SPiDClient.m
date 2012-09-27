@@ -176,8 +176,14 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     @synchronized (authorizationRequest) {
         authorizationRequest = nil;
     }
-    // TODO: Loop through waiting requests
 
+    // TODO: Test this!
+    if (waitingRequests) {
+        for (SPiDRequest *request in waitingRequests) {
+            [request doRequestWithAccessToken:accessToken];
+        }
+        waitingRequests = nil;
+    }
 }
 
 - (void)logoutComplete {
