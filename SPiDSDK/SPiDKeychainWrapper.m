@@ -8,7 +8,7 @@
 
 #import "SPiDKeychainWrapper.h"
 
-@interface SPiDKeychainWrapper ()
+@interface SPiDKeychainWrapper (PrivateMethods)
 
 + (NSString *)serviceNameForSPiD;
 

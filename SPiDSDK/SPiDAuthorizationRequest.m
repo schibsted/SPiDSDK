@@ -18,10 +18,16 @@ static NSString *const SPiDForceKey = @"force";
 
 #import "SPiDAuthorizationRequest.h"
 
-@interface SPiDAuthorizationRequest ()
+@interface SPiDAuthorizationRequest (PrivateMethods)
 - (NSURL *)generateAuthorizationRequestURL;
 
+- (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken;
+
 - (NSString *)generateAccessTokenPostData;
+
+- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)token;
+
+- (void)requestAccessToken;
 
 // NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;

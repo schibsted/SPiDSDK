@@ -10,7 +10,7 @@
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
 
-@interface SPiDRequest ()
+@interface SPiDRequest (PrivateMethods)
 
 // NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
