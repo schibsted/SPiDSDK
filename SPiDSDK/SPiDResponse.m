@@ -8,9 +8,7 @@
 
 #import "SPiDResponse.h"
 
-@implementation SPiDResponse {
-
-}
+@implementation SPiDResponse
 
 @synthesize error = _error;
 @synthesize data = _data;
@@ -32,7 +30,7 @@
                     NSLog(@"SPiDSDK api error: %@", [[self data] objectForKey:@"error"]);
                 } // else everything ok
             }
-        } // else, errorhandling if no response is recieved?
+        } // TODO: else, errorhandling if no response is recieved?
 
     }
     return self;

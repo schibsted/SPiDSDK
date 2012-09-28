@@ -44,7 +44,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     self = [super init];
     if (self) {
         accessToken = [SPiDKeychainWrapper getAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
-        NSLog(@"Keychain: %@", accessToken.accessToken);
     }
     return self;
 }
@@ -177,9 +176,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         authorizationRequest = nil;
     }
 
-    // TODO: Test this!
     if (waitingRequests) {
         for (SPiDRequest *request in waitingRequests) {
+            NSLog(@"Found waiting request, running again");
             [request doRequestWithAccessToken:accessToken];
         }
         waitingRequests = nil;

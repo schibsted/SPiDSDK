@@ -162,22 +162,21 @@ static NSString *const SPiDForceKey = @"force";
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     }
 
-    NSLog(@"Request %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
             //TODO: return better error
-            NSLog(@"SPiDSDK api error: %@", [jsonObject objectForKey:@"error"]);
             completionHandler(nil, [NSError errorWithDomain:@"SPiDSDK" code:1 userInfo:nil]);
         } else {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
 #if DEBUG
             NSLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
 #endif
-            // TODO: save to keychain
             completionHandler(accessToken, nil);
         }
     } else {
-        NSLog(@"SPiDSDK json error: %@", [jsonError description]);
+#if DEBUG
+        NSLog(@"SPiDSDK error: %@", [jsonError description]);
+#endif
         completionHandler(nil, jsonError);
     }
 }

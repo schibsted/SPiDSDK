@@ -23,7 +23,6 @@ extern NSInteger const SPiDOAuth2InvalidClientErrorCode;
 extern NSInteger const SPiDOAuth2InvalidClientIDErrorCode;
 extern NSInteger const SPiDOAuth2InvalidClientCredentialsErrorCode;
 
-
 // Protected resource errors
 extern NSInteger const SPiDOAuth2InvalidTokenErrorCode;
 extern NSInteger const SPiDOAuth2ExpiredTokenErrorCode;
