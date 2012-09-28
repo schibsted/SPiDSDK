@@ -43,16 +43,15 @@ typedef void (^SPiDCompletionHandler)(SPiDResponse *response);
 
 - (BOOL)handleOpenURL:(NSURL *)url;
 
-- (void)requestSPiDAuthorizationWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
+- (void)authorizationRequestWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
 
-- (void)doAuthenticatedMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler;
+- (void)logoutRequestWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
 
-- (void)doAuthenticatedLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(SPiDCompletionHandler)completionHandler;
+- (void)refreshAccessTokenRequestWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
 
-- (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
+- (void)apiMeRequestWithCompletionHandler:(SPiDCompletionHandler)completionHandler;
 
-
-- (void)refreshAccessTokenWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler;
+- (void)apiUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(SPiDCompletionHandler)completionHandler;
 
 - (BOOL)hasTokenExpired;
 

@@ -43,7 +43,7 @@
 
 #pragma mark Private methods
 - (void)getUserName {
-    [[SPiDClient sharedInstance] doAuthenticatedMeRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] apiMeRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response data] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
@@ -55,7 +55,7 @@
 }
 
 - (void)getLastLogin {
-    [[SPiDClient sharedInstance] doAuthenticatedLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] apiUserLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSArray *data = [[response data] objectForKey:@"data"];
             NSDictionary *latestLogin = [data objectAtIndex:0];
@@ -66,7 +66,7 @@
 }
 
 - (void)refreshToken {
-    [[SPiDClient sharedInstance] refreshAccessTokenWithCompletionHandler:^(NSError *error) {
+    [[SPiDClient sharedInstance] refreshAccessTokenRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [self setTokenExpiresLabel];
         }
@@ -81,7 +81,7 @@
 }
 
 - (void)logout {
-    [[SPiDClient sharedInstance] doAuthenticatedLogoutRequestWithCompletionHandler:^(NSError *error) {
+    [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [[self navigationController] popToRootViewControllerAnimated:YES];
         }

@@ -49,25 +49,8 @@
     return self;
 }
 
-// TODO: Should be in SPiDClient
-- (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler {
-    NSURL *redirectUri = [SPiDUtils urlEncodeString:@"sdktest://logout"];
-    NSString *urlStr = [NSString stringWithFormat:@"https://stage.payment.schibsted.no/logout?redirect_uri=%@&oauth_token=%@", [redirectUri absoluteString], @"asdf"];
-    url = [NSURL URLWithString:urlStr];
-    /*
-    if ([[SPiDClient sharedInstance] useWebView]) {
-        [self setUrl:url];
-        [self setHttpMethod:@"GET"];
-        [self doAuthenticatedSPiDGetRequestWithURL:url];
-    } else { */
-    // Safari redirect
-    completionHandler = handler;
-    [[UIApplication sharedApplication] openURL:url];
-    //}
-}
-
-// TODO: Should check token expiration and handle invalid tokens
-- (void)doRequestWithAccessToken:(SPiDAccessToken *)accessToken {
+// TODO: Should handle invalid tokens
+- (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken {
     NSString *urlStr = [url absoluteString];
     NSString *body;
     if ([httpMethod isEqualToString:@"GET"]) {

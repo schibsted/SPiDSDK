@@ -57,7 +57,7 @@ static NSString *const SPiDForceKey = @"force";
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
-- (void)doAccessTokenRefreshWithToken:(SPiDAccessToken *)accessToken {
+- (void)refreshWithRefreshToken:(SPiDAccessToken *)accessToken {
     NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[SPiDClient sharedInstance] tokenURL]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
