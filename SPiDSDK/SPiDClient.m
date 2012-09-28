@@ -40,10 +40,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     return sharedSPiDClientInstance;
 }
 
-+ (void)log:(NSString *)format {
-
-}
-
 - (id)init {
     self = [super init];
     if (self) {
