@@ -17,6 +17,12 @@ typedef void (^SPiDAuthorizationCompletionHandler)(NSError *error);
 
 typedef void (^SPiDCompletionHandler)(SPiDResponse *response);
 
+#ifdef DEBUG
+#   define SPiDDebugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define SPiDDebugLog(...)
+#endif
+
 @interface SPiDClient : NSObject
 
 @property(strong, nonatomic) NSString *clientID;

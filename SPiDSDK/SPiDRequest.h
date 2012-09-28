@@ -34,8 +34,6 @@
 
 - (void)doAuthenticatedLogoutRequestWithCompletionHandler:(SPiDCompletionHandler)handler;
 
-- (void)doAuthenticatedLoginsRequestWithCompletionHandler:(SPiDCompletionHandler)handler andUserID:(NSString *)userID;
-
 // TODO: Should have retry method
 
 @end

@@ -60,7 +60,6 @@
             NSArray *data = [[response data] objectForKey:@"data"];
             NSDictionary *latestLogin = [data objectAtIndex:0];
             NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
-            NSLog(@"Received time: %@", time);
             [[self loginLabel] setText:time];
         }
     }];
@@ -69,7 +68,6 @@
 - (void)refreshToken {
     [[SPiDClient sharedInstance] refreshAccessTokenWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            NSLog(@"Refreshed token");
             [self setTokenExpiresLabel];
         }
     }];

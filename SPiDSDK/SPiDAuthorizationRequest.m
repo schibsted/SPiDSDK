@@ -71,7 +71,7 @@ static NSString *const SPiDForceKey = @"force";
 - (BOOL)handleOpenURL:url {
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
-        NSLog(@"SPiDSK: Received error: %@", error);
+        SPiDDebugLog(@"SPiDSK: Received error: %@", error);
         completionHandler(nil, [NSError errorWithDomain:@"SPiD" code:1 userInfo:nil]);
         return NO;
     } else {
@@ -79,9 +79,7 @@ static NSString *const SPiDForceKey = @"force";
         if ([urlString hasSuffix:@"login"]) {
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
-#if DEBUG
-            NSLog(@"SPiDSK: Received code: %@", code);
-#endif
+            SPiDDebugLog(@"SPiDSK: Received code: %@", code);
             [self requestAccessToken];
             return YES;
         } else if ([urlString hasSuffix:@"logout"]) {
@@ -168,23 +166,16 @@ static NSString *const SPiDForceKey = @"force";
             completionHandler(nil, [NSError errorWithDomain:@"SPiDSDK" code:1 userInfo:nil]);
         } else {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
-#if DEBUG
-            NSLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
-#endif
             completionHandler(accessToken, nil);
         }
     } else {
-#if DEBUG
-        NSLog(@"SPiDSDK error: %@", [jsonError description]);
-#endif
+        SPiDDebugLog(@"SPiDSDK error: %@", [jsonError description]);
         completionHandler(nil, jsonError);
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-#if DEBUG
-    NSLog(@"SPiDSDK error: %@", [error description]);
-#endif
+    SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
     completionHandler(nil, error);
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "SPiDResponse.h"
+#import "SPiDClient.h"
 
 @implementation SPiDResponse
 
@@ -23,11 +24,11 @@
             [self setData:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
                 [self setError:[self error]];
-                NSLog(@"SPiDSDK json error: %@", [[self error] description]);
+                SPiDDebugLog(@"SPiDSDK json error: %@", [[self error] description]);
             } else {
                 if ([[self data] objectForKey:@"error"] && ![[[self data] objectForKey:@"error"] isEqual:[NSNull null]]) {
                     [self setError:[NSError errorWithDomain:@"asdf" code:1 userInfo:nil]];
-                    NSLog(@"SPiDSDK api error: %@", [[self data] objectForKey:@"error"]);
+                    SPiDDebugLog(@"SPiDSDK api error: %@", [[self data] objectForKey:@"error"]);
                 } // else everything ok
             }
         } // TODO: else, errorhandling if no response is recieved?

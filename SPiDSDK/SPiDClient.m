@@ -40,6 +40,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     return sharedSPiDClientInstance;
 }
 
++ (void)log:(NSString *)format {
+
+}
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -119,9 +123,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 // TODO: Should keep track of current request and handle if it is a logout
 - (BOOL)handleOpenURL:(NSURL *)url {
-#if DEBUG
-    NSLog(@"SPiDSDK received url: %@", [url absoluteString]);
-#endif
+    SPiDDebugLog(@"SPiDSDK received url: %@", [url absoluteString]);
     NSString *redirectURLString = [[self redirectURI] absoluteString];
     NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
     if ([urlString hasPrefix:redirectURLString]) {
@@ -153,13 +155,14 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 - (void)refreshAccessTokenWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler {
+    SPiDDebugLog(@"Trying to refresh with refreshToken: %@", accessToken.refreshToken);
     @synchronized (authorizationRequest) {
         if (!authorizationRequest) {
             authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
                 if (!error) {
                     [self authorizationComplete:token];
                 }
-                completionHandler(nil);
+                completionHandler(error);
             }];
             [authorizationRequest doAccessTokenRefreshWithToken:accessToken];
         }
@@ -167,8 +170,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {
-    NSLog(@"Token.: %@", token.accessToken);
     accessToken = token;
+    SPiDDebugLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
 
     [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:token forIdentifier:AccessTokenKeychainIdentification];
 
@@ -177,8 +180,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     }
 
     if (waitingRequests) {
+        SPiDDebugLog(@"Found %d waiting request, running again", [waitingRequests count]);
         for (SPiDRequest *request in waitingRequests) {
-            NSLog(@"Found waiting request, running again");
             [request doRequestWithAccessToken:accessToken];
         }
         waitingRequests = nil;
@@ -186,6 +189,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 - (void)logoutComplete {
+    SPiDDebugLog(@"Logged out from SPiD");
     accessToken = nil;
 
     [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];

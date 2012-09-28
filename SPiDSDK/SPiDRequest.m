@@ -36,7 +36,6 @@
     if (self) {
         NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] spidURL] absoluteString], requestPath];
         if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
-            //NSString *urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", requestURL, accessToken.accessToken];
             url = [NSURL URLWithString:requestURL];
             httpMethod = @"GET";
         } else if ([method isEqualToString:@"POST"]) {
@@ -79,6 +78,8 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:httpMethod];
 
+    SPiDDebugLog(@"Running request: %@", urlStr);
+
     if (body) {
         [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
     }
@@ -92,13 +93,14 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    SPiDDebugLog(@"Recived response from: %@", [url absoluteString]);
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:receivedData];
     receivedData = nil; // Should not be needed since a request should not be reused
     completionHandler(response);
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"SPiDSDK error: %@", [error description]);
+    SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
 }
 
 @end
