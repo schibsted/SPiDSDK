@@ -47,11 +47,13 @@ static NSString *const SPiDForceKey = @"force";
 
 - (void)authorize {
     NSURL *requestURL = [self generateAuthorizationRequestURL];
+    SPiDDebugLog(@"Trying to authorize with SPiD");
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
 - (void)logoutWithAccessToken:(SPiDAccessToken *)accessToken {
     NSURL *requestURL = [self generateLogoutRequestURLWithAccessToken:accessToken];
+    SPiDDebugLog(@"Trying to logout from SPiD");
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
@@ -63,6 +65,8 @@ static NSString *const SPiDForceKey = @"force";
 
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+
+    SPiDDebugLog(@"Trying to refresh access tokeb with refresh token: %@", accessToken.refreshToken);
 
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -143,6 +147,8 @@ static NSString *const SPiDForceKey = @"force";
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
 
+    SPiDDebugLog(@"Running access token request");
+
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
@@ -154,6 +160,7 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    SPiDDebugLog(@"Received response from access token request");
     NSError *jsonError = nil;
     NSDictionary *jsonObject = nil;
     if ([receivedData length] > 0) {

@@ -155,7 +155,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 - (void)refreshAccessTokenWithCompletionHandler:(SPiDAuthorizationCompletionHandler)completionHandler {
-    SPiDDebugLog(@"Trying to refresh with refreshToken: %@", accessToken.refreshToken);
     @synchronized (authorizationRequest) {
         if (!authorizationRequest) {
             authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
@@ -171,7 +170,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {
     accessToken = token;
-    SPiDDebugLog(@"SPiDSDK recieved access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
+    SPiDDebugLog(@"SPiDSDK received access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
 
     [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:token forIdentifier:AccessTokenKeychainIdentification];
 

@@ -31,7 +31,7 @@
                     SPiDDebugLog(@"SPiDSDK api error: %@", [[self data] objectForKey:@"error"]);
                 } // else everything ok
             }
-        } // TODO: else, errorhandling if no response is recieved?
+        } // TODO: else, errorhandling if no response is received?
 
     }
     return self;

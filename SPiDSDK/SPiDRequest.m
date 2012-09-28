@@ -93,7 +93,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    SPiDDebugLog(@"Recived response from: %@", [url absoluteString]);
+    SPiDDebugLog(@"Received response from: %@", [url absoluteString]);
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:receivedData];
     receivedData = nil; // Should not be needed since a request should not be reused
     completionHandler(response);
