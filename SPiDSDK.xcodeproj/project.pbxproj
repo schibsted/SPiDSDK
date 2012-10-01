@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		5365DB2E1615E9B1000AA6BB /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5365DB2F1615E9B1000AA6BB /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				5365DB321615E9C1000AA6BB /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		532BF074160A0A6100FC860E /* SPiDLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 532BF073160A0A6100FC860E /* SPiDLogo.jpg */; };
 		535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
@@ -95,6 +109,7 @@
 
 /* Begin PBXFileReference section */
 		532BF073160A0A6100FC860E /* SPiDLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SPiDLogo.jpg; sourceTree = "<group>"; };
+		5340F74516197A6700B990C4 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		535AA9B415FF31AD00D9F52B /* SPiDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDClient.h; sourceTree = "<group>"; };
 		535AA9B515FF31AD00D9F52B /* SPiDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDClient.m; sourceTree = "<group>"; };
 		537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPiDSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +208,7 @@
 		537D21E415FF224C000ABCA6 = {
 			isa = PBXGroup;
 			children = (
+				5340F74516197A6700B990C4 /* AppledocSettings.plist */,
 				537D21F415FF224C000ABCA6 /* SPiDSDK */,
 				537D220915FF224C000ABCA6 /* SPiDSDKTests */,
 				537D222415FF2374000ABCA6 /* SPiDExampleApp */,
@@ -406,7 +422,7 @@
 		537D21E615FF224C000ABCA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Mikael Lindström";
 			};
 			buildConfigurationList = 537D21E915FF224C000ABCA6 /* Build configuration list for PBXProject "SPiDSDK" */;
@@ -425,6 +441,7 @@
 				537D21FF15FF224C000ABCA6 /* SPiDSDKTests */,
 				537D221D15FF2374000ABCA6 /* SPiDExampleApp */,
 				537D223415FF2374000ABCA6 /* SPiDExampleAppTests */,
+				5365DB2E1615E9B1000AA6BB /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -459,6 +476,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5365DB321615E9C1000AA6BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc $SOURCE_ROOT/AppledocSettings.plist $SOURCE_ROOT/SPiDSDK";
+		};
 		537D21FE15FF224C000ABCA6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -574,6 +604,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5365DB301615E9B1000AA6BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5365DB311615E9B1000AA6BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		537D221215FF224C000ABCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -760,6 +804,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5365DB2F1615E9B1000AA6BB /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5365DB301615E9B1000AA6BB /* Debug */,
+				5365DB311615E9B1000AA6BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		537D21E915FF224C000ABCA6 /* Build configuration list for PBXProject "SPiDSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
