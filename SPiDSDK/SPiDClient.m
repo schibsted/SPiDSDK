@@ -25,7 +25,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 /** Runs a GET request against the SPiD server
 
  @param path Path for the request eg _api/2/me_
- @param completitionHandler Runs after request is completed
+ @param completionHandler Runs after request is completed
  @see sharedInstance
  */
 - (void)startGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
@@ -57,8 +57,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize tokenURL = _tokenURL;
 
 #pragma mark Public methods
-
-
 // Singleton
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;

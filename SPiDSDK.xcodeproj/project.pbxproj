@@ -149,6 +149,7 @@
 		E304E7E1D8AB4EFA3D56000E /* SPiDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDConstants.m; sourceTree = "<group>"; };
 		E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessToken.h; sourceTree = "<group>"; };
 		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDKeychainWrapper.m; sourceTree = "<group>"; };
+		E304E9A7E275A1AB48BF5ABF /* getting-started-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "getting-started-template.markdown"; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
@@ -269,6 +270,7 @@
 		537D21F515FF224C000ABCA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E304E9A7E275A1AB48BF5ABF /* getting-started-template.markdown */,
 				537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */,
 			);
 			name = "Supporting Files";

@@ -41,6 +41,8 @@
         <true/>
         <key>--no-repeat-first-par</key>
         <true/>
+        <key>--include</key>
+        <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/getting-started-template.markdown</string>
         <key>--logformat</key>
         <string>xcode</string>
         <key>--exit-threshold</key>
