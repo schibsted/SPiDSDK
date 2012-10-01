@@ -10,6 +10,7 @@
 #import "SPiDClient.h"
 
 @class SPiDAccessToken;
+@class SPiDResponse;
 
 @interface SPiDRequest : NSObject <NSURLConnectionDelegate> {
 @private
@@ -17,17 +18,19 @@
     NSString *httpMethod;
     NSString *httpBody;
     NSMutableData *receivedData;
-    SPiDCompletionHandler completionHandler;
+
+    void (^completionHandler)(SPiDResponse *response);
+
 }
 
 - (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken;
 
 
-- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(SPiDCompletionHandler)handler;
+- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))handler;
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(SPiDCompletionHandler)handler;
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler;
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(SPiDCompletionHandler)handler;
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler;
 
 // TODO: Should have retry method
 

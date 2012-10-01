@@ -11,18 +11,16 @@
 #import "SPiDClient.h"
 #import "SPiDAccessToken.h"
 
-// Not accessible outside SDK...
-typedef void (^SPiDInternalAuthorizationCompletionHandler)(SPiDAccessToken *accessToken, NSError *error);
-
 @interface SPiDAuthorizationRequest : NSObject <NSURLConnectionDelegate> {
 @private
     NSString *code;
     NSMutableData *receivedData;
 
-    SPiDInternalAuthorizationCompletionHandler completionHandler;
+    void (^completionHandler)(SPiDAccessToken *accessToken, NSError *error);
+
 }
 
-- (id)initWithCompletionHandler:(SPiDInternalAuthorizationCompletionHandler)handler;
+- (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))handler;
 
 - (void)authorize;
 

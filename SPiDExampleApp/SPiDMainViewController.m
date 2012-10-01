@@ -43,7 +43,7 @@
 
 #pragma mark Private methods
 - (void)getUserName {
-    [[SPiDClient sharedInstance] apiMeRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] meRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response data] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
@@ -55,7 +55,7 @@
 }
 
 - (void)getLastLogin {
-    [[SPiDClient sharedInstance] apiUserLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] loginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSArray *data = [[response data] objectForKey:@"data"];
             NSDictionary *latestLogin = [data objectAtIndex:0];

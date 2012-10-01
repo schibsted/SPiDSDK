@@ -17,6 +17,7 @@ static NSString *const SPiDPlatformKey = @"platform";
 static NSString *const SPiDForceKey = @"force";
 
 #import "SPiDAuthorizationRequest.h"
+#import "SPiDExampleApp-Prefix.pch"
 
 @interface SPiDAuthorizationRequest (PrivateMethods)
 - (NSURL *)generateAuthorizationRequestURL;
@@ -42,7 +43,7 @@ static NSString *const SPiDForceKey = @"force";
 
 #pragma mark Public methods
 
-- (id)initWithCompletionHandler:(SPiDInternalAuthorizationCompletionHandler)handler {
+- (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))handler {
     self = [super init];
     if (self) {
         completionHandler = handler;

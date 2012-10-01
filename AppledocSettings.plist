@@ -39,6 +39,8 @@
         <true/>
         <key>--warn-unknown-directive</key>
         <true/>
+        <key>--no-repeat-first-par</key>
+        <true/>
         <key>--logformat</key>
         <string>xcode</string>
         <key>--exit-threshold</key>
