@@ -10,8 +10,35 @@
 #import "SPiDAuthorizationRequest.h"
 #import "SPiDRequest.h"
 #import "SPiDKeychainWrapper.h"
+#import "SPiDResponse.h"
 
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
+
+@interface SPiDClient (PrivateMethods)
+
+/** Initializes the `SPiDClient` should not be called directly
+
+ Tries to load the access token from the keychain
+ */
+- (id)init;
+
+/** Runs a GET request against the SPiD server
+
+ @param path Path for the request eg _api/2/me_
+ @param completitionHandler Runs after request is completed
+ @see sharedInstance
+ */
+- (void)startGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+
+/** Runs after authorixation has been completed, should not be called directly
+ @param token Access token returned from SPiD
+ */
+- (void)authorizationComplete:(SPiDAccessToken *)token;
+
+/** Runs after logout has been completed, should not be called directly */
+- (void)logoutComplete;
+
+@end
 
 @implementation SPiDClient {
 @private
@@ -30,6 +57,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize tokenURL = _tokenURL;
 
 #pragma mark Public methods
+
+
 // Singleton
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;
@@ -38,14 +67,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         sharedSPiDClientInstance = [[self alloc] init];
     });
     return sharedSPiDClientInstance;
-}
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        accessToken = [SPiDKeychainWrapper getAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
-    }
-    return self;
 }
 
 - (void)setClientID:(NSString *)clientID
@@ -62,7 +83,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
     // Generates URL default urls
     if (![self redirectURI])
-        [self setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://", [self appURLScheme]]]];
+        [self setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://SPiD/", [self appURLScheme]]]];
 
     if (![self authorizationURL])
         [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self spidURL]]]];
@@ -169,6 +190,17 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 #pragma mark Private methods
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
+- (id)init {
+    self = [super init];
+    if (self) {
+        accessToken = [SPiDKeychainWrapper getAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
+    }
+    return self;
+}
+
 - (void)startGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
     SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path andCompletionHandler:completionHandler];
