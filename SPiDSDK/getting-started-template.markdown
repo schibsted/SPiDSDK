@@ -13,6 +13,25 @@ When the singleton is loaded the first time the SDK will try to load a access to
 <pre><code>// Check if we already have a access token in the keychain
 if (![[SPiDClient sharedInstance] isLoggedIn]) {
     // Try to login
-    [];
+    [[SPiDClient sharedInstance] authorizationRequestWithCompletionHandler:^(NSError *error) {
+        if (error) {
+            // something went wrong and we need to check what error we received
+        } else {
+            // We have successfully logged in to SPiD and have a access token
+        }
+    }];
 }
+</code></pre>
+
+After this we can start using the SPiD API.
+
+<pre><code>// Try to fetch the "me" object
+[[SPiDClient sharedInstance] authorizationRequestWithCompletionHandler:^(SPiDResponse *response) {
+    if ([response error]) {
+        // something went wrong and we need to check what error we received
+    } else {
+        NSLog(@"The raw response", [response rawJSON]);
+        NSLog(@"Response parsed as a dictionary", [[response data] description]);
+    }
+}];
 </code></pre>
