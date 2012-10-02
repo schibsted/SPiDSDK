@@ -52,7 +52,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize clientSecret = _clientSecret;
 @synthesize appURLScheme = _appURLScheme;
 @synthesize redirectURI = _redirectURI;
-@synthesize spidURL = _spidURL;
+@synthesize serverURL = _serverURL;
 @synthesize authorizationURL = _authorizationURL;
 @synthesize tokenURL = _tokenURL;
 
@@ -70,10 +70,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 - (void)setClientID:(NSString *)clientID
     andClientSecret:(NSString *)clientSecret
     andAppURLScheme:(NSString *)appURLScheme
-         andSPiDURL:(NSURL *)spidURL {
+         andSPiDURL:(NSURL *)serverURL {
     [self setClientID:clientID];
     [self setClientSecret:clientSecret];
-    [self setSpidURL:spidURL];
+    [self setServerURL:serverURL];
 
     NSString *escapedAppURL = [appURLScheme stringByReplacingOccurrencesOfString:@":" withString:@""];
     escapedAppURL = [escapedAppURL stringByReplacingOccurrencesOfString:@"/" withString:@""];
@@ -84,10 +84,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         [self setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://", [self appURLScheme]]]];
 
     if (![self authorizationURL])
-        [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self spidURL]]]];
+        [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self serverURL]]]];
 
     if (![self tokenURL])
-        [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self spidURL]]]];
+        [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self serverURL]]]];
 }
 
 - (void)authorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {

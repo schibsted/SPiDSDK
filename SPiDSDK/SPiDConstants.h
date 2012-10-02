@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/** API version of SPiD */
 extern NSString const *SPiDSKDVersion;
 
 // OAuth 2.0 errors

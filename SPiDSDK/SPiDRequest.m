@@ -34,7 +34,7 @@
 - (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler {
     self = [super init];
     if (self) {
-        NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] spidURL] absoluteString], requestPath];
+        NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
         if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
             url = [NSURL URLWithString:requestURL];
             httpMethod = @"GET";

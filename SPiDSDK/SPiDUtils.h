@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Class description....
+ */
+
 @interface SPiDUtils : NSObject
 
 + (NSURL *)urlEncodeString:(NSString *)unescaped;

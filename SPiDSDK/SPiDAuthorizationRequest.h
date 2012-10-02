@@ -11,6 +11,10 @@
 #import "SPiDClient.h"
 #import "SPiDAccessToken.h"
 
+/**
+ Class description....
+ */
+
 @interface SPiDAuthorizationRequest : NSObject <NSURLConnectionDelegate> {
 @private
     NSString *code;

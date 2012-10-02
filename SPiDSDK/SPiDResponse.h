@@ -8,12 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Class description....
+ */
+
 @interface SPiDResponse : NSObject
 
+/* */
 @property(strong, nonatomic) NSError *error;
+
+/* */
 @property(strong, nonatomic) NSDictionary *data;
+
+/* */
 @property(strong, nonatomic) NSString *rawJSON;
 
+/** Initializes the AccessToken from a dictionary
+
+ @param dictionary
+ @return SPiDAccessToken
+ */
 - (id)initWithJSONData:(NSData *)data;
 
 @end

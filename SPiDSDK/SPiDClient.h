@@ -50,17 +50,17 @@
 @property(strong, nonatomic) NSURL *redirectURI; // TODO: Default to appURLScheme://SPiD/{login|logout|failure}
 
 /** URL to the SPiD server */
-@property(strong, nonatomic) NSURL *spidURL;
+@property(strong, nonatomic) NSURL *serverURL;
 
 /** URL to use for authorization to SPiD
 
- This URL is normally generated using the `spidURL´/auth/login
+ This URL is normally generated using the `serverURL´/auth/login
  */
 @property(strong, nonatomic) NSURL *authorizationURL;
 
 /** URL to use for requesting access token from SPiD
 
- This URL is normally generated using the `spidURL´/oauth/token
+ This URL is normally generated using the `serverURL´/oauth/token
  */
 @property(strong, nonatomic) NSURL *tokenURL;
 
@@ -82,12 +82,12 @@
  @param clientID The client ID provided by SPiD
  @param clientSecret The client secret provided by SPiD
  @param appURLSchema The url schema for the app (eg spidtest://)
- @param spidURL The url to SPiD
+ @param serverURL The url to SPiD
  */
 - (void)setClientID:(NSString *)clientID
     andClientSecret:(NSString *)clientSecret
     andAppURLScheme:(NSString *)appURLSchema
-         andSPiDURL:(NSURL *)spidURL;
+         andSPiDURL:(NSURL *)serverURL;
 
 /** Handles URL redirects to the app
 
