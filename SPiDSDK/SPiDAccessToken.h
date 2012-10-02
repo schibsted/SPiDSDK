@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- Class description....
- */
+/** Contains a access token that can be saved to the keychain */
 
 @interface SPiDAccessToken : NSObject
 

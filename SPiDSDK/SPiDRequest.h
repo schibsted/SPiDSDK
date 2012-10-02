@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SPiDClient.h"
 
-/**
- Class description....
+/** `SPiDRequest` handles a request against SPiD.
+
+ An instance of `SPiDClient` is setup for each request to SPiD from `SPiDClient`
 */
 
 @class SPiDAccessToken;

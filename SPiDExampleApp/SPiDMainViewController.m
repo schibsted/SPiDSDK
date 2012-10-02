@@ -55,7 +55,7 @@
 }
 
 - (void)getLastLogin {
-    [[SPiDClient sharedInstance] loginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] getUserLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSArray *data = [[response data] objectForKey:@"data"];
             NSDictionary *latestLogin = [data objectAtIndex:0];

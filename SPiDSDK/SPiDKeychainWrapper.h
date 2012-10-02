@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SPiDAccessToken.h"
 
+/** `SPiDKeychainWrapper` is a wrapper used to simplfy keychain access.
+ It is used by the `SPiDClient` for all keychain operations.
+*/
+
 @interface SPiDKeychainWrapper : NSObject
 
 ///---------------------------------------------------------------------------------------

@@ -11,8 +11,10 @@
 #import "SPiDClient.h"
 #import "SPiDAccessToken.h"
 
-/**
- Class description....
+/** Authorization class for SPiD
+ `SPiDAuthorizationRequest` takes care of all request regarding OAuth 2.0 autorization.
+
+ When a authorization request is in progress, all other requests are queued waiting for request completetion.
  */
 
 @interface SPiDAuthorizationRequest : NSObject <NSURLConnectionDelegate>
@@ -49,18 +51,18 @@
 
 /** Tries to soft logout from SPiD
 
- This will not redirect to Safari and the cookie will not be removed
+ This will not redirect to Safari and the cookie will not be removed.
+ This method is used when a user tries to login twice, the logout invalidates the old token making sure that there is only one active token.
 */
 - (void)softLogoutWithAccessToken:(SPiDAccessToken *)accessToken;
 
-/** Handles the redirects back from Safari
+/** Handles the redirects from Safari
+
+ Called from `SPiDClient` and should not be called directly
 
  @param url The URL received from Safari
  @return YES if URL was handled otherwise NO
 */
 - (BOOL)handleOpenURL:(NSURL *)url;
 
-/**
-
-*/
 @end

@@ -14,16 +14,18 @@
 @class SPiDResponse;
 @class SPiDAccessToken;
 
-/**
- * Class description.....
- *
- **/
-
 #ifdef DEBUG
 #   define SPiDDebugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 #   define SPiDDebugLog(...)
 #endif
+
+/**
+ The main SDK class, all interaction with SPiD goes through this class
+
+ `SPiDClient` contains a singleton instance and all calls to SPiD should go through this instance.
+ */
+
 
 @interface SPiDClient : NSObject
 
@@ -102,7 +104,7 @@
  Redirects to safari to get code and then uses this to obtain a access token.
  The access token is then saved to keychain
 
- @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`
+ @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after authorization is completed
  */
 - (void)authorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
@@ -113,7 +115,7 @@
  Redirects to safari to logout from SPiD and remove cookie.
  Also removes access token from keychain
 
- @warning `SPiDClient` has to be logged in before this call
+ @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
  @see isLoggedIn
@@ -126,7 +128,7 @@
  Logout from SPiD without redirect to Safari, cookie will not be removed
  Also removes access token from keychain
 
- @warning `SPiDClient` has to be logged in before this call
+ @warning `SPiDClient` has to be logged in before this call .The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
  @see isLoggedIn
@@ -140,24 +142,51 @@
  Forces refresh of access token, this is unusally not needed since SPiDSDK will automatically refresh token when needed.
  The access token is then saved to keychain
 
- @warning `SPiDClient` has to be logged in before this call
+ @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after authorization is completed
  @see authorizationRequestWithCompletionHandler:
  @see isLoggedIn
  */
 - (void)refreshAccessTokenRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
+/** Checks if the access token has expired
+
+ @return Returns YES if access token has expired
+ */
+- (BOOL)hasTokenExpired;
+
+/** Returns the time when access token expires
+
+ @return Returns the date when the access token expires
+ */
+- (NSDate *)tokenExpiresAt;
+
+/** Returns the user ID for the current user
+
+ @return Returns user ID
+ */
+- (NSString *)currentUserID;
+
+/** Returns YES if `SPiDClient` has a access token and is logged in
+
+@return Returns YES if `SPiDClient` is logged in
+*/
+- (BOOL)isLoggedIn;
+
+///---------------------------------------------------------------------------------------
+/// @name Request wrappers
+///---------------------------------------------------------------------------------------
+
 /** Requests the currently logged in user’s object. Note that the user session does not last as long as the access token, therefor the me request should only be used right after the app has received a access token. The user id should then be saved and used with the `getUserRequestWithID:andCompletionHandler`
 
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
 
- @error user not logged in
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isLoggedIn
  */
-- (void)meRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the userinformation for the specified userID
 
@@ -192,30 +221,7 @@
  @see authorizationRequestWithCompletionHandler:
  @see isLoggedIn
  */
-- (void)loginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Checks if the access token has expired
-
- @return Returns YES if access token has expired
- */
-- (BOOL)hasTokenExpired;
-
-/** Returns the time when access token expires
-
- @return Returns the date when the access token expires
- */
-- (NSDate *)tokenExpiresAt;
-
-/** Returns the user ID for the current user
-
- @return Returns user ID
- */
-- (NSString *)currentUserID;
-
-/** Returns YES if `SPiDClient` has a access token and is logged in
-
-@return Returns YES if `SPiDClient` is logged in
-*/
-- (BOOL)isLoggedIn;
 
 @end

@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 /**
- Class description....
+ `SPiDResponse` is created for each response from SPiD made by a `SPiDRequest`
+
+ It contains the data as both a object and as raw JSON.
+
+ @warning Received should always check the error property upon receiving a response.
  */
 
 @interface SPiDResponse : NSObject

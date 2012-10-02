@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- Helper functions
+ Helper functions for parsing and encoding URL:s
  */
 
 @interface SPiDUtils : NSObject

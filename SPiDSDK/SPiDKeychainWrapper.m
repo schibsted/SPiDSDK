@@ -10,10 +10,19 @@
 
 @interface SPiDKeychainWrapper (PrivateMethods)
 
-/** TODO: document */
+/** Generates a service name to use for the keychain
+
+ The service will have the form `[[NSBundle mainBundle] bundleIdentifier]-SPiD`
+
+ @return Service name
+ */
 + (NSString *)serviceNameForSPiD;
 
-/** TODO: document */
+/** Creates the basic search query used for all keychain operations
+
+ @param identifier Unique identifier for the keychain item
+ @return Query as a `NSMutableDictionary`
+  */
 + (NSMutableDictionary *)setupSearchQueryForIdentifier:(NSString *)identifier;
 
 @end

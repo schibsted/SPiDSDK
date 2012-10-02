@@ -204,7 +204,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     return [NSDate date];
 }
 
-- (void)meRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+#pragma mark Request wrappers
+
+///---------------------------------------------------------------------------------------
+/// @name Request wrappers
+///---------------------------------------------------------------------------------------
+
+- (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/api/%@/me", SPiDSKDVersion];
     [self startGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
@@ -218,15 +224,17 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     [self getUserRequestWithID:accessToken.userID andCompletionHandler:completionHandler];
 }
 
-- (void)loginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/api/%@/user/%@/logins", SPiDSKDVersion, userID];
     [self startGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
 
 #pragma mark Private methods
+
 ///---------------------------------------------------------------------------------------
 /// @name Private methods
 ///---------------------------------------------------------------------------------------
+
 - (id)init {
     self = [super init];
     if (self) {
