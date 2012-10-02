@@ -14,6 +14,9 @@
 @class SPiDResponse;
 @class SPiDAccessToken;
 
+static NSString const *SPiDSKDVersion = @"2";
+
+// debug print used by SPiDSDK
 #ifdef DEBUG
 #   define SPiDDebugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
