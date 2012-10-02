@@ -132,16 +132,29 @@
  */
 - (void)refreshAccessTokenRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
-/** Requests the currently logged in user’s object.
+/** Requests the currently logged in user’s object. Note that the user session does not last as long as the access token, therefor the me request should only be used right after the app has received a access token. The user id should then be saved and used with the `getUserRequestWithID:andCompletionHandler`
 
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
 
+ @error user not logged in
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isLoggedIn
  */
 - (void)meRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
+/** Requests the userinformation for the specified userID
+
+ For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
+
+ @warning Requires that the user is authorized with SPiD
+ @param userID ID for the selected user
+ @param completionHandler Run after request is completed
+ @see authorizationRequestWithCompletionHandler:
+ @see isLoggedIn
+ */
+- (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Request all login attempts for a specific client
 
@@ -173,4 +186,5 @@
  */
 - (BOOL)isLoggedIn;
 
+- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 @end

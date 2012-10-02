@@ -73,7 +73,7 @@ static NSString *const SPiDForceKey = @"force";
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
 
-    SPiDDebugLog(@"Trying to refresh access tokeb with refresh token: %@", accessToken.refreshToken);
+    SPiDDebugLog(@"Trying to refresh access token with refresh token: %@", accessToken.refreshToken);
 
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -177,6 +177,7 @@ static NSString *const SPiDForceKey = @"force";
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
             //TODO: return better error
+            SPiDDebugLog(@"SPiDSDK error: %@", [jsonError description]);
             completionHandler(nil, [NSError errorWithDomain:@"SPiDSDK" code:1 userInfo:nil]);
         } else {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];

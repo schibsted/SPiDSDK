@@ -76,12 +76,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     [self setSpidURL:spidURL];
 
     NSString *escapedAppURL = [appURLScheme stringByReplacingOccurrencesOfString:@":" withString:@""];
-    escapedAppURL = [appURLScheme stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    escapedAppURL = [escapedAppURL stringByReplacingOccurrencesOfString:@"/" withString:@""];
     [self setAppURLScheme:escapedAppURL];
 
     // Generates URL default urls
     if (![self redirectURI])
-        [self setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://SPiD/", [self appURLScheme]]]];
+        [self setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://", [self appURLScheme]]]];
 
     if (![self authorizationURL])
         [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self spidURL]]]];
@@ -157,6 +157,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     }
 }
 
+- (NSString *)currentUserID {
+    if (accessToken)
+        return accessToken.userID;
+    return nil;
+}
+
 - (BOOL)isLoggedIn {
     if (accessToken)
         return YES;
@@ -182,6 +188,15 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     [self startGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
 
+- (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+    NSString *path = [NSString stringWithFormat:@"/api/%@/user/%@", SPiDSKDVersion, userID];
+    [self startGetRequestWithPath:path andCompletionHandler:completionHandler];
+}
+
+- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+    [self getUserRequestWithID:accessToken.userID andCompletionHandler:completionHandler];
+}
+
 - (void)loginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/api/%@/user/%@/logins", SPiDSKDVersion, userID];
     [self startGetRequestWithPath:path andCompletionHandler:completionHandler];
@@ -203,6 +218,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
     SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path andCompletionHandler:completionHandler];
     if ([accessToken hasTokenExpired]) {
+        SPiDDebugLog(@"Access token has expired at %@, trying to get a new one", [accessToken expiresAt]);
         if (!waitingRequests) {
             waitingRequests = [[NSMutableArray alloc] init];
         }
@@ -218,7 +234,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {
     accessToken = token;
-    SPiDDebugLog(@"SPiDSDK received access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
+    SPiDDebugLog(@"Received access token: %@ expires at: %@ refresh token: %@", [accessToken accessToken], [accessToken expiresAt], [accessToken refreshToken]);
 
     [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:token forIdentifier:AccessTokenKeychainIdentification];
 

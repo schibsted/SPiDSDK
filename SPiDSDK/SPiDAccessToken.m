@@ -9,6 +9,7 @@
 
 #import "SPiDAccessToken.h"
 
+static NSString *const UserIDKey = @"user_id";
 static NSString *const AccessTokenKey = @"access_token";
 static NSString *const ExpiresInKey = @"expires_in";
 static NSString *const ExpiresAtKey = @"expires_at";
@@ -20,9 +21,10 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 @synthesize expiresAt = _expiresIn;
 @synthesize refreshToken = _refreshToken;
 
-- (id)initWithAccessToken:(NSString *)accessToken andExpiresAt:(NSDate *)expiresAt andRefreshToken:(NSString *)refreshToken {
+- (id)initWithUserID:(NSString *)userID andAccessToken:(NSString *)accessToken andExpiresAt:(NSDate *)expiresAt andRefreshToken:(NSString *)refreshToken {
     self = [super init];
     if (self) {
+        [self setUserID:userID];
         [self setAccessToken:accessToken];
         [self setExpiresAt:expiresAt];
         [self setRefreshToken:refreshToken];
@@ -31,6 +33,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
+    NSString *userID = [dictionary objectForKey:UserIDKey];
     NSString *accessToken = [dictionary objectForKey:AccessTokenKey];
     NSString *expiresIn = [dictionary objectForKey:ExpiresInKey];
     NSString *refreshToken = [dictionary objectForKey:RefreshTokenKey];
@@ -40,19 +43,21 @@ static NSString *const RefreshTokenKey = @"refresh_token";
         expiresAt = [NSDate dateWithTimeIntervalSinceNow:[expiresIn integerValue]];
     }
 
-    return [self initWithAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
+    return [self initWithUserID:userID andAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
+    NSString *userID = [decoder decodeObjectForKey:UserIDKey];
     NSString *accessToken = [decoder decodeObjectForKey:AccessTokenKey];
     NSDate *expiresAt = [decoder decodeObjectForKey:ExpiresAtKey];
     NSString *refreshToken = [decoder decodeObjectForKey:RefreshTokenKey];
-    return [self initWithAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
+    return [self initWithUserID:userID andAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:[self userID] forKey:UserIDKey];
     [coder encodeObject:[self accessToken] forKey:AccessTokenKey];
-    [coder encodeObject:[self expiresAt] forKey:ExpiresInKey];
+    [coder encodeObject:[self expiresAt] forKey:ExpiresAtKey];
     [coder encodeObject:[self refreshToken] forKey:RefreshTokenKey];
 }
 

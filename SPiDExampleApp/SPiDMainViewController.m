@@ -43,7 +43,7 @@
 
 #pragma mark Private methods
 - (void)getUserName {
-    [[SPiDClient sharedInstance] meRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] getUserRequestWithCurrentUserAndCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response data] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
