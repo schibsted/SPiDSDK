@@ -9,13 +9,24 @@
 #import <Foundation/Foundation.h>
 
 /**
- Class description....
+ Helper functions
  */
 
 @interface SPiDUtils : NSObject
 
+/** URL encodes the specified string
+
+ @param unescaped String to be encoded
+ @return Encoded URL
+ */
 + (NSURL *)urlEncodeString:(NSString *)unescaped;
 
+/** Extracts a query parameter from a URL
+
+ @param url URL
+ @param key Parameter to be found
+ @return Value for the specified key otherwise nil
+ */
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key;
 
 @end

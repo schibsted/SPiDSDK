@@ -35,6 +35,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 - (void)authorizationComplete:(SPiDAccessToken *)token;
 
+/** TODO: rename and document */
+- (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
 /** Runs after logout has been completed, should not be called directly */
 - (void)logoutComplete;
 
@@ -57,7 +60,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize tokenURL = _tokenURL;
 
 #pragma mark Public methods
-// Singleton
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;
     static dispatch_once_t predicate;

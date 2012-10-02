@@ -14,13 +14,13 @@
 
 @interface SPiDResponse : NSObject
 
-/* */
+/** Contains error if there was any, otherwise nil */
 @property(strong, nonatomic) NSError *error;
 
-/* */
+/** Received JSON data converted to a dictionary */
 @property(strong, nonatomic) NSDictionary *data;
 
-/* */
+/** Received JSON data as a raw string */
 @property(strong, nonatomic) NSString *rawJSON;
 
 /** Initializes the AccessToken from a dictionary

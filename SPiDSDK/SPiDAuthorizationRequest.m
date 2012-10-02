@@ -39,7 +39,14 @@ static NSString *const SPiDForceKey = @"force";
 
 @end
 
-@implementation SPiDAuthorizationRequest
+@implementation SPiDAuthorizationRequest {
+@private
+    NSString *code;
+    NSMutableData *receivedData;
+
+    void (^completionHandler)(SPiDAccessToken *accessToken, NSError *error);
+
+}
 
 #pragma mark Public methods
 

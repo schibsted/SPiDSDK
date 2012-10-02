@@ -91,9 +91,9 @@
 
 /** Handles URL redirects to the app
 
- @param url Input URL
- @return Returns YES if URL was handled by `SPiDClient`
- */
+@param url Input URL
+@return Returns YES if URL was handled by `SPiDClient`
+*/
 - (BOOL)handleOpenURL:(NSURL *)url;
 
 /** Authorizes with SPiD
@@ -119,6 +119,21 @@
  @see isLoggedIn
  */
 - (void)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
+
+/** Soft logout from SPiD
+
+ This requires that the app has obtained a access token.
+ Logout from SPiD without redirect to Safari, cookie will not be removed
+ Also removes access token from keychain
+
+ @warning `SPiDClient` has to be logged in before this call
+ @param completionHandler Run after logout is completed
+ @see authorizationRequestWithCompletionHandler:
+ @see isLoggedIn
+ */
+
+- (void)softLogoutRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
 
 /** Refresh access token
 
@@ -156,6 +171,17 @@
  */
 - (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
+/** Requests the userinformation for the current user
+
+ For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
+
+ @warning Requires that the user is authorized with SPiD
+ @param completionHandler Run after request is completed
+ @see authorizationRequestWithCompletionHandler:
+ @see isLoggedIn
+ */
+- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+
 /** Request all login attempts for a specific client
 
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:login_api>
@@ -180,11 +206,16 @@
  */
 - (NSDate *)tokenExpiresAt;
 
+/** Returns the user ID for the current user
+
+ @return Returns user ID
+ */
+- (NSString *)currentUserID;
+
 /** Returns YES if `SPiDClient` has a access token and is logged in
 
- @return Returns YES if `SPiDClient` is logged in
- */
+@return Returns YES if `SPiDClient` is logged in
+*/
 - (BOOL)isLoggedIn;
 
-- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 @end

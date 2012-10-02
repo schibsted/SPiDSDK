@@ -21,7 +21,16 @@
 
 @end
 
-@implementation SPiDRequest
+@implementation SPiDRequest {
+@private
+    NSURL *url;
+    NSString *httpMethod;
+    NSString *httpBody;
+    NSMutableData *receivedData;
+
+    void (^completionHandler)(SPiDResponse *response);
+
+}
 
 - (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))handler {
     return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:handler];
