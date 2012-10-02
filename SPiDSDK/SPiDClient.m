@@ -99,10 +99,26 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSAssert(!authorizationRequest, @"Authorization request already running");
     // TODO: Should we validate that url starts with https?
 
+    // Check if we have a access token if so do a soft logout before trying to login
+    if (accessToken) {
+        SPiDDebugLog(@"Access token found, preforming a soft logout to cleanup before login");
+        [self softLogoutRequestWithCompletionHandler:^(NSError *error) {
+            if (error) {
+                completionHandler(error);
+            } else {
+                [self doAuthorizationRequestWithCompletionHandler:completionHandler];
+            }
+        }];
+    } else { // No access token
+        [self doAuthorizationRequestWithCompletionHandler:completionHandler];
+    }
+}
+
+- (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     @synchronized (authorizationRequest) {
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
             if (error) {
-                // if error is token expired, refresh
+                // TODO: if error is token expired, refresh
                 authorizationRequest = nil;
                 completionHandler(error);
             } else {
@@ -139,6 +155,20 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
                 completionHandler(error);
             }];
             [authorizationRequest logoutWithAccessToken:accessToken];
+        }
+    }
+}
+
+- (void)softLogoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    @synchronized (authorizationRequest) {
+        if (!authorizationRequest) {
+            authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+                if (!error) {
+                    [self logoutComplete];
+                }
+                completionHandler(error);
+            }];
+            [authorizationRequest softLogoutWithAccessToken:accessToken];
         }
     }
 }

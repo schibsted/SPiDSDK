@@ -64,6 +64,15 @@ static NSString *const SPiDForceKey = @"force";
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
+- (void)softLogoutWithAccessToken:(SPiDAccessToken *)accessToken {
+    NSURL *requestURL = [self generateLogoutRequestURLWithAccessToken:accessToken];
+    SPiDDebugLog(@"Trying to soft logout from SPiD");
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
 - (void)refreshWithRefreshToken:(SPiDAccessToken *)accessToken {
     NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[SPiDClient sharedInstance] tokenURL]
@@ -160,6 +169,14 @@ static NSString *const SPiDForceKey = @"force";
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
     code = nil; // Not really needed since the request should only be used once
+}
+
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
+        SPiDDebugLog(@"Redirecting to : %@", [request URL]);
+        return nil;
+    }
+    return request;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {

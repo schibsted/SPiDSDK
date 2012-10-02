@@ -30,4 +30,5 @@
 
 - (BOOL)handleOpenURL:(NSURL *)url;
 
+- (void)softLogoutWithAccessToken:(SPiDAccessToken *)accessToken;
 @end
