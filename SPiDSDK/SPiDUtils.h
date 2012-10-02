@@ -14,6 +14,10 @@
 
 @interface SPiDUtils : NSObject
 
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
+
 /** URL encodes the specified string
 
  @param unescaped String to be encoded

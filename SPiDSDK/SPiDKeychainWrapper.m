@@ -10,8 +10,10 @@
 
 @interface SPiDKeychainWrapper (PrivateMethods)
 
+/** TODO: document */
 + (NSString *)serviceNameForSPiD;
 
+/** TODO: document */
 + (NSMutableDictionary *)setupSearchQueryForIdentifier:(NSString *)identifier;
 
 @end
@@ -20,6 +22,10 @@
 @implementation SPiDKeychainWrapper
 
 #pragma mark Public methods
+
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
 
 + (SPiDAccessToken *)getAccessTokenFromKeychainForIdentifier:(NSString *)identifier; {
     NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
@@ -82,6 +88,10 @@
 }
 
 #pragma mark Private methods
+
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
 
 + (NSString *)serviceNameForSPiD {
     NSString *appName = [[NSBundle mainBundle] bundleIdentifier];

@@ -14,6 +14,10 @@
 
 @interface SPiDResponse : NSObject
 
+///---------------------------------------------------------------------------------------
+/// @name Public properties
+///---------------------------------------------------------------------------------------
+
 /** Contains error if there was any, otherwise nil */
 @property(strong, nonatomic) NSError *error;
 
@@ -22,6 +26,10 @@
 
 /** Received JSON data as a raw string */
 @property(strong, nonatomic) NSString *rawJSON;
+
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
 
 /** Initializes the AccessToken from a dictionary
 

@@ -10,6 +10,11 @@
 #import "SPiDAccessToken.h"
 
 @interface SPiDKeychainWrapper : NSObject
+
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
+
 /** Get access token from keychain
  Tries to load the access token from the keychain
 

@@ -60,9 +60,11 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize tokenURL = _tokenURL;
 
 #pragma mark Public methods
+
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
+
 + (SPiDClient *)sharedInstance {
     static SPiDClient *sharedSPiDClientInstance = nil;
     static dispatch_once_t predicate;
@@ -117,22 +119,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     } else { // No access token
         [self doAuthorizationRequestWithCompletionHandler:completionHandler];
     }
-}
-
-- (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    @synchronized (authorizationRequest) {
-        authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
-            if (error) {
-                // TODO: if error is token expired, refresh
-                authorizationRequest = nil;
-                completionHandler(error);
-            } else {
-                [self authorizationComplete:token];
-                completionHandler(nil);
-            }
-        }];
-    }
-    [authorizationRequest authorize];
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url {
@@ -266,6 +252,21 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     }
 }
 
+- (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    @synchronized (authorizationRequest) {
+        authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+            if (error) {
+                // TODO: if error is token expired, refresh
+                authorizationRequest = nil;
+                completionHandler(error);
+            } else {
+                [self authorizationComplete:token];
+                completionHandler(nil);
+            }
+        }];
+    }
+    [authorizationRequest authorize];
+}
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {
     accessToken = token;

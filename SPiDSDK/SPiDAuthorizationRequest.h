@@ -17,6 +17,10 @@
 
 @interface SPiDAuthorizationRequest : NSObject <NSURLConnectionDelegate>
 
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
+
 /** Creates a `SPiDAuthorizationRequest` and and setups completionHandler
 
 */

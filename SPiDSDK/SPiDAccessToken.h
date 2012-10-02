@@ -14,6 +14,10 @@
 
 @interface SPiDAccessToken : NSObject
 
+///---------------------------------------------------------------------------------------
+/// @name Public properties
+///---------------------------------------------------------------------------------------
+
 // TODO: Should we have scope?
 /** User ID for the current client */
 @property(strong, nonatomic) NSString *userID;
@@ -26,6 +30,10 @@
 
 /** Refresh token used for refreshing the access token  */
 @property(strong, nonatomic) NSString *refreshToken;
+
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
 
 /** Initializes the AccessToken from the parameters
 

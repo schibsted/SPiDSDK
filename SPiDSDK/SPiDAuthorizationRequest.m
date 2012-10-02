@@ -20,21 +20,29 @@ static NSString *const SPiDForceKey = @"force";
 #import "SPiDExampleApp-Prefix.pch"
 
 @interface SPiDAuthorizationRequest (PrivateMethods)
+/** TODO: document */
 - (NSURL *)generateAuthorizationRequestURL;
 
+/** TODO: document */
 - (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken;
 
+/** TODO: document */
 - (NSString *)generateAccessTokenPostData;
 
+/** TODO: document */
 - (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)token;
 
+/** TODO: document */
 - (void)requestAccessToken;
 
 // NSURLConnectionDelegate
+/** TODO: document */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
+/** TODO: document */
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
+/** TODO: document */
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end
@@ -49,6 +57,10 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 #pragma mark Public methods
+
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
 
 - (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))handler {
     self = [super init];
@@ -118,6 +130,11 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 #pragma mark Private methods
+
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
+
 - (NSURL *)generateAuthorizationRequestURL {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *requestURL = [[client authorizationURL] absoluteString];

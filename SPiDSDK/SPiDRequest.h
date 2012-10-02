@@ -18,6 +18,10 @@
 
 @interface SPiDRequest : NSObject <NSURLConnectionDelegate>
 
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
+
 /** Creates a SPiD GET request
 
  @param requestPath API path for GET request

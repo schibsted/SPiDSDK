@@ -32,6 +32,10 @@
 
 }
 
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
+
 - (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))handler {
     return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:handler];
 }
@@ -80,6 +84,11 @@
 }
 
 #pragma mark Private methods
+
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [receivedData appendData:data];
 }
