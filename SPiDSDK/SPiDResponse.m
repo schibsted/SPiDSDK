@@ -8,6 +8,7 @@
 
 #import "SPiDResponse.h"
 #import "SPiDClient.h"
+#import "NSError+SPiDError.h"
 
 @implementation SPiDResponse
 
@@ -24,10 +25,11 @@
             [self setData:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
                 [self setError:[self error]];
+                // TODO: Test and return better error
                 SPiDDebugLog(@"SPiDSDK json error: %@", [[self error] description]);
             } else {
                 if ([[self data] objectForKey:@"error"] && ![[[self data] objectForKey:@"error"] isEqual:[NSNull null]]) {
-                    [self setError:[NSError errorWithDomain:@"asdf" code:1 userInfo:nil]];
+                    [self setError:[NSError errorFromJSONData:[self data]]];
                     SPiDDebugLog(@"SPiDSDK api error: %@", [[self data] objectForKey:@"error"]);
                 } // else everything ok
             }

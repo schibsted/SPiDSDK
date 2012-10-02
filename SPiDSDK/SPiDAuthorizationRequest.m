@@ -18,6 +18,7 @@ static NSString *const SPiDForceKey = @"force";
 
 #import "SPiDAuthorizationRequest.h"
 #import "SPiDExampleApp-Prefix.pch"
+#import "NSError+SPiDError.h"
 
 @interface SPiDAuthorizationRequest (PrivateMethods)
 /** TODO: document */
@@ -110,7 +111,8 @@ static NSString *const SPiDForceKey = @"force";
 - (BOOL)handleOpenURL:url {
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
-        SPiDDebugLog(@"SPiDSK: Received error: %@", error);
+        // TODO: Test GET error
+        SPiDDebugLog(@"Received error: %@", error);
         completionHandler(nil, [NSError errorWithDomain:@"SPiD" code:1 userInfo:nil]);
         return NO;
     } else {
@@ -118,7 +120,7 @@ static NSString *const SPiDForceKey = @"force";
         if ([urlString hasSuffix:@"login"]) {
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
-            SPiDDebugLog(@"SPiDSK: Received code: %@", code);
+            SPiDDebugLog(@"Received code: %@", code);
             [self requestAccessToken];
             return YES;
         } else if ([urlString hasSuffix:@"logout"]) {
@@ -217,9 +219,9 @@ static NSString *const SPiDForceKey = @"force";
 
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            //TODO: return better error
             SPiDDebugLog(@"SPiDSDK error: %@", [jsonError description]);
-            completionHandler(nil, [NSError errorWithDomain:@"SPiDSDK" code:1 userInfo:nil]);
+            NSError *error = [NSError errorFromJSONData:jsonObject];
+            completionHandler(nil, error);
         } else {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
             completionHandler(accessToken, nil);

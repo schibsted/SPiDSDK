@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPiDConstants.h"
 #import "SPiDClient.h"
 #import "SPiDAccessToken.h"
 

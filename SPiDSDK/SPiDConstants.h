@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 /** API version of SPiD */
-extern NSString const *SPiDSKDVersion;
-
+//extern NSString const *SPiDSKDVersion;
+/*
 // OAuth 2.0 errors
 extern NSInteger const SPiDOAuth2RedirectURIMismatchErrorCode;
 extern NSInteger const SPiDOAuth2UnauthorizedClientErrorCode;
@@ -31,3 +31,4 @@ extern NSInteger const SPiDOAuth2InsufficientScopeErrorCode;
 
 // Error for trying to use a grant type that we haven't implemented
 extern NSInteger const SPiDOAuth2UnsupportedGrantTypeErrorCode;
+*/

@@ -1,7 +1,7 @@
 Getting started
 ==========
 
-This guide will provide a small introduction to getting started with the SPiD SDK.
+This guide will provide a small introduction to getting started with the SPiD SDK for iOS.
 
 The SDK is centered around a instance of `SPiDClient` which is a singleton, all access to SPiD goes through this instance.
 Before use the client needs to be setup with the required variable which are _client ID_ and _client secret_ with are provided by SPiD, the _appURLScheme_ and finally the address to the SPiD server.

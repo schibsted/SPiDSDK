@@ -42,4 +42,5 @@
  */
 - (id)initWithJSONData:(NSData *)data;
 
+// list or
 @end

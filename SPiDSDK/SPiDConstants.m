@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "SPiDConstants.h"
-
+/*
 NSString const *SPiDSKDVersion = @"2";
 
 // OAuth 2.0 errors invalid_client_credentials
@@ -30,3 +29,4 @@ NSInteger const SPiDOAuth2InsufficientScopeErrorCode = -1012;
 
 // Grant type error
 NSInteger const SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020;
+*/

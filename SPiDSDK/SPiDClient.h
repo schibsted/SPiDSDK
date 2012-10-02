@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPiDConstants.h"
 #import "SPiDUtils.h"
 
 @class SPiDAuthorizationRequest;
@@ -28,7 +27,6 @@ static NSString const *SPiDSKDVersion = @"2";
 
  `SPiDClient` contains a singleton instance and all calls to SPiD should go through this instance.
  */
-
 
 @interface SPiDClient : NSObject
 
