@@ -30,7 +30,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** Creates and runs the authorization request
 
-
  This requires that the `SPiDClient` has been configured.
  Redirects to safari to get code and then uses this to obtain a access token.
  The access token is then saved to keychain
