@@ -67,7 +67,7 @@
     NSString *urlStr = [url absoluteString];
     NSString *body;
     if ([httpMethod isEqualToString:@"GET"]) {
-        urlStr = [NSString stringWithFormat:@"%@?oauth_token=1%@", urlStr, accessToken.accessToken];
+        urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
     } else if ([httpMethod isEqualToString:@"POST"]) {
         body = [httpBody stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
     }
