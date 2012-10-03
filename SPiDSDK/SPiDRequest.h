@@ -14,10 +14,14 @@
  An instance of `SPiDClient` is setup for each request to SPiD from `SPiDClient`
 */
 
+static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcoded
+
 @class SPiDAccessToken;
 @class SPiDResponse;
 
 @interface SPiDRequest : NSObject <NSURLConnectionDelegate>
+
+@property(nonatomic) NSInteger retryCount;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods

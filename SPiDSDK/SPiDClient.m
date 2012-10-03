@@ -22,12 +22,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 - (id)init;
 
-/** Runs after authorixation has been completed, should not be called directly
+/** Runs after authorization has been completed, should not be called directly
  @param token Access token returned from SPiD
  */
 - (void)authorizationComplete:(SPiDAccessToken *)token;
 
-/** TODO: rename and document */
+/**  */
 - (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Runs after logout has been completed, should not be called directly */
@@ -98,7 +98,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSAssert(!authorizationRequest, @"Authorization request already running");
     // TODO: Should we validate that url starts with https?
 
-    // Check if we have a access token if so do a soft logout before trying to login
+    // If we are logged in do a soft logout before continuing
     if (accessToken) {
         SPiDDebugLog(@"Access token found, preforming a soft logout to cleanup before login");
         [self softLogoutRequestWithCompletionHandler:^(NSError *error) {
@@ -177,6 +177,16 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
             [authorizationRequest refreshWithRefreshToken:accessToken];
         }
     }
+}
+
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request {
+    if (!waitingRequests) {
+        waitingRequests = [[NSMutableArray alloc] init];
+    }
+    [waitingRequests addObject:request];
+
+    [self refreshAccessTokenRequestWithCompletionHandler:^(NSError *error) {
+    }];
 }
 
 - (void)apiGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
@@ -311,8 +321,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
     [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:token forIdentifier:AccessTokenKeychainIdentification];
 
-    [self clearAuthorizationRequest];
-
     if (waitingRequests) {
         SPiDDebugLog(@"Found %d waiting request, running again", [waitingRequests count]);
         for (SPiDRequest *request in waitingRequests) {
@@ -320,6 +328,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         }
         waitingRequests = nil;
     }
+    [self clearAuthorizationRequest];
 }
 
 - (void)logoutComplete {

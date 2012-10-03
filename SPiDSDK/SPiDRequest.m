@@ -9,14 +9,17 @@
 #import "SPiDRequest.h"
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
+#import "NSError+SPiDError.h"
 
 @interface SPiDRequest (PrivateMethods)
 
-// NSURLConnectionDelegate
+/** NSURLConnectionDelegate method */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
+/** NSURLConnectionDelegate method */
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
+/** NSURLConnectionDelegate method */
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end
@@ -28,9 +31,12 @@
     NSString *httpBody;
     NSMutableData *receivedData;
 
+
     void (^completionHandler)(SPiDResponse *response);
 
 }
+
+@synthesize retryCount = _retryCount;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
@@ -56,6 +62,7 @@
             httpMethod = @"POST";
             httpBody = body;
         }
+        [self setRetryCount:0];
         completionHandler = handler;
     }
     return self;
@@ -95,8 +102,20 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     SPiDDebugLog(@"Received response from: %@", [url absoluteString]);
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:receivedData];
-    receivedData = nil; // Should not be needed since a request should not be reused
-    completionHandler(response);
+    receivedData = nil;
+    NSError *error = [response error];
+    if (error && ([error code] == SPiDOAuth2InvalidTokenErrorCode || [error code] == SPiDOAuth2ExpiredTokenErrorCode)) {
+        if ([self retryCount] < MaxRetryAttempts) {
+            SPiDDebugLog(@"Invalid token, trying to refresh");
+            [self setRetryCount:[self retryCount] + 1];
+            [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
+        } else {
+            SPiDDebugLog(@"Retried request: %d times, aborting", [self retryCount]);
+            completionHandler(response);
+        }
+    } else {
+        completionHandler(response);
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

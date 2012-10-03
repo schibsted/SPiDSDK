@@ -21,29 +21,44 @@ static NSString *const SPiDForceKey = @"force";
 #import "NSError+SPiDError.h"
 
 @interface SPiDAuthorizationRequest (PrivateMethods)
-/** TODO: document */
+/** Generates the authorization URL with GET query
+
+ @return Authorization URL query
+ */
 - (NSURL *)generateAuthorizationRequestURL;
 
-/** TODO: document */
+/** Generates the logout URL with GET query
+
+ @return Logout URL query
+ */
 - (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken;
 
-/** TODO: document */
+/** Generates the access token request data
+
+ @result Access token request data
+ */
 - (NSString *)generateAccessTokenPostData;
 
-/** TODO: document */
+/** Generates the token refresh request data
+
+ @return Token refresh request data
+ */
 - (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)token;
 
-/** TODO: document */
+/** Requests access token by using the received code
+
+ Note: This is used internally and should not be called directly
+ */
 - (void)requestAccessToken;
 
 // NSURLConnectionDelegate
-/** TODO: document */
+/** NSURLConnectionDelegate method */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
-/** TODO: document */
+/** NSURLConnectionDelegate method */
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
-/** TODO: document */
+/** NSURLConnectionDelegate method */
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end
@@ -144,7 +159,7 @@ static NSString *const SPiDForceKey = @"force";
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *requestURL = [[client authorizationURL] absoluteString];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDClientIDKey, [client clientID]];
-    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"1code"];
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"code"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"];
@@ -153,7 +168,7 @@ static NSString *const SPiDForceKey = @"force";
 
 - (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
-    NSString *requestURL = @"https://stage.payment.schibsted.no/logout";
+    NSString *requestURL = @"https://stage.payment.schibsted.no/logout"; //TODO!!!
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];

@@ -12,6 +12,7 @@
 @class SPiDAuthorizationRequest;
 @class SPiDResponse;
 @class SPiDAccessToken;
+@class SPiDRequest;
 
 static NSString const *SPiDSKDVersion = @"2";
 
@@ -241,5 +242,6 @@ static NSString const *SPiDSKDVersion = @"2";
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-
+/** TODO: document this method */
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
 @end
