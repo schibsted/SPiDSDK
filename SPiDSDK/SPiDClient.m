@@ -23,11 +23,22 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 - (id)init;
 
 /** Runs after authorization has been completed, should not be called directly
+*
  @param token Access token returned from SPiD
  */
 - (void)authorizationComplete:(SPiDAccessToken *)token;
 
-/**  */
+/** Creates and runs the authorization request
+
+
+ This requires that the `SPiDClient` has been configured.
+ Redirects to safari to get code and then uses this to obtain a access token.
+ The access token is then saved to keychain
+
+ @warning This should not be called directly, all validation is placed in ´authorizationRequestWithCompletionHandler:` an should be called instead. Using this method directly causes multiple active tokens on the server.
+ @param completionHandler Run after authorization is completed
+ @see authorizationRequestWithCompletionHandler:
+ */
 - (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Runs after logout has been completed, should not be called directly */
@@ -68,13 +79,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 - (void)setClientID:(NSString *)clientID
     andClientSecret:(NSString *)clientSecret
-    andAppURLScheme:(NSString *)appURLScheme
-         andSPiDURL:(NSURL *)serverURL {
+    andAppURLScheme:(NSString *)appURLSchema
+       andServerURL:(NSURL *)serverURL {
     [self setClientID:clientID];
     [self setClientSecret:clientSecret];
     [self setServerURL:serverURL];
 
-    NSString *escapedAppURL = [appURLScheme stringByReplacingOccurrencesOfString:@":" withString:@""];
+    NSString *escapedAppURL = [appURLSchema stringByReplacingOccurrencesOfString:@":" withString:@""];
     escapedAppURL = [escapedAppURL stringByReplacingOccurrencesOfString:@"/" withString:@""];
     [self setAppURLScheme:escapedAppURL];
 

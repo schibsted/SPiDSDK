@@ -12,7 +12,7 @@
 
 /** Generates a service name to use for the keychain
 
- The service will have the form `[[NSBundle mainBundle] bundleIdentifier]-SPiD`
+ The service will have the form 'bundleIdentifier-SPiD'
 
  @return Service name
  */

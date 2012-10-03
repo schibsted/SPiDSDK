@@ -7,7 +7,7 @@ The SDK is centered around a instance of `SPiDClient` which is a singleton, all 
 Before use the client needs to be setup with the required variable which are _client ID_ and _client secret_ with are provided by SPiD, the _appURLScheme_ and finally the address to the SPiD server.
 This should be done when starting the application, eg in the app delegate.
 
-<pre><code>[[SPiDClient sharedInstance] setClientID:@"clientID" andClientSecret:@"clientSecret" andAppURLScheme:@"urlScheme" andSPiDURL:[NSURL URLWithString:@"www.spid.com"]];</code></pre>
+<pre><code>[[SPiDClient sharedInstance] setClientID:@"clientID" andClientSecret:@"clientSecret" andAppURLScheme:@"urlScheme" andServerURL:[NSURL URLWithString:@"www.spid.com"]];</code></pre>
 
 When the singleton is loaded the first time the SDK will try to load a access token from the keychain. If this is successful user will not have to be redirected to Safari.
 If not we have to redirect to Safari for the user to login.

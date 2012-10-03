@@ -23,9 +23,11 @@
 ///---------------------------------------------------------------------------------------
 
 /** Creates a `SPiDAuthorizationRequest` and and setups completionHandler
-
+ 
+ @param completionHandler Completion handler that will be run after request is completed
+ @return Instance of `SPiDAuthorizationRequest`
 */
-- (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))handler;
+- (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))completionHandler;
 
 /** Tries to authorize with SPiD
 
@@ -45,6 +47,8 @@
 
  This causes a redirect to Safari that will redirect back to the app by calling `application:openURL:sourceApplication:annotation:`
  This will remove the cookie from Safari and force user to login again
+ 
+ @param accessToken `SPiDAccessToken` to be logged out
 */
 - (void)logoutWithAccessToken:(SPiDAccessToken *)accessToken;
 
@@ -52,6 +56,8 @@
 
  This will not redirect to Safari and the cookie will not be removed.
  This method is used when a user tries to login twice, the logout invalidates the old token making sure that there is only one active token.
+
+ @param accessToken `SPiDAccessToken` to be logged out
 */
 - (void)softLogoutWithAccessToken:(SPiDAccessToken *)accessToken;
 

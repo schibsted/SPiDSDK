@@ -162,6 +162,7 @@
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
 		E304EB694A6337B4A97E8779 /* SPiDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDConstants.h; sourceTree = "<group>"; };
 		E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAuthorizationRequest.m; sourceTree = "<group>"; };
+		E304ECD612B9D4F797805865 /* TODO-template.markdown */ = {isa = PBXFileReference; lastKnownFileType = file.markdown; path = "TODO-template.markdown"; sourceTree = "<group>"; };
 		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E304EDA55B1715BF5E738193 /* SPiDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDResponse.m; sourceTree = "<group>"; };
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		537D21F515FF224C000ABCA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E304ECD612B9D4F797805865 /* TODO-template.markdown */,
 				E304E7788518B7C6C769480B /* best-practices-template.markdown */,
 				E304E9A7E275A1AB48BF5ABF /* getting-started-template.markdown */,
 				537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */,

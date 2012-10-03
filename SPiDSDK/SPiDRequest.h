@@ -30,29 +30,29 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 /** Creates a SPiD GET request
 
  @param requestPath API path for GET request
- @param handler Completion handler run after request is finished
+ @param completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))handler;
+- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a SPiD POST request
 
  @param requestPath API path for POST request
  @param body HTTP body
- @param handler Completion handler run after request is finished
+ @param completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler;
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a SPiD request
 
  @param requestPath API path for request
  @param method HTTP method for the request
  @param body HTTP body, used it method is POST
- @param handler Completion handler run after request is finished
+ @param completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler;
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Runs the request
 

@@ -91,7 +91,7 @@ static NSString const *SPiDSKDVersion = @"2";
 - (void)setClientID:(NSString *)clientID
     andClientSecret:(NSString *)clientSecret
     andAppURLScheme:(NSString *)appURLSchema
-         andSPiDURL:(NSURL *)serverURL;
+       andServerURL:(NSURL *)serverURL;
 
 /** Handles URL redirects to the app
 
@@ -103,7 +103,7 @@ static NSString const *SPiDSKDVersion = @"2";
 /** Authorizes with SPiD
 
  This requires that the `SPiDClient` has been configured.
- Redirects to safari to get code and then uses this to obtain a access token.
+ Redirects to safari to get code and then uses this to obtain a access token. Any exsisting access token will be logged out.
  The access token is then saved to keychain
 
  @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`. The receiver must also check if a error was returned to the completionHandler.
@@ -242,6 +242,11 @@ static NSString const *SPiDSKDVersion = @"2";
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** TODO: document this method */
+/** Refreshes the access token and then reruns the request
+ 
+ Note: The SDK enforces a number of maximum retries per request to stop requests from retrying forever
+ 
+ @param request The request to rerun after a access token has been received
+ */
 - (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
 @end

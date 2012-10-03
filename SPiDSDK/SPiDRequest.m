@@ -13,13 +13,31 @@
 
 @interface SPiDRequest (PrivateMethods)
 
-/** NSURLConnectionDelegate method */
+/** 'NSURLConnectionDelegate' method
+ 
+ Sent as a connection loads data incrementally and concatenates the data to the private instance variable 'receivedData'.
+ 
+ @param connection The connection sending the message.
+ @param data The newly available data.
+
+ */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
-/** NSURLConnectionDelegate method */
+/** NSURLConnectionDelegate method 
+ 
+ Sent when a connection has finished loading successfully.
+ 
+ @param connection The connection sending the message.
+ */
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
-/** NSURLConnectionDelegate method */
+/** NSURLConnectionDelegate method
+ 
+ Sent when a connection fails to load its request successfully.
+ 
+ @param connection The connection sending the message.
+ @param error An error object containing details of why the connection failed to load the request successfully.
+ */
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end
@@ -42,15 +60,15 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))handler {
-    return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:handler];
+- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:completionHandler];
 }
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler {
-    return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:handler];
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:completionHandler];
 }
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))handler {
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     self = [super init];
     if (self) {
         NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
@@ -63,12 +81,11 @@
             httpBody = body;
         }
         [self setRetryCount:0];
-        completionHandler = handler;
+        completionHandler = completionHandler;
     }
     return self;
 }
 
-// TODO: Should handle invalid tokens
 - (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken {
     NSString *urlStr = [url absoluteString];
     NSString *body;

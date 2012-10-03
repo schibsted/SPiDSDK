@@ -35,9 +35,9 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-/** Initializes the AccessToken from a dictionary
+/** Initializes SPiD response with the received data
 
- @param dictionary
+ @param data Data received from SPiD
  @return SPiDAccessToken
  */
 - (id)initWithJSONData:(NSData *)data;

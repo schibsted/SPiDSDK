@@ -29,6 +29,7 @@ static NSString *const SPiDForceKey = @"force";
 
 /** Generates the logout URL with GET query
 
+ @param accessToken ´SPiDAccessToken` the should be used for logging out
  @return Logout URL query
  */
 - (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken;
@@ -39,11 +40,12 @@ static NSString *const SPiDForceKey = @"force";
  */
 - (NSString *)generateAccessTokenPostData;
 
-/** Generates the token refresh request data
+/** Generates the access token refresh request data
 
+ @param accessToken ´SPiDAccessToken` containing the refresh token
  @return Token refresh request data
  */
-- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)token;
+- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken;
 
 /** Requests access token by using the received code
 
@@ -51,15 +53,42 @@ static NSString *const SPiDForceKey = @"force";
  */
 - (void)requestAccessToken;
 
-// NSURLConnectionDelegate
-/** NSURLConnectionDelegate method */
+/** 'NSURLConnectionDelegate' method
+ 
+ Sent as a connection loads data incrementally and concatenates the data to the private instance variable 'receivedData'.
+ 
+ @param connection The connection sending the message.
+ @param data The newly available data.
+ 
+ */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
-/** NSURLConnectionDelegate method */
+/** NSURLConnectionDelegate method
+ 
+ Sent when a connection has finished loading successfully.
+ 
+ @param connection The connection sending the message.
+ */
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
-/** NSURLConnectionDelegate method */
+/** NSURLConnectionDelegate method
+ 
+ Sent when a connection fails to load its request successfully.
+ 
+ @param connection The connection sending the message.
+ @param error An error object containing details of why the connection failed to load the request successfully.
+ */
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
+/** NSURLConnectionDelegate method
+
+ Sent when the connection determines that it must change URLs in order to continue loading a request.
+
+ @param connection The connection sending the message.
+ @param request The proposed redirected request. The delegate should inspect the redirected request to verify that it meets its needs, and create a copy with new attributes to return to the connection if necessary.
+ @param response The URL response that caused the redirect. May be nil in cases where this method is not being sent as a result of involving the delegate in redirect processing.
+*/
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response;
 
 @end
 
@@ -78,10 +107,10 @@ static NSString *const SPiDForceKey = @"force";
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-- (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))handler {
+- (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))completionHandler {
     self = [super init];
     if (self) {
-        completionHandler = handler;
+        completionHandler = completionHandler;
     }
     return self;
 }
@@ -168,7 +197,7 @@ static NSString *const SPiDForceKey = @"force";
 
 - (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
-    NSString *requestURL = @"https://stage.payment.schibsted.no/logout"; //TODO!!!
+    NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[client serverURL] absoluteString], @"/logout"];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
@@ -187,14 +216,14 @@ static NSString *const SPiDForceKey = @"force";
     return data;
 }
 
-- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)token {
+- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *data = [NSString string];
     data = [data stringByAppendingFormat:@"%@=%@", SPiDClientIDKey, [client clientID]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDGrantTypeKey, @"refresh_token"];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
-    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRefreshTokenKey, token.refreshToken];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRefreshTokenKey, accessToken.refreshToken];
     return data;
 }
 

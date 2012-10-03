@@ -30,12 +30,19 @@
 
  @param code Error code.
  @param description Error description.
- param description Error reason.
+ @param reason Error reason.
  @return Returns `NSError` with the given data.
  */
 + (NSError *)oauth2ErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason;
 
-/** Not implemented yet */
+/** Creates a new `NSError` with SPiD API domain and the given paramters 
+ 
+ @warning Not implemented yet
+ @param code Error code.
+ @param description Error description.
+ @param reason Error reason.
+ @return Returns `NSError` with the given data.
+ */
 + (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason;
 
 @end
