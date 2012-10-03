@@ -43,11 +43,13 @@
         <true/>
         <key>--include</key>
         <array>
-            <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/best-practices-template.markdown
+            <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/Best practices-template.markdown
             </string>
-            <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/getting-started-template.markdown
+            <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/Getting started-template.markdown
             </string>
         </array>
+        <key>--index-desc</key>
+        <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/index-template.markdown</string>
         <key>--logformat</key>
         <string>xcode</string>
         <key>--exit-threshold</key>
