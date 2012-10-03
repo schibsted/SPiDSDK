@@ -119,7 +119,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 - (void)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
@@ -132,7 +132,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning `SPiDClient` has to be logged in before this call .The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 
 - (void)softLogoutRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
@@ -146,9 +146,26 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after authorization is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 - (void)refreshAccessTokenRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
+
+/** Runs a GET request against the SPiD server
+
+ @param path Path for the request eg _api/2/me_
+ @param completionHandler Runs after request is completed
+ @see sharedInstance
+ */
+- (void)apiGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+
+/** Runs a POST request against the SPiD server
+
+ @param path Path for the request eg _api/2/me_
+ @param body Http body to be posted
+ @param completionHandler Runs after request is completed
+ @see sharedInstance
+ */
+- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Checks if the access token has expired
 
@@ -172,7 +189,7 @@ static NSString const *SPiDSKDVersion = @"2";
 
 @return Returns YES if `SPiDClient` is logged in
 */
-- (BOOL)isLoggedIn;
+- (BOOL)isAuthorizedIn;
 
 ///---------------------------------------------------------------------------------------
 /// @name Request wrappers
@@ -185,7 +202,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 - (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
@@ -197,7 +214,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @param userID ID for the selected user
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 - (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
@@ -208,7 +225,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 - (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
@@ -220,7 +237,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @param userID The userID that logins should be fetched for
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isLoggedIn
+ @see isAuthorizedIn
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 

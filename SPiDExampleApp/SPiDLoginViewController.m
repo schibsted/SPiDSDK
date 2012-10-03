@@ -16,7 +16,6 @@
 }
 
 - (IBAction)loginToSPiD:(id)sender {
-
     [[SPiDClient sharedInstance] authorizationRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];

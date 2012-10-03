@@ -17,7 +17,7 @@ The second step is to exchange the code for a access token which can be used to 
 
 
 <pre><code>// Check if we already have a access token in the keychain
-if (![[SPiDClient sharedInstance] isLoggedIn]) {
+if (![[SPiDClient sharedInstance] isAuthorizedIn]) {
     // Try to login
     [[SPiDClient sharedInstance] authorizationRequestWithCompletionHandler:^(NSError *error) {
         if (error) {
