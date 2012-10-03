@@ -25,15 +25,14 @@
             [self setData:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
                 [self setError:[self error]];
-                // TODO: Test and return better error
-                SPiDDebugLog(@"SPiDSDK json error: %@", [[self error] description]);
+                SPiDDebugLog(@"JSON parse error: %@", [[self error] description]);
             } else {
                 if ([[self data] objectForKey:@"error"] && ![[[self data] objectForKey:@"error"] isEqual:[NSNull null]]) {
                     [self setError:[NSError errorFromJSONData:[self data]]];
-                    SPiDDebugLog(@"SPiDSDK api error: %@", [[self data] objectForKey:@"error"]);
+                    SPiDDebugLog(@"Received error: %@", [[self data] objectForKey:@"error"]);
                 } // else everything ok
             }
-        } // TODO: else, errorhandling if no response is received?
+        } // TODO: if message is empty?
 
     }
     return self;

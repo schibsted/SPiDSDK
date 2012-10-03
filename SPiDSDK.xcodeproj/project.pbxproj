@@ -152,7 +152,7 @@
 		E304E682B974C240DE9BC5E1 /* SPiDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUtils.m; sourceTree = "<group>"; };
 		E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAuthorizationRequest.h; sourceTree = "<group>"; };
 		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDResponse.h; sourceTree = "<group>"; };
-		E304E7788518B7C6C769480B /* best-practices.markdown */ = {isa = PBXFileReference; lastKnownFileType = file.markdown; path = "best-practices.markdown"; sourceTree = "<group>"; };
+		E304E7788518B7C6C769480B /* best-practices-template.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = "best-practices-template.markdown"; sourceTree = "<group>"; };
 		E304E7E1D8AB4EFA3D56000E /* SPiDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDConstants.m; sourceTree = "<group>"; };
 		E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessToken.h; sourceTree = "<group>"; };
 		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDKeychainWrapper.m; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 		537D21F515FF224C000ABCA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E304E7788518B7C6C769480B /* best-practices.markdown */,
+				E304E7788518B7C6C769480B /* best-practices-template.markdown */,
 				E304E9A7E275A1AB48BF5ABF /* getting-started-template.markdown */,
 				537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */,
 			);

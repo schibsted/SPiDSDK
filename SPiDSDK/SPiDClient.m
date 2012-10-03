@@ -103,6 +103,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         SPiDDebugLog(@"Access token found, preforming a soft logout to cleanup before login");
         [self softLogoutRequestWithCompletionHandler:^(NSError *error) {
             if (error) {
+                [self clearAuthorizationRequest];
                 completionHandler(error);
             } else {
                 [self doAuthorizationRequestWithCompletionHandler:completionHandler];
@@ -123,8 +124,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
             return [authorizationRequest handleOpenURL:url];
         } else if ([urlString hasSuffix:@"logout"]) {
             return [authorizationRequest handleOpenURL:url];
+        } else if ([urlString hasSuffix:@"failure"]) {
+            return [authorizationRequest handleOpenURL:url];
         }
-    } // TODO: check for failure?
+    }
     return NO;
 }
 
@@ -134,6 +137,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
             authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
                 if (!error) {
                     [self logoutComplete];
+                } else {
+                    [self clearAuthorizationRequest];
                 }
                 completionHandler(error);
             }];
@@ -148,6 +153,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
             authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
                 if (!error) {
                     [self logoutComplete];
+                } else {
+                    [self clearAuthorizationRequest];
                 }
                 completionHandler(error);
             }];
@@ -162,6 +169,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
             authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
                 if (!error) {
                     [self authorizationComplete:token];
+                } else {
+                    [self clearAuthorizationRequest];
                 }
                 completionHandler(error);
             }];
@@ -203,6 +212,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     } else {
         [request startRequestWithAccessToken:accessToken];
     }
+}
+
+- (void)clearAuthorizationRequest {
+    @synchronized (authorizationRequest) {
+        authorizationRequest = nil;
+    }
+    waitingRequests = nil;
 }
 
 - (NSString *)currentUserID {
@@ -277,6 +293,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
             if (error) {
                 // TODO: if error is token expired, refresh
+                [self clearAuthorizationRequest];
                 authorizationRequest = nil;
                 completionHandler(error);
             } else {
@@ -294,9 +311,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
     [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:token forIdentifier:AccessTokenKeychainIdentification];
 
-    @synchronized (authorizationRequest) {
-        authorizationRequest = nil;
-    }
+    [self clearAuthorizationRequest];
 
     if (waitingRequests) {
         SPiDDebugLog(@"Found %d waiting request, running again", [waitingRequests count]);
@@ -313,9 +328,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
     [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
 
-    @synchronized (authorizationRequest) {
-        authorizationRequest = nil;
-    }
+    [self clearAuthorizationRequest];
 
     waitingRequests = nil;
 }

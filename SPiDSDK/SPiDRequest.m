@@ -53,7 +53,6 @@
             httpMethod = @"GET";
         } else if ([method isEqualToString:@"POST"]) {
             url = [NSURL URLWithString:requestURL];
-            // TODO: add token to postdata
             httpMethod = @"POST";
             httpBody = body;
         }

@@ -13,6 +13,32 @@
 + (NSError *)errorFromJSONData:(NSDictionary *)dictionary {
     NSString *errorString = [dictionary objectForKey:@"error"];
     NSString *errorDescription = [dictionary objectForKey:@"error_description"];
+    NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+    return [self oauth2ErrorWithCode:errorCode description:errorDescription reason:errorString];
+}
+
++ (NSError *)oauth2ErrorWithString:(NSString *)errorString {
+    NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+    return [self oauth2ErrorWithCode:errorCode description:errorString reason:errorString];
+}
+
+
++ (NSError *)oauth2ErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
+    NSMutableDictionary *info = nil;
+    if ([description length] > 0 || [reason length] > 0) {
+        info = [NSMutableDictionary dictionaryWithCapacity:2];
+        if ([description length] > 0) [info setObject:description forKey:NSLocalizedDescriptionKey];
+        if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
+    }
+    return [self errorWithDomain:@"SPiDOAuth2" code:code userInfo:info];
+}
+
+
++ (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
+    return nil;
+}
+
++ (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString {
     NSInteger errorCode = 0;
     if ([errorString caseInsensitiveCompare:@"redirect_uri_mismatch"] == NSOrderedSame) {
         errorCode = SPiDOAuth2RedirectURIMismatchErrorCode;
@@ -41,22 +67,7 @@
     } else if ([errorString caseInsensitiveCompare:@"expired_token"] == NSOrderedSame) {
         errorCode = SPiDOAuth2ExpiredTokenErrorCode;
     }
-
-    return [self oauth2ErrorWithCode:errorCode description:errorDescription reason:errorString];
-}
-
-+ (NSError *)oauth2ErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
-    NSMutableDictionary *info = nil;
-    if ([description length] > 0 || [reason length] > 0) {
-        info = [NSMutableDictionary dictionaryWithCapacity:2];
-        if ([description length] > 0) [info setObject:description forKey:NSLocalizedDescriptionKey];
-        if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
-    }
-    return [self errorWithDomain:@"SPiDOAuth2" code:code userInfo:info];
-}
-
-+ (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
-    return nil;
+    return errorCode;
 }
 
 @end

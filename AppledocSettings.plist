@@ -42,7 +42,12 @@
         <key>--no-repeat-first-par</key>
         <true/>
         <key>--include</key>
-        <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/getting-started-template.markdown</string>
+        <array>
+            <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/best-practices-template.markdown
+            </string>
+            <string>/Users/mikaellindstrom/Work/SchibstedPayment/SPiDSDK/SPiDSDK/getting-started-template.markdown
+            </string>
+        </array>
         <key>--logformat</key>
         <string>xcode</string>
         <key>--exit-threshold</key>

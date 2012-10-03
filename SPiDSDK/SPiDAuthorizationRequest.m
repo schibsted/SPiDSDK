@@ -108,25 +108,28 @@ static NSString *const SPiDForceKey = @"force";
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (BOOL)handleOpenURL:url {
+- (BOOL)handleOpenURL:(NSURL *)url {
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         // TODO: Test GET error
         SPiDDebugLog(@"Received error: %@", error);
-        completionHandler(nil, [NSError errorWithDomain:@"SPiD" code:1 userInfo:nil]);
+        completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
         if ([urlString hasSuffix:@"login"]) {
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
+
             NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
             SPiDDebugLog(@"Received code: %@", code);
+
             [self requestAccessToken];
-            return YES;
         } else if ([urlString hasSuffix:@"logout"]) {
             completionHandler(nil, nil);
-            return YES;
-        }
+        } /*else if ([urlString hasSuffix:@"failure"]) {
+            completionHandler(nil, error);
+        }*/
+        return YES;
     }
     return NO;
 }
@@ -141,10 +144,10 @@ static NSString *const SPiDForceKey = @"force";
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *requestURL = [[client authorizationURL] absoluteString];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDClientIDKey, [client clientID]];
-    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"code"];
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"1code"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
-    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"]; // TODO: Does this work?
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"];
     return [NSURL URLWithString:requestURL];
 }
 
@@ -154,7 +157,7 @@ static NSString *const SPiDForceKey = @"force";
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
-    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"]; // TODO: Does this work?
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"];
     return [NSURL URLWithString:requestURL];
 }
 
@@ -219,7 +222,7 @@ static NSString *const SPiDForceKey = @"force";
 
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            SPiDDebugLog(@"SPiDSDK error: %@", [jsonError description]);
+            SPiDDebugLog(@"Received error: %@", [jsonError description]);
             NSError *error = [NSError errorFromJSONData:jsonObject];
             completionHandler(nil, error);
         } else {
@@ -227,13 +230,13 @@ static NSString *const SPiDForceKey = @"force";
             completionHandler(accessToken, nil);
         }
     } else {
-        SPiDDebugLog(@"SPiDSDK error: %@", [jsonError description]);
+        SPiDDebugLog(@"Received error: %@", [jsonError description]);
         completionHandler(nil, jsonError);
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
+    SPiDDebugLog(@"Received error: %@", [error description]);
     completionHandler(nil, error);
 }
 

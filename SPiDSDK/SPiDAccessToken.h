@@ -16,7 +16,7 @@
 /// @name Public properties
 ///---------------------------------------------------------------------------------------
 
-// TODO: Should we have scope?
+// Note: We have not included scope since it is not used, might have to be added later
 /** User ID for the current client */
 @property(strong, nonatomic) NSString *userID;
 

@@ -11,12 +11,26 @@
 /** Adds helper methods to `NSError` for more organized code. */
 @interface NSError (SPiDError)
 
+/** Creates a new `NSError` with SPiD OAuth2 domain and given dictionary.
+
+ @param dictionary Dictionary containing error data received from SPiD
+ @return Returns `NSError` with the given data.
+ */
+
 + (NSError *)errorFromJSONData:(NSDictionary *)dictionary;
 
-/** Creates a new `NSError` with SPiD OAuth2 domain and given information.
+/** Creates a new `NSError` with SPiD OAuth2 domain and the given string.
+
+ @param errorString Error received from SPiD.
+ @return Returns `NSError` with the given data.
+ */
++ (NSError *)oauth2ErrorWithString:(NSString *)errorString;
+
+/** Creates a new `NSError` with SPiD OAuth2 domain and the given paramters
 
  @param code Error code.
  @param description Error description.
+ param description Error reason.
  @return Returns `NSError` with the given data.
  */
 + (NSError *)oauth2ErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason;
