@@ -120,7 +120,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 - (void)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
@@ -133,11 +133,10 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning `SPiDClient` has to be logged in before this call .The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 
 - (void)softLogoutRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
-
 
 /** Refresh access token
 
@@ -147,7 +146,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after authorization is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 - (void)refreshAccessTokenRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
@@ -190,7 +189,7 @@ static NSString const *SPiDSKDVersion = @"2";
 
 @return Returns YES if `SPiDClient` is logged in
 */
-- (BOOL)isAuthorizedIn;
+- (BOOL)isAuthorized;
 
 ///---------------------------------------------------------------------------------------
 /// @name Request wrappers
@@ -203,7 +202,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 - (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
@@ -215,7 +214,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @param userID ID for the selected user
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 - (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
@@ -226,7 +225,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 - (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
@@ -238,7 +237,7 @@ static NSString const *SPiDSKDVersion = @"2";
  @param userID The userID that logins should be fetched for
  @param completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
- @see isAuthorizedIn
+ @see isAuthorized
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 

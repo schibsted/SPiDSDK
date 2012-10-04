@@ -25,14 +25,14 @@ static NSString *const SPiDForceKey = @"force";
 
  @return Authorization URL query
  */
-- (NSURL *)generateAuthorizationRequestURL;
+- (NSURL *)generateAuthorizationURL;
 
 /** Generates the logout URL with GET query
 
  @param accessToken ´SPiDAccessToken` the should be used for logging out
  @return Logout URL query
  */
-- (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken;
+- (NSURL *)generateLogoutURLWithAccessToken:(SPiDAccessToken *)accessToken;
 
 /** Generates the access token request data
 
@@ -45,7 +45,7 @@ static NSString *const SPiDForceKey = @"force";
  @param accessToken ´SPiDAccessToken` containing the refresh token
  @return Token refresh request data
  */
-- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken;
+- (NSString *)generateRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken;
 
 /** Requests access token by using the received code
 
@@ -117,19 +117,19 @@ static NSString *const SPiDForceKey = @"force";
 
 
 - (void)authorize {
-    NSURL *requestURL = [self generateAuthorizationRequestURL];
+    NSURL *requestURL = [self generateAuthorizationURL];
     SPiDDebugLog(@"Trying to authorize with SPiD");
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
 - (void)logoutWithAccessToken:(SPiDAccessToken *)accessToken {
-    NSURL *requestURL = [self generateLogoutRequestURLWithAccessToken:accessToken];
+    NSURL *requestURL = [self generateLogoutURLWithAccessToken:accessToken];
     SPiDDebugLog(@"Trying to logout from SPiD");
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
 - (void)softLogoutWithAccessToken:(SPiDAccessToken *)accessToken {
-    NSURL *requestURL = [self generateLogoutRequestURLWithAccessToken:accessToken];
+    NSURL *requestURL = [self generateLogoutURLWithAccessToken:accessToken];
     SPiDDebugLog(@"Trying to soft logout from SPiD");
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -138,7 +138,7 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)refreshWithRefreshToken:(SPiDAccessToken *)accessToken {
-    NSString *postData = [self generateAccessTokenRefreshPostDataWithAccessToken:accessToken];
+    NSString *postData = [self generateRefreshPostDataWithAccessToken:accessToken];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[SPiDClient sharedInstance] tokenURL]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
@@ -184,7 +184,7 @@ static NSString *const SPiDForceKey = @"force";
 /// @name Private methods
 ///---------------------------------------------------------------------------------------
 
-- (NSURL *)generateAuthorizationRequestURL {
+- (NSURL *)generateAuthorizationURL {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *requestURL = [[client authorizationURL] absoluteString];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDClientIDKey, [client clientID]];
@@ -195,7 +195,7 @@ static NSString *const SPiDForceKey = @"force";
     return [NSURL URLWithString:requestURL];
 }
 
-- (NSURL *)generateLogoutRequestURLWithAccessToken:(SPiDAccessToken *)accessToken {
+- (NSURL *)generateLogoutURLWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[client serverURL] absoluteString], @"/logout"];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
@@ -216,7 +216,7 @@ static NSString *const SPiDForceKey = @"force";
     return data;
 }
 
-- (NSString *)generateAccessTokenRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
+- (NSString *)generateRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *data = [NSString string];
     data = [data stringByAppendingFormat:@"%@=%@", SPiDClientIDKey, [client clientID]];

@@ -247,7 +247,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     return nil;
 }
 
-- (BOOL)isAuthorizedIn {
+- (BOOL)isAuthorized {
     if (accessToken)
         return YES;
     return NO;
