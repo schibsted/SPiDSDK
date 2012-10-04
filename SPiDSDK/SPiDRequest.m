@@ -17,8 +17,8 @@
  
  Sent as a connection loads message incrementally and concatenates the message to the private instance variable 'receivedData'.
  
- @param connection The connection sending the message.
- @param message The newly available message.
+ @param connection The connection sending the data.
+ @param data The newly available data.
 
  */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;

@@ -37,7 +37,7 @@
 
 /** Initializes SPiD response with the received message
 
- @param message Data received from SPiD
+ @param data Data received from SPiD
  @return SPiDAccessToken
  */
 - (id)initWithJSONData:(NSData *)data;
