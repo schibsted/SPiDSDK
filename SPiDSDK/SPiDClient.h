@@ -14,7 +14,7 @@
 @class SPiDAccessToken;
 @class SPiDRequest;
 
-static NSString const *SPiDSKDVersion = @"2";
+static NSString const *defaultAPIVersionSPiD = @"2";
 
 // debug print used by SPiDSDK
 #ifdef DEBUG
@@ -71,6 +71,8 @@ static NSString const *SPiDSKDVersion = @"2";
 /** Sets if access token should be saved in keychain, default value is YES */
 @property(nonatomic) BOOL saveToKeychain;
 
+/** The API version that should be used, defaults to 2 */
+@property(strong, nonatomic) NSString *apiVersionSPiD;
 ///---------------------------------------------------------------------------------------
 /// @name Public Methods
 ///---------------------------------------------------------------------------------------
@@ -150,9 +152,19 @@ static NSString const *SPiDSKDVersion = @"2";
  */
 - (void)refreshAccessTokenRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
+/** Refreshes the access token and then reruns the request
+
+ Note: The SDK enforces a number of maximum retries per request to stop requests from retrying forever
+
+ @param request The request to rerun after a access token has been received
+ */
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
+
 /** Runs a GET request against the SPiD server
 
- @param path Path for the request eg _api/2/me_
+ Uses the `apiVersionSPiD` property to generate a SPiD API GET request using the provided path
+
+ @param path Path for the request eg _/me_
  @param completionHandler Runs after request is completed
  @see sharedInstance
  */
@@ -160,7 +172,9 @@ static NSString const *SPiDSKDVersion = @"2";
 
 /** Runs a POST request against the SPiD server
 
- @param path Path for the request eg _api/2/me_
+ Uses the `apiVersionSPiD` property to generate a SPiD API POST request using the provided path
+
+ @param path Path for the request eg _/me_
  @param body Http body to be posted
  @param completionHandler Runs after request is completed
  @see sharedInstance
@@ -241,11 +255,4 @@ static NSString const *SPiDSKDVersion = @"2";
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Refreshes the access token and then reruns the request
- 
- Note: The SDK enforces a number of maximum retries per request to stop requests from retrying forever
- 
- @param request The request to rerun after a access token has been received
- */
-- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
 @end
