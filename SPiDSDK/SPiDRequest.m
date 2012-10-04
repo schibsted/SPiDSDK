@@ -15,10 +15,10 @@
 
 /** 'NSURLConnectionDelegate' method
  
- Sent as a connection loads data incrementally and concatenates the data to the private instance variable 'receivedData'.
+ Sent as a connection loads message incrementally and concatenates the message to the private instance variable 'receivedData'.
  
  @param connection The connection sending the message.
- @param data The newly available data.
+ @param message The newly available message.
 
  */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;

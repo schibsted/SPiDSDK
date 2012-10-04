@@ -11,7 +11,7 @@
 /**
  `SPiDResponse` is created for each response from SPiD made by a `SPiDRequest`
 
- It contains the data as both a object and as raw JSON.
+ It contains the message as both a object and as raw JSON.
 
  @warning Received should always check the error property upon receiving a response.
  */
@@ -25,19 +25,19 @@
 /** Contains error if there was any, otherwise nil */
 @property(strong, nonatomic) NSError *error;
 
-/** Received JSON data converted to a dictionary */
-@property(strong, nonatomic) NSDictionary *data;
+/** Received JSON message converted to a dictionary */
+@property(strong, nonatomic) NSDictionary *message;
 
-/** Received JSON data as a raw string */
+/** Received JSON message as a raw string */
 @property(strong, nonatomic) NSString *rawJSON;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-/** Initializes SPiD response with the received data
+/** Initializes SPiD response with the received message
 
- @param data Data received from SPiD
+ @param message Data received from SPiD
  @return SPiDAccessToken
  */
 - (id)initWithJSONData:(NSData *)data;

@@ -45,7 +45,7 @@
 - (void)getUserName {
     [[SPiDClient sharedInstance] getUserRequestWithCurrentUserAndCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
-            NSDictionary *data = [[response data] objectForKey:@"data"];
+            NSDictionary *data = [[response message] objectForKey:@"message"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
             userID = [data objectForKey:@"userId"];
             [[self userLabel] setText:user];
@@ -57,7 +57,7 @@
 - (void)getLastLogin {
     [[SPiDClient sharedInstance] getUserLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
-            NSArray *data = [[response data] objectForKey:@"data"];
+            NSArray *data = [[response message] objectForKey:@"message"];
             NSDictionary *latestLogin = [data objectAtIndex:0];
             NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
             [[self loginLabel] setText:time];

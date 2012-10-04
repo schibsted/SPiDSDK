@@ -13,7 +13,7 @@
 @implementation SPiDResponse
 
 @synthesize error = _error;
-@synthesize data = _data;
+@synthesize message = _message;
 @synthesize rawJSON = _rawJSON;
 
 - (id)initWithJSONData:(NSData *)data {
@@ -22,14 +22,14 @@
         NSError *jsonError = nil;
         if ([data length] > 0) {
             [self setRawJSON:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-            [self setData:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
+            [self setMessage:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
                 [self setError:[self error]];
                 SPiDDebugLog(@"JSON parse error: %@", [[self error] description]);
             } else {
-                if ([[self data] objectForKey:@"error"] && ![[[self data] objectForKey:@"error"] isEqual:[NSNull null]]) {
-                    [self setError:[NSError errorFromJSONData:[self data]]];
-                    SPiDDebugLog(@"Received error: %@", [[self data] objectForKey:@"error"]);
+                if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
+                    [self setError:[NSError errorFromJSONData:[self message]]];
+                    SPiDDebugLog(@"Received error: %@", [[self message] objectForKey:@"error"]);
                 } // else everything ok
             }
         } // TODO: if message is empty?

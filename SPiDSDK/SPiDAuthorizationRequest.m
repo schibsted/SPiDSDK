@@ -59,7 +59,6 @@ static NSString *const SPiDForceKey = @"force";
  
  @param connection The connection sending the message.
  @param data The newly available data.
- 
  */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 
