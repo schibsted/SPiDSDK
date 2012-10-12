@@ -7,13 +7,35 @@
 //
 
 #import "NSError+SPiDError.h"
+#import "SPiDClient.h"
 
 @implementation NSError (SPiDError)
 
 + (NSError *)errorFromJSONData:(NSDictionary *)dictionary {
-    NSString *errorString = [dictionary objectForKey:@"error"];
-    NSString *errorDescription = [dictionary objectForKey:@"error_description"];
-    NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+    NSString *errorString;
+    NSString *errorDescription;
+    NSInteger originalErrorCode;
+    NSInteger errorCode;
+
+    //Class obj = [[dictionary objectForKey:@"error"] class];
+    //Class obj2 = [__ class];
+
+    //if ([[dictionary objectForKey:@"error"] class]== [NSDictionary class]) {
+    if ([[dictionary objectForKey:@"error"] isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *errorDict = [dictionary objectForKey:@"error"];
+        errorString = [errorDict objectForKey:@"type"];
+        errorDescription = [errorDict objectForKey:@"description"];
+        originalErrorCode = [[errorDict objectForKey:@"code"] integerValue];
+        errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+    } else {
+        errorString = [dictionary objectForKey:@"error"];
+        errorDescription = [dictionary objectForKey:@"error_description"];
+        originalErrorCode = [[dictionary objectForKey:@"error_code"] integerValue];
+        errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+    }
+
+    SPiDDebugLog("Received '%@' with code '%d' and description: %@", errorString, originalErrorCode, errorDescription);
+
     return [self oauth2ErrorWithCode:errorCode description:errorDescription reason:errorString];
 }
 
@@ -66,6 +88,8 @@
         errorCode = SPiDOAuth2InsufficientScopeErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"expired_token"] == NSOrderedSame) {
         errorCode = SPiDOAuth2ExpiredTokenErrorCode;
+    } else if ([errorString caseInsensitiveCompare:@"ApiException"] == NSOrderedSame) {
+        errorCode = SPiDAPIExceptionErrorCode;
     }
     return errorCode;
 }

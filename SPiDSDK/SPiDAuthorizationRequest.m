@@ -109,7 +109,7 @@ static NSString *const SPiDForceKey = @"force";
 - (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))completionHandler {
     self = [super init];
     if (self) {
-        completionHandler = completionHandler;
+        self->completionHandler = completionHandler;
     }
     return self;
 }
@@ -155,7 +155,6 @@ static NSString *const SPiDForceKey = @"force";
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         // TODO: Test GET error
-        SPiDDebugLog(@"Received error: %@", error);
         completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else {
@@ -188,7 +187,7 @@ static NSString *const SPiDForceKey = @"force";
     NSString *requestURL = [[client authorizationURL] absoluteString];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDClientIDKey, [client clientID]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"code"];
-    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
+    requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@spid/login", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"];
     return [NSURL URLWithString:requestURL];
@@ -197,7 +196,7 @@ static NSString *const SPiDForceKey = @"force";
 - (NSURL *)generateLogoutURLWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[client serverURL] absoluteString], @"/logout"];
-    requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@logout", [[client redirectURI] absoluteString]]]];
+    requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@spid/logout", [[client redirectURI] absoluteString]]]];
     requestURL = [requestURL stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"];
@@ -208,7 +207,7 @@ static NSString *const SPiDForceKey = @"force";
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *data = [NSString string];
     data = [data stringByAppendingFormat:@"%@=%@", SPiDClientIDKey, [client clientID]];
-    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@spid/login", [[client redirectURI] absoluteString]]]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDGrantTypeKey, @"authorization_code"];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDCodeKey, code];
@@ -219,7 +218,7 @@ static NSString *const SPiDForceKey = @"force";
     SPiDClient *client = [SPiDClient sharedInstance];
     NSString *data = [NSString string];
     data = [data stringByAppendingFormat:@"%@=%@", SPiDClientIDKey, [client clientID]];
-    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@login", [[client redirectURI] absoluteString]]]];
+    data = [data stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@spid/login", [[client redirectURI] absoluteString]]]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDGrantTypeKey, @"refresh_token"];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDRefreshTokenKey, accessToken.refreshToken];
@@ -265,7 +264,7 @@ static NSString *const SPiDForceKey = @"force";
 
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            SPiDDebugLog(@"Received error: %@", [jsonError description]);
+            //SPiDDebugLog(@"Received error from : %@", [jsonError description]);
             NSError *error = [NSError errorFromJSONData:jsonObject];
             completionHandler(nil, error);
         } else {
@@ -273,13 +272,14 @@ static NSString *const SPiDForceKey = @"force";
             completionHandler(accessToken, nil);
         }
     } else {
-        SPiDDebugLog(@"Received error: %@", [jsonError description]);
+        SPiDDebugLog(@"Received jsonerror: %@", [jsonError description]);
         completionHandler(nil, jsonError);
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     SPiDDebugLog(@"Received error: %@", [error description]);
+    SPiDDebugLog("Received '%@' with code '%d' and description: %@", [error domain], [error code], [error description]);
     completionHandler(nil, error);
 }
 

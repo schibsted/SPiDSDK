@@ -65,7 +65,9 @@ enum {
 
     SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020, // Grant type error
 
-    SPiDJSONParseErrorCode = -1030 // JSON Parse error
+    SPiDJSONParseErrorCode = -1030, // JSON Parse error
+
+    SPiDAPIExceptionErrorCode = 404
 
 };
 typedef NSUInteger SPiDErrorCode;

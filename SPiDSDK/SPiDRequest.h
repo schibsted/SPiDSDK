@@ -42,7 +42,7 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
  @param completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a SPiD request
 
@@ -52,7 +52,7 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
  @param completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Runs the request
 

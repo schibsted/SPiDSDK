@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C54</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1929</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -40,17 +40,17 @@
 					<object class="IBUIButton" id="17394955">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, 257}, {125, 36}}</string>
+						<string key="NSFrame">{{88, 304}, {145, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="771924422"/>
+						<reference key="NSNextKeyView" ref="872118195"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Get last login</string>
+						<string key="IBUINormalTitle">Get one time code</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="744786509">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -76,7 +76,7 @@
 					<object class="IBUIButton" id="872118195">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{84, 301}, {152, 37}}</string>
+						<string key="NSFrame">{{84, 348}, {152, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -133,11 +133,11 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="910342248">
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">17</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="451909674">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
@@ -146,10 +146,10 @@
 					<object class="IBUIButton" id="771924422">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{165, 257}, {125, 37}}</string>
+						<string key="NSFrame">{{98, 260}, {125, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="872118195"/>
+						<reference key="NSNextKeyView" ref="17394955"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -172,41 +172,51 @@
 						<string key="NSFrame">{{10, 145}, {300, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="321668622"/>
+						<reference key="NSNextKeyView" ref="187395067"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Last login: unknown</string>
+						<string key="IBUIText">Token expires at: none</string>
 						<reference key="IBUITextColor" ref="365504961"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="910342248"/>
-						<reference key="IBUIFont" ref="451909674"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="613028117">
+							<int key="type">1</int>
+							<double key="pointSize">14</double>
+						</object>
+						<object class="NSFont" key="IBUIFont" id="322458200">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">14</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUILabel" id="321668622">
+					<object class="IBUILabel" id="187395067">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 174}, {300, 21}}</string>
+						<string key="NSFrame">{{10, 174}, {300, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="17394955"/>
+						<reference key="NSNextKeyView" ref="771924422"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Token expires at: unknown</string>
+						<string key="IBUIText">One time code: none</string>
 						<reference key="IBUITextColor" ref="365504961"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="910342248"/>
-						<reference key="IBUIFont" ref="451909674"/>
+						<int key="IBUINumberOfLines">2</int>
+						<int key="IBUILineBreakMode">1</int>
+						<reference key="IBUIFontDescription" ref="613028117"/>
+						<reference key="IBUIFont" ref="322458200"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<double key="preferredMaxLayoutWidth">300</double>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -244,46 +254,46 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">loginLabel</string>
+						<string key="label">oneTimeCodeLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="904694302"/>
+						<reference key="destination" ref="187395067"/>
 					</object>
-					<int key="connectionID">36</int>
+					<int key="connectionID">39</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tokenLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="321668622"/>
+						<reference key="destination" ref="904694302"/>
 					</object>
-					<int key="connectionID">37</int>
+					<int key="connectionID">43</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">lastLoginButtonPressed:</string>
+						<string key="label">oneTimeCodeButtonPressed:</string>
 						<reference key="source" ref="17394955"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">17</int>
+					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">logoutFromSPiD:</string>
+						<string key="label">logoutButtonPressed:</string>
 						<reference key="source" ref="872118195"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">13</int>
+					<int key="connectionID">40</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">refreshToken:</string>
+						<string key="label">refreshTokenButtonPressed:</string>
 						<reference key="source" ref="771924422"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">33</int>
+					<int key="connectionID">42</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -300,11 +310,11 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="948658755"/>
 							<reference ref="583689709"/>
+							<reference ref="904694302"/>
+							<reference ref="187395067"/>
+							<reference ref="872118195"/>
 							<reference ref="17394955"/>
 							<reference ref="771924422"/>
-							<reference ref="872118195"/>
-							<reference ref="904694302"/>
-							<reference ref="321668622"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -350,8 +360,8 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="321668622"/>
+						<int key="objectID">38</int>
+						<reference key="object" ref="187395067"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -366,7 +376,7 @@
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -374,7 +384,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">43</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -382,32 +392,32 @@
 					<string key="className">SPiDMainViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="lastLoginButtonPressed:">id</string>
-						<string key="logoutFromSPiD:">id</string>
-						<string key="refreshToken:">id</string>
+						<string key="logoutButtonPressed:">id</string>
+						<string key="oneTimeCodeButtonPressed:">id</string>
+						<string key="refreshTokenButtonPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="lastLoginButtonPressed:">
-							<string key="name">lastLoginButtonPressed:</string>
+						<object class="IBActionInfo" key="logoutButtonPressed:">
+							<string key="name">logoutButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="logoutFromSPiD:">
-							<string key="name">logoutFromSPiD:</string>
+						<object class="IBActionInfo" key="oneTimeCodeButtonPressed:">
+							<string key="name">oneTimeCodeButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="refreshToken:">
-							<string key="name">refreshToken:</string>
+						<object class="IBActionInfo" key="refreshTokenButtonPressed:">
+							<string key="name">refreshTokenButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="loginLabel">UILabel</string>
+						<string key="oneTimeCodeLabel">UILabel</string>
 						<string key="tokenLabel">UILabel</string>
 						<string key="userLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="loginLabel">
-							<string key="name">loginLabel</string>
+						<object class="IBToOneOutletInfo" key="oneTimeCodeLabel">
+							<string key="name">oneTimeCodeLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tokenLabel">
@@ -434,6 +444,6 @@
 			<string key="NS.key.0">SPiDLogo.jpg</string>
 			<string key="NS.object.0">{1191, 842}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1929</string>
 	</data>
 </archive>

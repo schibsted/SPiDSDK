@@ -13,7 +13,7 @@
 @interface SPiDMainViewController : UIViewController
 
 @property(strong, nonatomic) IBOutlet UILabel *userLabel;
-@property(strong, nonatomic) IBOutlet UILabel *loginLabel;
 @property(strong, nonatomic) IBOutlet UILabel *tokenLabel;
+@property(strong, nonatomic) IBOutlet UILabel *oneTimeCodeLabel;
 
 @end

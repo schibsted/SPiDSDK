@@ -64,11 +64,11 @@
     return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:completionHandler];
 }
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:completionHandler];
 }
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     self = [super init];
     if (self) {
         NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
@@ -78,21 +78,25 @@
         } else if ([method isEqualToString:@"POST"]) {
             url = [NSURL URLWithString:requestURL];
             httpMethod = @"POST";
-            httpBody = body;
+            httpBody = [self createHTTPBodyForDictionary:body];
         }
         [self setRetryCount:0];
-        completionHandler = completionHandler;
+        self->completionHandler = completionHandler;
     }
     return self;
 }
 
 - (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken {
     NSString *urlStr = [url absoluteString];
-    NSString *body;
+    NSString *body = @"";
     if ([httpMethod isEqualToString:@"GET"]) {
         urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
     } else if ([httpMethod isEqualToString:@"POST"]) {
-        body = [httpBody stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
+        if ([httpBody length] > 0) {
+            body = [httpBody stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
+        } else {
+            body = [httpBody stringByAppendingFormat:@"oauth_token=%@", accessToken.accessToken];
+        }
     }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:httpMethod];
@@ -111,6 +115,18 @@
 ///---------------------------------------------------------------------------------------
 /// @name Private methods
 ///---------------------------------------------------------------------------------------
+
+- (NSString *)createHTTPBodyForDictionary:(NSDictionary *)dictionary {
+    NSString *body = @"";
+    for (NSString *key in dictionary) {
+        if ([body length] > 0) {
+            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        } else {
+            body = [body stringByAppendingFormat:@"%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        }
+    }
+    return body;
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [receivedData appendData:data];

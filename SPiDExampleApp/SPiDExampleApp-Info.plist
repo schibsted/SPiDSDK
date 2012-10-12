@@ -23,11 +23,13 @@
         <key>CFBundleURLTypes</key>
         <array>
             <dict>
+                <key>CFBundleTypeRole</key>
+                <string>Editor</string>
                 <key>CFBundleURLName</key>
                 <string>no.spp.SPiDExampleApp</string>
                 <key>CFBundleURLSchemes</key>
                 <array>
-                    <string>sdktest</string>
+                    <string>finn.ipad</string>
                 </array>
             </dict>
         </array>

@@ -27,16 +27,16 @@
     [self setTokenExpiresLabel];
 }
 
-- (IBAction)lastLoginButtonPressed:(id)sender {
-    [self getLastLogin];
+- (IBAction)oneTimeCodeButtonPressed:(id)sender {
+    [self getOneTimeToken];
 }
 
 
-- (IBAction)refreshToken:(id)sender {
+- (IBAction)refreshTokenButtonPressed:(id)sender {
     [self refreshToken];
 }
 
-- (IBAction)logoutFromSPiD:(id)sender {
+- (IBAction)logoutButtonPressed:(id)sender {
     [self logout];
 }
 
@@ -45,22 +45,10 @@
 - (void)getUserName {
     [[SPiDClient sharedInstance] getUserRequestWithCurrentUserAndCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
-            NSDictionary *data = [[response message] objectForKey:@"message"];
+            NSDictionary *data = [[response message] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
             userID = [data objectForKey:@"userId"];
             [[self userLabel] setText:user];
-            [self getLastLogin];
-        }
-    }];
-}
-
-- (void)getLastLogin {
-    [[SPiDClient sharedInstance] getUserLoginsRequestWithUserID:userID andCompletionHandler:^(SPiDResponse *response) {
-        if (![response error]) {
-            NSArray *data = [[response message] objectForKey:@"message"];
-            NSDictionary *latestLogin = [data objectAtIndex:0];
-            NSString *time = [NSString stringWithFormat:@"Last login: %@", [latestLogin objectForKey:@"created"]];
-            [[self loginLabel] setText:time];
         }
     }];
 }
@@ -69,6 +57,17 @@
     [[SPiDClient sharedInstance] refreshAccessTokenRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [self setTokenExpiresLabel];
+        }
+    }];
+}
+
+- (void)getOneTimeToken {
+    [[SPiDClient sharedInstance] getOneTimeCodeRequestWithCompletionHandler:^(SPiDResponse *response) {
+        if (![response error]) {
+            NSDictionary *data = [[response message] objectForKey:@"data"];
+            NSString *code = [data objectForKey:@"code"];
+            [[self oneTimeCodeLabel] setText:[NSString stringWithFormat:@"One time code: %@", code]];
+            [[self oneTimeCodeLabel] sizeToFit];
         }
     }];
 }

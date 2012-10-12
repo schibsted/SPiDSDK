@@ -179,7 +179,7 @@ static NSString const *defaultAPIVersionSPiD = @"2";
  @param completionHandler Runs after request is completed
  @see sharedInstance
  */
-- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Checks if the access token has expired
 
@@ -208,6 +208,11 @@ static NSString const *defaultAPIVersionSPiD = @"2";
 ///---------------------------------------------------------------------------------------
 /// @name Request wrappers
 ///---------------------------------------------------------------------------------------
+
+/** TODO....
+ */
+
+- (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Requests the currently logged in user’s object. Note that the user session does not last as long as the access token, therefor the me request should only be used right after the app has received a access token. The user id should then be saved and used with the `getUserRequestWithID:andCompletionHandler`
 

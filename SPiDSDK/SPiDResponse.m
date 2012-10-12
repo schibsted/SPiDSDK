@@ -29,7 +29,6 @@
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
                     [self setError:[NSError errorFromJSONData:[self message]]];
-                    SPiDDebugLog(@"Received error: %@", [[self message] objectForKey:@"error"]);
                 } // else everything ok
             }
         } // TODO: if message is empty?

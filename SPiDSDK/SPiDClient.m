@@ -186,6 +186,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
                 completionHandler(error);
             }];
             [authorizationRequest refreshWithRefreshToken:accessToken];
+        } else {
+            SPiDDebugLog(@"Token refresh already running");
         }
     }
 }
@@ -204,7 +206,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
     NSString *apiPath = [NSString stringWithFormat:@"/api/%@%@", [self apiVersionSPiD], path];
     SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:apiPath andCompletionHandler:completionHandler];
-    if ([accessToken hasTokenExpired]) {
+    if ([accessToken hasTokenExpired] || authorizationRequest) {
         SPiDDebugLog(@"Access token has expired at %@, trying to get a new one", [accessToken expiresAt]);
         if (!waitingRequests) {
             waitingRequests = [[NSMutableArray alloc] init];
@@ -218,12 +220,11 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     }
 }
 
-
-- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSString *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
     NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
     NSString *apiPath = [NSString stringWithFormat:@"/api/%@%@", [self apiVersionSPiD], path];
     SPiDRequest *request = [[SPiDRequest alloc] initPostRequestWithPath:apiPath andHTTPBody:body andCompletionHandler:completionHandler];
-    if ([accessToken hasTokenExpired]) {
+    if ([accessToken hasTokenExpired] || authorizationRequest) {
         SPiDDebugLog(@"Access token has expired at %@, trying to get a new one", [accessToken expiresAt]);
         if (!waitingRequests) {
             waitingRequests = [[NSMutableArray alloc] init];
@@ -276,6 +277,17 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 /// @name Request wrappers
 ///---------------------------------------------------------------------------------------
 
+- (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    NSString *path = [NSString stringWithFormat:@"/oauth/exchange"];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+
+    // TODO: This should be client_id!
+    [data setObject:@"4fe9cb8adcb114f64a000001" forKey:@"clientId"];
+    [data setObject:@"4fe9cb8adcb114f64a000001" forKey:@"client_id"];
+    [data setObject:@"code" forKey:@"type"];
+    [self apiPostRequestWithPath:path andBody:data andCompletionHandler:completionHandler];
+}
+
 - (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/me"];
     [self apiGetRequestWithPath:path andCompletionHandler:completionHandler];
@@ -291,7 +303,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    NSString *path = [NSString stringWithFormat:@"user/%@/logins", userID];
+    NSString *path = [NSString stringWithFormat:@"/user/%@/logins", userID];
     [self apiGetRequestWithPath:path andCompletionHandler:completionHandler];
 }
 
