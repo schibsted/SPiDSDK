@@ -20,19 +20,21 @@
 }
 
 - (IBAction)loginWithBrowserRedirect:(id)sender {
+    SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate setUseWebView:NO];
     [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
             [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
         }
     }];
 }
 
 - (IBAction)loginWithWebView:(id)sender {
+    SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate setUseWebView:YES];
     webViewController = [[UIViewController alloc] init];
     UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
             [[self navigationController] popViewControllerAnimated:NO];
             [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
             [[self navigationController] setNavigationBarHidden:NO animated:YES];

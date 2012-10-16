@@ -7,6 +7,7 @@
 
 #import "SPiDMainViewController.h"
 #import "SPiDResponse.h"
+#import "SPiDExampleAppDelegate.h"
 
 
 @implementation SPiDMainViewController {
@@ -80,11 +81,22 @@
 }
 
 - (void)logout {
-    [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
-        if (!error) {
-            [[self navigationController] popToRootViewControllerAnimated:YES];
-        }
-    }];
+    SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+    if ([appDelegate useWebView]) {
+        [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
+            if (!error) {
+                [[self navigationController] popToRootViewControllerAnimated:YES];
+            }
+        }];
+    } else {
+        [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
+            if (!error) {
+                [[self navigationController] popToRootViewControllerAnimated:YES];
+            }
+        }];
+    }
+    [[self oneTimeCodeLabel] setText:[NSString stringWithFormat:@"One time code: %@", @"none"]];
+    [[self oneTimeCodeLabel] sizeToFit];
 }
 
 @end
