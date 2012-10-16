@@ -33,7 +33,7 @@
 
  This causes a redirect to Safari that will redirect back to the app by calling `application:openURL:sourceApplication:annotation:`
 */
-- (void)authorize;
+- (void)authorizeWithBrowserRedirect;
 
 /** Tries to refresh the access token
 
@@ -70,4 +70,5 @@
 */
 - (BOOL)handleOpenURL:(NSURL *)url;
 
+- (UIWebView *)authorizeWithWebView;
 @end

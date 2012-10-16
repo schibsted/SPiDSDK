@@ -53,6 +53,7 @@
 		E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
 		E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
 		E304E39CA9CD8D4F4D912D82 /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
+		E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E9BAD5499EEFE7846D26 /* Default@2x.png */; };
 		E304E49BFFFA328E63605B7A /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
 		E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
 		E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiDError.h */; };
@@ -63,9 +64,11 @@
 		E304E7872BB1D45953704EE5 /* SPiDConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EB694A6337B4A97E8779 /* SPiDConstants.h */; };
 		E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */; };
 		E304E8B07F0AB36216D2DCF4 /* SPiDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EA067760998928321774 /* SPiDMainViewController.m */; };
+		E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */; };
 		E304EA1BDEB35A07C930E74D /* SPiDAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */; };
 		E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
 		E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E74CE552DDD7DA85CADB /* SPiDResponse.h */; };
+		E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF927327F5217C9FBBD0 /* Default.png */; };
 		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
 		E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
 		E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
@@ -147,6 +150,7 @@
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E304E24883200DCA88A4E70C /* NSError+SPiDError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SPiDError.m"; sourceTree = "<group>"; };
 		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUtils.h; sourceTree = "<group>"; };
+		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
 		E304E444DE4E4340E113F130 /* 3. Detailed description-template.markdown */ = {isa = PBXFileReference; lastKnownFileType = file.markdown; path = "3. Detailed description-template.markdown"; sourceTree = "<group>"; };
 		E304E4D3494537377633CA3E /* NSError+SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiDError.h"; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 		E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessToken.h; sourceTree = "<group>"; };
 		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDKeychainWrapper.m; sourceTree = "<group>"; };
 		E304E9A7E275A1AB48BF5ABF /* 1. Getting started-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.markdown; path = "1. Getting started-template.markdown"; sourceTree = "<group>"; };
+		E304E9BAD5499EEFE7846D26 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
@@ -169,6 +174,7 @@
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
 		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDKeychainWrapper.h; sourceTree = "<group>"; };
 		E304EF8EA82AE9CD439264DE /* index-template.markdown */ = {isa = PBXFileReference; lastKnownFileType = file.markdown; path = "index-template.markdown"; sourceTree = "<group>"; };
+		E304EF927327F5217C9FBBD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +342,9 @@
 				537D222C15FF2374000ABCA6 /* SPiDExampleApp-Prefix.pch */,
 				53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */,
 				53989FC4160726C900CB1BDD /* SPiDMainView.xib */,
+				E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */,
+				E304EF927327F5217C9FBBD0 /* Default.png */,
+				E304E9BAD5499EEFE7846D26 /* Default@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -480,6 +489,9 @@
 				53989FBF1607186B00CB1BDD /* SPiDLoginView.xib in Resources */,
 				53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */,
 				532BF074160A0A6100FC860E /* SPiDLogo.jpg in Resources */,
+				E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */,
+				E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */,
+				E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

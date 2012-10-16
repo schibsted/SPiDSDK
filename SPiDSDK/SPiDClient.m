@@ -38,7 +38,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Run after authorization is completed
  @see authorizationRequestWithCompletionHandler:
  */
-- (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)doBrowserRedirectAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Runs after logout has been completed, should not be called directly */
 - (void)logoutComplete;
@@ -100,13 +100,14 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self serverURL]]]];
 }
 
-- (void)authorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     // Sanity check
     NSAssert([self authorizationURL], @"SPiDOAuth2 missing authorization URL.");
     NSAssert([self clientID], @"SPiDOAuth2 missing client ID.");
     NSAssert([self clientSecret], @"SPiDOAuth2 missing client secret.");
     NSAssert([self redirectURI], @"SPiDOAuth2 missing redirect url.");
-    NSAssert(!authorizationRequest, @"Authorization request already running");
+    // TODO: Should this happen?
+    // NSAssert(!authorizationRequest, @"Authorization request already running");
     // TODO: Should we validate that url starts with https?
 
     // If we are logged in do a soft logout before continuing
@@ -117,11 +118,36 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
                 [self clearAuthorizationRequest];
                 completionHandler(error);
             } else {
-                [self doAuthorizationRequestWithCompletionHandler:completionHandler];
+                [self doBrowserRedirectAuthorizationRequestWithCompletionHandler:completionHandler];
             }
         }];
     } else { // No access token
-        [self doAuthorizationRequestWithCompletionHandler:completionHandler];
+        [self doBrowserRedirectAuthorizationRequestWithCompletionHandler:completionHandler];
+    }
+}
+
+- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    // Sanity check
+    NSAssert([self authorizationURL], @"SPiDOAuth2 missing authorization URL.");
+    NSAssert([self clientID], @"SPiDOAuth2 missing client ID.");
+    NSAssert([self clientSecret], @"SPiDOAuth2 missing client secret.");
+    NSAssert([self redirectURI], @"SPiDOAuth2 missing redirect url.");
+    //NSAssert(!authorizationRequest, @"Authorization request already running");
+    // TODO: Should we validate that url starts with https?
+
+    // If we are logged in do a soft logout before continuing
+    if (accessToken) {
+        SPiDDebugLog(@"Access token found, preforming a soft logout to cleanup before login");
+        [self softLogoutRequestWithCompletionHandler:^(NSError *error) {
+            if (error) {
+                [self clearAuthorizationRequest];
+                completionHandler(error);
+            } else {
+                [self doWebViewAuthorizationRequestWithCompletionHandler:completionHandler];
+            }
+        }];
+    } else { // No access token
+        return [self doWebViewAuthorizationRequestWithCompletionHandler:completionHandler];
     }
 }
 
@@ -326,11 +352,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 
-- (void)doAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+- (void)doBrowserRedirectAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     @synchronized (authorizationRequest) {
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
             if (error) {
-                // TODO: if error is token expired, refresh
                 [self clearAuthorizationRequest];
                 authorizationRequest = nil;
                 completionHandler(error);
@@ -340,7 +365,23 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
             }
         }];
     }
-    [authorizationRequest authorize];
+    [authorizationRequest authorizeWithBrowserRedirect];
+}
+
+- (UIWebView *)doWebViewAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    @synchronized (authorizationRequest) {
+        authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+            if (error) {
+                [self clearAuthorizationRequest];
+                authorizationRequest = nil;
+                completionHandler(error);
+            } else {
+                [self authorizationComplete:token];
+                completionHandler(nil);
+            }
+        }];
+    }
+    return [authorizationRequest authorizeWithWebView];
 }
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {

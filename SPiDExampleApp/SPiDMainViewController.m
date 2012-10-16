@@ -80,7 +80,7 @@
 }
 
 - (void)logout {
-    [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
+    [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [[self navigationController] popToRootViewControllerAnimated:YES];
         }

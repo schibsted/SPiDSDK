@@ -20,7 +20,7 @@ static NSString *const SPiDForceKey = @"force";
 #import "SPiDExampleApp-Prefix.pch"
 #import "NSError+SPiDError.h"
 
-@interface SPiDAuthorizationRequest (PrivateMethods)
+@interface SPiDAuthorizationRequest (PrivateMethods) <UIWebViewDelegate>
 /** Generates the authorization URL with GET query
 
  @return Authorization URL query
@@ -115,10 +115,106 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 
-- (void)authorize {
+- (void)authorizeWithBrowserRedirect {
     NSURL *requestURL = [self generateAuthorizationURL];
-    SPiDDebugLog(@"Trying to authorize with SPiD");
+    SPiDDebugLog(@"Trying to authorize using browser redirect");
+    SPiDDebugLog(@"Request: %@", [requestURL absoluteString]);
     [[UIApplication sharedApplication] openURL:requestURL];
+}
+//https://finn.payment.schibsted.no/auth/login?client_id=507684fbdcb114b95a000001&response_type=code&redirect_uri=finn.ipad%3A%2F%2Fspid%2Flogin&platform=mobile&force=1
+//https://finn.payment.schibsted.no/auth/login?client_id=507684fbdcb114b95a000001&response_type=code&redirect_uri=finn.ipad%3A%2F%2Fspid%2Flogin&platform=mobile&force=1
+
+- (UIWebView *)authorizeWithWebView {
+    NSURL *requestURL = [self generateAuthorizationURL];
+    /*SPiDDebugLog(@"Trying to authorize using browser redirect");
+    [[UIApplication sharedApplication] openURL:requestURL];
+}
+
+- (UIWebView *)requestAuthorizationCodeWithWebView {
+    NSURL *requestURL = [self generateAuthorizationURL];*/
+    SPiDDebugLog(@"Trying to authorize using webview");
+
+    SPiDDebugLog(@"Request: %@", [requestURL absoluteString]);
+
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [webView setDelegate:self];
+    [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+
+    // On iOS 5+, UIWebView will ignore loadHTMLString: if it's followed by
+    // a loadRequest: call, so if there is a "loading" message we defer
+    // the loadRequest: until after after we've drawn the "loading" message.
+    /*if ([[self initialHTMLString] length] > 0) {
+        isPending = YES;
+        [webView loadHTMLString:[self initialHTMLString] baseURL:nil];
+    } else {
+        isPending = NO;*/
+    [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
+    //}
+    return webView;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = [request URL];
+    SPiDDebugLog(@"Loading url: %@", [url absoluteString]);
+    NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
+    if (error) {
+        // TODO: Test GET error
+        completionHandler(nil, [NSError oauth2ErrorWithString:error]);
+        return NO;
+    } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
+        NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
+        // TODO : Has prefix
+        if ([urlString hasSuffix:@"login"]) {
+            /*
+        }
+    if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
+#if DEBUG
+        NSLog(@"Webview redirect url: %@", [[request URL] absoluteString]);
+#endif*/
+            /*if ([webView isLoading]) {
+                [webView stopLoading];
+            }*/
+            code = [SPiDUtils getUrlParameter:url forKey:@"code"];
+            if (code) {
+                SPiDDebugLog(@"code: ", code);
+                [self requestAccessToken];
+            } else {
+                // TODO: !!!
+                completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
+            }
+            //[self requestAccessToken];
+            //[[self webView] removeFromSuperview];
+            return NO;
+        } /*else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
+#if DEBUG
+        NSLog(@"Webview failure url: %@", [[request URL] absoluteString]);
+#endif
+        return NO;
+    }*/
+    }
+    return YES;
+}
+
+//return YES;
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    // Are we showing a loading screen?
+    /*
+    if (isPending) {
+        isPending = NO;
+        [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
+    }*/
+#if DEBUG
+    NSLog(@"Finished loading");
+#endif
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    // WebKitErrorFrameLoadInterruptedByPolicyChange = 102
+    // this is caused by policy change after WebView is finished and can safely be ignored
+    if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
+        NSLog(@"WebViewFailLoadWithError: %@", [error description]);
+    }
 }
 
 - (void)logoutWithAccessToken:(SPiDAccessToken *)accessToken {

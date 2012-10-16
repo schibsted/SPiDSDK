@@ -67,6 +67,8 @@ enum {
 
     SPiDJSONParseErrorCode = -1030, // JSON Parse error
 
+    SPiDUserAbortedLogin = -1100,
+
     SPiDAPIExceptionErrorCode = 404
 
 };

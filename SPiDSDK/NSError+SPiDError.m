@@ -90,6 +90,8 @@
         errorCode = SPiDOAuth2ExpiredTokenErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"ApiException"] == NSOrderedSame) {
         errorCode = SPiDAPIExceptionErrorCode;
+    } else if ([errorString caseInsensitiveCompare:@"UserAbortedLogin"] == NSOrderedSame) {
+        errorCode = SPiDUserAbortedLogin;
     }
     return errorCode;
 }

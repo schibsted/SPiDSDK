@@ -7,21 +7,48 @@
 //
 
 #import "SPiDLoginViewController.h"
+#import "NSError+SPiDError.h"
 
-@implementation SPiDLoginViewController
+@implementation SPiDLoginViewController {
+@private
+    UIViewController *webViewController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"SPiD Example App"];
 }
 
-- (IBAction)loginToSPiD:(id)sender {
-    [[SPiDClient sharedInstance] authorizationRequestWithCompletionHandler:^(NSError *error) {
+- (IBAction)loginWithBrowserRedirect:(id)sender {
+    [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(NSError *error) {
         if (!error) {
             SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
             [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
         }
     }];
 }
+
+- (IBAction)loginWithWebView:(id)sender {
+    webViewController = [[UIViewController alloc] init];
+    UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
+        if (!error) {
+            SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+            [[self navigationController] popViewControllerAnimated:NO];
+            [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
+            [[self navigationController] setNavigationBarHidden:NO animated:YES];
+            webViewController = nil;
+        } else if ([error code] == SPiDUserAbortedLogin) {
+            [[self navigationController] setNavigationBarHidden:NO animated:YES];
+            [[self navigationController] popViewControllerAnimated:YES];
+            webViewController = nil;
+        } else {
+            NSLog(@"Error %@", [error description]);
+        }
+    }];
+    [[webViewController view] addSubview:webView];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [[self navigationController] pushViewController:webViewController animated:YES];
+}
+
 
 @end

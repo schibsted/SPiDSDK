@@ -95,6 +95,8 @@ static NSString const *defaultAPIVersionSPiD = @"2";
     andAppURLScheme:(NSString *)appURLSchema
        andServerURL:(NSURL *)serverURL;
 
+- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
 /** Handles URL redirects to the app
 
 @param url Input URL
@@ -111,7 +113,7 @@ static NSString const *defaultAPIVersionSPiD = @"2";
  @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Run after authorization is completed
  */
-- (void)authorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Logout from SPiD
 
