@@ -253,7 +253,6 @@ static NSString *const SPiDForceKey = @"force";
     SPiDDebugLog(@"Loading url: %@", [url absoluteString]);
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
-        // TODO: Test GET error
         completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
@@ -270,9 +269,10 @@ static NSString *const SPiDForceKey = @"force";
                 completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
             }
             return NO;
-        } /*else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
+        } /*else if ([urlString hasSuffix:@"failure"]) {
+            completionHandler(nil, [NSError oauth2ErrorWithString:]);
             return NO;
-          }*/
+        }*/
     }
     return YES;
 }

@@ -17,10 +17,6 @@
     NSInteger originalErrorCode;
     NSInteger errorCode;
 
-    //Class obj = [[dictionary objectForKey:@"error"] class];
-    //Class obj2 = [__ class];
-
-    //if ([[dictionary objectForKey:@"error"] class]== [NSDictionary class]) {
     if ([[dictionary objectForKey:@"error"] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
         errorString = [errorDict objectForKey:@"type"];
