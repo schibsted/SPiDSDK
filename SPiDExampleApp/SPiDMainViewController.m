@@ -96,7 +96,6 @@
         }];
     }
     [[self oneTimeCodeLabel] setText:[NSString stringWithFormat:@"One time code: %@", @"none"]];
-    [[self oneTimeCodeLabel] sizeToFit];
 }
 
 @end

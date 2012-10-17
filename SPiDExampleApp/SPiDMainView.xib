@@ -79,6 +79,7 @@
 						<string key="NSFrame">{{84, 348}, {152, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -390,25 +391,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SPiDMainViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="logoutButtonPressed:">id</string>
-						<string key="oneTimeCodeButtonPressed:">id</string>
-						<string key="refreshTokenButtonPressed:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="logoutButtonPressed:">
-							<string key="name">logoutButtonPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="oneTimeCodeButtonPressed:">
-							<string key="name">oneTimeCodeButtonPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="refreshTokenButtonPressed:">
-							<string key="name">refreshTokenButtonPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="oneTimeCodeLabel">UILabel</string>
 						<string key="tokenLabel">UILabel</string>

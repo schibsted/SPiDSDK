@@ -98,6 +98,7 @@ static NSString *const SPiDForceKey = @"force";
 
     void (^completionHandler)(SPiDAccessToken *accessToken, NSError *error);
 
+    BOOL isPending;
 }
 
 #pragma mark Public methods
@@ -121,20 +122,10 @@ static NSString *const SPiDForceKey = @"force";
     SPiDDebugLog(@"Request: %@", [requestURL absoluteString]);
     [[UIApplication sharedApplication] openURL:requestURL];
 }
-//https://finn.payment.schibsted.no/auth/login?client_id=507684fbdcb114b95a000001&response_type=code&redirect_uri=finn.ipad%3A%2F%2Fspid%2Flogin&platform=mobile&force=1
-//https://finn.payment.schibsted.no/auth/login?client_id=507684fbdcb114b95a000001&response_type=code&redirect_uri=finn.ipad%3A%2F%2Fspid%2Flogin&platform=mobile&force=1
 
 - (UIWebView *)authorizeWithWebView {
     NSURL *requestURL = [self generateAuthorizationURL];
-    /*SPiDDebugLog(@"Trying to authorize using browser redirect");
-    [[UIApplication sharedApplication] openURL:requestURL];
-}
-
-- (UIWebView *)requestAuthorizationCodeWithWebView {
-    NSURL *requestURL = [self generateAuthorizationURL];*/
     SPiDDebugLog(@"Trying to authorize using webview");
-
-    SPiDDebugLog(@"Request: %@", [requestURL absoluteString]);
 
     UIWebView *webView = [[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [webView setDelegate:self];
@@ -143,13 +134,13 @@ static NSString *const SPiDForceKey = @"force";
     // On iOS 5+, UIWebView will ignore loadHTMLString: if it's followed by
     // a loadRequest: call, so if there is a "loading" message we defer
     // the loadRequest: until after after we've drawn the "loading" message.
-    /*if ([[self initialHTMLString] length] > 0) {
+    if ([[[SPiDClient sharedInstance] webViewInitialHTML] length] > 0) {
         isPending = YES;
-        [webView loadHTMLString:[self initialHTMLString] baseURL:nil];
+        [webView loadHTMLString:[[SPiDClient sharedInstance] webViewInitialHTML] baseURL:nil];
     } else {
-        isPending = NO;*/
-    [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
-    //}
+        isPending = NO;
+        [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
+    }
     return webView;
 }
 
@@ -163,50 +154,32 @@ static NSString *const SPiDForceKey = @"force";
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
-        // TODO : Has prefix
         if ([urlString hasSuffix:@"login"]) {
-            /*
-        }
-    if ([[url absoluteString] hasPrefix:[[self redirectURL] absoluteString]]) {
-#if DEBUG
-        NSLog(@"Webview redirect url: %@", [[request URL] absoluteString]);
-#endif*/
-            /*if ([webView isLoading]) {
+            if ([webView isLoading]) {
                 [webView stopLoading];
-            }*/
+            }
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             if (code) {
-                SPiDDebugLog(@"code: ", code);
+                SPiDDebugLog(@"Received code: %@", code);
                 [self requestAccessToken];
             } else {
-                // TODO: !!!
                 completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
             }
-            //[self requestAccessToken];
-            //[[self webView] removeFromSuperview];
             return NO;
         } /*else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
-#if DEBUG
-        NSLog(@"Webview failure url: %@", [[request URL] absoluteString]);
-#endif
-        return NO;
-    }*/
+            return NO;
+          }*/
     }
     return YES;
 }
 
-//return YES;
-
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     // Are we showing a loading screen?
-    /*
     if (isPending) {
         isPending = NO;
+        NSURL *requestURL = [self generateAuthorizationURL];
         [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
-    }*/
-#if DEBUG
-    NSLog(@"Finished loading");
-#endif
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -330,7 +303,7 @@ static NSString *const SPiDForceKey = @"force";
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
 
-    SPiDDebugLog(@"Running access token request");
+    SPiDDebugLog(@"Trying to get access token from code");
 
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -340,7 +313,7 @@ static NSString *const SPiDForceKey = @"force";
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
     if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
-        SPiDDebugLog(@"Redirecting to : %@", [request URL]);
+        SPiDDebugLog(@"Redirecting to: %@", [request URL]);
         return nil;
     }
     return request;
@@ -351,19 +324,19 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    SPiDDebugLog(@"Received response from access token request");
     NSError *jsonError = nil;
     NSDictionary *jsonObject = nil;
     if ([receivedData length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
+    } else { // This should only happen when user is logging out
+        completionHandler(nil, nil);
     }
 
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            //SPiDDebugLog(@"Received error from : %@", [jsonError description]);
             NSError *error = [NSError errorFromJSONData:jsonObject];
             completionHandler(nil, error);
-        } else {
+        } else if (receivedData) {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
             completionHandler(accessToken, nil);
         }

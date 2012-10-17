@@ -51,6 +51,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSInteger tokenRefreshRetryCount; // TODO: implement retries
     SPiDAuthorizationRequest *authorizationRequest;
     SPiDAccessToken *accessToken;
+    NSString *_webViewInitialHTML;
 }
 
 @synthesize clientID = _clientID;
@@ -61,6 +62,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize authorizationURL = _authorizationURL;
 @synthesize tokenURL = _tokenURL;
 @synthesize apiVersionSPiD = _apiVersionSPiD;
+@synthesize webViewInitialHTML = _webViewInitialHTML;
+
 
 #pragma mark Public methods
 
@@ -98,6 +101,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
     if (![self tokenURL])
         [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self serverURL]]]];
+
+    if (![self webViewInitialHTML])
+        [self setWebViewInitialHTML:@""];
 }
 
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {

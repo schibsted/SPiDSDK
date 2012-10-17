@@ -71,4 +71,5 @@
 - (BOOL)handleOpenURL:(NSURL *)url;
 
 - (UIWebView *)authorizeWithWebView;
+
 @end
