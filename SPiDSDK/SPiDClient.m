@@ -62,6 +62,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize authorizationURL = _authorizationURL;
 @synthesize tokenURL = _tokenURL;
 @synthesize apiVersionSPiD = _apiVersionSPiD;
+@synthesize useMobileWeb = _useMobileWeb;
 @synthesize webViewInitialHTML = _webViewInitialHTML;
 
 
@@ -141,20 +142,15 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     //NSAssert(!authorizationRequest, @"Authorization request already running");
     // TODO: Should we validate that url starts with https?
 
-    // If we are logged in do a soft logout before continuing
+    // We are already logged in, do nothing
     if (accessToken) {
         SPiDDebugLog(@"Access token found, preforming a soft logout to cleanup before login");
-        [self softLogoutRequestWithCompletionHandler:^(NSError *error) {
-            if (error) {
-                [self clearAuthorizationRequest];
-                completionHandler(error);
-            } else {
-                [self doWebViewAuthorizationRequestWithCompletionHandler:completionHandler];
-            }
+        // Fire and forget
+        SPiDAuthorizationRequest *authRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
         }];
-    } else { // No access token
-        return [self doWebViewAuthorizationRequestWithCompletionHandler:completionHandler];
+        [authRequest softLogoutWithAccessToken:accessToken];
     }
+    return [self doWebViewAuthorizationRequestWithCompletionHandler:completionHandler];
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url {

@@ -74,6 +74,9 @@ static NSString const *defaultAPIVersionSPiD = @"2";
 /** The API version that should be used, defaults to 2 */
 @property(strong, nonatomic) NSString *apiVersionSPiD;
 
+/** Use mobile web version for SPiD, default YES */
+@property(nonatomic) BOOL useMobileWeb;
+
 /** HTML string that will be show when WebView is loading */
 @property(strong, nonatomic) NSString *webViewInitialHTML;
 ///---------------------------------------------------------------------------------------
