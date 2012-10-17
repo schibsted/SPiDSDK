@@ -9,7 +9,7 @@
         <key>CFBundleExecutable</key>
         <string>${EXECUTABLE_NAME}</string>
         <key>CFBundleIdentifier</key>
-        <string>${PRODUCT_NAME:rfc1034identifier}</string>
+        <string>no.schibsted.${PRODUCT_NAME:rfc1034identifier}</string>
         <key>CFBundleInfoDictionaryVersion</key>
         <string>6.0</string>
         <key>CFBundleName</key>
@@ -26,7 +26,7 @@
                 <key>CFBundleTypeRole</key>
                 <string>Editor</string>
                 <key>CFBundleURLName</key>
-                <string>no.spp.SPiDExampleApp</string>
+                <string>no.schibsted.SPiDExampleApp</string>
                 <key>CFBundleURLSchemes</key>
                 <array>
                     <string>finn.ipad</string>

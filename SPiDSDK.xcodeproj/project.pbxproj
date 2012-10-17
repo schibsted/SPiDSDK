@@ -759,8 +759,8 @@
 		537D224515FF2374000ABCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mikael LindstrÃu0083Æu0092Ãu0086âu0080u0099Ãu0083âu0080u009AÃu0082Â¶m (UFA57ULUU6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mikael LindstrÃu0083Æu0092Ãu0086âu0080u0099Ãu0083âu0080u009AÃu0082Â¶m (UFA57ULUU6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -770,8 +770,8 @@
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "37C30565-8BA5-4F35-9C74-9D1C7C911AA6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37C30565-8BA5-4F35-9C74-9D1C7C911AA6";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -780,8 +780,8 @@
 		537D224615FF2374000ABCA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mikael LindstrÃu0083Æu0092Ãu0086âu0080u0099Ãu0083âu0080u009AÃu0082Â¶m (UFA57ULUU6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mikael LindstrÃu0083Æu0092Ãu0086âu0080u0099Ãu0083âu0080u009AÃu0082Â¶m (UFA57ULUU6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -792,8 +792,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "37C30565-8BA5-4F35-9C74-9D1C7C911AA6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37C30565-8BA5-4F35-9C74-9D1C7C911AA6";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
