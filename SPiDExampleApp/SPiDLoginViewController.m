@@ -44,7 +44,7 @@
             [[self navigationController] popViewControllerAnimated:YES];
             webViewController = nil;
         } else {
-            NSLog(@"Error %@", [error description]);
+            NSLog(@"Webview error %@", [error description]);
         }
     }];
     [[webViewController view] addSubview:webView];

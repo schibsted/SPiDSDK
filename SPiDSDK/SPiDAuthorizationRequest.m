@@ -144,52 +144,6 @@ static NSString *const SPiDForceKey = @"force";
     return webView;
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSURL *url = [request URL];
-    SPiDDebugLog(@"Loading url: %@", [url absoluteString]);
-    NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
-    if (error) {
-        // TODO: Test GET error
-        completionHandler(nil, [NSError oauth2ErrorWithString:error]);
-        return NO;
-    } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
-        NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
-        if ([urlString hasSuffix:@"login"]) {
-            if ([webView isLoading]) {
-                [webView stopLoading];
-            }
-            code = [SPiDUtils getUrlParameter:url forKey:@"code"];
-            if (code) {
-                SPiDDebugLog(@"Received code: %@", code);
-                [self requestAccessToken];
-            } else {
-                completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
-            }
-            return NO;
-        } /*else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
-            return NO;
-          }*/
-    }
-    return YES;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    // Are we showing a loading screen?
-    if (isPending) {
-        isPending = NO;
-        NSURL *requestURL = [self generateAuthorizationURL];
-        [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
-    }
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    // WebKitErrorFrameLoadInterruptedByPolicyChange = 102
-    // this is caused by policy change after WebView is finished and can safely be ignored
-    if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
-        NSLog(@"WebViewFailLoadWithError: %@", [error description]);
-    }
-}
-
 - (void)logoutWithAccessToken:(SPiDAccessToken *)accessToken {
     NSURL *requestURL = [self generateLogoutURLWithAccessToken:accessToken];
     SPiDDebugLog(@"Trying to logout from SPiD");
@@ -292,6 +246,53 @@ static NSString *const SPiDForceKey = @"force";
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDClientSecretKey, [client clientSecret]];
     data = [data stringByAppendingFormat:@"&%@=%@", SPiDRefreshTokenKey, accessToken.refreshToken];
     return data;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = [request URL];
+    SPiDDebugLog(@"Loading url: %@", [url absoluteString]);
+    NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
+    if (error) {
+        // TODO: Test GET error
+        completionHandler(nil, [NSError oauth2ErrorWithString:error]);
+        return NO;
+    } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
+        NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
+        if ([urlString hasSuffix:@"login"]) {
+            if ([webView isLoading]) {
+                [webView stopLoading];
+            }
+            code = [SPiDUtils getUrlParameter:url forKey:@"code"];
+            if (code) {
+                SPiDDebugLog(@"Received code: %@", code);
+                [self requestAccessToken];
+            } else {
+                completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
+            }
+            return NO;
+        } /*else if ([[url absoluteString] hasPrefix:[[self failureURL] absoluteString]]) {
+            return NO;
+          }*/
+    }
+    return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    // Are we showing a loading screen?
+    if (isPending) {
+        isPending = NO;
+        NSURL *requestURL = [self generateAuthorizationURL];
+        [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
+    }
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    // WebKitErrorFrameLoadInterruptedByPolicyChange = 102
+    // this is caused by policy change after WebView is finished and can safely be ignored
+    if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
+        SPiDDebugLog("Received '%@' with code '%d' and description: %@", error.domain, error.code, error.description);
+        completionHandler(nil, error);
+    }
 }
 
 - (void)requestAccessToken {
