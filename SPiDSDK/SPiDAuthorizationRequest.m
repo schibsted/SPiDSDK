@@ -348,7 +348,6 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    SPiDDebugLog(@"Received error: %@", [error description]);
     SPiDDebugLog("Received '%@' with code '%d' and description: %@", [error domain], [error code], [error description]);
     completionHandler(nil, error);
 }
