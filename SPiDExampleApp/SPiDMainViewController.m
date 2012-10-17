@@ -85,13 +85,21 @@
     if ([appDelegate useWebView]) {
         [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [[self navigationController] popToRootViewControllerAnimated:YES];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:1];
+                [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
+                [[self navigationController] popViewControllerAnimated:NO];
+                [UIView commitAnimations];
             }
         }];
     } else {
         [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [[self navigationController] popToRootViewControllerAnimated:YES];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:1];
+                [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
+                [[self navigationController] popViewControllerAnimated:NO];
+                [UIView commitAnimations];
             }
         }];
     }
