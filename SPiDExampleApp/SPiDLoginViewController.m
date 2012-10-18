@@ -11,7 +11,7 @@
 
 @implementation SPiDLoginViewController {
 @private
-    UIViewController *webViewController;
+    //UIViewController *webViewController;
 }
 
 - (void)viewDidLoad {
@@ -32,39 +32,42 @@
 - (IBAction)loginWithWebView:(id)sender {
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:YES];
-    webViewController = [[UIViewController alloc] init];
+    UIViewController *webViewController = [[UIViewController alloc] init];
     UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            [UIView animateWithDuration:0.5
-                             animations:^{
-                                 [[self navigationController] setNavigationBarHidden:NO animated:NO];
-                                 [[self navigationController] popViewControllerAnimated:NO];
-                                 [[self navigationController] pushViewController:[appDelegate mainView] animated:NO];
-                                 [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
-                             }
-                             completion:^(BOOL finished) {
-                             }];
+            [UIView transitionWithView:self.navigationController.view duration:0.5
+                               options:UIViewAnimationOptionTransitionFlipFromRight
+                            animations:^{
+                                SPiDExampleAppDelegate *app = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+                                [self.navigationController setNavigationBarHidden:NO animated:NO];
+                                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                                [self.navigationController pushViewController:[app mainView] animated:NO];
+                            }
+                            completion:NULL];
         } else if ([error code] == SPiDUserAbortedLogin) {
-            [UIView animateWithDuration:0.5
-                             animations:^{
-                                 [[self navigationController] setNavigationBarHidden:NO animated:NO];
-                                 [[self navigationController] popViewControllerAnimated:NO];
-                                 [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
-                             }
-                             completion:^(BOOL finished) {
-                             }];
+            [UIView transitionWithView:self.navigationController.view duration:0.5
+                               options:UIViewAnimationOptionTransitionFlipFromRight
+                            animations:^{
+                                [self.navigationController setNavigationBarHidden:NO animated:NO];
+                                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                            }
+                            completion:NULL];
         } else {
+            [self.navigationController setNavigationBarHidden:NO animated:NO];
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+            [[[UIAlertView alloc] initWithTitle:@"Error loading WebView" message:[error description] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             NSLog(@"Error loading WebView: %@", [error description]);
         }
     }];
     [[webViewController view] addSubview:webView];
 
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
-    [[self navigationController] pushViewController:webViewController animated:NO];
-    [UIView commitAnimations];
+    [UIView transitionWithView:self.navigationController.view duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{
+                        [self.navigationController setNavigationBarHidden:YES animated:NO];
+                        [[self navigationController] pushViewController:webViewController animated:NO];
+                    }
+                    completion:NULL];
 }
 
 @end

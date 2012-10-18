@@ -85,25 +85,23 @@
     if ([appDelegate useWebView]) {
         [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [UIView animateWithDuration:0.5
-                                 animations:^{
-                                     [[self navigationController] popViewControllerAnimated:NO];
-                                     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
-                                 }
-                                 completion:^(BOOL finished) {
-                                 }];
+                [UIView transitionWithView:self.navigationController.view duration:0.5
+                                   options:UIViewAnimationOptionTransitionFlipFromRight
+                                animations:^{
+                                    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                                }
+                                completion:NULL];
             }
         }];
     } else {
         [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [UIView animateWithDuration:0.5
-                                 animations:^{
-                                     [[self navigationController] popViewControllerAnimated:NO];
-                                     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
-                                 }
-                                 completion:^(BOOL finished) {
-                                 }];
+                [UIView transitionWithView:self.navigationController.view duration:0.5
+                                   options:UIViewAnimationOptionTransitionFlipFromRight
+                                animations:^{
+                                    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                                }
+                                completion:NULL];
             }
         }];
     }

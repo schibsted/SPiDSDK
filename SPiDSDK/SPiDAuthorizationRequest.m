@@ -274,11 +274,11 @@ static NSString *const SPiDForceKey = @"force";
             } else {
                 completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
             }
-            return NO;
         } /*else if ([urlString hasSuffix:@"failure"]) {
             completionHandler(nil, [NSError oauth2ErrorWithString:]);
             return NO;
         }*/
+        return NO;
     }
     return YES;
 }

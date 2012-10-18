@@ -46,6 +46,7 @@
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
 		539B8465162FE4310066EB89 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 539B8464162FE4310066EB89 /* icon.png */; };
 		539B8467162FE43A0066EB89 /* icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 539B8466162FE43A0066EB89 /* icon-retina.png */; };
+		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		E304E00E87C914FDFD2390A5 /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
 		E304E02CA4CD4938A354514D /* SPiDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7E1D8AB4EFA3D56000E /* SPiDConstants.m */; };
@@ -151,6 +152,7 @@
 		53989FC4160726C900CB1BDD /* SPiDMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDMainView.xib; sourceTree = "<group>"; };
 		539B8464162FE4310066EB89 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		539B8466162FE43A0066EB89 /* icon-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-retina.png"; path = "../icon-retina.png"; sourceTree = "<group>"; };
+		539B8468162FF8E60066EB89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E304E24883200DCA88A4E70C /* NSError+SPiDError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SPiDError.m"; sourceTree = "<group>"; };
 		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUtils.h; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */,
 				537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +232,7 @@
 		537D21E415FF224C000ABCA6 = {
 			isa = PBXGroup;
 			children = (
+				539B8468162FF8E60066EB89 /* UIKit.framework */,
 				5340F74516197A6700B990C4 /* AppledocSettings.plist */,
 				537D21F415FF224C000ABCA6 /* SPiDSDK */,
 				537D220915FF224C000ABCA6 /* SPiDSDKTests */,
