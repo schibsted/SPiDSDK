@@ -19,17 +19,12 @@
     [self setTitle:@"SPiD Example App"];
 }
 
-- (void)dealloc {
-    NSLog(@"dealloc");
-}
-
 - (IBAction)loginWithBrowserRedirect:(id)sender {
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:NO];
     [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(NSError *error) {
-        SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
         if (!error) {
-            [[appDelegate navigationController] pushViewController:[appDelegate mainView] animated:YES];
+            [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
         }
     }];
 }
