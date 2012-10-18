@@ -185,10 +185,14 @@ static NSString *const SPiDForceKey = @"force";
         if ([urlString hasSuffix:@"login"]) {
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
 
-            NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
-            SPiDDebugLog(@"Received code: %@", code);
-
-            [self requestAccessToken];
+            if (code) {
+                //NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
+                SPiDDebugLog(@"Received code: %@", code);
+                [self requestAccessToken];
+            } else {
+                // Logout
+                completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
+            }
         } else if ([urlString hasSuffix:@"logout"]) {
             completionHandler(nil, nil);
         } /*else if ([urlString hasSuffix:@"failure"]) {

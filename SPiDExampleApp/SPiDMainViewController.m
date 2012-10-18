@@ -85,21 +85,27 @@
     if ([appDelegate useWebView]) {
         [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:1];
-                [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
-                [[self navigationController] popViewControllerAnimated:NO];
-                [UIView commitAnimations];
+                [UIView animateWithDuration:0.5
+                                 animations:^{
+                                     [[self navigationController] popViewControllerAnimated:NO];
+                                     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
+                                 }
+                                 completion:^(BOOL finished) {
+
+                                 }];
             }
         }];
     } else {
         [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:1];
-                [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
-                [[self navigationController] popViewControllerAnimated:NO];
-                [UIView commitAnimations];
+                [UIView animateWithDuration:0.5
+                                 animations:^{
+                                     [[self navigationController] popViewControllerAnimated:NO];
+                                     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
+                                 }
+                                 completion:^(BOOL finished) {
+
+                                 }];
             }
         }];
     }

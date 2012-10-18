@@ -19,6 +19,10 @@
     [self setTitle:@"SPiD Example App"];
 }
 
+- (void)dealloc {
+    NSLog(@"dealloc");
+}
+
 - (IBAction)loginWithBrowserRedirect:(id)sender {
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:NO];
@@ -35,22 +39,27 @@
     [appDelegate setUseWebView:YES];
     webViewController = [[UIViewController alloc] init];
     UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
-        SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
         if (!error) {
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:1];
-            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
-            [[appDelegate navigationController] setNavigationBarHidden:NO animated:NO];
-            [[appDelegate navigationController] popViewControllerAnimated:NO];
-            [[appDelegate navigationController] pushViewController:[appDelegate mainView] animated:NO];
-            [UIView commitAnimations];
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 [[self navigationController] setNavigationBarHidden:NO animated:NO];
+                                 [[self navigationController] popViewControllerAnimated:NO];
+                                 [[self navigationController] pushViewController:[appDelegate mainView] animated:NO];
+                                 [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
+                             }
+                             completion:^(BOOL finished) {
+
+                             }];
         } else if ([error code] == SPiDUserAbortedLogin) {
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:1];
-            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:YES];
-            [[appDelegate navigationController] setNavigationBarHidden:NO animated:NO];
-            [[appDelegate navigationController] popToRootViewControllerAnimated:NO];
-            [UIView commitAnimations];
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 [[self navigationController] setNavigationBarHidden:NO animated:NO];
+                                 [[self navigationController] popViewControllerAnimated:NO];
+                                 [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
+                             }
+                             completion:^(BOOL finished) {
+
+                             }];
         } else {
             NSLog(@"Error loading WebView: %@", [error description]);
         }
