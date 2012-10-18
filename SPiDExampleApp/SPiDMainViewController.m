@@ -91,7 +91,6 @@
                                      [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
                                  }
                                  completion:^(BOOL finished) {
-
                                  }];
             }
         }];
@@ -104,7 +103,6 @@
                                      [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
                                  }
                                  completion:^(BOOL finished) {
-
                                  }];
             }
         }];

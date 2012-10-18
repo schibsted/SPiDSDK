@@ -43,7 +43,6 @@
                                  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
                              }
                              completion:^(BOOL finished) {
-
                              }];
         } else if ([error code] == SPiDUserAbortedLogin) {
             [UIView animateWithDuration:0.5
@@ -53,7 +52,6 @@
                                  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
                              }
                              completion:^(BOOL finished) {
-
                              }];
         } else {
             NSLog(@"Error loading WebView: %@", [error description]);
