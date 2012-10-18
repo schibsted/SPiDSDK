@@ -296,7 +296,10 @@ static NSString *const SPiDForceKey = @"force";
     // WebKitErrorFrameLoadInterruptedByPolicyChange = 102
     // this is caused by policy change after WebView is finished and can safely be ignored
     if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
-        SPiDDebugLog("Received '%@' with code '%d' and description: %@", error.domain, error.code, error.description);
+        if ([webView isLoading])
+            [webView stopLoading];
+        [webView setDelegate:nil];
+
         completionHandler(nil, error);
     }
 }

@@ -35,36 +35,40 @@
     UIViewController *webViewController = [[UIViewController alloc] init];
     UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            [UIView transitionWithView:self.navigationController.view duration:0.5
+            [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromRight
                             animations:^{
                                 SPiDExampleAppDelegate *app = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
-                                [self.navigationController setNavigationBarHidden:NO animated:NO];
-                                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
-                                [self.navigationController pushViewController:[app mainView] animated:NO];
+                                [[self navigationController] setNavigationBarHidden:NO animated:NO];
+                                [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
+                                [[self navigationController] pushViewController:[app mainView] animated:NO];
                             }
                             completion:NULL];
         } else if ([error code] == SPiDUserAbortedLogin) {
-            [UIView transitionWithView:self.navigationController.view duration:0.5
+            [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromRight
                             animations:^{
-                                [self.navigationController setNavigationBarHidden:NO animated:NO];
-                                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                                [[self navigationController] setNavigationBarHidden:NO animated:NO];
+                                [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
                             }
                             completion:NULL];
         } else {
-            [self.navigationController setNavigationBarHidden:NO animated:NO];
-            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+            [UIView transitionWithView:[[self navigationController] view] duration:0.5
+                               options:UIViewAnimationOptionTransitionFlipFromRight
+                            animations:^{
+                                [[self navigationController] setNavigationBarHidden:NO animated:NO];
+                                [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
+                            }
+                            completion:NULL];
             [[[UIAlertView alloc] initWithTitle:@"Error loading WebView" message:[error description] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
-            NSLog(@"Error loading WebView: %@", [error description]);
         }
     }];
     [[webViewController view] addSubview:webView];
 
-    [UIView transitionWithView:self.navigationController.view duration:0.5
+    [UIView transitionWithView:[[self navigationController] view] duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromRight
                     animations:^{
-                        [self.navigationController setNavigationBarHidden:YES animated:NO];
+                        [[self navigationController] setNavigationBarHidden:YES animated:NO];
                         [[self navigationController] pushViewController:webViewController animated:NO];
                     }
                     completion:NULL];

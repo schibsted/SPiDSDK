@@ -359,7 +359,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
             if (error) {
                 [self clearAuthorizationRequest];
-                authorizationRequest = nil;
                 completionHandler(error);
             } else {
                 [self authorizationComplete:token];
@@ -375,7 +374,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
             if (error) {
                 [self clearAuthorizationRequest];
-                authorizationRequest = nil;
                 completionHandler(error);
             } else {
                 [self authorizationComplete:token];
