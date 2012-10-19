@@ -41,11 +41,11 @@
 		537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D223E15FF2374000ABCA6 /* InfoPlist.strings */; };
 		537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */; };
 		537D224C15FF23BD000ABCA6 /* SPiDSDKLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */; };
+		538E694416313AA4006890C1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 538E694216313AA4006890C1 /* icon.png */; };
+		538E694516313AA4006890C1 /* icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 538E694316313AA4006890C1 /* icon-retina.png */; };
 		53989FBF1607186B00CB1BDD /* SPiDLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */; };
 		53989FC31607199A00CB1BDD /* SPiDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */; };
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
-		539B8465162FE4310066EB89 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 539B8464162FE4310066EB89 /* icon.png */; };
-		539B8467162FE43A0066EB89 /* icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 539B8466162FE43A0066EB89 /* icon-retina.png */; };
 		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		E304E00E87C914FDFD2390A5 /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
@@ -146,12 +146,12 @@
 		537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDExampleAppTests.m; sourceTree = "<group>"; };
 		537D224A15FF23BD000ABCA6 /* SPiDSDKLoginTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDSDKLoginTests.h; path = ../../SPiDSDK_old/SPiDSDKTests/SPiDSDKLoginTests.h; sourceTree = "<group>"; };
 		537D224B15FF23BD000ABCA6 /* SPiDSDKLoginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDSDKLoginTests.m; path = ../../SPiDSDK_old/SPiDSDKTests/SPiDSDKLoginTests.m; sourceTree = "<group>"; };
+		538E694216313AA4006890C1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		538E694316313AA4006890C1 /* icon-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-retina.png"; sourceTree = "<group>"; };
 		53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDLoginView.xib; sourceTree = "<group>"; };
 		53989FC11607199A00CB1BDD /* SPiDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDLoginViewController.h; sourceTree = "<group>"; };
 		53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDLoginViewController.m; sourceTree = "<group>"; };
 		53989FC4160726C900CB1BDD /* SPiDMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDMainView.xib; sourceTree = "<group>"; };
-		539B8464162FE4310066EB89 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
-		539B8466162FE43A0066EB89 /* icon-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-retina.png"; path = "../icon-retina.png"; sourceTree = "<group>"; };
 		539B8468162FF8E60066EB89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E304E24883200DCA88A4E70C /* NSError+SPiDError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SPiDError.m"; sourceTree = "<group>"; };
@@ -344,8 +344,8 @@
 		537D222515FF2374000ABCA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				539B8466162FE43A0066EB89 /* icon-retina.png */,
-				539B8464162FE4310066EB89 /* icon.png */,
+				538E694216313AA4006890C1 /* icon.png */,
+				538E694316313AA4006890C1 /* icon-retina.png */,
 				532BF073160A0A6100FC860E /* SPiDLogo.jpg */,
 				537D222615FF2374000ABCA6 /* SPiDExampleApp-Info.plist */,
 				537D222A15FF2374000ABCA6 /* main.m */,
@@ -502,8 +502,8 @@
 				E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */,
 				E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */,
 				E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */,
-				539B8465162FE4310066EB89 /* icon.png in Resources */,
-				539B8467162FE43A0066EB89 /* icon-retina.png in Resources */,
+				538E694416313AA4006890C1 /* icon.png in Resources */,
+				538E694516313AA4006890C1 /* icon-retina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,7 +784,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -806,7 +806,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
