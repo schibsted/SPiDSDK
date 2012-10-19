@@ -65,6 +65,7 @@
     }];
     [[webViewController view] addSubview:webView];
 
+    //[self presentModalViewController:webViewController animated:YES];
     [UIView transitionWithView:[[self navigationController] view] duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromRight
                     animations:^{

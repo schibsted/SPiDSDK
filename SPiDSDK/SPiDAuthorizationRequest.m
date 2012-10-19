@@ -130,6 +130,7 @@ static NSString *const SPiDForceKey = @"force";
     UIWebView *webView = [[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [webView setDelegate:self];
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [webView setSuppressesIncrementalRendering:YES];
 
     // On iOS 5+, UIWebView will ignore loadHTMLString: if it's followed by
     // a loadRequest: call, so if there is a "loading" message we defer
@@ -290,6 +291,10 @@ static NSString *const SPiDForceKey = @"force";
         NSURL *requestURL = [self generateAuthorizationURL];
         [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
     }
+    /* Hack that fixes webview smaller than device-width...
+    else {
+        [webView stringByEvaluatingJavaScriptFromString:@"$('meta[name=\"viewport\"]').attr('content','width=device_width, initial-scale=1, maximum-scale=1, user-scalable=no')"];
+    }*/
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

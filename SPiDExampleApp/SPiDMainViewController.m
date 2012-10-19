@@ -85,10 +85,10 @@
     if ([appDelegate useWebView]) {
         [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [UIView transitionWithView:self.navigationController.view duration:0.5
+                [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight
                                 animations:^{
-                                    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                                    [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
                                 }
                                 completion:NULL];
             }
@@ -96,10 +96,10 @@
     } else {
         [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
-                [UIView transitionWithView:self.navigationController.view duration:0.5
+                [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight
                                 animations:^{
-                                    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                                    [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
                                 }
                                 completion:NULL];
             }
