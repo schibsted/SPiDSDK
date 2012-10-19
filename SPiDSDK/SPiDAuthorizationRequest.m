@@ -91,6 +91,11 @@ static NSString *const SPiDForceKey = @"force";
 
 @end
 
+@interface SPiDAuthorizationRequest ()
+@property(nonatomic, strong) NSURL *requestURL;
+
+@end
+
 @implementation SPiDAuthorizationRequest {
 @private
     NSString *code;
@@ -100,6 +105,8 @@ static NSString *const SPiDForceKey = @"force";
 
     BOOL isPending;
 }
+@synthesize requestURL = _requestURL;
+
 
 #pragma mark Public methods
 
@@ -117,16 +124,37 @@ static NSString *const SPiDForceKey = @"force";
 
 
 - (void)authorizeWithBrowserRedirect {
-    NSURL *requestURL = [self generateAuthorizationURL];
+    [self setRequestURL:[self generateAuthorizationURL]];
     SPiDDebugLog(@"Trying to authorize using browser redirect");
-    SPiDDebugLog(@"Request: %@", [requestURL absoluteString]);
-    [[UIApplication sharedApplication] openURL:requestURL];
+    SPiDDebugLog(@"Request: %@", [[self requestURL] absoluteString]);
+    [[UIApplication sharedApplication] openURL:[self requestURL]];
 }
 
 - (UIWebView *)authorizeWithWebView {
-    NSURL *requestURL = [self generateAuthorizationURL];
+    [self setRequestURL:[self generateAuthorizationURL]];
     SPiDDebugLog(@"Trying to authorize using webview");
+    SPiDDebugLog(@"URL: %@", [[self requestURL] absoluteString]);
+    UIWebView *webView = [self createWebView:[self requestURL]];
+    return webView;
+}
 
+- (UIWebView *)registerWithWebView {
+    [self setRequestURL:[self generateRegistrationURL]];
+    SPiDDebugLog(@"Trying to register using webview");
+    SPiDDebugLog(@"URL: %@", [[self requestURL] absoluteString]);
+    UIWebView *webView = [self createWebView:[self requestURL]];
+    return webView;
+}
+
+- (UIWebView *)lostPasswordWithWebView {
+    [self setRequestURL:[self generateLostPasswordURL]];
+    SPiDDebugLog(@"Trying to get lost password using webview");
+    SPiDDebugLog(@"URL: %@", [[self requestURL] absoluteString]);
+    UIWebView *webView = [self createWebView:[self requestURL]];
+    return webView;
+}
+
+- (UIWebView *)createWebView:(NSURL *)requestURL {
     UIWebView *webView = [[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [webView setDelegate:self];
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -211,15 +239,32 @@ static NSString *const SPiDForceKey = @"force";
 ///---------------------------------------------------------------------------------------
 
 - (NSURL *)generateAuthorizationURL {
+    NSString *requestURL = [[[SPiDClient sharedInstance] authorizationURL] absoluteString];
+    requestURL = [self getAuthorizationQueryWithURL:requestURL];
+    return [NSURL URLWithString:requestURL];
+}
+
+- (NSURL *)generateRegistrationURL {
+    NSString *requestURL = [[[SPiDClient sharedInstance] registrationURL] absoluteString];
+    requestURL = [self getAuthorizationQueryWithURL:requestURL];
+    return [NSURL URLWithString:requestURL];
+}
+
+- (NSURL *)generateLostPasswordURL {
+    NSString *requestURL = [[[SPiDClient sharedInstance] lostPasswordURL] absoluteString];
+    requestURL = [self getAuthorizationQueryWithURL:requestURL];
+    return [NSURL URLWithString:requestURL];
+}
+
+- (NSString *)getAuthorizationQueryWithURL:(NSString *)requestURL {
     SPiDClient *client = [SPiDClient sharedInstance];
-    NSString *requestURL = [[client authorizationURL] absoluteString];
     requestURL = [requestURL stringByAppendingFormat:@"?%@=%@", SPiDClientIDKey, [client clientID]];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDResponseTypeKey, @"code"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDRedirectURIKey, [SPiDUtils urlEncodeString:[NSString stringWithFormat:@"%@spid/login", [[client redirectURI] absoluteString]]]];
     if ([[SPiDClient sharedInstance] useMobileWeb])
         requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDPlatformKey, @"mobile"];
     requestURL = [requestURL stringByAppendingFormat:@"&%@=%@", SPiDForceKey, @"1"];
-    return [NSURL URLWithString:requestURL];
+    return requestURL;
 }
 
 - (NSURL *)generateLogoutURLWithAccessToken:(SPiDAccessToken *)accessToken {
@@ -288,7 +333,7 @@ static NSString *const SPiDForceKey = @"force";
     // Are we showing a loading screen?
     if (isPending) {
         isPending = NO;
-        NSURL *requestURL = [self generateAuthorizationURL];
+        NSURL *requestURL = [self requestURL];
         [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
     }
     /* Hack that fixes webview smaller than device-width...

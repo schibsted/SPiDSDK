@@ -63,6 +63,10 @@ static NSString const *defaultAPIVersionSPiD = @"2";
  */
 @property(strong, nonatomic) NSURL *authorizationURL;
 
+@property(strong, nonatomic) NSURL *registrationURL;
+
+@property(strong, nonatomic) NSURL *lostPasswordURL;
+
 /** URL to use for requesting access token from SPiD
 
  This URL is normally generated using the `serverURL´/oauth/token
@@ -103,6 +107,11 @@ static NSString const *defaultAPIVersionSPiD = @"2";
        andServerURL:(NSURL *)serverURL;
 
 - (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
+- (UIWebView *)webViewRegistrationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
+- (UIWebView *)webViewLostPasswordWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
 
 /** Handles URL redirects to the app
 

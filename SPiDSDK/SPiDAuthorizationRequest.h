@@ -72,4 +72,9 @@
 
 - (UIWebView *)authorizeWithWebView;
 
+- (UIWebView *)registerWithWebView;
+
+- (UIWebView *)lostPasswordWithWebView;
+
+
 @end

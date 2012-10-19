@@ -60,6 +60,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @synthesize redirectURI = _redirectURI;
 @synthesize serverURL = _serverURL;
 @synthesize authorizationURL = _authorizationURL;
+@synthesize registrationURL = _registrationURL;
+@synthesize lostPasswordURL = _lostPasswordURL;
 @synthesize tokenURL = _tokenURL;
 @synthesize apiVersionSPiD = _apiVersionSPiD;
 @synthesize useMobileWeb = _useMobileWeb;
@@ -100,6 +102,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     if (![self authorizationURL])
         [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self serverURL]]]];
 
+    if (![self registrationURL])
+        [self setRegistrationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [self serverURL]]]];
+
+    if (![self lostPasswordURL])
+        [self setLostPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [self serverURL]]]];
+
     if (![self tokenURL])
         [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self serverURL]]]];
 
@@ -134,6 +142,21 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 - (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    SPiDAuthorizationRequest *request = [self createWebViewAuthRequestWithCompletionHandler:completionHandler];
+    return [request authorizeWithWebView];
+}
+
+- (UIWebView *)webViewRegistrationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    SPiDAuthorizationRequest *request = [self createWebViewAuthRequestWithCompletionHandler:completionHandler];
+    return [request registerWithWebView];
+}
+
+- (UIWebView *)webViewLostPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    SPiDAuthorizationRequest *request = [self createWebViewAuthRequestWithCompletionHandler:completionHandler];
+    return [request lostPasswordWithWebView];
+}
+
+- (SPiDAuthorizationRequest *)createWebViewAuthRequestWithCompletionHandler:(void (^)(NSError *))completionHandler {
     // Sanity check
     NSAssert([self authorizationURL], @"SPiDOAuth2 missing authorization URL.");
     NSAssert([self clientID], @"SPiDOAuth2 missing client ID.");
@@ -150,8 +173,20 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         }];
         [authRequest softLogoutWithAccessToken:accessToken];
     }
-    return [self doWebViewAuthorizationRequestWithCompletionHandler:completionHandler];
+    @synchronized (authorizationRequest) {
+        authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
+            if (error) {
+                [self clearAuthorizationRequest];
+                completionHandler(error);
+            } else {
+                [self authorizationComplete:token];
+                completionHandler(nil);
+            }
+        }];
+    }
+    return authorizationRequest;
 }
+
 
 - (BOOL)handleOpenURL:(NSURL *)url {
     SPiDDebugLog(@"SPiDSDK received url: %@", [url absoluteString]);
@@ -310,8 +345,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
 
     // TODO: This should be client_id!
-    [data setObject:@"4fe9cb8adcb114f64a000001" forKey:@"clientId"];
-    [data setObject:@"4fe9cb8adcb114f64a000001" forKey:@"client_id"];
+    [data setObject:[self clientID] forKey:@"clientId"];
+    [data setObject:[self clientID] forKey:@"client_id"];
     [data setObject:@"code" forKey:@"type"];
     [self apiPostRequestWithPath:path andBody:data andCompletionHandler:completionHandler];
 }
@@ -367,21 +402,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         }];
     }
     [authorizationRequest authorizeWithBrowserRedirect];
-}
-
-- (UIWebView *)doWebViewAuthorizationRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    @synchronized (authorizationRequest) {
-        authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
-            if (error) {
-                [self clearAuthorizationRequest];
-                completionHandler(error);
-            } else {
-                [self authorizationComplete:token];
-                completionHandler(nil);
-            }
-        }];
-    }
-    return [authorizationRequest authorizeWithWebView];
 }
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {
