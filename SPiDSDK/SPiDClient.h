@@ -39,6 +39,12 @@ static NSString const *defaultAPIVersionSPiD = @"2";
 /** Client ID provided by SPiD  */
 @property(strong, nonatomic) NSString *clientID;
 
+/** Client ID to be used when generating a one time code
+
+Defaults to clientID
+*/
+@property(strong, nonatomic) NSString *serverClientID;
+
 /** Client secret provided by SPiD  */
 @property(strong, nonatomic) NSString *clientSecret;
 

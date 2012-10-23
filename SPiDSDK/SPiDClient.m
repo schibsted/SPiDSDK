@@ -55,6 +55,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 }
 
 @synthesize clientID = _clientID;
+@synthesize serverClientID = _serverClientID;
 @synthesize clientSecret = _clientSecret;
 @synthesize appURLScheme = _appURLScheme;
 @synthesize redirectURI = _redirectURI;
@@ -110,6 +111,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
     if (![self tokenURL])
         [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self serverURL]]]];
+
+    if (![self serverClientID])
+        [self setServerClientID:clientID];
 
     if (![self webViewInitialHTML])
         [self setWebViewInitialHTML:@""];
@@ -345,8 +349,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
 
     // TODO: This should be client_id!
-    [data setObject:[self clientID] forKey:@"clientId"];
-    [data setObject:[self clientID] forKey:@"client_id"];
+    [data setObject:[self serverClientID] forKey:@"clientId"];
+    [data setObject:[self serverClientID] forKey:@"client_id"];
     [data setObject:@"code" forKey:@"type"];
     [self apiPostRequestWithPath:path andBody:data andCompletionHandler:completionHandler];
 }
