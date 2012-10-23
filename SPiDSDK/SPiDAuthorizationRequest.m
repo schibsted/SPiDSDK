@@ -305,6 +305,7 @@ static NSString *const SPiDForceKey = @"force";
     SPiDDebugLog(@"Loading url: %@", [url absoluteString]);
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
+        [webView setDelegate:nil];
         completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
@@ -336,10 +337,6 @@ static NSString *const SPiDForceKey = @"force";
         NSURL *requestURL = [self requestURL];
         [webView loadRequest:[NSURLRequest requestWithURL:requestURL]];
     }
-    /* Hack that fixes webview smaller than device-width...
-    else {
-        [webView stringByEvaluatingJavaScriptFromString:@"$('meta[name=\"viewport\"]').attr('content','width=device_width, initial-scale=1, maximum-scale=1, user-scalable=no')"];
-    }*/
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
