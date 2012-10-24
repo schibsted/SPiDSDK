@@ -131,7 +131,8 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (UIWebView *)authorizeWithWebView {
-    [self setRequestURL:[self generateAuthorizationURL]];
+    NSString *url = [[self generateAuthorizationURL] absoluteString];
+    [self setRequestURL:[NSURL URLWithString:[url stringByAppendingFormat:@"&webview=1"]]];
     SPiDDebugLog(@"Trying to authorize using webview");
     SPiDDebugLog(@"URL: %@", [[self requestURL] absoluteString]);
     UIWebView *webView = [self createWebView:[self requestURL]];
@@ -139,7 +140,8 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (UIWebView *)registerWithWebView {
-    [self setRequestURL:[self generateRegistrationURL]];
+    NSString *url = [[self generateRegistrationURL] absoluteString];
+    [self setRequestURL:[NSURL URLWithString:[url stringByAppendingFormat:@"&webview=1"]]];
     SPiDDebugLog(@"Trying to register using webview");
     SPiDDebugLog(@"URL: %@", [[self requestURL] absoluteString]);
     UIWebView *webView = [self createWebView:[self requestURL]];
@@ -147,7 +149,8 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (UIWebView *)lostPasswordWithWebView {
-    [self setRequestURL:[self generateLostPasswordURL]];
+    NSString *url = [[self generateLostPasswordURL] absoluteString];
+    [self setRequestURL:[NSURL URLWithString:[url stringByAppendingFormat:@"&webview=1"]]];
     SPiDDebugLog(@"Trying to get lost password using webview");
     SPiDDebugLog(@"URL: %@", [[self requestURL] absoluteString]);
     UIWebView *webView = [self createWebView:[self requestURL]];
@@ -158,7 +161,8 @@ static NSString *const SPiDForceKey = @"force";
     UIWebView *webView = [[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [webView setDelegate:self];
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    [webView setSuppressesIncrementalRendering:YES];
+    // Not supported in iOS 5
+    //[webView setSuppressesIncrementalRendering:YES];
 
     // On iOS 5+, UIWebView will ignore loadHTMLString: if it's followed by
     // a loadRequest: call, so if there is a "loading" message we defer
