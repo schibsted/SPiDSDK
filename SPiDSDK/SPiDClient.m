@@ -81,6 +81,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     dispatch_once(&predicate, ^{
         sharedSPiDClientInstance = [[self alloc] init];
     });
+
     return sharedSPiDClientInstance;
 }
 
@@ -191,12 +192,11 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     return authorizationRequest;
 }
 
-
 - (BOOL)handleOpenURL:(NSURL *)url {
     SPiDDebugLog(@"SPiDSDK received url: %@", [url absoluteString]);
     NSString *redirectURLString = [[self redirectURI] absoluteString];
     NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
-    if ([urlString hasPrefix:redirectURLString]) {
+    if ([urlString hasPrefix:redirectURLString] && authorizationRequest) {
         if ([urlString hasSuffix:@"login"]) {
             // Assert
             return [authorizationRequest handleOpenURL:url];
@@ -388,6 +388,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         if (![self apiVersionSPiD]) {
             [self setApiVersionSPiD:[NSString stringWithFormat:@"%@", defaultAPIVersionSPiD]];
         }
+        [self setUseMobileWeb:YES];
     }
     return self;
 }
