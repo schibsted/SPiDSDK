@@ -17,7 +17,6 @@ static NSString *const SPiDPlatformKey = @"platform";
 static NSString *const SPiDForceKey = @"force";
 
 #import "SPiDAuthorizationRequest.h"
-#import "SPiDExampleApp-Prefix.pch"
 #import "NSError+SPiDError.h"
 
 @interface SPiDAuthorizationRequest (PrivateMethods) <UIWebViewDelegate>
