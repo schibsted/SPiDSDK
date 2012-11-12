@@ -1,5 +1,6 @@
-Getting started
-==========
+---
+title: Getting started
+---
 
 This guide will provide a small introduction to getting started with the SPiD SDK for iOS.
 
