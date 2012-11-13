@@ -2,10 +2,9 @@
 title: Setting up SPiD
 layout: default
 ---
-
 Setting up SPiD
----------------
-This will provide a small introduction on how to setup the SPiD SDK for iOS.
+===============
+This will provide a small introduction on how to setup the SPiD SDK for your iOS application.
 
 The all SDK interactions is centered around `SPiDClient` which is a singleton. All client calls should go through this class.
 
@@ -21,7 +20,7 @@ The following code is used to setup the `SPiDClient`
                             andServerURL:[NSURL URLWithString:@"www.spid.com"]];
 {% endhighlight %}
 
-Since there are times when there are redirects to
+Since there are times when there are redirects to the app this must be handled. One example is opening the app from Safari.
 This is done by implementing the `application:openURL:sourceApplication:annotation:` method of the app delegate to receive the response from Safari and pass to over the the SPiD SDK.
 
 {% highlight objectivec %}
@@ -31,18 +30,4 @@ This is done by implementing the `application:openURL:sourceApplication:annotati
 }
 {% endhighlight %}
 
-The app can now login to SPiD and make API requests, for example the following code gets the logged in user object.
-
-{% highlight objectivec %}
-// Try to fetch the "me" object
-[[SPiDClient sharedInstance] getUserRequestWithCurrentUserAndCompletionHandler:^(SPiDResponse *response) {
-    if ([response error]) {
-        // something went wrong and we need to check what error we received
-    } else {
-        NSLog(@"The raw response", [response rawJSON]);
-    }
-}];
-{% endhighlight %}
-
-The request returns a `SPiDResponse` object. Before trying to use the message or rawJSON property the client should check for errors using the error property.
-
+The actual authorization can be done with either [Safari redirect](getting-started-safari-redirect.html "Safari redirect") or [UIWebView](getting-started-uiwebview.html "UIWebView"). For more information see the menu to the right.
