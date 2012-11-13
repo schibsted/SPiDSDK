@@ -1,0 +1,809 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>SPiDRequest Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">SPiDSDK </a></h1>
+				<a id="developerHome" href="../index.html">Schibsted Payment</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">SPiDRequest Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/retryCount">&nbsp;&nbsp;&nbsp;&nbsp;retryCount</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/connection:didFailWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- connection:didFailWithError:</option>
+	
+	<option value="//api/name/connection:didReceiveData:">&nbsp;&nbsp;&nbsp;&nbsp;- connection:didReceiveData:</option>
+	
+	<option value="//api/name/connectionDidFinishLoading:">&nbsp;&nbsp;&nbsp;&nbsp;- connectionDidFinishLoading:</option>
+	
+	<option value="//api/name/createHTTPBodyForDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- createHTTPBodyForDictionary:</option>
+	
+	<option value="//api/name/initGetRequestWithPath:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- initGetRequestWithPath:andCompletionHandler:</option>
+	
+	<option value="//api/name/initPostRequestWithPath:andHTTPBody:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- initPostRequestWithPath:andHTTPBody:andCompletionHandler:</option>
+	
+	<option value="//api/name/initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:</option>
+	
+	<option value="//api/name/startRequestWithAccessToken:">&nbsp;&nbsp;&nbsp;&nbsp;- startRequestWithAccessToken:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Public methods">Public methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Private methods">Private methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/retryCount">retryCount</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connection:didFailWithError:">connection:didFailWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connection:didReceiveData:">connection:didReceiveData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connectionDidFinishLoading:">connectionDidFinishLoading:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createHTTPBodyForDictionary:">createHTTPBodyForDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initGetRequestWithPath:andCompletionHandler:">initGetRequestWithPath:andCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initPostRequestWithPath:andHTTPBody:andCompletionHandler:">initPostRequestWithPath:andHTTPBody:andCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:">initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRequestWithAccessToken:">startRequestWithAccessToken:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="SPiDRequest Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">SPiDRequest Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSURLConnectionDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">SPiDRequest.h<br />SPiDRequest.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>SPiDRequest</code> handles a request against SPiD.</p>
+
+<p>An instance of <a href="../Classes/SPiDClient.html"><code>SPiDClient</code></a> is setup for each request to SPiD from <a href="../Classes/SPiDClient.html"><code>SPiDClient</code></a></p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/retryCount">&nbsp;&nbsp;retryCount</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Public methods" name="task_Public methods"></a>
+						<h3 class="subsubtitle task-title">Public methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initGetRequestWithPath:andCompletionHandler:">&ndash;&nbsp;initGetRequestWithPath:andCompletionHandler:</a></code>
+		<span class="tooltip"><p>Creates a SPiD GET request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initPostRequestWithPath:andHTTPBody:andCompletionHandler:">&ndash;&nbsp;initPostRequestWithPath:andHTTPBody:andCompletionHandler:</a></code>
+		<span class="tooltip"><p>Creates a SPiD POST request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:">&ndash;&nbsp;initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:</a></code>
+		<span class="tooltip"><p>Creates a SPiD request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRequestWithAccessToken:">&ndash;&nbsp;startRequestWithAccessToken:</a></code>
+		<span class="tooltip"><p>Runs the request</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Private methods" name="task_Private methods"></a>
+						<h3 class="subsubtitle task-title">Private methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createHTTPBodyForDictionary:">&ndash;&nbsp;createHTTPBodyForDictionary:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connection:didReceiveData:">&ndash;&nbsp;connection:didReceiveData:</a></code>
+		<span class="tooltip"><p>&lsquo;NSURLConnectionDelegate&rsquo; method</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connectionDidFinishLoading:">&ndash;&nbsp;connectionDidFinishLoading:</a></code>
+		<span class="tooltip"><p>NSURLConnectionDelegate method</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connection:didFailWithError:">&ndash;&nbsp;connection:didFailWithError:</a></code>
+		<span class="tooltip"><p>NSURLConnectionDelegate method</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/retryCount" title="retryCount"></a>
+	<h3 class="subsubtitle method-title">retryCount</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger retryCount</code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/connection:didFailWithError:" title="connection:didFailWithError:"></a>
+	<h3 class="subsubtitle method-title">connection:didFailWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSURLConnectionDelegate method</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)connection:(NSURLConnection *)<em>connection</em> didFailWithError:(NSError *)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>connection</em></dt>
+			<dd><p>The connection sending the message.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>An error object containing details of why the connection failed to load the request successfully.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent when a connection fails to load its request successfully.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connection:didReceiveData:" title="connection:didReceiveData:"></a>
+	<h3 class="subsubtitle method-title">connection:didReceiveData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>&lsquo;NSURLConnectionDelegate&rsquo; method</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)connection:(NSURLConnection *)<em>connection</em> didReceiveData:(NSData *)<em>data</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>connection</em></dt>
+			<dd><p>The connection sending the data.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>The newly available data.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent as a connection loads message incrementally and concatenates the message to the private instance variable &lsquo;receivedData&rsquo;.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connectionDidFinishLoading:" title="connectionDidFinishLoading:"></a>
+	<h3 class="subsubtitle method-title">connectionDidFinishLoading:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSURLConnectionDelegate method</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)connectionDidFinishLoading:(NSURLConnection *)<em>connection</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>connection</em></dt>
+			<dd><p>The connection sending the message.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent when a connection has finished loading successfully.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createHTTPBodyForDictionary:" title="createHTTPBodyForDictionary:"></a>
+	<h3 class="subsubtitle method-title">createHTTPBodyForDictionary:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)createHTTPBodyForDictionary:(NSDictionary *)<em>dictionary</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initGetRequestWithPath:andCompletionHandler:" title="initGetRequestWithPath:andCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">initGetRequestWithPath:andCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a SPiD GET request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initGetRequestWithPath:(NSString *)<em>requestPath</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestPath</em></dt>
+			<dd><p>API path for GET request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Completion handler run after request is finished</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>SPiDRequest</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initPostRequestWithPath:andHTTPBody:andCompletionHandler:" title="initPostRequestWithPath:andHTTPBody:andCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">initPostRequestWithPath:andHTTPBody:andCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a SPiD POST request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initPostRequestWithPath:(NSString *)<em>requestPath</em> andHTTPBody:(NSDictionary *)<em>body</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestPath</em></dt>
+			<dd><p>API path for POST request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>body</em></dt>
+			<dd><p>HTTP body</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Completion handler run after request is finished</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>SPiDRequest</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:" title="initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">initRequestWithPath:andHTTPMethod:andHTTPBody:andCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a SPiD request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initRequestWithPath:(NSString *)<em>requestPath</em> andHTTPMethod:(NSString *)<em>method</em> andHTTPBody:(NSDictionary *)<em>body</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestPath</em></dt>
+			<dd><p>API path for request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>method</em></dt>
+			<dd><p>HTTP method for the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>body</em></dt>
+			<dd><p>HTTP body, used it method is POST</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Completion handler run after request is finished</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>SPiDRequest</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRequestWithAccessToken:" title="startRequestWithAccessToken:"></a>
+	<h3 class="subsubtitle method-title">startRequestWithAccessToken:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Runs the request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)startRequestWithAccessToken:(SPiDAccessToken *)<em>accessToken</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>accessToken</em></dt>
+			<dd><p>The access token to use with the request</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Schibsted Payment. All rights reserved. (Last updated: 2012-11-13)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
