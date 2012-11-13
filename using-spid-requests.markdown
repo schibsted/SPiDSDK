@@ -1,8 +1,8 @@
 ---
-title: Using SPiD requests
+title: Using SPiD API requests
 layout: default
 ---
-Using SPiD requests
+Using SPiD API requests
 ===================
 Once the app can successfully logged on to SPiD we can start making requests. For example the following code gets the logged in user object.
 

@@ -6,6 +6,7 @@ Welcome to SPiD SDK for iOS
 ===========================
 
 The SPiD SDK enables easy login to SPiD from iOS applications. All that is needed are a few small steps and you will be up and running.
+After you have checked out the code and included it in you project start [setting up SPiD here](setting-up-spid.html "Setting up SPiD") or look at the included example app.
 
 Checkout SPiD SDK for iOS
 -------------------------
