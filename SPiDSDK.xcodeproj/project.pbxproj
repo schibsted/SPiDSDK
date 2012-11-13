@@ -230,6 +230,7 @@
 				537D223B15FF2374000ABCA6 /* SPiDExampleAppTests */,
 				537D21F115FF224C000ABCA6 /* Frameworks */,
 				537D21F015FF224C000ABCA6 /* Products */,
+				E304E189CF307C539E49A2A1 /* README.markdown */,
 			);
 			sourceTree = "<group>";
 		};
@@ -338,7 +339,6 @@
 				E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */,
 				E304EF927327F5217C9FBBD0 /* Default.png */,
 				E304E9BAD5499EEFE7846D26 /* Default@2x.png */,
-				E304E189CF307C539E49A2A1 /* README.markdown */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
