@@ -184,7 +184,7 @@ static NSString *const SPiDForceKey = @"force";
 
 - (void)softLogoutWithAccessToken:(SPiDAccessToken *)accessToken {
     NSURL *requestURL = [self generateLogoutURLWithAccessToken:accessToken];
-    SPiDDebugLog(@"Trying to soft logout from SPiD");
+    SPiDDebugLog(@"Trying to soft logout from SPiD: %@", requestURL);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
@@ -209,7 +209,6 @@ static NSString *const SPiDForceKey = @"force";
 - (BOOL)handleOpenURL:(NSURL *)url {
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
-        // TODO: Test GET error
         completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else {

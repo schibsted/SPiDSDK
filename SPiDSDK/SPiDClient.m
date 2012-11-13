@@ -48,7 +48,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @implementation SPiDClient {
 @private
     NSMutableArray *waitingRequests;
-    NSInteger tokenRefreshRetryCount; // TODO: implement retries
+    NSInteger tokenRefreshRetryCount;
     SPiDAuthorizationRequest *authorizationRequest;
     SPiDAccessToken *accessToken;
     NSString *_webViewInitialHTML;
@@ -177,6 +177,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
         SPiDAuthorizationRequest *authRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {
         }];
         [authRequest softLogoutWithAccessToken:accessToken];
+        // Clear token
+        accessToken = nil;
+        [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
     }
     @synchronized (authorizationRequest) {
         authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:^(SPiDAccessToken *token, NSError *error) {

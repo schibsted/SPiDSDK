@@ -70,10 +70,22 @@
 */
 - (BOOL)handleOpenURL:(NSURL *)url;
 
+/** Creates a authorization WebView.
+
+ @return The new WebView
+*/
 - (UIWebView *)authorizeWithWebView;
 
+/** Creates a registration WebView
+
+ @return The new WebView
+*/
 - (UIWebView *)registerWithWebView;
 
+/** Creates a lost password WebView
+*
+ @return The new WebView
+*/
 - (UIWebView *)lostPasswordWithWebView;
 
 

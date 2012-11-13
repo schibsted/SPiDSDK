@@ -233,7 +233,11 @@ Defaults to clientID
 /// @name Request wrappers
 ///---------------------------------------------------------------------------------------
 
-/** TODO....
+/** Requests a one time code to be used server side.
+*
+ @note The code is generated using the server client id and not the applications client id.
+ @warning Requires that the user is authorized with SPiD
+ @param completionHandler Run after request is completed
  */
 
 - (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;

@@ -1,1 +1,0 @@
-SPiD SDK for iOS

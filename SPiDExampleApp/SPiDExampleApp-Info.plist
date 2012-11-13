@@ -42,7 +42,7 @@
                 <string>no.schibsted.SPiDExampleApp</string>
                 <key>CFBundleURLSchemes</key>
                 <array>
-                    <string>finn.ipad</string>
+                    <string>no.finn.app.search.ipad</string>
                 </array>
             </dict>
         </array>
