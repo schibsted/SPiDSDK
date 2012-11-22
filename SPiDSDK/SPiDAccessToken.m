@@ -25,7 +25,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     self = [super init];
     if (self) {
         [self setUserID:userID];
-        [self setAccessToken:[@"1" stringByAppendingFormat:accessToken]];
+        [self setAccessToken:accessToken];
         [self setExpiresAt:expiresAt];
         [self setRefreshToken:refreshToken];
     }
@@ -34,7 +34,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     NSString *userID = [dictionary objectForKey:UserIDKey];
-    NSString *accessToken = [@"1" stringByAppendingFormat:[dictionary objectForKey:AccessTokenKey]];
+    NSString *accessToken = [dictionary objectForKey:AccessTokenKey];
     NSString *expiresIn = [dictionary objectForKey:ExpiresInKey];
     NSString *refreshToken = [dictionary objectForKey:RefreshTokenKey];
 
