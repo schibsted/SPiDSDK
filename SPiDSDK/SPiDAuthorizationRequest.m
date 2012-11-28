@@ -307,6 +307,8 @@ static NSString *const SPiDForceKey = @"force";
     SPiDDebugLog(@"Loading url: %@", [url absoluteString]);
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
+        if ([webView isLoading])
+            [webView stopLoading];
         [webView setDelegate:nil];
         completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
@@ -316,6 +318,7 @@ static NSString *const SPiDForceKey = @"force";
             if ([webView isLoading]) {
                 [webView stopLoading];
             }
+            [webView setDelegate:nil];
             code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             if (code) {
                 SPiDDebugLog(@"Received code: %@", code);
@@ -385,6 +388,7 @@ static NSString *const SPiDForceKey = @"force";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError *jsonError = nil;
     NSDictionary *jsonObject = nil;
+    SPiDDebugLog(@"Response data: %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
     if ([receivedData length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     } else { // This should only happen when user is logging out
