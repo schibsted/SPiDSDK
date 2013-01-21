@@ -126,9 +126,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
     NSAssert([self clientID], @"SPiDOAuth2 missing client ID.");
     NSAssert([self clientSecret], @"SPiDOAuth2 missing client secret.");
     NSAssert([self redirectURI], @"SPiDOAuth2 missing redirect url.");
-    // TODO: Should this happen?
-    // NSAssert(!authorizationRequest, @"Authorization request already running");
-    // TODO: Should we validate that url starts with https?
 
     // If we are logged in do a soft logout before continuing
     if (accessToken) {

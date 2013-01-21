@@ -37,4 +37,11 @@
     return self;
 }
 
+- (id)initWithError:(NSError *)error {
+    self = [super self];
+    if (self) {
+        [self setError:error];
+    }
+    return self;
+}
 @end

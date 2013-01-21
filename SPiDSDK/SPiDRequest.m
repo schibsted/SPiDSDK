@@ -152,8 +152,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    // TODO: create reponse with error
     SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
+    SPiDResponse *response = [[SPiDResponse alloc] initWithError:error];
+    completionHandler(response);
 }
 
 @end

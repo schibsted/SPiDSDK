@@ -43,4 +43,5 @@
 - (id)initWithJSONData:(NSData *)data;
 
 // list or
+- (id)initWithError:(NSError *)error;
 @end
