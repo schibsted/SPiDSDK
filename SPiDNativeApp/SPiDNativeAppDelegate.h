@@ -15,4 +15,5 @@
 @property(strong, nonatomic) UINavigationController *navigationController;
 @property(strong, nonatomic) MainViewController *mainView;
 
+- (void)loginWithUsername:(NSString *)string andPassword:(NSString *)password;
 @end

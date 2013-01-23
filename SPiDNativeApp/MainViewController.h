@@ -16,4 +16,6 @@
 @property(strong, nonatomic) UIButton *loginButton;
 @property(strong, nonatomic) UIAlertView *alertView;
 
+- (void)dismissLoginAlert;
+
 @end

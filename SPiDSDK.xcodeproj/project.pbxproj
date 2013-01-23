@@ -50,21 +50,22 @@
 		532B220F16AD5787000DBA55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 532B220D16AD5787000DBA55 /* InfoPlist.strings */; };
 		532B221216AD5787000DBA55 /* SPiDNativeAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B221116AD5787000DBA55 /* SPiDNativeAppTests.m */; };
 		532BF074160A0A6100FC860E /* SPiDLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 532BF073160A0A6100FC860E /* SPiDLogo.jpg */; };
+		534D651F16AD895400088B3D /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
+		534D652016AD896600088B3D /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
+		534D652116AD937F00088B3D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
+		534D652816AD942400088B3D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
 		537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D220215FF224C000ABCA6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
-		537D220415FF224C000ABCA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220315FF224C000ABCA6 /* UIKit.framework */; };
 		537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		537D220E15FF224C000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D220C15FF224C000ABCA6 /* InfoPlist.strings */; };
 		537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D221015FF224C000ABCA6 /* SPiDSDKTests.m */; };
-		537D222015FF2374000ABCA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220315FF224C000ABCA6 /* UIKit.framework */; };
 		537D222115FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D222315FF2374000ABCA6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D222215FF2374000ABCA6 /* CoreGraphics.framework */; };
 		537D222B15FF2374000ABCA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D222A15FF2374000ABCA6 /* main.m */; };
 		537D222F15FF2374000ABCA6 /* SPiDExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */; };
 		537D223615FF2374000ABCA6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
-		537D223715FF2374000ABCA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220315FF224C000ABCA6 /* UIKit.framework */; };
 		537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D223E15FF2374000ABCA6 /* InfoPlist.strings */; };
 		537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */; };
@@ -76,30 +77,24 @@
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
 		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
-		E304E00E87C914FDFD2390A5 /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
-		E304E0B5D79EFFA5427E6994 /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
 		E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */; };
 		E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E61B34D176733C911367 /* NSData+Base64.m */; };
-		E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
-		E304E39CA9CD8D4F4D912D82 /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
 		E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E9BAD5499EEFE7846D26 /* Default@2x.png */; };
-		E304E49BFFFA328E63605B7A /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
 		E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EC34E54EE6F302C3BE2A /* red_button@2x.png */; };
 		E304E5886D575207EE4574AD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7EE2A65B25A228D8133 /* MainViewController.m */; };
+		E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */; };
 		E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
 		E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiDError.h */; };
 		E304E62AC86C9650891094B6 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E4602FCA00B6130BF009 /* red_button.png */; };
-		E304E65255E106B7B790EB6F /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
 		E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */; };
 		E304E6CE390767859B6A31AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
-		E304E6DEFC56FB37971BDFC4 /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */; };
 		E304E8B07F0AB36216D2DCF4 /* SPiDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EA067760998928321774 /* SPiDMainViewController.m */; };
+		E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */; };
 		E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */; };
-		E304EA1BDEB35A07C930E74D /* SPiDAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */; };
 		E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
 		E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E74CE552DDD7DA85CADB /* SPiDResponse.h */; };
 		E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF927327F5217C9FBBD0 /* Default.png */; };
@@ -124,6 +119,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 532B21E716AD5786000DBA55;
 			remoteInfo = SPiDNativeApp;
+		};
+		532B223D16AD88C3000DBA55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
+			remoteInfo = SPiDSDK;
+		};
+		534D651D16AD893000088B3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
+			remoteInfo = SPiDSDK;
 		};
 		537D220615FF224C000ABCA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -156,6 +165,7 @@
 				E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */,
 				E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */,
 				E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */,
+				E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +211,6 @@
 		537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPiDSDK-Prefix.pch"; sourceTree = "<group>"; };
 		537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDSDKTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D220115FF224C000ABCA6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		537D220315FF224C000ABCA6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		537D220B15FF224C000ABCA6 /* SPiDSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDSDKTests-Info.plist"; sourceTree = "<group>"; };
 		537D220D15FF224C000ABCA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDSDKTests.h; sourceTree = "<group>"; };
@@ -234,6 +243,7 @@
 		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUtils.h; sourceTree = "<group>"; };
 		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
+		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E4D3494537377633CA3E /* NSError+SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiDError.h"; sourceTree = "<group>"; };
 		E304E61B34D176733C911367 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
@@ -252,6 +262,7 @@
 		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E304EDA55B1715BF5E738193 /* SPiDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDResponse.m; sourceTree = "<group>"; };
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
+		E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenRequest.h; sourceTree = "<group>"; };
 		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDKeychainWrapper.h; sourceTree = "<group>"; };
 		E304EF927327F5217C9FBBD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -282,6 +293,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				534D652816AD942400088B3D /* Security.framework in Frameworks */,
+				534D652016AD896600088B3D /* libSPiDSDK.a in Frameworks */,
 				532B21EA16AD5786000DBA55 /* UIKit.framework in Frameworks */,
 				532B21EB16AD5786000DBA55 /* Foundation.framework in Frameworks */,
 				532B21EC16AD5786000DBA55 /* CoreGraphics.framework in Frameworks */,
@@ -302,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				534D652116AD937F00088B3D /* Security.framework in Frameworks */,
 				539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */,
 				537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */,
 			);
@@ -312,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				537D220215FF224C000ABCA6 /* SenTestingKit.framework in Frameworks */,
-				537D220415FF224C000ABCA6 /* UIKit.framework in Frameworks */,
 				537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */,
 				537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */,
 			);
@@ -322,8 +335,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				534D651F16AD895400088B3D /* libSPiDSDK.a in Frameworks */,
 				53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */,
-				537D222015FF2374000ABCA6 /* UIKit.framework in Frameworks */,
 				537D222115FF2374000ABCA6 /* Foundation.framework in Frameworks */,
 				537D222315FF2374000ABCA6 /* CoreGraphics.framework in Frameworks */,
 				E304E6CE390767859B6A31AB /* Security.framework in Frameworks */,
@@ -335,7 +348,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				537D223615FF2374000ABCA6 /* SenTestingKit.framework in Frameworks */,
-				537D223715FF2374000ABCA6 /* UIKit.framework in Frameworks */,
 				537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,7 +486,6 @@
 				53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */,
 				537D21F215FF224C000ABCA6 /* Foundation.framework */,
 				537D220115FF224C000ABCA6 /* SenTestingKit.framework */,
-				537D220315FF224C000ABCA6 /* UIKit.framework */,
 				537D222215FF2374000ABCA6 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -502,6 +513,8 @@
 				535AA9B515FF31AD00D9F52B /* SPiDClient.m */,
 				E304E61B34D176733C911367 /* NSData+Base64.m */,
 				E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */,
+				E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */,
+				E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -636,6 +649,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				532B223E16AD88C3000DBA55 /* PBXTargetDependency */,
 			);
 			name = SPiDNativeApp;
 			productName = SPiDNativeApp;
@@ -708,6 +722,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				534D651E16AD893000088B3D /* PBXTargetDependency */,
 			);
 			name = SPiDExampleApp;
 			productName = SPiDExampleApp;
@@ -958,6 +973,7 @@
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
 				E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */,
 				E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */,
+				E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,16 +992,8 @@
 			files = (
 				537D222B15FF2374000ABCA6 /* main.m in Sources */,
 				537D222F15FF2374000ABCA6 /* SPiDExampleAppDelegate.m in Sources */,
-				E304E65255E106B7B790EB6F /* SPiDClient.m in Sources */,
-				E304E6DEFC56FB37971BDFC4 /* SPiDUtils.m in Sources */,
-				E304E1D48E71C9E712131047 /* SPiDRequest.m in Sources */,
 				53989FC31607199A00CB1BDD /* SPiDLoginViewController.m in Sources */,
 				E304E8B07F0AB36216D2DCF4 /* SPiDMainViewController.m in Sources */,
-				E304EA1BDEB35A07C930E74D /* SPiDAuthorizationRequest.m in Sources */,
-				E304E39CA9CD8D4F4D912D82 /* SPiDAccessToken.m in Sources */,
-				E304E0B5D79EFFA5427E6994 /* SPiDResponse.m in Sources */,
-				E304E49BFFFA328E63605B7A /* SPiDKeychainWrapper.m in Sources */,
-				E304E00E87C914FDFD2390A5 /* NSError+SPiDError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,6 +1017,16 @@
 			isa = PBXTargetDependency;
 			target = 532B21E716AD5786000DBA55 /* SPiDNativeApp */;
 			targetProxy = 532B220816AD5786000DBA55 /* PBXContainerItemProxy */;
+		};
+		532B223E16AD88C3000DBA55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
+			targetProxy = 532B223D16AD88C3000DBA55 /* PBXContainerItemProxy */;
+		};
+		534D651E16AD893000088B3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
+			targetProxy = 534D651D16AD893000088B3D /* PBXContainerItemProxy */;
 		};
 		537D220715FF224C000ABCA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1160,6 +1178,7 @@
 				INFOPLIST_FILE = "SPiDNativeApp/SPiDNativeApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1177,6 +1196,7 @@
 				INFOPLIST_FILE = "SPiDNativeApp/SPiDNativeApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1431,6 +1451,7 @@
 				532B21E016AD5737000DBA55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		532B21E116AD5737000DBA55 /* Build configuration list for PBXNativeTarget "SPiDFacebookAppTests" */ = {
 			isa = XCConfigurationList;
@@ -1439,6 +1460,7 @@
 				532B21E316AD5737000DBA55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		532B221316AD5787000DBA55 /* Build configuration list for PBXNativeTarget "SPiDNativeApp" */ = {
 			isa = XCConfigurationList;
@@ -1447,6 +1469,7 @@
 				532B221516AD5787000DBA55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		532B221616AD5787000DBA55 /* Build configuration list for PBXNativeTarget "SPiDNativeAppTests" */ = {
 			isa = XCConfigurationList;
@@ -1455,6 +1478,7 @@
 				532B221816AD5787000DBA55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5365DB2F1615E9B1000AA6BB /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;

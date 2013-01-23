@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "SPiDNativeAppDelegate.h"
 
 @implementation MainViewController {
 
@@ -62,8 +63,8 @@
         [alertView show];
     } else {
         [self showLoginAlert:@"Logging in using SPiD\nPlease Wait..."];
-        //SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
-        //[appDelegate loginWithUsername:username andPassword:password];
+        SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate loginWithUsername:username andPassword:password];
     }
 }
 
