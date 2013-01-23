@@ -60,6 +60,18 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
++ (SPiDRequest *)getRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [[self alloc] initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:completionHandler];
+}
+
++ (SPiDRequest *)postRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [[self alloc] initPostRequestWithPath:requestPath andHTTPBody:body andCompletionHandler:completionHandler];
+}
+
++ (SPiDRequest *)requestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [[self alloc] initRequestWithPath:requestPath andHTTPMethod:method andHTTPBody:body andCompletionHandler:completionHandler];
+}
+
 - (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:completionHandler];
 }
@@ -98,6 +110,15 @@
             body = [httpBody stringByAppendingFormat:@"oauth_token=%@", accessToken.accessToken];
         }
     }
+
+    [self startRequestWithURL:urlStr andBody:body];
+}
+
+- (void)startRequest {
+    [self startRequestWithURL:[url absoluteString] andBody:httpBody];
+}
+
+- (void)startRequestWithURL:(NSString *)urlStr andBody:(NSString *)body {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:httpMethod];
 
@@ -108,6 +129,7 @@
     }
     receivedData = [[NSMutableData alloc] init];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
 }
 
 #pragma mark Private methods

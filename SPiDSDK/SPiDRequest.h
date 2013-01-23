@@ -27,6 +27,13 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
+
++ (SPiDRequest *)getRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
++ (SPiDRequest *)postRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
++ (SPiDRequest *)requestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
 /** Creates a SPiD GET request
 
  @param requestPath API path for GET request
@@ -59,6 +66,8 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
  @param accessToken The access token to use with the request
 */
 - (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken;
+
+- (void)startRequest;
 
 // TODO: Should have retry method
 
