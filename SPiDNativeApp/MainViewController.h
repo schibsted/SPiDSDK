@@ -14,6 +14,7 @@
 @property(strong, nonatomic) UITextField *usernameTextField;
 @property(strong, nonatomic) UITextField *passwordTextField;
 @property(strong, nonatomic) UIButton *loginButton;
+@property(strong, nonatomic) UIButton *signupButton;
 @property(strong, nonatomic) UIAlertView *alertView;
 
 - (void)dismissLoginAlert;

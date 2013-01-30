@@ -17,29 +17,48 @@
 @synthesize usernameTextField;
 @synthesize passwordTextField;
 @synthesize loginButton;
+@synthesize signupButton;
 @synthesize alertView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"SPiD"];
-    [self view].backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
+    self.title = @"SPiD";
+    self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
 
+    // Dismiss keyboard when user taps the view
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [[self view] addGestureRecognizer:tapGestureRecognizer];
 
+    // Put everything in a scrollview
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    scrollView.alwaysBounceVertical = YES;
+
+    // Login/password tableview
     loginTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 110) style:UITableViewStyleGrouped];
     loginTableView.dataSource = self;
-    [loginTableView setBackgroundView:nil];
-    [self.view addSubview:loginTableView];
+    loginTableView.backgroundView = nil;
+    loginTableView.scrollEnabled = NO;
+    [scrollView addSubview:loginTableView];
 
-    loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];//UIButtonTypeCustom
+    loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginButton.frame = CGRectMake(35, 130, 250, 43);
     [loginButton setTitle:@"Login" forState:UIControlStateNormal];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(loginToSPiD:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
+    [scrollView addSubview:loginButton];
+
+    signupButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    signupButton.frame = CGRectMake(35, 180, 250, 43);
+    [signupButton setTitle:@"New user?" forState:UIControlStateNormal];
+    [signupButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signupButton setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+    [signupButton addTarget:self action:@selector(showWebViewWithContent:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:signupButton];
+
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:scrollView];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -106,12 +125,10 @@
 
 // UITableView delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return 2;
 }
 
