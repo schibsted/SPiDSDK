@@ -11,8 +11,8 @@
 
 @interface SPiDTokenRequest : SPiDRequest
 
-+ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler;
 
-+ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username andPassword:(NSString *)password andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username andPassword:(NSString *)password andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler;
 
 @end

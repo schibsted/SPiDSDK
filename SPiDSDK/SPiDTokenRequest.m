@@ -7,17 +7,32 @@
 //
 
 #import "SPiDTokenRequest.h"
+#import "NSError+SPiDError.h"
+#import "SPiDAccessToken.h"
 
-@implementation SPiDTokenRequest
+@implementation SPiDTokenRequest {
+@private
 
-+ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    NSDictionary *postData = [self clientTokenPostData];
-    return (SPiDTokenRequest *) [self postRequestWithPath:@"/oauth/token" andHTTPBody:postData andCompletionHandler:completionHandler];
+    void(^_authCompletionHandler)(NSError *error);
+
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username andPassword:(NSString *)password andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    NSDictionary *postData = [self userTokenPostDataWithUsername:username andPassword:password];
-    return (SPiDTokenRequest *) [self postRequestWithPath:@"/oauth/token" andHTTPBody:postData andCompletionHandler:completionHandler];
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
+    self = [self initPostRequestWithPath:requestPath andHTTPBody:body andCompletionHandler:nil];
+    _authCompletionHandler = authCompletionHandler;
+    return self;
+}
+
++ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
+    NSDictionary *postData = [self clientTokenPostData];
+    SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" andHTTPBody:postData andAuthCompletionHandler:completionHandler];
+    return request;
+}
+
++ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username andPassword:(NSString *)password andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
+    NSDictionary *postData = [self clientTokenPostData];
+    SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" andHTTPBody:postData andAuthCompletionHandler:authCompletionHandler];
+    return request;
 }
 
 + (NSDictionary *)clientTokenPostData {
@@ -38,6 +53,36 @@
     [data setValue:username forKey:@"username"];
     [data setValue:password forKey:@"password"];
     return data;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSError *jsonError = nil;
+    NSDictionary *jsonObject = nil;
+    SPiDDebugLog(@"Response data: %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
+    if ([receivedData length] > 0) {
+        jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
+    } else {
+        _authCompletionHandler(nil); // NSERROR empty response
+    }
+
+    if (!jsonError) {
+        if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
+            NSError *error = [NSError errorFromJSONData:jsonObject];
+            _authCompletionHandler(error);
+        } else if (receivedData) {
+            SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
+            [[SPiDClient sharedInstance] setAccessToken:accessToken];
+            _authCompletionHandler(nil);
+        }
+    } else {
+        SPiDDebugLog(@"Received jsonerror: %@", [jsonError description]);
+        _authCompletionHandler(jsonError);
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
+    _authCompletionHandler(error);
 }
 
 @end
