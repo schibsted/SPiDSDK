@@ -69,4 +69,6 @@
 */
 - (BOOL)hasTokenExpired;
 
+- (BOOL)isClientToken;
+
 @end

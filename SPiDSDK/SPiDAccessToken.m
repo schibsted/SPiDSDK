@@ -42,7 +42,6 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     if (expiresIn) {
         expiresAt = [NSDate dateWithTimeIntervalSinceNow:[expiresIn integerValue]];
     }
-
     return [self initWithUserID:userID andAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
 }
 
@@ -63,6 +62,10 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 
 - (BOOL)hasTokenExpired {
     return ([[NSDate date] earlierDate:[self expiresAt]] == [self expiresAt]);
+}
+
+- (BOOL)isClientToken {
+    return _userID == nil;
 }
 
 @end
