@@ -42,17 +42,7 @@
 
 @end
 
-@implementation SPiDRequest {
-@private
-    NSURL *url;
-    NSString *httpMethod;
-    NSString *httpBody;
-    NSMutableData *receivedData;
-
-
-    void (^completionHandler)(SPiDResponse *response);
-
-}
+@implementation SPiDRequest
 
 @synthesize retryCount = _retryCount;
 

@@ -19,7 +19,16 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 @class SPiDAccessToken;
 @class SPiDResponse;
 
-@interface SPiDRequest : NSObject <NSURLConnectionDelegate>
+@interface SPiDRequest : NSObject <NSURLConnectionDelegate> {
+@protected
+    NSURL *url;
+    NSString *httpMethod;
+    NSString *httpBody;
+    NSMutableData *receivedData;
+
+    void (^completionHandler)(SPiDResponse *response);
+
+}
 
 @property(nonatomic) NSInteger retryCount;
 
