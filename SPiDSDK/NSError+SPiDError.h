@@ -64,6 +64,7 @@ enum {
     SPiDOAuth2ExpiredTokenErrorCode = -1012,
 
     SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020, // Grant type error
+    SPiDOAuth2InvalidUserCredentialsErrorCode = -1020, // Grant type error
 
     SPiDJSONParseErrorCode = -1030, // JSON Parse error
 

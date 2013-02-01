@@ -20,9 +20,14 @@
     if ([[dictionary objectForKey:@"error"] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
         errorString = [errorDict objectForKey:@"type"];
-        errorDescription = [errorDict objectForKey:@"description"];
         originalErrorCode = [[errorDict objectForKey:@"code"] integerValue];
         errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+        if ([[errorDict objectForKey:@"description"] isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *descDict = [errorDict objectForKey:@"description"];
+            errorDescription = [[descDict allValues] objectAtIndex:0];
+        } else {
+            errorDescription = [errorDict objectForKey:@"description"];
+        }
     } else {
         errorString = [dictionary objectForKey:@"error"];
         errorDescription = [dictionary objectForKey:@"error_description"];
