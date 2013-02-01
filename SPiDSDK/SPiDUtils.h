@@ -33,4 +33,8 @@
  */
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key;
 
+// Based on RFC 2822
++ (BOOL)validateEmail:(NSString *)email;
+
+
 @end
