@@ -99,6 +99,8 @@
         errorCode = SPiDAPIExceptionErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"UserAbortedLogin"] == NSOrderedSame) {
         errorCode = SPiDUserAbortedLogin;
+    } else if ([errorString caseInsensitiveCompare:@"unverified_user"] == NSOrderedSame) {
+        errorCode = SPiDOAuth2UnverifiedUserErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"invalid_user_credentials"] == NSOrderedSame) {
         errorCode = SPiDOAuth2InvalidUserCredentialsErrorCode;
     }
