@@ -64,11 +64,13 @@ enum {
     SPiDOAuth2ExpiredTokenErrorCode = -1012,
 
     SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020, // Grant type error
-    SPiDOAuth2InvalidUserCredentialsErrorCode = -1020, // Grant type error
+    SPiDOAuth2InvalidUserCredentialsErrorCode = -1030,
 
-    SPiDJSONParseErrorCode = -1030, // JSON Parse error
+    SPiDInvalidEmailAddress = -1050,
+    SPiDInvalidPassword = -1051,
 
     SPiDUserAbortedLogin = -1100,
+    SPiDJSONParseErrorCode = -1200, // JSON Parse error
 
     SPiDAPIExceptionErrorCode = 404
 
