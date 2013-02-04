@@ -24,15 +24,16 @@
             [self setRawJSON:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
             [self setMessage:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
-                [self setError:[self error]];
+                [self setError:jsonError];
                 SPiDDebugLog(@"JSON parse error: %@", [[self error] description]);
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
                     [self setError:[NSError errorFromJSONData:[self message]]];
                 } // else everything ok
             }
-        } // TODO: if message is empty?
-
+        } else {
+            [self setError:[NSError apiErrorWithCode:SPiDAPIExceptionErrorCode description:@"Recevied empty response" reason:@"ApiException"]];
+        }
     }
     return self;
 }
@@ -43,5 +44,9 @@
         [self setError:error];
     }
     return self;
+}
+
++ (id)responseWithError:(NSError *)error {
+    return [[self alloc] initWithError:error];
 }
 @end

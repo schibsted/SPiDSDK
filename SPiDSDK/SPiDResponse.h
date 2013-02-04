@@ -44,4 +44,7 @@
 
 // list or
 - (id)initWithError:(NSError *)error;
+
++ (id)responseWithError:(NSError *)error;
+
 @end
