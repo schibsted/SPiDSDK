@@ -30,7 +30,7 @@
 }
 
 + (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username andPassword:(NSString *)password andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
-    NSDictionary *postData = [self clientTokenPostData];
+    NSDictionary *postData = [self userTokenPostDataWithUsername:username andPassword:password];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" andHTTPBody:postData andAuthCompletionHandler:authCompletionHandler];
     return request;
 }
@@ -62,7 +62,7 @@
     if ([receivedData length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     } else {
-        _authCompletionHandler(nil); // NSERROR empty response
+        _authCompletionHandler([NSError oauth2ErrorWithCode:SPiDAPIExceptionErrorCode description:@"Recevied empty response" reason:@"ApiException"]);
     }
 
     if (!jsonError) {
