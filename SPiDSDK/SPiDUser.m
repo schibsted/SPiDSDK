@@ -43,14 +43,14 @@
 
 
 - (void)accountRequestWithEmail:(NSString *)email andPassword:(NSString *)password andCompletionHandler:(void (^)(NSError *))completionHandler {
-    NSDictionary *postBody = [self userTokenPostDataWithUsername:email andPassword:password];
-    SPiDRequest *request = [SPiDRequest postRequestWithPath:@"/api/2/user" andHTTPBody:postBody andCompletionHandler:^(SPiDResponse *response) {
+    NSDictionary *postBody = [self userPostDataWithUsername:email andPassword:password];
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"user" andHTTPBody:postBody andCompletionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
     }];
     [request startRequestWithAccessToken:[[SPiDClient sharedInstance] getAccessToken]];
 }
 
-- (NSDictionary *)userTokenPostDataWithUsername:(NSString *)username andPassword:(NSString *)password {
+- (NSDictionary *)userPostDataWithUsername:(NSString *)username andPassword:(NSString *)password {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:username forKey:@"email"];
     [data setValue:password forKey:@"password"];
