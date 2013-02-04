@@ -22,9 +22,9 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-/** Creates a `SPiDAuthorizationRequest` and and setups completionHandler
+/** Creates a `SPiDAuthorizationRequest` and and setups _completionHandler
  
- @param completionHandler Completion handler that will be run after request is completed
+ @param _completionHandler Completion handler that will be run after request is completed
  @return Instance of `SPiDAuthorizationRequest`
 */
 - (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))completionHandler;
@@ -34,6 +34,8 @@
  This causes a redirect to Safari that will redirect back to the app by calling `application:openURL:sourceApplication:annotation:`
 */
 - (void)authorizeWithBrowserRedirect;
+
+- (void)forgotPasswordWithBrowserRedirect;
 
 /** Tries to refresh the access token
 

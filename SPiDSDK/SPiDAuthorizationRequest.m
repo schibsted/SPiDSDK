@@ -54,7 +54,7 @@ static NSString *const SPiDForceKey = @"force";
 
 /** 'NSURLConnectionDelegate' method
  
- Sent as a connection loads data incrementally and concatenates the data to the private instance variable 'receivedData'.
+ Sent as a connection loads data incrementally and concatenates the data to the private instance variable '_receivedData'.
  
  @param connection The connection sending the message.
  @param data The newly available data.
@@ -128,6 +128,13 @@ static NSString *const SPiDForceKey = @"force";
     SPiDDebugLog(@"Request: %@", [[self requestURL] absoluteString]);
     [[UIApplication sharedApplication] openURL:[self requestURL]];
 }
+
+- (void)forgotPasswordWithBrowserRedirect {
+    [self setRequestURL:[[SPiDClient sharedInstance] lostPasswordURL]];
+    SPiDDebugLog(@"Request: %@", [[self requestURL] absoluteString]);
+    [[UIApplication sharedApplication] openURL:[self requestURL]];
+}
+
 
 - (UIWebView *)authorizeWithWebView {
     NSString *url = [[self generateAuthorizationURL] absoluteString];
@@ -227,7 +234,7 @@ static NSString *const SPiDForceKey = @"force";
         } else if ([urlString hasSuffix:@"logout"]) {
             completionHandler(nil, nil);
         } /*else if ([urlString hasSuffix:@"failure"]) {
-            completionHandler(nil, error);
+            _completionHandler(nil, error);
         }*/
         return YES;
     }
@@ -327,7 +334,7 @@ static NSString *const SPiDForceKey = @"force";
                 completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
             }
         } /*else if ([urlString hasSuffix:@"failure"]) {
-            completionHandler(nil, [NSError oauth2ErrorWithString:]);
+            _completionHandler(nil, [NSError oauth2ErrorWithString:]);
             return NO;
         }*/
         return NO;
