@@ -16,6 +16,7 @@
 @class SPiDRequest;
 
 static NSString const *defaultAPIVersionSPiD = @"2";
+static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 // debug print used by SPiDSDK
 #ifdef DEBUG
@@ -47,6 +48,9 @@ Defaults to clientID
 
 /** Client secret provided by SPiD  */
 @property(strong, nonatomic) NSString *clientSecret;
+
+/** Signing secret provided by SPiD  */
+@property(strong, nonatomic) NSString *sigSecret;
 
 /** App URL schema
 
@@ -132,10 +136,12 @@ Defaults to clientID
  Redirects to safari to get code and then uses this to obtain a access token. Any exsisting access token will be logged out.
  The access token is then saved to keychain
 
- @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`. The receiver must also check if a error was returned to the completionHandler.
- @param completionHandler Run after authorization is completed
+ @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`. The receiver must also check if a error was returned to the _completionHandler.
+ @param _completionHandler Run after authorization is completed
  */
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler;
+
+- (void)forgotPasswordWithBrowserRedirect;
 
 /** Logout from SPiD
 
@@ -143,8 +149,8 @@ Defaults to clientID
  Redirects to safari to logout from SPiD and remove cookie.
  Also removes access token from keychain
 
- @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
- @param completionHandler Run after logout is completed
+ @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.
+ @param _completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -156,8 +162,8 @@ Defaults to clientID
  Logout from SPiD without redirect to Safari, cookie will not be removed
  Also removes access token from keychain
 
- @warning `SPiDClient` has to be logged in before this call .The receiver must also check if a error was returned to the completionHandler.
- @param completionHandler Run after logout is completed
+ @warning `SPiDClient` has to be logged in before this call .The receiver must also check if a error was returned to the _completionHandler.
+ @param _completionHandler Run after logout is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -169,8 +175,8 @@ Defaults to clientID
  Forces refresh of access token, this is unusally not needed since SPiDSDK will automatically refresh token when needed.
  The access token is then saved to keychain
 
- @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
- @param completionHandler Run after authorization is completed
+ @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.
+ @param _completionHandler Run after authorization is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -189,7 +195,7 @@ Defaults to clientID
  Uses the `apiVersionSPiD` property to generate a SPiD API GET request using the provided path
 
  @param path Path for the request eg _/me_
- @param completionHandler Runs after request is completed
+ @param _completionHandler Runs after request is completed
  @see sharedInstance
  */
 - (void)apiGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
@@ -200,7 +206,7 @@ Defaults to clientID
 
  @param path Path for the request eg _/me_
  @param body Http body to be posted
- @param completionHandler Runs after request is completed
+ @param _completionHandler Runs after request is completed
  @see sharedInstance
  */
 - (void)apiPostRequestWithPath:(NSString *)path andBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
@@ -237,7 +243,7 @@ Defaults to clientID
 *
  @note The code is generated using the server client id and not the applications client id.
  @warning Requires that the user is authorized with SPiD
- @param completionHandler Run after request is completed
+ @param _completionHandler Run after request is completed
  */
 
 - (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
@@ -247,7 +253,7 @@ Defaults to clientID
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
 
  @warning Requires that the user is authorized with SPiD
- @param completionHandler Run after request is completed
+ @param _completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -259,7 +265,7 @@ Defaults to clientID
 
  @warning Requires that the user is authorized with SPiD
  @param userID ID for the selected user
- @param completionHandler Run after request is completed
+ @param _completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -270,7 +276,7 @@ Defaults to clientID
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
 
  @warning Requires that the user is authorized with SPiD
- @param completionHandler Run after request is completed
+ @param _completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -282,10 +288,17 @@ Defaults to clientID
 
  @warning Requires that the user is authorized with SPiD
  @param userID The userID that logins should be fetched for
- @param completionHandler Run after request is completed
+ @param _completionHandler Run after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
+
+- (void)getTermsRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
+// TODO: is get needed?
+- (SPiDAccessToken *)getAccessToken;
+
+- (void)setAccessToken:(SPiDAccessToken *)token;
 @end
