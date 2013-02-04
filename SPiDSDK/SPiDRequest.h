@@ -20,14 +20,15 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 @class SPiDResponse;
 
 @interface SPiDRequest : NSObject <NSURLConnectionDelegate> {
+@private
+    NSURL *_url;
+    NSString *_httpMethod;
+    NSString *_httpBody;
+
+    void (^_completionHandler)(SPiDResponse *response);
+
 @protected
-    NSURL *url;
-    NSString *httpMethod;
-    NSString *httpBody;
-    NSMutableData *receivedData;
-
-    void (^completionHandler)(SPiDResponse *response);
-
+    NSMutableData *_receivedData;
 }
 
 @property(nonatomic) NSInteger retryCount;
@@ -36,39 +37,32 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-
-+ (SPiDRequest *)getRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
-+ (SPiDRequest *)postRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
-+ (SPiDRequest *)requestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
 /** Creates a SPiD GET request
 
- @param requestPath API path for GET request
- @param completionHandler Completion handler run after request is finished
+ @param requestPath API path for GET request e.g. /user
+ @param _completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a SPiD POST request
 
- @param requestPath API path for POST request
+ @param requestPath API path for POST request e.g. /user
  @param body HTTP body
- @param completionHandler Completion handler run after request is finished
+ @param _completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a SPiD request
 
  @param requestPath API path for request
  @param method HTTP method for the request
  @param body HTTP body, used it method is POST
- @param completionHandler Completion handler run after request is finished
+ @param _completionHandler Completion handler run after request is finished
  @return SPiDRequest
 */
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (SPiDRequest *)requestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Runs the request
 
@@ -77,7 +71,5 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 - (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken;
 
 - (void)startRequest;
-
-// TODO: Should have retry method
 
 @end

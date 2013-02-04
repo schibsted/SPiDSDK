@@ -9,6 +9,7 @@
 #import "SPiDTokenRequest.h"
 #import "NSError+SPiDError.h"
 #import "SPiDAccessToken.h"
+#import "SPiDKeychainWrapper.h"
 
 @implementation SPiDTokenRequest {
 @private
@@ -18,7 +19,7 @@
 }
 
 - (id)initPostTokenRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
-    self = [self initPostRequestWithPath:requestPath andHTTPBody:body andCompletionHandler:nil];
+    self = [SPiDTokenRequest requestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:nil];
     _authCompletionHandler = authCompletionHandler;
     return self;
 }
@@ -58,9 +59,9 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError *jsonError = nil;
     NSDictionary *jsonObject = nil;
-    SPiDDebugLog(@"Response data: %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
-    if ([receivedData length] > 0) {
-        jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
+    SPiDDebugLog(@"Response token data: %@", [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding]);
+    if ([_receivedData length] > 0) {
+        jsonObject = [NSJSONSerialization JSONObjectWithData:_receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     } else {
         _authCompletionHandler([NSError oauth2ErrorWithCode:SPiDAPIExceptionErrorCode description:@"Recevied empty response" reason:@"ApiException"]);
     }
@@ -69,8 +70,9 @@
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
             NSError *error = [NSError errorFromJSONData:jsonObject];
             _authCompletionHandler(error);
-        } else if (receivedData) {
+        } else if (_receivedData) {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
+            [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
             [[SPiDClient sharedInstance] setAccessToken:accessToken];
             _authCompletionHandler(nil);
         }
