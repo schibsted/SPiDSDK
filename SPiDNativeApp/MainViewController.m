@@ -2,185 +2,54 @@
 //  MainViewController
 //  SPiDSDK
 //
-//  Created by mikaellindstrom on 1/21/13.
+//  Created by mikaellindstrom on 1/31/13.
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
 #import "MainViewController.h"
 #import "SPiDNativeAppDelegate.h"
+#import "SPiDClient.h"
 
-@implementation MainViewController {
 
-}
+@implementation MainViewController
 
-@synthesize loginTableView;
-@synthesize usernameTextField;
-@synthesize passwordTextField;
-@synthesize loginButton;
-@synthesize signupButton;
-@synthesize alertView;
+@synthesize logoutButton = _logoutButton;
 
-- (void)viewDidLoad {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidLoad];
-    self.title = @"SPiD";
-    self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
+    if ([[SPiDClient sharedInstance] isAuthorized]) {
+        self.title = @"SPiD";
+        self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
 
-    // Dismiss keyboard when user taps the view
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    [[self view] addGestureRecognizer:tapGestureRecognizer];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        scrollView.alwaysBounceVertical = YES;
 
-    // Put everything in a scrollview
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    scrollView.alwaysBounceVertical = YES;
+        CGFloat horizontalCenter = self.view.frame.size.width / 2;
+        self.logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        self.logoutButton.frame = CGRectMake(horizontalCenter - 145, 120, 290, 43);
+        self.logoutButton.titleLabel.shadowColor = [UIColor blackColor];
+        self.logoutButton.titleLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+        [self.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+        [self.logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.logoutButton setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+        [self.logoutButton addTarget:self action:@selector(logoutFromSPiD:) forControlEvents:UIControlEventTouchUpInside];
+        [scrollView addSubview:self.logoutButton];
 
-    // Login/password tableview
-    loginTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 110) style:UITableViewStyleGrouped];
-    loginTableView.dataSource = self;
-    loginTableView.backgroundView = nil;
-    loginTableView.scrollEnabled = NO;
-    [scrollView addSubview:loginTableView];
-
-    loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    loginButton.frame = CGRectMake(35, 130, 250, 43);
-    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [loginButton setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
-    [loginButton addTarget:self action:@selector(loginToSPiD:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:loginButton];
-
-    signupButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    signupButton.frame = CGRectMake(35, 180, 250, 43);
-    [signupButton setTitle:@"New user?" forState:UIControlStateNormal];
-    [signupButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [signupButton setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
-    [signupButton addTarget:self action:@selector(showWebViewWithContent:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:signupButton];
-
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:scrollView];
-}
-
-- (IBAction)dismissKeyboard:(id)sender {
-    [[self view] endEditing:YES];
-}
-
-- (IBAction)loginToSPiD:(id)sender {
-    NSString *username = [usernameTextField text];
-    NSString *password = [passwordTextField text];
-    if ([username length] == 0) {
-        alertView = [[UIAlertView alloc]
-                initWithTitle:@"Username is empty"
-                      message:nil delegate:nil cancelButtonTitle:@"OK"
-            otherButtonTitles:nil];
-        [alertView show];
-    } else if ([password length] == 0) {
-        alertView = [[UIAlertView alloc]
-                initWithTitle:@"Password is empty"
-                      message:nil delegate:nil cancelButtonTitle:@"OK"
-            otherButtonTitles:nil];
-        [alertView show];
+        scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+        [self.view addSubview:scrollView];
     } else {
-        [self showLoginAlert:@"Logging in using SPiD\nPlease Wait..."];
         SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
-        [appDelegate loginWithUsername:username andPassword:password];
+        [appDelegate presentLoginViewAnimated:NO];
     }
 }
 
-- (void)showLoginAlert:(NSString *)loginString {
-    alertView = [[UIAlertView alloc] initWithTitle:loginString
-                                           message:nil delegate:self
-                                 cancelButtonTitle:nil otherButtonTitles:nil];
-    [alertView show];
-
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.center = CGPointMake(alertView.bounds.size.width / 2, alertView.bounds.size.height - 50);
-    [indicator startAnimating];
-    [alertView addSubview:indicator];
-}
-
-- (void)dismissLoginAlert {
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
-}
-
-// UITextField delegate methods
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:usernameTextField]) {
-        [textField resignFirstResponder];
-        [passwordTextField becomeFirstResponder];
-    } else {
-        [textField resignFirstResponder];
-        [self loginToSPiD:textField];
-    }
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if ([textField isEqual:usernameTextField]) {
-        textField.returnKeyType = UIReturnKeyNext;
-    } else {
-        textField.returnKeyType = UIReturnKeyDone;
-    }
-}
-
-// UITableView delegate methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-
-    cell.backgroundColor = [UIColor whiteColor];
-
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 6.f, 90.f, 31.0f)];
-    [label setFont:[UIFont boldSystemFontOfSize:15]];
-
-    switch (indexPath.row) {
-        case 0:
-            label.text = @"Username";
-            usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(95.f, 6.f, 200.f, 31.f)];
-            usernameTextField.textAlignment = NSTextAlignmentLeft;
-            usernameTextField.font = [UIFont systemFontOfSize:15];
-            usernameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-            usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-            usernameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-            usernameTextField.delegate = self;
-            [cell.contentView addSubview:label];
-            [cell.contentView addSubview:usernameTextField];
-            break;
-        case 1:
-            label.text = @"Password";
-            passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(95.f, 6.f, 200.f, 31.f)];
-            passwordTextField.textAlignment = NSTextAlignmentLeft;
-            passwordTextField.font = [UIFont systemFontOfSize:15];
-            passwordTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-            passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-            passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-            passwordTextField.secureTextEntry = YES;
-            passwordTextField.delegate = self;
-            [cell.contentView addSubview:label];
-            [cell.contentView addSubview:passwordTextField];
-
-            break;
-        default:
-            break;
-    }
-    return cell;
+- (void)logoutFromSPiD:(id)sender {
+    [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *response) {
+        // TODO: this is a ugly solution
+        [self viewWillDisappear:NO];
+        [self viewWillAppear:NO];
+        [self viewDidAppear:NO];
+    }];
 }
 
 @end

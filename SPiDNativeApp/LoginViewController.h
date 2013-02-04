@@ -1,5 +1,5 @@
 //
-//  MainViewController
+//  LoginViewController
 //  SPiDSDK
 //
 //  Created by mikaellindstrom on 1/21/13.
@@ -8,15 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MainViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource>
+@interface LoginViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource>
 
 @property(strong, nonatomic) UITableView *loginTableView;
-@property(strong, nonatomic) UITextField *usernameTextField;
+@property(strong, nonatomic) UITextField *emailTextField;
 @property(strong, nonatomic) UITextField *passwordTextField;
 @property(strong, nonatomic) UIButton *loginButton;
-@property(strong, nonatomic) UIButton *signupButton;
+@property(strong, nonatomic) UIButton *signUpButton;
+@property(strong, nonatomic) UIButton *lostPasswordButton;
 @property(strong, nonatomic) UIAlertView *alertView;
-
-- (void)dismissLoginAlert;
 
 @end
