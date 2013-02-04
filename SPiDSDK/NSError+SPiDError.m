@@ -58,7 +58,13 @@
 
 
 + (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
-    return nil;
+    NSMutableDictionary *info = nil;
+    if ([description length] > 0 || [reason length] > 0) {
+        info = [NSMutableDictionary dictionaryWithCapacity:2];
+        if ([description length] > 0) [info setObject:description forKey:NSLocalizedDescriptionKey];
+        if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
+    }
+    return [self errorWithDomain:@"ApiException" code:code userInfo:info];
 }
 
 + (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString {
@@ -93,7 +99,10 @@
         errorCode = SPiDAPIExceptionErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"UserAbortedLogin"] == NSOrderedSame) {
         errorCode = SPiDUserAbortedLogin;
+    } else if ([errorString caseInsensitiveCompare:@"invalid_user_credentials"] == NSOrderedSame) {
+        errorCode = SPiDOAuth2InvalidUserCredentialsErrorCode;
     }
+
     return errorCode;
 }
 

@@ -66,8 +66,8 @@ enum {
     SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020, // Grant type error
     SPiDOAuth2InvalidUserCredentialsErrorCode = -1030,
 
-    SPiDInvalidEmailAddress = -1050,
-    SPiDInvalidPassword = -1051,
+    SPiDInvalidEmailAddressErrorCode = -1050,
+    SPiDInvalidPasswordErrorCode = -1051,
 
     SPiDUserAbortedLogin = -1100,
     SPiDJSONParseErrorCode = -1200, // JSON Parse error
