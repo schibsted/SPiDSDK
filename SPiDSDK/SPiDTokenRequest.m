@@ -10,6 +10,7 @@
 #import "NSError+SPiDError.h"
 #import "SPiDAccessToken.h"
 #import "SPiDKeychainWrapper.h"
+#import "SPiDJwt.h"
 
 @implementation SPiDTokenRequest {
 @private
@@ -36,6 +37,24 @@
     return request;
 }
 
++ (SPiDTokenRequest *)userTokenRequestWithFacebookAppID:(NSString *)appId andAccessToken:(NSString *)facebookToken andExpirationDate:(NSDate *)expirationDate andAuthCompletionHandler:(void (^)(NSError *))authCompletionHandler {
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:appId, @"iss",
+                                                                          @"authorization", @"sub",
+                                                                          [SPiDClient sharedInstance].tokenURL.absoluteString, @"aud",
+                                                                          expirationDate.description, @"exp",
+                                                                          @"facebook", @"token_type",
+                                                                          facebookToken, @"token_value",
+                                                                          nil];
+    SPiDJwt *jwt = [SPiDJwt jwtTokenWithDictionary:dictionary];
+    NSString *jwtString = jwt.encodedJwtString;
+    if (jwtString == nil) {
+        return nil; // Should not happen, throw exception
+    }
+    NSDictionary *body = [SPiDTokenRequest userTokenPostDataWithJwt:jwtString];
+    SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" andHTTPBody:body andAuthCompletionHandler:authCompletionHandler];
+    return request;
+}
+
 + (NSDictionary *)clientTokenPostData {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
@@ -53,6 +72,17 @@
     [data setValue:[client clientSecret] forKey:@"client_secret"];
     [data setValue:username forKey:@"username"];
     [data setValue:password forKey:@"password"];
+    return data;
+}
+
++ (NSDictionary *)userTokenPostDataWithJwt:(NSString *)jwtString {
+    SPiDClient *client = [SPiDClient sharedInstance];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data setValue:@"urn:ietf:params:oauth:grant-type:jwt-bearer" forKey:@"grant_type"];
+    [data setValue:client.clientSecret forKey:@"client_secret"];
+    [data setValue:client.clientID forKey:@"client_id"];
+    [data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
+    [data setValue:jwtString forKey:@"assertion"];
     return data;
 }
 
