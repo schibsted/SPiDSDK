@@ -21,6 +21,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
+		5306208B16C12440001B2A08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
+		5306208D16C13288001B2A08 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306208C16C13288001B2A08 /* FacebookSDK.framework */; };
+		5306208E16C13374001B2A08 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306208C16C13288001B2A08 /* FacebookSDK.framework */; };
+		5306209016C13650001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
+		5306209116C13650001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
+		5306209516C1372F001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
+		5306209716C1375D001B2A08 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209616C1375D001B2A08 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5306209916C13764001B2A08 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209A16C1376F001B2A08 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		53220F2816BFB13300332D65 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53220F2716BFB13300332D65 /* CoreText.framework */; };
 		532B21B516AD5737000DBA55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		532B21B616AD5737000DBA55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
@@ -81,10 +91,14 @@
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
+		E304E0AE6047B3934ABC68A6 /* FacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */; };
 		E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
 		E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */; };
 		E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E61B34D176733C911367 /* NSData+Base64.m */; };
+		E304E1EEBBDC204D1E3AB80A /* facebook-login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */; };
+		E304E31BE819293D63E28557 /* facebook-login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */; };
 		E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E9BAD5499EEFE7846D26 /* Default@2x.png */; };
+		E304E452044155187E8DB9B7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EE605678587B7175FCB0 /* MainViewController.m */; };
 		E304E52F3203DA6CB5061FAA /* NSString+Crypto.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */; };
 		E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EC34E54EE6F302C3BE2A /* red_button@2x.png */; };
 		E304E5886D575207EE4574AD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7EE2A65B25A228D8133 /* LoginViewController.m */; };
@@ -92,11 +106,13 @@
 		E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
 		E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiDError.h */; };
 		E304E62AC86C9650891094B6 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E4602FCA00B6130BF009 /* red_button.png */; };
+		E304E6640827CCA423BA6D78 /* facebook-login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E78AD685949E4766960F /* facebook-login-button-small.png */; };
 		E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */; };
 		E304E6C8D41DFF94D38EB78B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E28946789A36FF358EC0 /* SignUpViewController.m */; };
 		E304E6CE390767859B6A31AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E1D5F9987092B6438572 /* SPiDJwt.m */; };
 		E304E729715A2E316DA6D29C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E809BD21771F4972CA71 /* MainViewController.m */; };
+		E304E7AE251C3D4C8DC110D9 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E719EC65DE9788499BD0 /* red_button.png */; };
 		E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */; };
 		E304E8380C41C1C4EED2F62F /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7CA07B5345E3D5632D9 /* TermsViewController.m */; };
 		E304E8B07F0AB36216D2DCF4 /* SPiDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EA067760998928321774 /* SPiDMainViewController.m */; };
@@ -109,8 +125,10 @@
 		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
 		E304EB38611381AF6653FCE4 /* SignUpViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304ED5327F4289586BCF80C /* SignUpViewController.h */; };
 		E304EB3AAAA9C94117D0934D /* SPiDUser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E8EE461D81FA4D084AC8 /* SPiDUser.h */; };
+		E304EBD0A10A44BCB90DB07B /* facebook-login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */; };
 		E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
 		E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
+		E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E99B5C79CF60749D65AE /* red_button@2x.png */; };
 		E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */; };
 		E304EF832C7AA71DD356B2E6 /* SPiDAuthorizationRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */; };
 		E304EFAA285132C8F5AEACFD /* SPiDAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */; };
@@ -118,6 +136,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5306208916C123E1001B2A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
+			remoteInfo = SPiDSDK;
+		};
 		532B21D316AD5737000DBA55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
@@ -189,6 +214,11 @@
 
 /* Begin PBXFileReference section */
 		5306208716C082B8001B2A08 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		5306208C16C13288001B2A08 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		5306209616C1375D001B2A08 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		5306209816C13764001B2A08 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		5306209A16C1376F001B2A08 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		53220F2716BFB13300332D65 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		532B21B316AD5737000DBA55 /* SPiDFacebookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPiDFacebookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		532B21BA16AD5737000DBA55 /* SPiDFacebookApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDFacebookApp-Info.plist"; sourceTree = "<group>"; };
@@ -256,6 +286,7 @@
 		539B8468162FF8E60066EB89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E304E028433CF8954B044781 /* SPiDJwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDJwt.h; sourceTree = "<group>"; };
+		E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small@2x.png"; sourceTree = "<group>"; };
 		E304E18838B69AB7C22D2017 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E304E189CF307C539E49A2A1 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		E304E1D5F9987092B6438572 /* SPiDJwt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDJwt.m; sourceTree = "<group>"; };
@@ -265,13 +296,18 @@
 		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
 		E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Crypto.h"; sourceTree = "<group>"; };
+		E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed.png"; sourceTree = "<group>"; };
 		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E4D3494537377633CA3E /* NSError+SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiDError.h"; sourceTree = "<group>"; };
+		E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
+		E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
 		E304E61B34D176733C911367 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		E304E682B974C240DE9BC5E1 /* SPiDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUtils.m; sourceTree = "<group>"; };
 		E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAuthorizationRequest.h; sourceTree = "<group>"; };
+		E304E719EC65DE9788499BD0 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDResponse.h; sourceTree = "<group>"; };
+		E304E78AD685949E4766960F /* facebook-login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small.png"; sourceTree = "<group>"; };
 		E304E7CA07B5345E3D5632D9 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		E304E7EE2A65B25A228D8133 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E304E809BD21771F4972CA71 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -280,17 +316,21 @@
 		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDKeychainWrapper.m; sourceTree = "<group>"; };
 		E304E8EE461D81FA4D084AC8 /* SPiDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUser.h; sourceTree = "<group>"; };
 		E304E93DD2773BD78706B78C /* SPiDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUser.m; sourceTree = "<group>"; };
+		E304E99B5C79CF60749D65AE /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
 		E304E9BAD5499EEFE7846D26 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
 		E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAuthorizationRequest.m; sourceTree = "<group>"; };
 		E304EC34E54EE6F302C3BE2A /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
+		E304EC3BEEF375752E9E16CE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E304ED5327F4289586BCF80C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		E304EDA55B1715BF5E738193 /* SPiDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDResponse.m; sourceTree = "<group>"; };
+		E304EE605678587B7175FCB0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
 		E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenRequest.h; sourceTree = "<group>"; };
+		E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
 		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDKeychainWrapper.h; sourceTree = "<group>"; };
 		E304EF927327F5217C9FBBD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E304EFCE17629039E0973340 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
@@ -302,9 +342,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */,
+				5306209916C13764001B2A08 /* AdSupport.framework in Frameworks */,
+				5306209716C1375D001B2A08 /* Social.framework in Frameworks */,
+				5306208B16C12440001B2A08 /* Security.framework in Frameworks */,
+				5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */,
 				532B21B516AD5737000DBA55 /* UIKit.framework in Frameworks */,
 				532B21B616AD5737000DBA55 /* Foundation.framework in Frameworks */,
 				532B21B716AD5737000DBA55 /* CoreGraphics.framework in Frameworks */,
+				5306208E16C13374001B2A08 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +394,7 @@
 				534D652116AD937F00088B3D /* Security.framework in Frameworks */,
 				539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */,
 				537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */,
+				5306208D16C13288001B2A08 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +439,10 @@
 				532B21C116AD5737000DBA55 /* SPiDFacebookAppDelegate.h */,
 				532B21C216AD5737000DBA55 /* SPiDFacebookAppDelegate.m */,
 				532B21B916AD5737000DBA55 /* Supporting Files */,
+				E304EE605678587B7175FCB0 /* MainViewController.m */,
+				E304EC3BEEF375752E9E16CE /* MainViewController.h */,
+				E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */,
+				E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */,
 			);
 			path = SPiDFacebookApp;
 			sourceTree = "<group>";
@@ -406,6 +457,12 @@
 				532B21C416AD5737000DBA55 /* Default.png */,
 				532B21C616AD5737000DBA55 /* Default@2x.png */,
 				532B21C816AD5737000DBA55 /* Default-568h@2x.png */,
+				E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */,
+				E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */,
+				E304E78AD685949E4766960F /* facebook-login-button-small.png */,
+				E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */,
+				E304E719EC65DE9788499BD0 /* red_button.png */,
+				E304E99B5C79CF60749D65AE /* red_button@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -485,7 +542,9 @@
 		537D21E415FF224C000ABCA6 = {
 			isa = PBXGroup;
 			children = (
-				53220F2716BFB13300332D65 /* CoreText.framework */,
+				5306209A16C1376F001B2A08 /* Accounts.framework */,
+				5306209816C13764001B2A08 /* AdSupport.framework */,
+				5306209616C1375D001B2A08 /* Social.framework */,
 				537D21F415FF224C000ABCA6 /* SPiDSDK */,
 				537D220915FF224C000ABCA6 /* SPiDSDKTests */,
 				537D222415FF2374000ABCA6 /* SPiDExampleApp */,
@@ -519,6 +578,9 @@
 		537D21F115FF224C000ABCA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */,
+				5306208C16C13288001B2A08 /* FacebookSDK.framework */,
+				53220F2716BFB13300332D65 /* CoreText.framework */,
 				539B8468162FF8E60066EB89 /* UIKit.framework */,
 				E304ECEC953C2E9C143FD9E2 /* Security.framework */,
 				53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */,
@@ -657,6 +719,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5306208A16C123E1001B2A08 /* PBXTargetDependency */,
 			);
 			name = SPiDFacebookApp;
 			productName = SPiDFacebookApp;
@@ -835,6 +898,13 @@
 				532B21C516AD5737000DBA55 /* Default.png in Resources */,
 				532B21C716AD5737000DBA55 /* Default@2x.png in Resources */,
 				532B21C916AD5737000DBA55 /* Default-568h@2x.png in Resources */,
+				E304E31BE819293D63E28557 /* facebook-login-button-small-pressed.png in Resources */,
+				E304EBD0A10A44BCB90DB07B /* facebook-login-button-small-pressed@2x.png in Resources */,
+				E304E6640827CCA423BA6D78 /* facebook-login-button-small.png in Resources */,
+				E304E1EEBBDC204D1E3AB80A /* facebook-login-button-small@2x.png in Resources */,
+				5306209516C1372F001B2A08 /* FacebookSDKResources.bundle in Resources */,
+				E304E7AE251C3D4C8DC110D9 /* red_button.png in Resources */,
+				E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +913,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				532B21DA16AD5737000DBA55 /* InfoPlist.strings in Resources */,
+				5306209016C13650001B2A08 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,6 +927,7 @@
 				532B21FE16AD5786000DBA55 /* Default-568h@2x.png in Resources */,
 				E304E62AC86C9650891094B6 /* red_button.png in Resources */,
 				E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */,
+				5306209116C13650001B2A08 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +1047,8 @@
 			files = (
 				532B21BF16AD5737000DBA55 /* main.m in Sources */,
 				532B21C316AD5737000DBA55 /* SPiDFacebookAppDelegate.m in Sources */,
+				E304E452044155187E8DB9B7 /* MainViewController.m in Sources */,
+				E304E0AE6047B3934ABC68A6 /* FacebookLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1132,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5306208A16C123E1001B2A08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
+			targetProxy = 5306208916C123E1001B2A08 /* PBXContainerItemProxy */;
+		};
 		532B21D416AD5737000DBA55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 532B21B216AD5737000DBA55 /* SPiDFacebookApp */;
@@ -1148,11 +1227,19 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookApp/SPiDFacebookApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1165,11 +1252,19 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookApp/SPiDFacebookApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1370,9 +1465,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/SPiDSDK.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1382,9 +1481,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/SPiDSDK.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1433,6 +1536,7 @@
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1455,6 +1559,7 @@
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
