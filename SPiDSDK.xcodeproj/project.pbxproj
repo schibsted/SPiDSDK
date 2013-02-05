@@ -26,7 +26,6 @@
 		5306208D16C13288001B2A08 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306208C16C13288001B2A08 /* FacebookSDK.framework */; };
 		5306208E16C13374001B2A08 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306208C16C13288001B2A08 /* FacebookSDK.framework */; };
 		5306209016C13650001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
-		5306209116C13650001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
 		5306209516C1372F001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
 		5306209716C1375D001B2A08 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209616C1375D001B2A08 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5306209916C13764001B2A08 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -927,7 +926,6 @@
 				532B21FE16AD5786000DBA55 /* Default-568h@2x.png in Resources */,
 				E304E62AC86C9650891094B6 /* red_button.png in Resources */,
 				E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */,
-				5306209116C13650001B2A08 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
