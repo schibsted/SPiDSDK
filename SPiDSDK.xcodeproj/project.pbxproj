@@ -541,9 +541,6 @@
 		537D21E415FF224C000ABCA6 = {
 			isa = PBXGroup;
 			children = (
-				5306209A16C1376F001B2A08 /* Accounts.framework */,
-				5306209816C13764001B2A08 /* AdSupport.framework */,
-				5306209616C1375D001B2A08 /* Social.framework */,
 				537D21F415FF224C000ABCA6 /* SPiDSDK */,
 				537D220915FF224C000ABCA6 /* SPiDSDKTests */,
 				537D222415FF2374000ABCA6 /* SPiDExampleApp */,
@@ -577,6 +574,9 @@
 		537D21F115FF224C000ABCA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5306209A16C1376F001B2A08 /* Accounts.framework */,
+				5306209816C13764001B2A08 /* AdSupport.framework */,
+				5306209616C1375D001B2A08 /* Social.framework */,
 				5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */,
 				5306208C16C13288001B2A08 /* FacebookSDK.framework */,
 				53220F2716BFB13300332D65 /* CoreText.framework */,
