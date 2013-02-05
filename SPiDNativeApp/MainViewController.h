@@ -12,4 +12,5 @@
 
 @property(strong, nonatomic) UIButton *logoutButton;
 
+@property(nonatomic, strong) UILabel *userLabel;
 @end

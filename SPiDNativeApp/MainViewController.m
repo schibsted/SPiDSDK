@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDClient.h"
+#import "SPiDResponse.h"
 
 
 @implementation MainViewController
@@ -25,6 +26,13 @@
         scrollView.alwaysBounceVertical = YES;
 
         CGFloat horizontalCenter = self.view.frame.size.width / 2;
+        self.userLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalCenter - 145, 50, 290, 43)];
+        self.userLabel.backgroundColor = [UIColor clearColor];
+        self.userLabel.textColor = [UIColor blackColor];
+        self.userLabel.textAlignment = (NSTextAlignment) UITextAlignmentCenter;
+        self.userLabel.text = @"";
+        [self.view addSubview:self.userLabel];
+
         self.logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.logoutButton.frame = CGRectMake(horizontalCenter - 145, 120, 290, 43);
         self.logoutButton.titleLabel.shadowColor = [UIColor blackColor];
@@ -37,10 +45,26 @@
 
         scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
         [self.view addSubview:scrollView];
+
+        [self getUserName];
     } else {
         SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
         [appDelegate presentLoginViewAnimated:NO];
+        self.userLabel.text = @"";
     }
+}
+
+- (void)getUserName {
+    SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
+    [[SPiDClient sharedInstance] getUserRequestWithCurrentUserAndCompletionHandler:^(SPiDResponse *response) {
+        if (![response error]) {
+            [appDelegate dismissAlertView];
+            NSDictionary *data = [[response message] objectForKey:@"data"];
+            NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
+            [[self userLabel] setText:user];
+        }
+    }];
 }
 
 - (void)logoutFromSPiD:(id)sender {

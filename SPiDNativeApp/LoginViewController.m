@@ -116,7 +116,7 @@
             NSString *title;
             if (error == nil) {
                 [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-                title = @"Successfully logged in";
+                return;
             } else if ([error code] == SPiDOAuth2UnverifiedUserErrorCode) {
                 title = @"Unverified user, please check your email";
             } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
