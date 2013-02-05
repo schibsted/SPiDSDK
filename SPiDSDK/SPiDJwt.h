@@ -25,6 +25,11 @@ static NSString *const JSON_WEB_TOKEN_TYP_JWT = @"JWT";
 
 // SPiD Specific
 @property(strong, nonatomic) NSString *tokenType;  // type of token (facebook)
-@property(strong, nonatomic) NSString *tokenValue; // the actual token
+@property(strong, nonatomic) NSString *tokenValue;
+
++ (id)jwtTokenWithDictionary:(NSDictionary *)dictionary;
+
+- (NSString *)encodedJwtString;
+// the actual token
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "SPiDJwt.h"
-#import "NSData+Base64.h"
 #import "SPiDClient.h"
+#import "NSData+Base64.h"
 #import "NSString+Crypto.h"
 
 @implementation SPiDJwt
@@ -20,8 +20,23 @@
 @synthesize tokenType = _tokenType;
 @synthesize tokenValue = _tokenValue;
 
++ (id)jwtTokenWithDictionary:(NSDictionary *)dictionary {
+    SPiDJwt *jwtToken = [[SPiDJwt alloc] init];
+    jwtToken.iss = [dictionary objectForKey:@"iss"];
+    jwtToken.sub = [dictionary objectForKey:@"sub"];
+    jwtToken.aud = [dictionary objectForKey:@"aud"];
+    jwtToken.exp = [dictionary objectForKey:@"exp"];
+    jwtToken.tokenType = [dictionary objectForKey:@"token_type"];
+    jwtToken.tokenValue = [dictionary objectForKey:@"token_value"];
+    return jwtToken;
+}
+
 - (NSString *)encodedJwtString {
     if (![self validateJwt]) {
+        return nil;
+    }
+    if ([[SPiDClient sharedInstance] sigSecret] == nil) {
+        SPiDDebugLog(@"No signing secret found, cannot use JWT");
         return nil;
     }
 
@@ -76,7 +91,7 @@
         SPiDDebugLog(@"JWT is missing value for token type");
         return NO;
     }
-    if (self.tokenValue) {
+    if (self.tokenValue == nil) {
         SPiDDebugLog(@"JWT is missing value for token value");
         return NO;
     }
