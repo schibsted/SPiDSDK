@@ -13,14 +13,14 @@ static NSString *const ServerURL = @"your-spidserver-url";
 
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDTokenRequest.h"
-#import "SPiDResponse.h"
-#import "NSError+SPiDError.h"
+#import "MainViewController.h"
 
 @implementation SPiDNativeAppDelegate
 
 @synthesize window = _window;
-@synthesize navigationController = _navigationController;
-@synthesize mainView = _mainView;
+@synthesize rootNavigationController = _rootNavigationController;
+@synthesize authNavigationController = _authNavigationController;
+@synthesize alertView = _alertView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SPiDClient sharedInstance] setClientID:ClientID
@@ -28,34 +28,55 @@ static NSString *const ServerURL = @"your-spidserver-url";
                              andAppURLScheme:AppURLScheme
                                 andServerURL:[NSURL URLWithString:ServerURL]];
 
-    [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
-    [self setMainView:[[MainViewController alloc] init]];
-    [self setNavigationController:[[UINavigationController alloc] initWithRootViewController:[self mainView]]];
-    [[self window] setRootViewController:[self navigationController]];
+    MainViewController *mainViewController = [[MainViewController alloc] init];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.rootNavigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    self.window.rootViewController = self.rootNavigationController;
 
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 
-- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password {
-    SPiDTokenRequest *tokenRequest = [SPiDTokenRequest nativeTokenRequestWithUsername:username andPassword:password andCompletionHandler:^(SPiDResponse *response) {
-        [[self mainView] dismissLoginAlert];
-        NSString *title = @"";
-
-        if (![response error]) {
-            title = @"Successfully logged in";
-        } else if ([[response error] code] == SPiDOAuth2InvalidClientCredentialsErrorCode) {
-            title = @"Invalid client credentials";
-        } else {
-            title = [NSString stringWithFormat:@"Received error: %@", [[[response error] userInfo] objectForKey:NSLocalizedFailureReasonErrorKey]];
-        }
-
-        UIAlertView *alertView = [[UIAlertView alloc]
-                initWithTitle:title
-                      message:nil delegate:nil cancelButtonTitle:@"OK"
-            otherButtonTitles:nil];
-        [alertView show];
-    }];
-    [tokenRequest startRequest];
+- (void)presentLoginViewAnimated:(BOOL)animated {
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    self.authNavigationController = [[UINavigationController alloc] init];
+    [self.authNavigationController pushViewController:loginViewController animated:NO];
+    [self.rootNavigationController presentViewController:self.authNavigationController animated:animated completion:nil];
 }
+
+
+- (void)showActivityIndicatorAlert:(NSString *)title {
+    if (self.alertView) {
+        [self dismissAlertView];
+    }
+
+    self.alertView = [[UIAlertView alloc] initWithTitle:title
+                                                message:nil delegate:self
+                                      cancelButtonTitle:nil otherButtonTitles:nil];
+    [self.alertView show];
+
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
+    [indicator startAnimating];
+    [self.alertView addSubview:indicator];
+}
+
+- (void)showAlertViewWithTitle:(NSString *)title {
+    if (self.alertView) {
+        [self dismissAlertView];
+    }
+
+    self.alertView = [[UIAlertView alloc]
+            initWithTitle:title
+                  message:nil delegate:nil cancelButtonTitle:@"OK"
+        otherButtonTitles:nil];
+    [self.alertView show];
+}
+
+- (void)dismissAlertView {
+    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+    self.alertView = nil;
+}
+
 @end
