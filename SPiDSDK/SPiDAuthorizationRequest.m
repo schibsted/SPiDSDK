@@ -100,7 +100,7 @@ static NSString *const SPiDForceKey = @"force";
     NSString *code;
     NSMutableData *receivedData;
 
-    void (^completionHandler)(SPiDAccessToken *accessToken, NSError *error);
+    void (^_completionHandler)(SPiDAccessToken *accessToken, NSError *error);
 
     BOOL isPending;
 }
@@ -116,7 +116,7 @@ static NSString *const SPiDForceKey = @"force";
 - (id)initWithCompletionHandler:(void (^)(SPiDAccessToken *accessToken, NSError *error))completionHandler {
     self = [super init];
     if (self) {
-        self->completionHandler = completionHandler;
+        _completionHandler = completionHandler;
     }
     return self;
 }
@@ -216,7 +216,7 @@ static NSString *const SPiDForceKey = @"force";
 - (BOOL)handleOpenURL:(NSURL *)url {
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
-        completionHandler(nil, [NSError oauth2ErrorWithString:error]);
+        _completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -229,10 +229,10 @@ static NSString *const SPiDForceKey = @"force";
                 [self requestAccessToken];
             } else {
                 // Logout
-                completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
+                _completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
             }
         } else if ([urlString hasSuffix:@"logout"]) {
-            completionHandler(nil, nil);
+            _completionHandler(nil, nil);
         } /*else if ([urlString hasSuffix:@"failure"]) {
             _completionHandler(nil, error);
         }*/
@@ -317,7 +317,7 @@ static NSString *const SPiDForceKey = @"force";
         if ([webView isLoading])
             [webView stopLoading];
         [webView setDelegate:nil];
-        completionHandler(nil, [NSError oauth2ErrorWithString:error]);
+        _completionHandler(nil, [NSError oauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -331,7 +331,7 @@ static NSString *const SPiDForceKey = @"force";
                 SPiDDebugLog(@"Received code: %@", code);
                 [self requestAccessToken];
             } else {
-                completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
+                _completionHandler(nil, [NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
             }
         } /*else if ([urlString hasSuffix:@"failure"]) {
             _completionHandler(nil, [NSError oauth2ErrorWithString:]);
@@ -359,7 +359,7 @@ static NSString *const SPiDForceKey = @"force";
             [webView stopLoading];
         [webView setDelegate:nil];
 
-        completionHandler(nil, error);
+        _completionHandler(nil, error);
     }
 }
 
@@ -399,26 +399,26 @@ static NSString *const SPiDForceKey = @"force";
     if ([receivedData length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     } else { // This should only happen when user is logging out
-        completionHandler(nil, nil);
+        _completionHandler(nil, nil);
     }
 
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
             NSError *error = [NSError errorFromJSONData:jsonObject];
-            completionHandler(nil, error);
+            _completionHandler(nil, error);
         } else if (receivedData) {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
-            completionHandler(accessToken, nil);
+            _completionHandler(accessToken, nil);
         }
     } else {
         SPiDDebugLog(@"Received jsonerror: %@", [jsonError description]);
-        completionHandler(nil, jsonError);
+        _completionHandler(nil, jsonError);
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     SPiDDebugLog("Received '%@' with code '%d' and description: %@", [error domain], [error code], [error description]);
-    completionHandler(nil, error);
+    _completionHandler(nil, error);
 }
 
 @end

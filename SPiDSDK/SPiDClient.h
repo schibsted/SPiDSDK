@@ -15,7 +15,7 @@
 @class SPiDAccessToken;
 @class SPiDRequest;
 
-static NSString const *defaultAPIVersionSPiD = @"2";
+static NSString *const defaultAPIVersionSPiD = @"2";
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 // debug print used by SPiDSDK
@@ -140,8 +140,6 @@ Defaults to clientID
  @param _completionHandler Run after authorization is completed
  */
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler;
-
-- (void)forgotPasswordWithBrowserRedirect;
 
 /** Logout from SPiD
 
@@ -293,9 +291,6 @@ Defaults to clientID
  @see isAuthorized
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
-
-- (void)getTermsRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 // TODO: is get needed?
 - (SPiDAccessToken *)getAccessToken;
