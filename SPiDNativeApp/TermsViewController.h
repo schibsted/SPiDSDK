@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface TermsViewController : UIViewController
 
 @property(strong, nonatomic) UIWebView *termsWebView;
