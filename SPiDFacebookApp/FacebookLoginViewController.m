@@ -8,6 +8,7 @@
 
 #import "FacebookLoginViewController.h"
 #import "SPiDFacebookAppDelegate.h"
+#import "TermsViewController.h"
 
 @implementation FacebookLoginViewController
 
@@ -35,6 +36,27 @@
     [self.facebookButton addTarget:self action:@selector(loginWithFacebook:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:self.facebookButton];
 
+    UILabel *serviceLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalCenter - 130, 220, 260, 20)];
+    serviceLabel.textColor = [UIColor darkGrayColor];
+    serviceLabel.backgroundColor = [UIColor clearColor];
+    serviceLabel.font = [UIFont systemFontOfSize:12];
+    serviceLabel.textAlignment = (NSTextAlignment) UITextAlignmentCenter;
+    serviceLabel.text = @"By using this service you are agreeing the";
+    [scrollView addSubview:serviceLabel];
+
+    UILabel *termsLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalCenter - 40, 235, 80, 20)];
+    termsLabel.textColor = [UIColor darkGrayColor];
+    termsLabel.backgroundColor = [UIColor clearColor];
+    termsLabel.font = [UIFont boldSystemFontOfSize:12];
+    termsLabel.textAlignment = (NSTextAlignment) UITextAlignmentCenter;
+    termsLabel.text = @"Terms of use";
+
+    // Open webview when "Terms of use" is clicked
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTermsOfUse:)];
+    [termsLabel setUserInteractionEnabled:YES];
+    [termsLabel addGestureRecognizer:gesture];
+    [scrollView addSubview:termsLabel];
+
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:scrollView];
 }
@@ -44,5 +66,9 @@
     [facebookAppDelegate openSessionWithAllowLoginUI:YES];
 }
 
+- (void)showTermsOfUse:(id)showTermsOfUse {
+    TermsViewController *termsViewController = [[TermsViewController alloc] init];
+    [self.navigationController pushViewController:termsViewController animated:YES];
+}
 
 @end

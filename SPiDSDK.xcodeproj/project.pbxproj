@@ -126,6 +126,7 @@
 		E304EB3AAAA9C94117D0934D /* SPiDUser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E8EE461D81FA4D084AC8 /* SPiDUser.h */; };
 		E304EBD0A10A44BCB90DB07B /* facebook-login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */; };
 		E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
+		E304EC9922D515E29B4349DD /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */; };
 		E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E99B5C79CF60749D65AE /* red_button@2x.png */; };
 		E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */; };
@@ -297,6 +298,7 @@
 		E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Crypto.h"; sourceTree = "<group>"; };
 		E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed.png"; sourceTree = "<group>"; };
 		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
+		E304E4356DC3EEDF0A7653AB /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E4D3494537377633CA3E /* NSError+SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiDError.h"; sourceTree = "<group>"; };
 		E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		E304E99B5C79CF60749D65AE /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
 		E304E9BAD5499EEFE7846D26 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
+		E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
 		E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAuthorizationRequest.m; sourceTree = "<group>"; };
@@ -442,6 +445,8 @@
 				E304EC3BEEF375752E9E16CE /* MainViewController.h */,
 				E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */,
 				E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */,
+				E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */,
+				E304E4356DC3EEDF0A7653AB /* TermsViewController.h */,
 			);
 			path = SPiDFacebookApp;
 			sourceTree = "<group>";
@@ -1047,6 +1052,7 @@
 				532B21C316AD5737000DBA55 /* SPiDFacebookAppDelegate.m in Sources */,
 				E304E452044155187E8DB9B7 /* MainViewController.m in Sources */,
 				E304E0AE6047B3934ABC68A6 /* FacebookLoginViewController.m in Sources */,
+				E304EC9922D515E29B4349DD /* TermsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
