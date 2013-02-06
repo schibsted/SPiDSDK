@@ -19,12 +19,6 @@
 
 }
 
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
-    self = [SPiDTokenRequest requestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:nil];
-    _authCompletionHandler = authCompletionHandler;
-    return self;
-}
-
 + (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSDictionary *postData = [self clientTokenPostData];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" andHTTPBody:postData andAuthCompletionHandler:completionHandler];
@@ -55,12 +49,29 @@
     return request;
 }
 
++ (SPiDTokenRequest *)refreshTokenRequestWithAccessToken:(SPiDAccessToken *)accessToken andAuthCompletionHandler:(void (^)(NSError *))authCompletionHandler {
+    if (accessToken.refreshToken == nil) {
+        SPiDDebugLog(@"No access token, cannot refreshTrying to refresh access token with refresh token: %@", accessToken.refreshToken);
+        return nil;
+    }
+    SPiDDebugLog(@"Trying to refresh access token with refresh token: %@", accessToken.refreshToken);
+    NSDictionary *postData = [self refreshTokenPostDataWithAccessToken:accessToken];
+    SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" andHTTPBody:postData andAuthCompletionHandler:authCompletionHandler];
+    return request;
+}
+
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andAuthCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
+    self = [SPiDTokenRequest requestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:nil];
+    _authCompletionHandler = authCompletionHandler;
+    return self;
+}
+
 + (NSDictionary *)clientTokenPostData {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:[client clientID] forKey:@"client_id"];
-    [data setValue:@"client_credentials" forKey:@"grant_type"];
     [data setValue:[client clientSecret] forKey:@"client_secret"];
+    [data setValue:@"client_credentials" forKey:@"grant_type"];
     return data;
 }
 
@@ -68,8 +79,8 @@
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:[client clientID] forKey:@"client_id"];
-    [data setValue:@"password" forKey:@"grant_type"];
     [data setValue:[client clientSecret] forKey:@"client_secret"];
+    [data setValue:@"password" forKey:@"grant_type"];
     [data setValue:username forKey:@"username"];
     [data setValue:password forKey:@"password"];
     return data;
@@ -78,11 +89,22 @@
 + (NSDictionary *)userTokenPostDataWithJwt:(NSString *)jwtString {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data setValue:@"urn:ietf:params:oauth:grant-type:jwt-bearer" forKey:@"grant_type"];
     [data setValue:client.clientSecret forKey:@"client_secret"];
     [data setValue:client.clientID forKey:@"client_id"];
-    [data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
+    [data setValue:@"urn:ietf:params:oauth:grant-type:jwt-bearer" forKey:@"grant_type"];
+    //[data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
     [data setValue:jwtString forKey:@"assertion"];
+    return data;
+}
+
++ (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
+    SPiDClient *client = [SPiDClient sharedInstance];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data setValue:client.clientID forKey:@"client_id"];
+    [data setValue:client.clientSecret forKey:@"client_secret"];
+    //[data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
+    [data setValue:@"refresh_token" forKey:@"grant_type"];
+    [data setValue:accessToken.refreshToken forKey:@"refresh_token"];
     return data;
 }
 
