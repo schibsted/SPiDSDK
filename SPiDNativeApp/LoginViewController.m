@@ -110,7 +110,7 @@
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty"];
     } else {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
-        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email andPassword:password andAuthCompletionHandler:^(NSError *error) {
+        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
 
             NSString *title;
