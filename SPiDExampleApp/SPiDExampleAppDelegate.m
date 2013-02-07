@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Mikael Lindström. All rights reserved.
 //
 
+#import "SPiDExampleAppDelegate.h"
+
 static NSString *const ClientID = @"your-client-id";
 static NSString *const ClientSecret = @"your-client-secret";
 static NSString *const AppURLScheme = @"your-app-url";
 static NSString *const ServerURL = @"your-spidserver-url";
-
-#import "SPiDExampleAppDelegate.h"
 
 @implementation SPiDExampleAppDelegate
 
@@ -23,9 +23,9 @@ static NSString *const ServerURL = @"your-spidserver-url";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SPiDClient sharedInstance] setClientID:ClientID
-                             andClientSecret:ClientSecret
-                             andAppURLScheme:AppURLScheme
-                                andServerURL:[NSURL URLWithString:ServerURL]];
+                                clientSecret:ClientSecret
+                                appURLScheme:AppURLScheme
+                                   serverURL:[NSURL URLWithString:ServerURL]];
     [[SPiDClient sharedInstance] setWebViewInitialHTML:@"<html><body>Loading SPiD login page</body></html>"];
 
     [self setUseWebView:YES]; // As default, logout as logged in through webview

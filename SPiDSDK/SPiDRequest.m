@@ -13,11 +13,11 @@
 
 @interface SPiDRequest (PrivateMethods)
 
-- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 
 /** 'NSURLConnectionDelegate' method
@@ -57,29 +57,29 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-+ (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
++ (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *completePath = [NSString stringWithFormat:@"/api/%@%@", [[SPiDClient sharedInstance] apiVersionSPiD], requestPath];
-    return [[self alloc] initRequestWithPath:completePath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:completionHandler];
+    return [[self alloc] initRequestWithPath:completePath method:@"GET" body:nil completionHandler:completionHandler];
 }
 
-+ (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
++ (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *completePath = [NSString stringWithFormat:@"/api/%@%@", [[SPiDClient sharedInstance] apiVersionSPiD], requestPath];
-    return [[self alloc] initPostRequestWithPath:completePath andHTTPBody:body andCompletionHandler:completionHandler];
+    return [[self alloc] initPostRequestWithPath:completePath body:body completionHandler:completionHandler];
 }
 
-+ (SPiDRequest *)requestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    return [[self alloc] initRequestWithPath:requestPath andHTTPMethod:method andHTTPBody:body andCompletionHandler:completionHandler];
++ (SPiDRequest *)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [[self alloc] initRequestWithPath:requestPath method:method body:body completionHandler:completionHandler];
 }
 
-- (id)initGetRequestWithPath:(NSString *)requestPath andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    return [self initRequestWithPath:requestPath andHTTPMethod:@"GET" andHTTPBody:nil andCompletionHandler:completionHandler];
+- (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [self initRequestWithPath:requestPath method:@"GET" body:nil completionHandler:completionHandler];
 }
 
-- (id)initPostRequestWithPath:(NSString *)requestPath andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    return [self initRequestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:completionHandler];
+- (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [self initRequestWithPath:requestPath method:@"POST" body:body completionHandler:completionHandler];
 }
 
-- (id)initRequestWithPath:(NSString *)requestPath andHTTPMethod:(NSString *)method andHTTPBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     self = [super init];
     if (self) {
         NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
@@ -110,14 +110,14 @@
         }
     }
 
-    [self startRequestWithURL:urlStr andBody:body];
+    [self startRequestWithURL:urlStr body:body];
 }
 
 - (void)startRequest {
-    [self startRequestWithURL:[_url absoluteString] andBody:_httpBody];
+    [self startRequestWithURL:[_url absoluteString] body:_httpBody];
 }
 
-- (void)startRequestWithURL:(NSString *)urlStr andBody:(NSString *)body {
+- (void)startRequestWithURL:(NSString *)urlStr body:(NSString *)body {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:_httpMethod];
 

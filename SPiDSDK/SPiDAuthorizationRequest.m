@@ -33,19 +33,6 @@ static NSString *const SPiDForceKey = @"force";
  */
 - (NSURL *)generateLogoutURLWithAccessToken:(SPiDAccessToken *)accessToken;
 
-/** Generates the access token request data
-
- @result Access token request data
- */
-- (NSString *)generateAccessTokenPostData;
-
-/** Generates the access token refresh request data
-
- @param accessToken ´SPiDAccessToken` containing the refresh token
- @return Token refresh request data
- */
-- (NSString *)generateRefreshPostDataWithAccessToken:(SPiDAccessToken *)accessToken;
-
 /** Requests access token by using the received code
 
  Note: This is used internally and should not be called directly
@@ -238,7 +225,6 @@ static NSString *const SPiDForceKey = @"force";
         }*/
         return YES;
     }
-    return NO;
 }
 
 #pragma mark Private methods

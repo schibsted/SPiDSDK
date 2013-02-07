@@ -85,9 +85,9 @@
 }
 
 - (void)setClientID:(NSString *)clientID
-    andClientSecret:(NSString *)clientSecret
-    andAppURLScheme:(NSString *)appURLSchema
-       andServerURL:(NSURL *)serverURL {
+       clientSecret:(NSString *)clientSecret
+       appURLScheme:(NSString *)appURLSchema
+          serverURL:(NSURL *)serverURL {
     [self setClientID:clientID];
     [self setClientSecret:clientSecret];
     [self setServerURL:serverURL];
@@ -268,10 +268,10 @@
     }];
 }
 
-- (void)apiGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)apiGetRequestWithPath:(NSString *)path completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     //NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
-    SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path andCompletionHandler:completionHandler];
-    if ([accessToken hasTokenExpired] || authorizationRequest) {
+    SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
+    if ([accessToken hasExpired] || authorizationRequest) {
         SPiDDebugLog(@"Access token has expired at %@, trying to get a new one", [accessToken expiresAt]);
         if (!waitingRequests) {
             waitingRequests = [[NSMutableArray alloc] init];
@@ -285,10 +285,10 @@
     }
 }
 
-- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+- (void)apiPostRequestWithPath:(NSString *)path body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *))completionHandler {
     //NSAssert(accessToken, @"SPiDOAuth2 missing access token, authorization needed before api request.");
-    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:path andHTTPBody:body andCompletionHandler:completionHandler];
-    if ([accessToken hasTokenExpired] || authorizationRequest) {
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:path body:body completionHandler:completionHandler];
+    if ([accessToken hasExpired] || authorizationRequest) {
         SPiDDebugLog(@"Access token has expired at %@, trying to get a new one", [accessToken expiresAt]);
         if (!waitingRequests) {
             waitingRequests = [[NSMutableArray alloc] init];
@@ -323,7 +323,7 @@
 
 - (BOOL)hasTokenExpired {
     if (accessToken) {
-        return accessToken.hasTokenExpired;
+        return accessToken.hasExpired;
     }
     return NO;
 }
@@ -349,26 +349,26 @@
     [data setObject:[self serverClientID] forKey:@"clientId"];
     [data setObject:[self serverClientID] forKey:@"client_id"];
     [data setObject:@"code" forKey:@"type"];
-    [self apiPostRequestWithPath:path andBody:data andCompletionHandler:completionHandler];
+    [self apiPostRequestWithPath:path body:data completionHandler:completionHandler];
 }
 
 - (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/me"];
-    [self apiGetRequestWithPath:path andCompletionHandler:completionHandler];
+    [self apiGetRequestWithPath:path completionHandler:completionHandler];
 }
 
-- (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+- (void)getUserRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/user/%@", userID];
-    [self apiGetRequestWithPath:path andCompletionHandler:completionHandler];
+    [self apiGetRequestWithPath:path completionHandler:completionHandler];
 }
 
-- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
-    [self getUserRequestWithID:accessToken.userID andCompletionHandler:completionHandler];
+- (void)getCurrentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+    [self getUserRequestWithID:accessToken.userID completionHandler:completionHandler];
 }
 
-- (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/user/%@/logins", userID];
-    [self apiGetRequestWithPath:path andCompletionHandler:completionHandler];
+    [self apiGetRequestWithPath:path completionHandler:completionHandler];
 }
 
 

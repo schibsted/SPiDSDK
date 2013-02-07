@@ -41,7 +41,7 @@
  @param refreshToken Refresh token
  @return SPiDAccessToken
  */
-- (id)initWithUserID:(NSString *)userID andAccessToken:(NSString *)accessToken andExpiresAt:(NSDate *)expiresAt andRefreshToken:(NSString *)refreshToken;
+- (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken;
 
 /** Initializes the AccessToken from a dictionary
 
@@ -67,7 +67,7 @@
 
 @Return Returns YES if access token has expired
 */
-- (BOOL)hasTokenExpired;
+- (BOOL)hasExpired;
 
 - (BOOL)isClientToken;
 

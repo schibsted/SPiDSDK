@@ -59,7 +59,7 @@
 }
 
 - (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
-    self = [SPiDTokenRequest requestWithPath:requestPath andHTTPMethod:@"POST" andHTTPBody:body andCompletionHandler:nil];
+    self = [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
     _tokenCompletionHandler = completionHandler;
     return self;
 }

@@ -21,7 +21,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 @synthesize expiresAt = _expiresIn;
 @synthesize refreshToken = _refreshToken;
 
-- (id)initWithUserID:(NSString *)userID andAccessToken:(NSString *)accessToken andExpiresAt:(NSDate *)expiresAt andRefreshToken:(NSString *)refreshToken {
+- (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken {
     self = [super init];
     if (self) {
         [self setUserID:userID];
@@ -42,7 +42,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     if (expiresIn) {
         expiresAt = [NSDate dateWithTimeIntervalSinceNow:[expiresIn integerValue]];
     }
-    return [self initWithUserID:userID andAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
+    return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -50,7 +50,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     NSString *accessToken = [decoder decodeObjectForKey:AccessTokenKey];
     NSDate *expiresAt = [decoder decodeObjectForKey:ExpiresAtKey];
     NSString *refreshToken = [decoder decodeObjectForKey:RefreshTokenKey];
-    return [self initWithUserID:userID andAccessToken:accessToken andExpiresAt:expiresAt andRefreshToken:refreshToken];
+    return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
@@ -60,7 +60,7 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     [coder encodeObject:[self refreshToken] forKey:RefreshTokenKey];
 }
 
-- (BOOL)hasTokenExpired {
+- (BOOL)hasExpired {
     return ([[NSDate date] earlierDate:[self expiresAt]] == [self expiresAt]);
 }
 

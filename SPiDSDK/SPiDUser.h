@@ -10,6 +10,6 @@
 
 
 @interface SPiDUser : NSObject
-- (void)createAccountWithEmail:(NSString *)email andPassword:(NSString *)password andCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
 
 @end

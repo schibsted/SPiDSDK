@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Mikael Lindström. All rights reserved.
 //
 
+#import "SPiDNativeAppDelegate.h"
+#import "SPiDTokenRequest.h"
+#import "MainViewController.h"
+
 static NSString *const ClientID = @"your-client-id";
 static NSString *const ClientSecret = @"your-client-secret";
 static NSString *const AppURLScheme = @"your-app-url";
 static NSString *const ServerURL = @"your-spidserver-url";
-
-#import "SPiDNativeAppDelegate.h"
-#import "SPiDTokenRequest.h"
-#import "MainViewController.h"
 
 @implementation SPiDNativeAppDelegate
 
@@ -24,9 +24,9 @@ static NSString *const ServerURL = @"your-spidserver-url";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SPiDClient sharedInstance] setClientID:ClientID
-                             andClientSecret:ClientSecret
-                             andAppURLScheme:AppURLScheme
-                                andServerURL:[NSURL URLWithString:ServerURL]];
+                                clientSecret:ClientSecret
+                                appURLScheme:AppURLScheme
+                                   serverURL:[NSURL URLWithString:ServerURL]];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -44,7 +44,6 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [self.authNavigationController pushViewController:loginViewController animated:NO];
     [self.rootNavigationController presentViewController:self.authNavigationController animated:animated completion:nil];
 }
-
 
 - (void)showActivityIndicatorAlert:(NSString *)title {
     if (self.alertView) {

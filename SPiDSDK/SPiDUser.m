@@ -16,9 +16,9 @@
 
 @implementation SPiDUser
 
-- (void)createAccountWithEmail:(NSString *)email andPassword:(NSString *)password andCompletionHandler:(void (^)(NSError *response))completionHandler {
+- (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *response))completionHandler {
     // Validate email and password
-    NSError *validationError = [self validateEmail:email andPassword:password];
+    NSError *validationError = [self validateEmail:email password:password];
     if (validationError) {
         completionHandler(validationError);
     }
@@ -31,33 +31,33 @@
                 completionHandler(error);
             } else {
                 SPiDDebugLog(@"Client token received, creating account");
-                [self accountRequestWithEmail:email andPassword:password andCompletionHandler:completionHandler];
+                [self accountRequestWithEmail:email password:password completionHandler:completionHandler];
             }
         }];
         [clientTokenRequest startRequest];
     } else {
         SPiDDebugLog(@"Client token found, creating account");
-        [self accountRequestWithEmail:email andPassword:password andCompletionHandler:completionHandler];
+        [self accountRequestWithEmail:email password:password completionHandler:completionHandler];
     }
 }
 
 
-- (void)accountRequestWithEmail:(NSString *)email andPassword:(NSString *)password andCompletionHandler:(void (^)(NSError *))completionHandler {
-    NSDictionary *postBody = [self userPostDataWithUsername:email andPassword:password];
-    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"user" andHTTPBody:postBody andCompletionHandler:^(SPiDResponse *response) {
+- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
+    NSDictionary *postBody = [self userPostDataWithUsername:email password:password];
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"user" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
     }];
     [request startRequestWithAccessToken:[[SPiDClient sharedInstance] getAccessToken]];
 }
 
-- (NSDictionary *)userPostDataWithUsername:(NSString *)username andPassword:(NSString *)password {
+- (NSDictionary *)userPostDataWithUsername:(NSString *)username password:(NSString *)password {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:username forKey:@"email"];
     [data setValue:password forKey:@"password"];
     return data;
 }
 
-- (NSError *)validateEmail:(NSString *)email andPassword:(NSString *)password {
+- (NSError *)validateEmail:(NSString *)email password:(NSString *)password {
     if (![SPiDUtils validateEmail:email]) {
         return [NSError oauth2ErrorWithCode:SPiDInvalidEmailAddressErrorCode description:@"ValidationError" reason:@"The email address is invalid"];
     } else if ([password length] < 8) {

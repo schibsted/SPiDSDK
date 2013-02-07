@@ -112,9 +112,9 @@ Defaults to clientID
  @param serverURL The url to SPiD
  */
 - (void)setClientID:(NSString *)clientID
-    andClientSecret:(NSString *)clientSecret
-    andAppURLScheme:(NSString *)appURLSchema
-       andServerURL:(NSURL *)serverURL;
+       clientSecret:(NSString *)clientSecret
+       appURLScheme:(NSString *)appURLSchema
+          serverURL:(NSURL *)serverURL;
 
 - (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
@@ -196,7 +196,7 @@ Defaults to clientID
  @param _completionHandler Runs after request is completed
  @see sharedInstance
  */
-- (void)apiGetRequestWithPath:(NSString *)path andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)apiGetRequestWithPath:(NSString *)path completionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Runs a POST request against the SPiD server
 
@@ -207,7 +207,7 @@ Defaults to clientID
  @param _completionHandler Runs after request is completed
  @see sharedInstance
  */
-- (void)apiPostRequestWithPath:(NSString *)path andBody:(NSDictionary *)body andCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)apiPostRequestWithPath:(NSString *)path body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Checks if the access token has expired
 
@@ -267,7 +267,7 @@ Defaults to clientID
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
-- (void)getUserRequestWithID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)getUserRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the userinformation for the current user
 
@@ -278,7 +278,7 @@ Defaults to clientID
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
-- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)getCurrentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Request all login attempts for a specific client
 
@@ -290,7 +290,7 @@ Defaults to clientID
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
-- (void)getUserLoginsRequestWithUserID:(NSString *)userID andCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 // TODO: is get needed?
 - (SPiDAccessToken *)getAccessToken;

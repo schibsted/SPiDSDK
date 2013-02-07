@@ -29,9 +29,9 @@ NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFac
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SPiDClient sharedInstance] setClientID:ClientID
-                             andClientSecret:ClientSecret
-                             andAppURLScheme:AppURLScheme
-                                andServerURL:[NSURL URLWithString:ServerURL]];
+                                clientSecret:ClientSecret
+                                appURLScheme:AppURLScheme
+                                   serverURL:[NSURL URLWithString:ServerURL]];
     [[SPiDClient sharedInstance] setSigSecret:@"0474de"];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];
@@ -109,20 +109,20 @@ NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFac
 
 - (void)getSPiDToken {
     SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithFacebookAppID:[FBSession activeSession].appID
-                                                                     andAccessToken:[FBSession activeSession].accessToken
-                                                                  andExpirationDate:[FBSession activeSession].expirationDate
-                                                           andAuthCompletionHandler:^(NSError *tokenError) {
-                                                               if (tokenError) {
-                                                                   UIAlertView *alertView = [[UIAlertView alloc]
-                                                                           initWithTitle:@"Error"
-                                                                                 message:tokenError.localizedDescription
-                                                                                delegate:nil cancelButtonTitle:@"OK"
-                                                                       otherButtonTitles:nil];
-                                                                   [alertView show];
-                                                               } else {
-                                                                   [self.rootNavigationController dismissViewControllerAnimated:YES completion:nil];
-                                                               }
-                                                           }];
+                                                                      facebookToken:[FBSession activeSession].accessToken
+                                                                     expirationDate:[FBSession activeSession].expirationDate
+                                                                  completionHandler:^(NSError *tokenError) {
+                                                                      if (tokenError) {
+                                                                          UIAlertView *alertView = [[UIAlertView alloc]
+                                                                                  initWithTitle:@"Error"
+                                                                                        message:tokenError.localizedDescription
+                                                                                       delegate:nil cancelButtonTitle:@"OK"
+                                                                              otherButtonTitles:nil];
+                                                                          [alertView show];
+                                                                      } else {
+                                                                          [self.rootNavigationController dismissViewControllerAnimated:YES completion:nil];
+                                                                      }
+                                                                  }];
     [request startRequest];
 }
 
