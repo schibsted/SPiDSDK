@@ -28,10 +28,10 @@ NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFac
 @synthesize alertView = _alertView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[SPiDClient sharedInstance] setClientID:ClientID
-                                clientSecret:ClientSecret
-                                appURLScheme:AppURLScheme
-                                   serverURL:[NSURL URLWithString:ServerURL]];
+    [SPiDClient setClientID:ClientID
+               clientSecret:ClientSecret
+               appURLScheme:AppURLScheme
+                  serverURL:[NSURL URLWithString:ServerURL]];
     [[SPiDClient sharedInstance] setSigSecret:@"0474de"];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];

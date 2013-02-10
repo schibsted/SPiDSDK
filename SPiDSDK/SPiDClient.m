@@ -47,6 +47,7 @@
 @private
     NSMutableArray *_waitingRequests;
     NSInteger tokenRefreshRetryCount;
+    BOOL _isAuthorizing;
     SPiDAuthorizationRequest *authorizationRequest;
     NSString *_webViewInitialHTML;
 }
@@ -74,50 +75,66 @@
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
+static SPiDClient *sharedSPiDClientInstance = nil;
 
 + (SPiDClient *)sharedInstance {
-    static SPiDClient *sharedSPiDClientInstance = nil;
+    if (sharedSPiDClientInstance == nil) {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"[%@ %@] cannot be called before SPiDClient has been configured; use +[%@ %@]",
+                           NSStringFromClass([self class]),
+                           NSStringFromSelector(_cmd),
+                           NSStringFromClass([self class]),
+                           NSStringFromSelector(@selector(setClientID:clientSecret:appURLScheme:serverURL:))];
+    } else {
+        return sharedSPiDClientInstance;
+    }
+}
+
++ (void)setClientID:(NSString *)clientID
+       clientSecret:(NSString *)clientSecret
+       appURLScheme:(NSString *)appURLSchema
+          serverURL:(NSURL *)serverURL {
+
+    if (sharedSPiDClientInstance != nil) {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"[%@ %@] cannot be called more than once",
+                           NSStringFromClass([self class]),
+                           NSStringFromSelector(_cmd)];
+    }
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         sharedSPiDClientInstance = [[self alloc] init];
     });
 
-    return sharedSPiDClientInstance;
-}
-
-- (void)setClientID:(NSString *)clientID
-       clientSecret:(NSString *)clientSecret
-       appURLScheme:(NSString *)appURLSchema
-          serverURL:(NSURL *)serverURL {
-    [self setClientID:clientID];
-    [self setClientSecret:clientSecret];
-    [self setServerURL:serverURL];
+    [sharedSPiDClientInstance setClientID:clientID];
+    [sharedSPiDClientInstance setClientSecret:clientSecret];
+    [sharedSPiDClientInstance setServerURL:serverURL];
 
     NSString *escapedAppURL = [appURLSchema stringByReplacingOccurrencesOfString:@":" withString:@""];
     escapedAppURL = [escapedAppURL stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    [self setAppURLScheme:escapedAppURL];
+    [sharedSPiDClientInstance setAppURLScheme:escapedAppURL];
 
     // Generates URL default urls
-    if (![self redirectURI])
-        [self setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://", [self appURLScheme]]]];
+    if (![sharedSPiDClientInstance redirectURI])
+        [sharedSPiDClientInstance setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://", [sharedSPiDClientInstance appURLScheme]]]];
 
-    if (![self authorizationURL])
-        [self setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [self serverURL]]]];
+    if (![sharedSPiDClientInstance authorizationURL])
+        [sharedSPiDClientInstance setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [sharedSPiDClientInstance serverURL]]]];
 
-    if (![self registrationURL])
-        [self setRegistrationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [self serverURL]]]];
+    if (![sharedSPiDClientInstance registrationURL])
+        [sharedSPiDClientInstance setRegistrationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [sharedSPiDClientInstance serverURL]]]];
 
-    if (![self lostPasswordURL])
-        [self setLostPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [self serverURL]]]];
+    if (![sharedSPiDClientInstance lostPasswordURL])
+        [sharedSPiDClientInstance setLostPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [sharedSPiDClientInstance serverURL]]]];
 
-    if (![self tokenURL])
-        [self setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [self serverURL]]]];
+    if (![sharedSPiDClientInstance tokenURL])
+        [sharedSPiDClientInstance setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [sharedSPiDClientInstance serverURL]]]];
 
-    if (![self serverClientID])
-        [self setServerClientID:clientID];
+    if (![sharedSPiDClientInstance serverClientID])
+        [sharedSPiDClientInstance setServerClientID:clientID];
 
-    if (![self webViewInitialHTML])
-        [self setWebViewInitialHTML:@""];
+    if (![sharedSPiDClientInstance webViewInitialHTML])
+        [sharedSPiDClientInstance setWebViewInitialHTML:@""];
 }
 
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
@@ -325,6 +342,10 @@
     if (self.accessToken)
         return self.accessToken.userID;
     return nil;
+}
+
+- (BOOL)hasPendingAuthorization {
+    return _isAuthorizing;
 }
 
 - (BOOL)isAuthorized {

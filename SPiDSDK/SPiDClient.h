@@ -104,18 +104,20 @@ Defaults to clientID
 
 /** Returns the singleton instance of SPiDClient
 
+ The SPiDClient needs to be configured first with setClientID:clientSecret:appURLScheme:serverURL:
+
  @return Returns singleton instance
  */
 + (SPiDClient *)sharedInstance;
 
-/** Configures the `SPiDClient`
+/** Configures the `SPiDClient` and creates a singleton instance
 
  @param clientID The client ID provided by SPiD
  @param clientSecret The client secret provided by SPiD
  @param appURLSchema The url schema for the app (eg spidtest://)
  @param serverURL The url to SPiD
  */
-- (void)setClientID:(NSString *)clientID
++ (void)setClientID:(NSString *)clientID
        clientSecret:(NSString *)clientSecret
        appURLScheme:(NSString *)appURLSchema
           serverURL:(NSURL *)serverURL;

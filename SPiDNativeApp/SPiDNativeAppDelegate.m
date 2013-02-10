@@ -23,10 +23,10 @@ static NSString *const ServerURL = @"your-spidserver-url";
 @synthesize alertView = _alertView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[SPiDClient sharedInstance] setClientID:ClientID
-                                clientSecret:ClientSecret
-                                appURLScheme:AppURLScheme
-                                   serverURL:[NSURL URLWithString:ServerURL]];
+    [SPiDClient setClientID:ClientID
+               clientSecret:ClientSecret
+               appURLScheme:AppURLScheme
+                  serverURL:[NSURL URLWithString:ServerURL]];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

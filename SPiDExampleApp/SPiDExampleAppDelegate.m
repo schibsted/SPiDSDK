@@ -22,10 +22,10 @@ static NSString *const ServerURL = @"your-spidserver-url";
 @synthesize useWebView = _useWebView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[SPiDClient sharedInstance] setClientID:ClientID
-                                clientSecret:ClientSecret
-                                appURLScheme:AppURLScheme
-                                   serverURL:[NSURL URLWithString:ServerURL]];
+    [SPiDClient setClientID:ClientID
+               clientSecret:ClientSecret
+               appURLScheme:AppURLScheme
+                  serverURL:[NSURL URLWithString:ServerURL]];
     [[SPiDClient sharedInstance] setWebViewInitialHTML:@"<html><body>Loading SPiD login page</body></html>"];
 
     [self setUseWebView:YES]; // As default, logout as logged in through webview
