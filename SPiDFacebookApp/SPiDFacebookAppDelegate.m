@@ -32,7 +32,7 @@ NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFac
                clientSecret:ClientSecret
                appURLScheme:AppURLScheme
                   serverURL:[NSURL URLWithString:ServerURL]];
-    [[SPiDClient sharedInstance] setSigSecret:@"0474de"];
+    [[SPiDClient sharedInstance] setSigSecret:@"your-sign-secret"];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
