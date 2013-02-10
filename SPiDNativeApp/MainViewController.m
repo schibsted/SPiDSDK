@@ -18,7 +18,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidLoad];
-    if ([[SPiDClient sharedInstance] isAuthorized]) {
+    if ([SPiDClient sharedInstance].isAuthorized && ![SPiDClient sharedInstance].isClientToken) {
         self.title = @"SPiD";
         self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
 

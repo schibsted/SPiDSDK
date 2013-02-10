@@ -94,6 +94,10 @@ Defaults to clientID
 
 /** HTML string that will be show when WebView is loading */
 @property(strong, nonatomic) NSString *webViewInitialHTML;
+
+@property(strong, nonatomic) SPiDAccessToken *accessToken;
+@property(nonatomic, strong) NSMutableArray *waitingRequests;
+
 ///---------------------------------------------------------------------------------------
 /// @name Public Methods
 ///---------------------------------------------------------------------------------------
@@ -233,6 +237,9 @@ Defaults to clientID
 */
 - (BOOL)isAuthorized;
 
+- (BOOL)isClientToken;
+
+
 ///---------------------------------------------------------------------------------------
 /// @name Request wrappers
 ///---------------------------------------------------------------------------------------
@@ -292,8 +299,4 @@ Defaults to clientID
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-// TODO: is get needed?
-- (SPiDAccessToken *)getAccessToken;
-
-- (void)setAccessToken:(SPiDAccessToken *)token;
 @end

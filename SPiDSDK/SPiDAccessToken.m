@@ -8,6 +8,7 @@
 
 
 #import "SPiDAccessToken.h"
+#import "SPiDClient.h"
 
 static NSString *const UserIDKey = @"user_id";
 static NSString *const AccessTokenKey = @"access_token";
@@ -33,10 +34,10 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    NSString *userID = [dictionary objectForKey:UserIDKey];
-    NSString *accessToken = [dictionary objectForKey:AccessTokenKey];
-    NSString *expiresIn = [dictionary objectForKey:ExpiresInKey];
-    NSString *refreshToken = [dictionary objectForKey:RefreshTokenKey];
+    NSString *userID = [self stringFromObject:[dictionary objectForKey:UserIDKey]];
+    NSString *accessToken = [self stringFromObject:[dictionary objectForKey:AccessTokenKey]];
+    NSString *expiresIn = [self stringFromObject:[dictionary objectForKey:ExpiresInKey]];
+    NSString *refreshToken = [self stringFromObject:[dictionary objectForKey:RefreshTokenKey]];
 
     NSDate *expiresAt;
     if (expiresIn) {
@@ -46,10 +47,10 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-    NSString *userID = [decoder decodeObjectForKey:UserIDKey];
-    NSString *accessToken = [decoder decodeObjectForKey:AccessTokenKey];
-    NSDate *expiresAt = [decoder decodeObjectForKey:ExpiresAtKey];
-    NSString *refreshToken = [decoder decodeObjectForKey:RefreshTokenKey];
+    NSString *userID = [decoder decodeObjectOfClass:[NSString class] forKey:UserIDKey];
+    NSString *accessToken = [decoder decodeObjectOfClass:[NSString class] forKey:AccessTokenKey];
+    NSDate *expiresAt = [decoder decodeObjectOfClass:[NSDate class] forKey:ExpiresAtKey];
+    NSString *refreshToken = [decoder decodeObjectOfClass:[NSString class] forKey:RefreshTokenKey];
     return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
@@ -60,12 +61,23 @@ static NSString *const RefreshTokenKey = @"refresh_token";
     [coder encodeObject:[self refreshToken] forKey:RefreshTokenKey];
 }
 
+- (NSString *)stringFromObject:(id)obj {
+    if ([obj isKindOfClass:[NSString class]]) {
+        return obj;
+    } else if ([obj isKindOfClass:[NSNumber class]]) {
+        return [obj stringValue];
+    } else {
+        SPiDDebugLog(@"Warning....");
+    }
+    return obj;
+}
+
 - (BOOL)hasExpired {
     return ([[NSDate date] earlierDate:[self expiresAt]] == [self expiresAt]);
 }
 
 - (BOOL)isClientToken {
-    return _userID == nil;
+    return (_userID != nil ? [_userID isEqualToString:@"0"] : YES);
 }
 
 @end

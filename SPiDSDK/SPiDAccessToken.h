@@ -10,7 +10,7 @@
 
 /** Contains a access token that can be saved to the keychain */
 
-@interface SPiDAccessToken : NSObject
+@interface SPiDAccessToken : NSObject <NSCoding>
 
 ///---------------------------------------------------------------------------------------
 /// @name Public properties

@@ -155,7 +155,7 @@
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
             NSError *error = [NSError errorFromJSONData:jsonObject];
             _tokenCompletionHandler(error);
-        } else if (_receivedData) {
+        } else /*if (_receivedData)*/ {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
             [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
             [[SPiDClient sharedInstance] setAccessToken:accessToken];
