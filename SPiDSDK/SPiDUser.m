@@ -23,7 +23,7 @@
         completionHandler(validationError);
     }
     // Get client token
-    SPiDAccessToken *accessToken = [[SPiDClient sharedInstance] getAccessToken];
+    SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || !accessToken.isClientToken) {
         SPiDDebugLog(@"No client token found, trying to request one");
         SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(NSError *error) {
@@ -44,10 +44,10 @@
 
 - (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
     NSDictionary *postBody = [self userPostDataWithUsername:email password:password];
-    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"user" body:postBody completionHandler:^(SPiDResponse *response) {
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/user/signup" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
     }];
-    [request startRequestWithAccessToken:[[SPiDClient sharedInstance] getAccessToken]];
+    [request startRequestWithAccessToken:[SPiDClient sharedInstance].accessToken];
 }
 
 - (NSDictionary *)userPostDataWithUsername:(NSString *)username password:(NSString *)password {

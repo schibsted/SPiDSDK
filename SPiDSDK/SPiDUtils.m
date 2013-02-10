@@ -23,6 +23,30 @@
     return [emailTest evaluateWithObject:email];
 }
 
++ (NSString *)encodedHttpQueryForDictionary:(NSDictionary *)dictionary {
+    NSString *body = @"";
+    for (NSString *key in dictionary) {
+        if ([body length] > 0) {
+            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        } else {
+            body = [body stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        }
+    }
+    return body;
+}
+
++ (NSString *)encodedHttpBodyForDictionary:(NSDictionary *)dictionary {
+    NSString *body = @"";
+    for (NSString *key in dictionary) {
+        if ([body length] > 0) {
+            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        } else {
+            body = [body stringByAppendingFormat:@"%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        }
+    }
+    return body;
+}
+
 + (NSURL *)urlEncodeString:(NSString *)unescaped {
     NSString *escapedString = (NSString *) CFBridgingRelease((CFTypeRef) CFURLCreateStringByAddingPercentEscapes(
             NULL,

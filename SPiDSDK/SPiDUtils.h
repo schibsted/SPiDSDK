@@ -18,6 +18,10 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
++ (NSString *)encodedHttpQueryForDictionary:(NSDictionary *)dictionary;
+
++ (NSString *)encodedHttpBodyForDictionary:(NSDictionary *)dictionary;
+
 /** URL encodes the specified string
 
  @param unescaped String to be encoded

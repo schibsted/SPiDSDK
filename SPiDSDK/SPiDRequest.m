@@ -89,7 +89,7 @@
         } else if ([method isEqualToString:@"POST"]) {
             _url = [NSURL URLWithString:requestURL];
             _httpMethod = @"POST";
-            _httpBody = [self createHTTPBodyForDictionary:body];
+            _httpBody = [SPiDUtils encodedHttpBodyForDictionary:body];
         }
         [self setRetryCount:0];
         self->_completionHandler = completionHandler;
@@ -136,18 +136,6 @@
 ///---------------------------------------------------------------------------------------
 /// @name Private methods
 ///---------------------------------------------------------------------------------------
-
-- (NSString *)createHTTPBodyForDictionary:(NSDictionary *)dictionary {
-    NSString *body = @"";
-    for (NSString *key in dictionary) {
-        if ([body length] > 0) {
-            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
-        } else {
-            body = [body stringByAppendingFormat:@"%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
-        }
-    }
-    return body;
-}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_receivedData appendData:data];
