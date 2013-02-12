@@ -31,7 +31,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  `SPiDClient` contains a singleton instance and all calls to SPiD should go through this instance.
  */
 
-@interface SPiDClient : NSObject
+@interface SPiDClient : NSObject {
+@private
+
+    void (^_completionHandler)(NSError *error);
+
+}
 
 ///---------------------------------------------------------------------------------------
 /// @name Public properties
@@ -102,6 +107,8 @@ Defaults to clientID
 /// @name Public Methods
 ///---------------------------------------------------------------------------------------
 
+@property(nonatomic, strong) NSURL *logoutURL;
+
 /** Returns the singleton instance of SPiDClient
 
  The SPiDClient needs to be configured first with setClientID:clientSecret:appURLScheme:serverURL:
@@ -122,11 +129,16 @@ Defaults to clientID
        appURLScheme:(NSString *)appURLSchema
           serverURL:(NSURL *)serverURL;
 
-- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSString *, NSError *))completionHandler;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
-- (UIWebView *)webViewRegistrationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
-- (UIWebView *)webViewLostPasswordWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)browserRedirectForgotPasswordWith;
+
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler;
+
+
+- (void)browserRedirectLogout;
 
 
 /** Handles URL redirects to the app
@@ -135,17 +147,6 @@ Defaults to clientID
 @return Returns YES if URL was handled by `SPiDClient`
 */
 - (BOOL)handleOpenURL:(NSURL *)url;
-
-/** Authorizes with SPiD
-
- This requires that the `SPiDClient` has been configured.
- Redirects to safari to get code and then uses this to obtain a access token. Any exsisting access token will be logged out.
- The access token is then saved to keychain
-
- @warning `SPiDClient` has to be configured before calling `authorizationRequestWithCompletionHandler`. The receiver must also check if a error was returned to the _completionHandler.
- @param _completionHandler Run after authorization is completed
- */
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Logout from SPiD
 
@@ -158,62 +159,7 @@ Defaults to clientID
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
-- (void)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
-
-/** Soft logout from SPiD
-
- This requires that the app has obtained a access token.
- Logout from SPiD without redirect to Safari, cookie will not be removed
- Also removes access token from keychain
-
- @warning `SPiDClient` has to be logged in before this call .The receiver must also check if a error was returned to the _completionHandler.
- @param _completionHandler Run after logout is completed
- @see authorizationRequestWithCompletionHandler:
- @see isAuthorized
- */
-
-- (void)softLogoutRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
-
-/** Refresh access token
-
- Forces refresh of access token, this is unusally not needed since SPiDSDK will automatically refresh token when needed.
- The access token is then saved to keychain
-
- @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.
- @param _completionHandler Run after authorization is completed
- @see authorizationRequestWithCompletionHandler:
- @see isAuthorized
- */
-- (void)refreshAccessTokenRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
-
-/** Refreshes the access token and then reruns the request
-
- Note: The SDK enforces a number of maximum retries per request to stop requests from retrying forever
-
- @param request The request to rerun after a access token has been received
- */
-- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
-
-/** Runs a GET request against the SPiD server
-
- Uses the `apiVersionSPiD` property to generate a SPiD API GET request using the provided path
-
- @param path Path for the request eg _/me_
- @param _completionHandler Runs after request is completed
- @see sharedInstance
- */
-- (void)apiGetRequestWithPath:(NSString *)path completionHandler:(void (^)(SPiDResponse *))completionHandler;
-
-/** Runs a POST request against the SPiD server
-
- Uses the `apiVersionSPiD` property to generate a SPiD API POST request using the provided path
-
- @param path Path for the request eg _/me_
- @param body Http body to be posted
- @param _completionHandler Runs after request is completed
- @see sharedInstance
- */
-- (void)apiPostRequestWithPath:(NSString *)path body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Checks if the access token has expired
 
@@ -227,7 +173,7 @@ Defaults to clientID
  */
 - (NSDate *)tokenExpiresAt;
 
-- (NSString *)authorizationURLWithQuery;
+- (NSURL *)authorizationURLWithQuery;
 
 /** Returns the user ID for the current user
 
@@ -303,7 +249,7 @@ Defaults to clientID
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-- (NSString *)signupURLWithQuery;
+- (NSURL *)signupURLWithQuery;
 
-- (NSString *)forgotPasswordURLWithQuery;
+- (NSURL *)forgotPasswordURLWithQuery;
 @end

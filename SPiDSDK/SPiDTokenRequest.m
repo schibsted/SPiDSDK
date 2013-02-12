@@ -47,12 +47,13 @@
     return request;
 }
 
-+ (SPiDTokenRequest *)refreshTokenRequestWithAccessToken:(SPiDAccessToken *)accessToken completionHandler:(void (^)(NSError *))completionHandler {
-    SPiDDebugLog(@"Trying to refresh access token with refresh token: %@", accessToken.refreshToken);
-    if (accessToken.refreshToken == nil) {
++ (SPiDTokenRequest *)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler {
+    SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
+    if (accessToken == nil || accessToken.refreshToken == nil) {
         SPiDDebugLog(@"No access token, cannot refreshTrying to refresh access token with refresh token: %@", accessToken.refreshToken);
         return nil;
     }
+    SPiDDebugLog(@"Trying to refresh access token with refresh token: %@", accessToken.refreshToken);
     NSDictionary *postData = [self refreshTokenPostDataWithAccessToken:accessToken];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
@@ -83,7 +84,7 @@
     [data setValue:[client clientID] forKey:@"client_id"];
     [data setValue:[client clientSecret] forKey:@"client_secret"];
     [data setValue:@"authorization_code" forKey:@"grant_type"];
-    [data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
+    [data setValue:client.redirectURI.absoluteString forKey:@"redirect_uri"];
     [data setValue:code forKey:@"code"];
     return data;
 }

@@ -47,7 +47,7 @@
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/user/signup" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
     }];
-    [request startRequestWithAccessToken:[SPiDClient sharedInstance].accessToken];
+    [request startRequestWithAccessToken];
 }
 
 - (NSDictionary *)userPostDataWithUsername:(NSString *)username password:(NSString *)password {

@@ -9,7 +9,7 @@
 #import "SPiDRequest.h"
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
-#import "NSError+SPiDError.h"
+#import "SPiDTokenRequest.h"
 
 @interface SPiDRequest (PrivateMethods)
 
@@ -97,7 +97,9 @@
     return self;
 }
 
-- (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken {
+- (void)startRequestWithAccessToken {
+    SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
+    //TODO: Should verify this
     NSString *urlStr = [_url absoluteString];
     NSString *body = @"";
     if ([_httpMethod isEqualToString:@"GET"]) {
@@ -156,6 +158,7 @@
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:_receivedData];
     _receivedData = nil;
     NSError *error = [response error];
+    /*
     if (error && ([error code] == SPiDOAuth2InvalidTokenErrorCode || [error code] == SPiDOAuth2ExpiredTokenErrorCode)) {
         if ([self retryCount] < MaxRetryAttempts) {
             SPiDDebugLog(@"Invalid token, trying to refresh");
@@ -166,10 +169,10 @@
             if (_completionHandler != nil)
                 _completionHandler(response);
         }
-    } else {
-        if (_completionHandler != nil)
-            _completionHandler(response);
-    }
+    } else {*/
+    if (_completionHandler != nil)
+        _completionHandler(response);
+    //}
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

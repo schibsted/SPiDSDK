@@ -11,7 +11,6 @@
 #import "SPiDTokenRequest.h"
 #import "NSError+SPiDError.h"
 #import "SignUpViewController.h"
-#import "SPiDAuthorizationRequest.h"
 #import "TermsViewController.h"
 
 @implementation LoginViewController
@@ -132,8 +131,7 @@
 
 // Open lost password in safari
 - (void)forgotPassword:(id)sender {
-    SPiDAuthorizationRequest *authorizationRequest = [[SPiDAuthorizationRequest alloc] initWithCompletionHandler:nil];
-    [authorizationRequest forgotPasswordWithBrowserRedirect];
+    [[SPiDClient sharedInstance] browserRedirectForgotPasswordWith];
 }
 
 - (void)switchToSignUp:(id)sender {

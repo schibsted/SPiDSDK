@@ -48,6 +48,6 @@
  @param accessToken Access token to refresh
  @return The token request or nil if refresh token is missing
 */
-+ (SPiDTokenRequest *)refreshTokenRequestWithAccessToken:(SPiDAccessToken *)accessToken completionHandler:(void (^)(NSError *))completionHandler;
++ (SPiDTokenRequest *)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 @end

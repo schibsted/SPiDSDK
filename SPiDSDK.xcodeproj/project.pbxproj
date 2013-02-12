@@ -132,8 +132,6 @@
 		E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E99B5C79CF60749D65AE /* red_button@2x.png */; };
 		E304EDD04520BC5FB2B516F4 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304ECA66E30DA618B5AC63F /* SPiDWebView.m */; };
 		E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */; };
-		E304EF832C7AA71DD356B2E6 /* SPiDAuthorizationRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */; };
-		E304EFAA285132C8F5AEACFD /* SPiDAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */; };
 		E304EFDA1BBFBD96DA46233F /* SPiDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E93DD2773BD78706B78C /* SPiDUser.m */; };
 /* End PBXBuildFile section */
 
@@ -199,7 +197,6 @@
 				E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */,
 				E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */,
 				E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */,
-				E304EF832C7AA71DD356B2E6 /* SPiDAuthorizationRequest.h in CopyFiles */,
 				E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */,
 				E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */,
 				E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */,
@@ -308,7 +305,6 @@
 		E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
 		E304E61B34D176733C911367 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		E304E682B974C240DE9BC5E1 /* SPiDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUtils.m; sourceTree = "<group>"; };
-		E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAuthorizationRequest.h; sourceTree = "<group>"; };
 		E304E719EC65DE9788499BD0 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDResponse.h; sourceTree = "<group>"; };
 		E304E752C72346E314762407 /* SPiDWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDWebView.h; sourceTree = "<group>"; };
@@ -327,7 +323,6 @@
 		E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
-		E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAuthorizationRequest.m; sourceTree = "<group>"; };
 		E304EC34E54EE6F302C3BE2A /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
 		E304EC3BEEF375752E9E16CE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E304ECA66E30DA618B5AC63F /* SPiDWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDWebView.m; sourceTree = "<group>"; };
@@ -609,8 +604,6 @@
 				E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */,
 				E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */,
 				E304E9C449C522B81621B33E /* SPiDAccessToken.m */,
-				E304E6890F6FC039FC1AECCB /* SPiDAuthorizationRequest.h */,
-				E304EBBE8E785BB3E2CF9D26 /* SPiDAuthorizationRequest.m */,
 				E304EDA55B1715BF5E738193 /* SPiDResponse.m */,
 				E304E74CE552DDD7DA85CADB /* SPiDResponse.h */,
 				E304E29BE892318CE0CCF648 /* SPiDRequest.h */,
@@ -1100,7 +1093,6 @@
 				E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */,
 				E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */,
 				E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */,
-				E304EFAA285132C8F5AEACFD /* SPiDAuthorizationRequest.m in Sources */,
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
 				E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */,

@@ -64,11 +64,15 @@ static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcode
 */
 + (SPiDRequest *)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
+- (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
+- (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
 /** Runs the request
 
  @param accessToken The access token to use with the request
 */
-- (void)startRequestWithAccessToken:(SPiDAccessToken *)accessToken;
+- (void)startRequestWithAccessToken; //TODO rename
 
 - (void)startRequest;
 

@@ -8,6 +8,7 @@
 
 #import "SPiDLoginViewController.h"
 #import "NSError+SPiDError.h"
+#import "SPiDWebView.h"
 
 @implementation SPiDLoginViewController {
 @private
@@ -33,7 +34,7 @@
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:YES];
     UIViewController *webViewController = [[UIViewController alloc] init];
-    UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
+    SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromRight

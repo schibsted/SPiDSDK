@@ -14,25 +14,25 @@
 
 @property(nonatomic) BOOL isPending;
 @property(strong, nonatomic) NSURL *requestURL;
-@property(nonatomic, copy) void (^completionHandler)(NSString *code, NSError *);
+@property(nonatomic, copy) void (^completionHandler)(NSError *);
 
 
 /** Creates a authorization WebView.
 
  @return The new WebView
 */
-+ (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(NSString *code, NSError *))completionHandler;
++ (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a registration WebView
 
  @return The new WebView
 */
-+ (SPiDWebView *)signupWebViewWithCompletionHandler:(void (^)(NSString *code, NSError *))completionHandler;
++ (SPiDWebView *)signupWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a lost password WebView
 *
  @return The new WebView
 */
-+ (SPiDWebView *)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSString *code, NSError *))completionHandler;
++ (SPiDWebView *)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 @end

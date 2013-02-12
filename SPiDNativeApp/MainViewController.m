@@ -10,6 +10,7 @@
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDClient.h"
 #import "SPiDResponse.h"
+#import "SPiDRequest.h"
 
 
 @implementation MainViewController
@@ -69,12 +70,13 @@
 }
 
 - (void)logoutFromSPiD:(id)sender {
-    [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *response) {
+    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *response) {
         // TODO: this is a ugly solution
         [self viewWillDisappear:NO];
         [self viewWillAppear:NO];
         [self viewDidAppear:NO];
     }];
+    [request startRequestWithAccessToken];
 }
 
 @end

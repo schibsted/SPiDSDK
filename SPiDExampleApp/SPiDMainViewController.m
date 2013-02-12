@@ -8,6 +8,7 @@
 #import "SPiDMainViewController.h"
 #import "SPiDResponse.h"
 #import "SPiDExampleAppDelegate.h"
+#import "SPiDTokenRequest.h"
 
 
 @implementation SPiDMainViewController {
@@ -55,11 +56,12 @@
 }
 
 - (void)refreshToken {
-    [[SPiDClient sharedInstance] refreshAccessTokenRequestWithCompletionHandler:^(NSError *error) {
+    SPiDTokenRequest *request = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [self setTokenExpiresLabel];
         }
     }];
+    [request startRequestWithAccessToken];
 }
 
 - (void)getOneTimeToken {
@@ -82,8 +84,9 @@
 
 - (void)logout {
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+    SPiDRequest *request;
     if ([appDelegate useWebView]) {
-        [[SPiDClient sharedInstance] softLogoutRequestWithCompletionHandler:^(NSError *error) {
+        request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
                 [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight
@@ -93,8 +96,9 @@
                                 completion:NULL];
             }
         }];
+        [request startRequest];
     } else {
-        [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
+        [[SPiDClient sharedInstance] browserRedirectLogoutWithCompletionHandler:^(NSError *error) {
             if (!error) {
                 [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight
