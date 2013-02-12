@@ -24,15 +24,15 @@
 }
 
 + (NSString *)encodedHttpQueryForDictionary:(NSDictionary *)dictionary {
-    NSString *body = @"";
+    NSString *query = @"";
     for (NSString *key in dictionary) {
-        if ([body length] > 0) {
-            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+        if ([query length] > 0) {
+            query = [query stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
         } else {
-            body = [body stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            query = [query stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
         }
     }
-    return body;
+    return query;
 }
 
 + (NSString *)encodedHttpBodyForDictionary:(NSDictionary *)dictionary {

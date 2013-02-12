@@ -73,9 +73,9 @@ Defaults to clientID
  */
 @property(strong, nonatomic) NSURL *authorizationURL;
 
-@property(strong, nonatomic) NSURL *registrationURL;
+@property(strong, nonatomic) NSURL *signupURL;
 
-@property(strong, nonatomic) NSURL *lostPasswordURL;
+@property(strong, nonatomic) NSURL *forgotPasswordURL;
 
 /** URL to use for requesting access token from SPiD
 
@@ -122,7 +122,7 @@ Defaults to clientID
        appURLScheme:(NSString *)appURLSchema
           serverURL:(NSURL *)serverURL;
 
-- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSString *, NSError *))completionHandler;
 
 - (UIWebView *)webViewRegistrationWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
@@ -227,6 +227,8 @@ Defaults to clientID
  */
 - (NSDate *)tokenExpiresAt;
 
+- (NSString *)authorizationURLWithQuery;
+
 /** Returns the user ID for the current user
 
  @return Returns user ID
@@ -301,4 +303,7 @@ Defaults to clientID
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
+- (NSString *)signupURLWithQuery;
+
+- (NSString *)forgotPasswordURLWithQuery;
 @end

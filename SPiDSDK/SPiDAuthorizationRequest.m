@@ -116,7 +116,7 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (void)forgotPasswordWithBrowserRedirect {
-    [self setRequestURL:[[SPiDClient sharedInstance] lostPasswordURL]];
+    [self setRequestURL:[[SPiDClient sharedInstance] forgotPasswordURL]];
     SPiDDebugLog(@"Request: %@", [[self requestURL] absoluteString]);
     [[UIApplication sharedApplication] openURL:[self requestURL]];
 }
@@ -191,13 +191,13 @@ static NSString *const SPiDForceKey = @"force";
 }
 
 - (NSURL *)generateRegistrationURL {
-    NSString *requestURL = [[[SPiDClient sharedInstance] registrationURL] absoluteString];
+    NSString *requestURL = [[[SPiDClient sharedInstance] signupURL] absoluteString];
     requestURL = [self getAuthorizationQueryWithURL:requestURL];
     return [NSURL URLWithString:requestURL];
 }
 
 - (NSURL *)generateLostPasswordURL {
-    NSString *requestURL = [[[SPiDClient sharedInstance] lostPasswordURL] absoluteString];
+    NSString *requestURL = [[[SPiDClient sharedInstance] forgotPasswordURL] absoluteString];
     requestURL = [self getAuthorizationQueryWithURL:requestURL];
     return [NSURL URLWithString:requestURL];
 }
@@ -261,47 +261,6 @@ static NSString *const SPiDForceKey = @"force";
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
     code = nil; // Not really needed since the request should only be used once
-}
-
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
-    if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
-        SPiDDebugLog(@"Redirecting to: %@", [request URL]);
-        return nil;
-    }
-    return request;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [receivedData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError *jsonError = nil;
-    NSDictionary *jsonObject = nil;
-    SPiDDebugLog(@"Response data: %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
-    if ([receivedData length] > 0) {
-        jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&jsonError];
-    } else { // This should only happen when user is logging out
-        _completionHandler(nil, nil);
-    }
-
-    if (!jsonError) {
-        if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            NSError *error = [NSError errorFromJSONData:jsonObject];
-            _completionHandler(nil, error);
-        } else if (receivedData) {
-            SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
-            _completionHandler(accessToken, nil);
-        }
-    } else {
-        SPiDDebugLog(@"Received jsonerror: %@", [jsonError description]);
-        _completionHandler(nil, jsonError);
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    SPiDDebugLog("Received '%@' with code '%d' and description: %@", [error domain], [error code], [error description]);
-    _completionHandler(nil, error);
 }
 
 @end

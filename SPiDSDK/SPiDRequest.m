@@ -137,6 +137,16 @@
 /// @name Private methods
 ///---------------------------------------------------------------------------------------
 
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    /*
+       if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
+           SPiDDebugLog(@"Redirecting to: %@", [request URL]);
+           return nil;
+       }
+   */
+    return request;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_receivedData appendData:data];
 }

@@ -82,7 +82,7 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:[client clientID] forKey:@"client_id"];
     [data setValue:[client clientSecret] forKey:@"client_secret"];
-    [data setValue:@"code" forKey:@"grant_type"];
+    [data setValue:@"authorization_code" forKey:@"grant_type"];
     [data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
     [data setValue:code forKey:@"code"];
     return data;

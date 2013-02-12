@@ -11,6 +11,7 @@
 #import "SPiDRequest.h"
 #import "SPiDKeychainWrapper.h"
 #import "SPiDResponse.h"
+#import "SPiDWebView.h"
 
 @interface SPiDClient (PrivateMethods)
 
@@ -60,8 +61,8 @@
 @synthesize redirectURI = _redirectURI;
 @synthesize serverURL = _serverURL;
 @synthesize authorizationURL = _authorizationURL;
-@synthesize registrationURL = _registrationURL;
-@synthesize lostPasswordURL = _lostPasswordURL;
+@synthesize signupURL = _signupURL;
+@synthesize forgotPasswordURL = _forgotPasswordURL;
 @synthesize tokenURL = _tokenURL;
 @synthesize apiVersionSPiD = _apiVersionSPiD;
 @synthesize useMobileWeb = _useMobileWeb;
@@ -121,11 +122,11 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     if (![sharedSPiDClientInstance authorizationURL])
         [sharedSPiDClientInstance setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [sharedSPiDClientInstance serverURL]]]];
 
-    if (![sharedSPiDClientInstance registrationURL])
-        [sharedSPiDClientInstance setRegistrationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [sharedSPiDClientInstance serverURL]]]];
+    if (![sharedSPiDClientInstance signupURL])
+        [sharedSPiDClientInstance setSignupURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [sharedSPiDClientInstance serverURL]]]];
 
-    if (![sharedSPiDClientInstance lostPasswordURL])
-        [sharedSPiDClientInstance setLostPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [sharedSPiDClientInstance serverURL]]]];
+    if (![sharedSPiDClientInstance forgotPasswordURL])
+        [sharedSPiDClientInstance setForgotPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [sharedSPiDClientInstance serverURL]]]];
 
     if (![sharedSPiDClientInstance tokenURL])
         [sharedSPiDClientInstance setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [sharedSPiDClientInstance serverURL]]]];
@@ -160,19 +161,19 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     }
 }
 
-- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    SPiDAuthorizationRequest *request = [self createWebViewAuthRequestWithCompletionHandler:completionHandler];
-    return nil;//[request authorizeWithWebView];
+- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void (^)(NSString *code, NSError *response))completionHandler {
+    SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:completionHandler];
+    return webView;
 }
 
-- (UIWebView *)webViewRegistrationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    SPiDAuthorizationRequest *request = [self createWebViewAuthRequestWithCompletionHandler:completionHandler];
-    return nil;// [request registerWithWebView];
+- (UIWebView *)webViewSignupWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+    SPiDWebView *webView = [SPiDWebView signupWebViewWithCompletionHandler:nil];
+    return webView;
 }
 
 - (UIWebView *)webViewLostPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    SPiDAuthorizationRequest *request = [self createWebViewAuthRequestWithCompletionHandler:completionHandler];
-    return nil;// [request lostPasswordWithWebView];
+    SPiDWebView *webView = [SPiDWebView forgotPasswordWebViewWithCompletionHandler:nil];
+    return webView;
 }
 
 - (NSString *)getAuthorizationQueryWithURL:(NSString *)requestURL {
@@ -336,6 +337,32 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         authorizationRequest = nil;
     }
     _waitingRequests = nil;
+}
+
+- (NSString *)authorizationURLWithQuery {
+    NSString *query = [self getAuthorizationQuery];
+    return [self.authorizationURL.absoluteString stringByAppendingString:query];
+}
+
+- (NSString *)signupURLWithQuery {
+    NSString *query = [self getAuthorizationQuery];
+    return [self.signupURL.absoluteString stringByAppendingString:query];
+}
+
+- (NSString *)forgotPasswordURLWithQuery {
+    NSString *query = [self getAuthorizationQuery];
+    return [self.forgotPasswordURL.absoluteString stringByAppendingString:query];
+}
+
+- (NSString *)getAuthorizationQuery {
+    NSMutableDictionary *query = [NSMutableDictionary dictionary];
+    [query setObject:self.clientID forKey:@"client_id"];
+    [query setObject:@"code" forKey:@"response_type"];
+    [query setObject:self.redirectURI.absoluteString forKey:@"redirect_uri"];
+    if (self.useMobileWeb)
+        [query setObject:@"mobile" forKey:@"platform"];
+    [query setObject:@"1" forKey:@"force"];
+    return [SPiDUtils encodedHttpQueryForDictionary:query];
 }
 
 - (NSString *)currentUserID {
