@@ -2,7 +2,6 @@
 //  NSError+SPiDError
 //  SPiDSDK
 //
-//  Created by mikaellindstrom on 10/2/12.
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 

@@ -2,7 +2,6 @@
 //  SPiDJwt
 //  SPiDSDK
 //
-//  Created by mikaellindstrom on 1/28/13.
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 

@@ -2,7 +2,6 @@
 //  SPiDUtils.m
 //  SPiDSDK
 //
-//  Created by Mikael Lindström on 9/13/12.
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 

@@ -2,7 +2,6 @@
 //  SPiDKeychainWrapper.h
 //  SPiDSDK
 //
-//  Created by mikaellindstrom on 9/27/12.
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
