@@ -2,14 +2,13 @@
 //  SPiDClient.h
 //  SPiDSDK
 //
-//  Copyright (c) 2012 Mikael Lindström. All rights reserved.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "SPiDUtils.h"
 
-@class SPiDAuthorizationRequest;
 @class SPiDResponse;
 @class SPiDAccessToken;
 @class SPiDRequest;
@@ -135,10 +134,6 @@ Defaults to clientID
 - (void)browserRedirectForgotPasswordWith;
 
 - (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler;
-
-
-- (void)browserRedirectLogout;
-
 
 /** Handles URL redirects to the app
 

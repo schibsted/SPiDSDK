@@ -2,7 +2,7 @@
 //  SPiDClient.m
 //  SPiDSDK
 //
-//  Copyright (c) 2012 Mikael Lindström. All rights reserved.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
 #import "SPiDClient.h"
@@ -36,7 +36,7 @@
  @param _completionHandler Run after authorization is completed
  @see authorizationRequestWithCompletionHandler:
  */
-- (void)doBrowserRedirectAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
+//- (void)doBrowserRedirectAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Runs after logout has been completed, should not be called directly */
 - (void)logoutComplete;
