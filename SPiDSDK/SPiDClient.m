@@ -224,10 +224,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     @synchronized (_authorizationRequest) {
         if (_authorizationRequest == nil) { // can't logout if we are already logging in
-            // TODO: We will receive a JSON parse error since this will not return a correct json
-            // TODO: this can be safely ignored and will be fixed with new endpoint
-            SPiDDebugLog(@"Trying to logout, ignore the following JSON parse error....");
-            SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:@"/logout" completionHandler:^(SPiDResponse *response) {
+            // TODO: We should implement a api endpoint for logout
+            NSString *path = [@"/logout" stringByAppendingString:[self getLogoutQuery]];
+            SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
                 [self logoutComplete];
                 /*
                 if (response.error) {

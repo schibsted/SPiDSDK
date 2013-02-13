@@ -140,12 +140,10 @@
 ///---------------------------------------------------------------------------------------
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
-    /*
-       if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
-           SPiDDebugLog(@"Redirecting to: %@", [request URL]);
-           return nil;
-       }
-   */
+    if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
+        SPiDDebugLog(@"Redirecting to: %@", [request URL]);
+        return nil;
+    }
     return request;
 }
 
