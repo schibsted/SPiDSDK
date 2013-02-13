@@ -13,8 +13,8 @@ static NSString *const JSON_WEB_TOKEN_TYP_JWT = @"JWT";
 @interface SPiDJwt : NSObject
 
 // Header
-@property(strong, nonatomic) NSString *alg;
-@property(strong, nonatomic) NSString *typ;
+//@property(strong, nonatomic) NSString *alg;
+//@property(strong, nonatomic) NSString *typ;
 
 // MUST requirements for JWT over OAuth 2.0
 @property(strong, nonatomic) NSString *iss; // issuer (facebook appid)

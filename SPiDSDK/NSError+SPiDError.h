@@ -75,4 +75,3 @@ enum {
     SPiDAPIExceptionErrorCode = 404
 
 };
-typedef NSUInteger SPiDErrorCode;

@@ -153,8 +153,8 @@
     SPiDDebugLog(@"Received response from: %@", [_url absoluteString]);
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:_receivedData];
     _receivedData = nil;
-    NSError *error = [response error];
     /*
+    NSError *error = [response error];
     if (error && ([error code] == SPiDOAuth2InvalidTokenErrorCode || [error code] == SPiDOAuth2ExpiredTokenErrorCode)) {
         if ([self retryCount] < MaxRetryAttempts) {
             SPiDDebugLog(@"Invalid token, trying to refresh");

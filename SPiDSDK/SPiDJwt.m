@@ -42,7 +42,7 @@
     NSError *jsonError;
     NSDictionary *headerDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:JSON_WEB_ALGORITHM_HS256, @"alg",
                                                                                   JSON_WEB_TOKEN_TYP_JWT, @"typ", nil];
-    NSData *headerJson = [NSJSONSerialization dataWithJSONObject:headerDictionary options:0 error:&jsonError];
+    NSData *headerJson = [NSJSONSerialization dataWithJSONObject:headerDictionary options:(NSJSONWritingOptions) 0 error:&jsonError];
     NSString *header = [headerJson base64EncodedString];
     if (jsonError != nil) {
         SPiDDebugLog(@"Error encoding JWT header");
@@ -57,7 +57,7 @@
                                                                                  self.tokenValue, @"token_value",
                                                                                  nil];
 
-    NSData *claimJson = [NSJSONSerialization dataWithJSONObject:claimDictionary options:0 error:&jsonError];
+    NSData *claimJson = [NSJSONSerialization dataWithJSONObject:claimDictionary options:(NSJSONWritingOptions) 0 error:&jsonError];
     NSString *claim = [claimJson base64EncodedString];
     if (jsonError != nil) {
         SPiDDebugLog(@"Error encoding JWT claim");

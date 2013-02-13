@@ -13,7 +13,7 @@
  An instance of `SPiDClient` is setup for each request to SPiD from `SPiDClient`
 */
 
-static NSInteger const MaxRetryAttempts = 2; //TODO: This should not be hardcoded
+//TODO: static NSInteger const MaxRetryAttempts = 2;
 
 @class SPiDAccessToken;
 @class SPiDResponse;
