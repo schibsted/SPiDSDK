@@ -68,6 +68,10 @@
 */
 - (BOOL)hasExpired;
 
+/** Checks if the access token is a client token
+
+@Return Returns YES if the access token is a client token
+*/
 - (BOOL)isClientToken;
 
 @end

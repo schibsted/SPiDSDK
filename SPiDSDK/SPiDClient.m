@@ -312,10 +312,6 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return nil;
 }
 
-- (BOOL)hasPendingAuthorization {
-    return _isAuthenticating;
-}
-
 - (BOOL)isAuthorized {
     if (self.accessToken)
         return YES;

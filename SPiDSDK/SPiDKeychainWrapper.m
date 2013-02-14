@@ -26,7 +26,6 @@
 
 @end
 
-// Note that all keychain items are available in the iPhone simulator to all apps since the application is not signed!
 @implementation SPiDKeychainWrapper
 
 #pragma mark Public methods

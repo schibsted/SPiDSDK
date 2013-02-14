@@ -10,6 +10,7 @@
 
 /** `SPiDKeychainWrapper` is a wrapper used to simplfy keychain access.
  It is used by the `SPiDClient` for all keychain operations.
+ Note that all keychain items are available in the iPhone simulator to all apps since the application is not signed!
 */
 
 @interface SPiDKeychainWrapper : NSObject

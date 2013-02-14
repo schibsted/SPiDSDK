@@ -9,9 +9,6 @@
 
 @implementation NSString (Crypto)
 
-/*
- * Return HMAC SHA256 of the string in hex
- */
 - (NSString *)hmacSHA256withKey:(NSString *)key {
     const char *cKey = [key cStringUsingEncoding:NSASCIIStringEncoding];
     const char *cData = [self cStringUsingEncoding:NSASCIIStringEncoding];

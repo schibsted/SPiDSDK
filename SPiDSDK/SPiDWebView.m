@@ -10,6 +10,38 @@
 #import "NSError+SPiDError.h"
 #import "SPiDTokenRequest.h"
 
+@interface SPiDWebView (PrivateMethods)
+
+/** Creates a SPiDWebView
+
+ @param requestURL The request URL to open
+ @return The SPiDWebView
+ */
++ (SPiDWebView *)webView:(NSURL *)requestURL;
+
+/** Sent before a web view begins loading a frame.
+
+ @param webView The web view that is about to load a new frame.
+ @request The content location.
+ @navigationType The type of user action that started the load request.
+ @return YES if the web view should begin loading content; otherwise, NO .
+ */
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+
+/** Sent after a web view finishes loading a frame.
+
+ @param webView The web view has finished loading.
+ */
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+
+/** Sent if a web view failed to load a frame.
+
+ @param webView The web view that failed to load a frame.
+ @param error The error that occurred during loading.
+*/
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
+
+@end
 
 @implementation SPiDWebView
 

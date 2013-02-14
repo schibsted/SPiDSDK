@@ -5,7 +5,6 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-
 #import "SPiDAccessToken.h"
 #import "SPiDClient.h"
 

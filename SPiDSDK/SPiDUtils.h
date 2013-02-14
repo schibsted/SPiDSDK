@@ -17,8 +17,18 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
+/** Encodes dictionary to a http query
+
+ @param dictionary The dictionary to be encoded
+ @return The http query
+ */
 + (NSString *)encodedHttpQueryForDictionary:(NSDictionary *)dictionary;
 
+/** Encodes dictionary to a http post body
+
+ @param dictionary The dictionary to be encoded
+ @return The http post body
+ */
 + (NSString *)encodedHttpBodyForDictionary:(NSDictionary *)dictionary;
 
 /** URL encodes the specified string
@@ -36,7 +46,14 @@
  */
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key;
 
-// Based on RFC 2822
+/** Validates a email address
+
+ Based on RFC 2822
+
+ @param email The email to validate
+ @return YES if the email is valid, otherwise NO
+ */
+//
 + (BOOL)validateEmail:(NSString *)email;
 
 

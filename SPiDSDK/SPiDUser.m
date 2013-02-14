@@ -40,7 +40,6 @@
     }
 }
 
-
 - (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
     NSDictionary *postBody = [self userPostDataWithUsername:email password:password];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/user/signup" body:postBody completionHandler:^(SPiDResponse *response) {

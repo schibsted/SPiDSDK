@@ -9,6 +9,38 @@
 
 
 @interface SPiDUser : NSObject
+
+/** Creates a new SPiD user account
+
+ @param email The email
+ @param password The password
+ @param completionHandler Called after user has been created
+*/
 - (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
+
+/** Creates and runs a signup request
+
+ @param email The email
+ @param password The password
+ @return Dictionary with the post data
+*/
+- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
+
+/** Generates user credentials post data
+
+ @param email The email
+ @param password The password
+ @return Dictionary with the post data
+*/
+- (NSDictionary *)userPostDataWithUsername:(NSString *)username password:(NSString *)password;
+
+/** Validates user credentials
+
+ @param email The email to validate
+ @param password The password to validate
+ @return Validation error if found, otherwise nil
+*/
+- (NSError *)validateEmail:(NSString *)email password:(NSString *)password;
+
 
 @end

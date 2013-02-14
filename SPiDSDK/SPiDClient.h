@@ -149,7 +149,7 @@ Defaults to clientID
  Also removes access token from keychain
 
  @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.
- @param _completionHandler Run after logout is completed
+ @param _completionHandler Called after logout is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -167,7 +167,15 @@ Defaults to clientID
  */
 - (NSDate *)tokenExpiresAt;
 
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
+
+- (BOOL)doHandleOpenURL:(NSURL *)url;
+
+- (void)clearAuthorizationRequest;
+
 - (NSURL *)authorizationURLWithQuery;
+
+- (NSString *)getLogoutQuery;
 
 /** Returns the user ID for the current user
 
@@ -192,7 +200,7 @@ Defaults to clientID
 *
  @note The code is generated using the server client id and not the applications client id.
  @warning Requires that the user is authorized with SPiD
- @param _completionHandler Run after request is completed
+ @param _completionHandler Called after request is completed
  */
 
 - (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
@@ -202,7 +210,7 @@ Defaults to clientID
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
 
  @warning Requires that the user is authorized with SPiD
- @param _completionHandler Run after request is completed
+ @param _completionHandler Called after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -214,7 +222,7 @@ Defaults to clientID
 
  @warning Requires that the user is authorized with SPiD
  @param userID ID for the selected user
- @param _completionHandler Run after request is completed
+ @param _completionHandler Called after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -225,7 +233,7 @@ Defaults to clientID
  For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api>
 
  @warning Requires that the user is authorized with SPiD
- @param _completionHandler Run after request is completed
+ @param _completionHandler Called after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
@@ -237,13 +245,38 @@ Defaults to clientID
 
  @warning Requires that the user is authorized with SPiD
  @param userID The userID that logins should be fetched for
- @param _completionHandler Run after request is completed
+ @param _completionHandler Called after request is completed
  @see authorizationRequestWithCompletionHandler:
  @see isAuthorized
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
+/** Request all login attempts for a specific client
+
+ For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:login_api>
+
+ @warning Requires that the user is authorized with SPiD
+ @param userID The userID that logins should be fetched for
+ @param _completionHandler Called after request is completed
+ @see authorizationRequestWithCompletionHandler:
+ @see isAuthorized
+ */
 - (NSURL *)signupURLWithQuery;
 
+/** Request all login attempts for a specific client
+
+ For information about the return object see: <http://www.schibstedpayment.no/docs/doku.php?id=wiki:login_api>
+
+ @warning Requires that the user is authorized with SPiD
+ @param userID The userID that logins should be fetched for
+ @param _completionHandler Called after request is completed
+ @see authorizationRequestWithCompletionHandler:
+ @see isAuthorized
+ */
 - (NSURL *)forgotPasswordURLWithQuery;
+
+- (NSURL *)logoutURLWithQuery;
+
+- (NSString *)getAuthorizationQuery;
+
 @end

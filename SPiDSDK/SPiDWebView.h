@@ -18,18 +18,21 @@
 
 /** Creates a authorization WebView.
 
+ @param completionHandler Called after authorization is completed
  @return The new WebView
 */
 + (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a registration WebView
 
+ @param completionHandler Called after signup is completed
  @return The new WebView
 */
 + (SPiDWebView *)signupWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
-/** Creates a lost password WebView
-*
+/** Creates a forgot password WebView
+
+ @param completionHandler Called after forgot password is completed
  @return The new WebView
 */
 + (SPiDWebView *)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
