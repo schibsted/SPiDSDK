@@ -23,7 +23,7 @@
     [self.termsWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [self.view addSubview:self.termsWebView];
 
-    NSString *path = [NSString stringWithFormat:@"/terms?&platform=default&client_id=%@", [[SPiDClient sharedInstance] clientID]];
+    NSString *path = [NSString stringWithFormat:@"/terms?client_id=%@", [[SPiDClient sharedInstance] clientID]];
     SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
         NSString *terms = [[[response message] objectForKey:@"data"] objectForKey:@"terms"];
         [self.termsWebView loadHTMLString:terms baseURL:nil];
