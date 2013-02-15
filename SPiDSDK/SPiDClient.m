@@ -85,9 +85,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                            NSStringFromSelector(_cmd),
                            NSStringFromClass([self class]),
                            NSStringFromSelector(@selector(setClientID:clientSecret:appURLScheme:serverURL:))];
-    } else {
-        return sharedSPiDClientInstance;
     }
+    
+    return sharedSPiDClientInstance;
 }
 
 + (void)setClientID:(NSString *)clientID
