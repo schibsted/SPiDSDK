@@ -49,8 +49,6 @@
 
 @implementation SPiDRequest
 
-@synthesize retryCount = _retryCount;
-
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
@@ -127,8 +125,10 @@
         [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
     }
     _receivedData = [[NSMutableData alloc] init];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-value"
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
+#pragma clang diagnostic pop
 }
 
 #pragma mark Private methods
