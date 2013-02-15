@@ -11,10 +11,6 @@
 
 @implementation SPiDResponse
 
-@synthesize error = _error;
-@synthesize message = _message;
-@synthesize rawJSON = _rawJSON;
-
 - (id)initWithJSONData:(NSData *)data {
     self = [super init];
     if (self) {
