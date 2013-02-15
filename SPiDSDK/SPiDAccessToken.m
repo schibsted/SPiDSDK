@@ -16,10 +16,6 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 
 @implementation SPiDAccessToken
 
-@synthesize accessToken = _accessToken;
-@synthesize expiresAt = _expiresIn;
-@synthesize refreshToken = _refreshToken;
-
 - (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken {
     self = [super init];
     if (self) {

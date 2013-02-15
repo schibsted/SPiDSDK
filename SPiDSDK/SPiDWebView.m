@@ -45,10 +45,6 @@
 
 @implementation SPiDWebView
 
-@synthesize isPending = _isPending;
-@synthesize requestURL = _requestURL;
-@synthesize completionHandler = _completionHandler;
-
 + (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] authorizationURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];

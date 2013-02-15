@@ -52,24 +52,6 @@
     NSString *_webViewInitialHTML;
 }
 
-@synthesize clientID = _clientID;
-@synthesize serverClientID = _serverClientID;
-@synthesize clientSecret = _clientSecret;
-@synthesize sigSecret = _sigSecret;
-@synthesize appURLScheme = _appURLScheme;
-@synthesize redirectURI = _redirectURI;
-@synthesize serverURL = _serverURL;
-@synthesize authorizationURL = _authorizationURL;
-@synthesize signupURL = _signupURL;
-@synthesize forgotPasswordURL = _forgotPasswordURL;
-@synthesize tokenURL = _tokenURL;
-@synthesize apiVersionSPiD = _apiVersionSPiD;
-@synthesize useMobileWeb = _useMobileWeb;
-@synthesize webViewInitialHTML = _webViewInitialHTML;
-@synthesize accessToken = _accessToken;
-@synthesize waitingRequests = _waitingRequests;
-@synthesize logoutURL = _logoutURL;
-
 #pragma mark Public methods
 
 ///---------------------------------------------------------------------------------------

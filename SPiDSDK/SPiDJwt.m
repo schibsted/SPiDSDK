@@ -12,13 +12,6 @@
 
 @implementation SPiDJwt
 
-@synthesize iss = _iss;
-@synthesize sub = _sub;
-@synthesize aud = _aud;
-@synthesize exp = _exp;
-@synthesize tokenType = _tokenType;
-@synthesize tokenValue = _tokenValue;
-
 + (id)jwtTokenWithDictionary:(NSDictionary *)dictionary {
     SPiDJwt *jwtToken = [[SPiDJwt alloc] init];
     jwtToken.iss = [dictionary objectForKey:@"iss"];
