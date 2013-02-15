@@ -9,7 +9,7 @@
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
 
-@interface SPiDRequest (PrivateMethods)
+@interface SPiDRequest ()
 
 - (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
@@ -99,7 +99,11 @@
     NSString *urlStr = [_url absoluteString];
     NSString *body = @"";
     if ([_httpMethod isEqualToString:@"GET"]) {
-        urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
+        if ([urlStr rangeOfString:@"?"].location > NSNotFound) {
+            urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
+        } else {
+            urlStr = [NSString stringWithFormat:@"%@&oauth_token=%@", urlStr, accessToken.accessToken];
+        }
     } else if ([_httpMethod isEqualToString:@"POST"]) {
         if ([_httpBody length] > 0) {
             body = [_httpBody stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
