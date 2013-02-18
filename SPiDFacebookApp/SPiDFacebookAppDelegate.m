@@ -17,8 +17,7 @@ static NSString *const ClientID = @"your-client-id";
 static NSString *const ClientSecret = @"your-client-secret";
 static NSString *const AppURLScheme = @"your-app-url";
 static NSString *const ServerURL = @"your-spidserver-url";
-
-NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFacebookTest:FBSessionStateChangedNotification";
+static NSString *const SignSecret = @"your-sign-secret";
 
 @implementation SPiDFacebookAppDelegate
 
@@ -32,7 +31,7 @@ NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFac
                clientSecret:ClientSecret
                appURLScheme:AppURLScheme
                   serverURL:[NSURL URLWithString:ServerURL]];
-    [[SPiDClient sharedInstance] setSigSecret:@"your-sign-secret"];
+    [[SPiDClient sharedInstance] setSignSecret:SignSecret];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -93,9 +92,6 @@ NSString *const FBSessionStateChangedNotification = @"com.schibsted.spid.SPiDFac
         default:
             break;
     }
-    [[NSNotificationCenter defaultCenter]
-            postNotificationName:FBSessionStateChangedNotification
-                          object:session];
 
     if (error) {
         UIAlertView *alertView = [[UIAlertView alloc]
