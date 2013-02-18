@@ -12,7 +12,7 @@
 @interface SPiDAccessToken : NSObject <NSCoding>
 
 ///---------------------------------------------------------------------------------------
-/// @name Public properties
+/// @name Properties
 ///---------------------------------------------------------------------------------------
 
 // Note: We have not included scope since it is not used, might have to be added later

@@ -65,10 +65,6 @@
 }
 
 #pragma mark Public methods
-
-///---------------------------------------------------------------------------------------
-/// @name Public methods
-///---------------------------------------------------------------------------------------
 static SPiDClient *sharedSPiDClientInstance = nil;
 
 + (SPiDClient *)sharedInstance {
@@ -185,35 +181,6 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return NO;
 }
 
-- (BOOL)doHandleOpenURL:(NSURL *)url {
-    NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
-    if (error) {
-        SPiDDebugLog(@"Received error from SPiD: %@", error)
-        _completionHandler([NSError oauth2ErrorWithString:error]);
-        return NO;
-    } else {
-        NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
-        if ([urlString hasSuffix:@"login"]) {
-            NSString *code = [SPiDUtils getUrlParameter:url forKey:@"code"];
-
-            if (code) {
-                //NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
-                SPiDDebugLog(@"Received code: %@", code);
-                SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
-                [request startRequest];
-            } else {
-                // Logout
-                _completionHandler([NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
-            }
-        } else if ([urlString hasSuffix:@"logout"]) {
-            SPiDDebugLog(@"Logged out from SPiD");
-            [self logoutComplete];
-            _completionHandler(nil);
-        }
-        return YES;
-    }
-}
-
 - (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     @synchronized (_authorizationRequest) {
         if (_authorizationRequest == nil) { // can't logout if we are already logging in
@@ -238,23 +205,6 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return nil;
 }
 
-- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request {
-    if (!_waitingRequests) {
-        _waitingRequests = [[NSMutableArray alloc] init];
-    }
-    [_waitingRequests addObject:request];
-
-    [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
-    }];
-}
-
-- (void)clearAuthorizationRequest {
-    @synchronized (_authorizationRequest) {
-        _authorizationRequest = nil;
-    }
-    _waitingRequests = nil;
-}
-
 - (NSURL *)authorizationURLWithQuery {
     NSString *query = [self getAuthorizationQuery];
     return [NSURL URLWithString:[self.authorizationURL.absoluteString stringByAppendingString:query]];
@@ -273,27 +223,6 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (NSURL *)logoutURLWithQuery {
     NSString *query = [self getLogoutQuery];
     return [NSURL URLWithString:[self.logoutURL.absoluteString stringByAppendingString:query]];
-}
-
-- (NSString *)getAuthorizationQuery {
-    NSMutableDictionary *query = [NSMutableDictionary dictionary];
-    [query setObject:self.clientID forKey:@"client_id"];
-    [query setObject:@"code" forKey:@"response_type"];
-    [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
-    if (self.useMobileWeb)
-        [query setObject:@"mobile" forKey:@"platform"];
-    [query setObject:@"1" forKey:@"force"];
-    return [SPiDUtils encodedHttpQueryForDictionary:query];
-}
-
-- (NSString *)getLogoutQuery {
-    NSMutableDictionary *query = [NSMutableDictionary dictionary];
-    [query setObject:self.clientID forKey:@"client_id"];
-    [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/logout"] forKey:@"redirect_uri"]; // add spid/logout
-    if (self.useMobileWeb)
-        [query setObject:@"mobile" forKey:@"platform"];
-    [query setObject:@"1" forKey:@"force"];
-    return [SPiDUtils encodedHttpQueryForDictionary:query];
 }
 
 - (NSString *)currentUserID {
@@ -385,6 +314,73 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         [self setUseMobileWeb:YES];
     }
     return self;
+}
+
+- (BOOL)doHandleOpenURL:(NSURL *)url {
+    NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
+    if (error) {
+        SPiDDebugLog(@"Received error from SPiD: %@", error)
+        _completionHandler([NSError oauth2ErrorWithString:error]);
+        return NO;
+    } else {
+        NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
+        if ([urlString hasSuffix:@"login"]) {
+            NSString *code = [SPiDUtils getUrlParameter:url forKey:@"code"];
+
+            if (code) {
+                //NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
+                SPiDDebugLog(@"Received code: %@", code);
+                SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
+                [request startRequest];
+            } else {
+                // Logout
+                _completionHandler([NSError oauth2ErrorWithCode:SPiDUserAbortedLogin description:@"User aborted login" reason:@""]);
+            }
+        } else if ([urlString hasSuffix:@"logout"]) {
+            SPiDDebugLog(@"Logged out from SPiD");
+            [self logoutComplete];
+            _completionHandler(nil);
+        }
+        return YES;
+    }
+}
+
+- (NSString *)getAuthorizationQuery {
+    NSMutableDictionary *query = [NSMutableDictionary dictionary];
+    [query setObject:self.clientID forKey:@"client_id"];
+    [query setObject:@"code" forKey:@"response_type"];
+    [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
+    if (self.useMobileWeb)
+        [query setObject:@"mobile" forKey:@"platform"];
+    [query setObject:@"1" forKey:@"force"];
+    return [SPiDUtils encodedHttpQueryForDictionary:query];
+}
+
+- (NSString *)getLogoutQuery {
+    NSMutableDictionary *query = [NSMutableDictionary dictionary];
+    [query setObject:self.clientID forKey:@"client_id"];
+    [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/logout"] forKey:@"redirect_uri"]; // add spid/logout
+    if (self.useMobileWeb)
+        [query setObject:@"mobile" forKey:@"platform"];
+    [query setObject:@"1" forKey:@"force"];
+    return [SPiDUtils encodedHttpQueryForDictionary:query];
+}
+
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request {
+    if (!_waitingRequests) {
+        _waitingRequests = [[NSMutableArray alloc] init];
+    }
+    [_waitingRequests addObject:request];
+
+    [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
+    }];
+}
+
+- (void)clearAuthorizationRequest {
+    @synchronized (_authorizationRequest) {
+        _authorizationRequest = nil;
+    }
+    _waitingRequests = nil;
 }
 
 - (void)authorizationComplete:(SPiDAccessToken *)token {

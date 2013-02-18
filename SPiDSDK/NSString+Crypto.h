@@ -12,7 +12,7 @@
 
 @interface NSString (Crypto)
 
-/* Generates a HMAC SHA256 signature for a string
+/** Generates a HMAC SHA256 signature for a string
 
  @param key Encoding key
  @return The signature in hex

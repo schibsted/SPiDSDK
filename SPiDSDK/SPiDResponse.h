@@ -18,7 +18,7 @@
 @interface SPiDResponse : NSObject
 
 ///---------------------------------------------------------------------------------------
-/// @name Public properties
+/// @name Properties
 ///---------------------------------------------------------------------------------------
 
 /** Contains error if there was any, otherwise nil */

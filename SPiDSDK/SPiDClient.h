@@ -32,7 +32,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @interface SPiDClient : NSObject
 
 ///---------------------------------------------------------------------------------------
-/// @name Public properties
+/// @name Properties
 ///---------------------------------------------------------------------------------------
 
 /** Client ID provided by SPiD  */

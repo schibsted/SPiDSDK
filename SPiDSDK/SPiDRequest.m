@@ -104,32 +104,6 @@
     return [[self alloc] initRequestWithPath:requestPath method:method body:body completionHandler:completionHandler];
 }
 
-- (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    return [self initRequestWithPath:requestPath method:@"GET" body:nil completionHandler:completionHandler];
-}
-
-- (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    return [self initRequestWithPath:requestPath method:@"POST" body:body completionHandler:completionHandler];
-}
-
-- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
-    self = [super init];
-    if (self) {
-        NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
-        if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
-            _url = [NSURL URLWithString:requestURL];
-            _httpMethod = @"GET";
-        } else if ([method isEqualToString:@"POST"]) {
-            _url = [NSURL URLWithString:requestURL];
-            _httpMethod = @"POST";
-            _httpBody = [SPiDUtils encodedHttpBodyForDictionary:body];
-        }
-        [self setRetryCount:0];
-        self->_completionHandler = completionHandler;
-    }
-    return self;
-}
-
 - (void)startRequestWithAccessToken {
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     //TODO: Should verify this
@@ -156,6 +130,38 @@
     [self startRequestWithURL:[_url absoluteString] body:_httpBody];
 }
 
+#pragma mark Private methods
+
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
+
+- (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [self initRequestWithPath:requestPath method:@"GET" body:nil completionHandler:completionHandler];
+}
+
+- (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    return [self initRequestWithPath:requestPath method:@"POST" body:body completionHandler:completionHandler];
+}
+
+- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    self = [super init];
+    if (self) {
+        NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
+        if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
+            _url = [NSURL URLWithString:requestURL];
+            _httpMethod = @"GET";
+        } else if ([method isEqualToString:@"POST"]) {
+            _url = [NSURL URLWithString:requestURL];
+            _httpMethod = @"POST";
+            _httpBody = [SPiDUtils encodedHttpBodyForDictionary:body];
+        }
+        [self setRetryCount:0];
+        self->_completionHandler = completionHandler;
+    }
+    return self;
+}
+
 - (void)startRequestWithURL:(NSString *)urlStr body:(NSString *)body {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:_httpMethod];
@@ -171,12 +177,6 @@
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 #pragma clang diagnostic pop
 }
-
-#pragma mark Private methods
-
-///---------------------------------------------------------------------------------------
-/// @name Private methods
-///---------------------------------------------------------------------------------------
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
     if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {

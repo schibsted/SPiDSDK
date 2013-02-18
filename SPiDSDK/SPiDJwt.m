@@ -20,6 +20,11 @@
 
 @implementation SPiDJwt
 
+#pragma mark Public methods
+
+///---------------------------------------------------------------------------------------
+/// @name Public methods
+///---------------------------------------------------------------------------------------
 + (id)jwtTokenWithDictionary:(NSDictionary *)dictionary {
     SPiDJwt *jwtToken = [[SPiDJwt alloc] init];
     jwtToken.iss = [dictionary objectForKey:@"iss"];
@@ -70,6 +75,10 @@
     return [NSString stringWithFormat:@"%@.%@.%@", header, claim, signature];
 }
 
+#pragma mark Private methods
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
 - (BOOL)validateJwt {
     if (self.iss == nil) {
         SPiDDebugLog(@"JWT is missing value for iss");

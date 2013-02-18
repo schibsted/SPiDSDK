@@ -45,14 +45,6 @@
     }
 }
 
-- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
-    NSDictionary *postBody = [self userPostDataWithEmail:email password:password];
-    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup" body:postBody completionHandler:^(SPiDResponse *response) {
-        completionHandler([response error]);
-    }];
-    [request startRequestWithAccessToken];
-}
-
 - (NSDictionary *)userPostDataWithEmail:(NSString *)email password:(NSString *)password {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:email forKey:@"email"];
@@ -67,6 +59,18 @@
         return [NSError oauth2ErrorWithCode:SPiDInvalidPasswordErrorCode description:@"ValidationError" reason:@"Password needs to contain at least 8 letters"];
     }
     return nil;
+}
+
+///---------------------------------------------------------------------------------------
+/// @name Private Methods
+///---------------------------------------------------------------------------------------
+
+- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
+    NSDictionary *postBody = [self userPostDataWithEmail:email password:password];
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup" body:postBody completionHandler:^(SPiDResponse *response) {
+        completionHandler([response error]);
+    }];
+    [request startRequestWithAccessToken];
 }
 
 @end

@@ -13,6 +13,10 @@
 
 @interface SPiDTokenRequest : SPiDRequest
 
+///---------------------------------------------------------------------------------------
+/// @name Public Methods
+///---------------------------------------------------------------------------------------
+
 /** Creates a client token request
 
  @param completionHandler

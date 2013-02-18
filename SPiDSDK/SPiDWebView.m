@@ -75,6 +75,10 @@
     return webView;
 }
 
+///---------------------------------------------------------------------------------------
+/// @name Private methods
+///---------------------------------------------------------------------------------------
+
 + (SPiDWebView *)webView:(NSURL *)requestURL {
     SPiDWebView *webView = [[SPiDWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [webView setRequestURL:requestURL];

@@ -12,15 +12,6 @@
 
 @interface SPiDTokenRequest ()
 
-/** Initializes a token request
-
- @param requestPath Path to token endpoint
- @param body Post body
- @param completionHandler Called on request completion or error
- @return SPiDTokenRequest
- */
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
-
 /** Generates a facebook JWT token as a encoded string
 
  @param appId Facebook appID
@@ -64,6 +55,15 @@
  @return A dictionary containing the post data
  */
 + (NSDictionary *)clientTokenPostData;
+
+/** Initializes a token request
+
+ @param requestPath Path to token endpoint
+ @param body Post body
+ @param completionHandler Called on request completion or error
+ @return SPiDTokenRequest
+ */
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
 
 /** NSURLConnectionDelegate method
 
@@ -131,40 +131,30 @@
     return request;
 }
 
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
-    self = (SPiDTokenRequest *) [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
-    _tokenCompletionHandler = completionHandler;
-    return self;
+///---------------------------------------------------------------------------------------
+/// @name Private Methods
+///---------------------------------------------------------------------------------------
++ (NSString *)facebookJwtStringWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:appId forKey:@"iss"];
+    [dictionary setValue:@"authorization" forKey:@"sub"];
+    [dictionary setValue:[SPiDClient sharedInstance].tokenURL.absoluteString forKey:@"aud"];
+    [dictionary setValue:expirationDate.description forKey:@"exp"];
+    [dictionary setValue:@"facebook" forKey:@"token_type"];
+    [dictionary setValue:facebookToken forKey:@"token_value"];
+    SPiDJwt *jwt = [SPiDJwt jwtTokenWithDictionary:dictionary];
+    NSString *jwtString = jwt.encodedJwtString;
+    return jwtString;
 }
 
-+ (NSDictionary *)clientTokenPostData {
++ (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data setValue:[client clientID] forKey:@"client_id"];
-    [data setValue:[client clientSecret] forKey:@"client_secret"];
-    [data setValue:@"client_credentials" forKey:@"grant_type"];
-    return data;
-}
-
-+ (NSDictionary *)userTokenPostDataWithCode:(NSString *)code {
-    SPiDClient *client = [SPiDClient sharedInstance];
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data setValue:[client clientID] forKey:@"client_id"];
-    [data setValue:[client clientSecret] forKey:@"client_secret"];
-    [data setValue:@"authorization_code" forKey:@"grant_type"];
-    [data setValue:client.redirectURI.absoluteString forKey:@"redirect_uri"];
-    [data setValue:code forKey:@"code"];
-    return data;
-}
-
-+ (NSDictionary *)userTokenPostDataWithUsername:(NSString *)username password:(NSString *)password {
-    SPiDClient *client = [SPiDClient sharedInstance];
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data setValue:[client clientID] forKey:@"client_id"];
-    [data setValue:[client clientSecret] forKey:@"client_secret"];
-    [data setValue:@"password" forKey:@"grant_type"];
-    [data setValue:username forKey:@"username"];
-    [data setValue:password forKey:@"password"];
+    [data setValue:client.clientID forKey:@"client_id"];
+    [data setValue:client.clientSecret forKey:@"client_secret"];
+    [data setValue:@"refresh_token" forKey:@"grant_type"];
+    [data setValue:accessToken.refreshToken forKey:@"refresh_token"];
+    //[data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
     return data;
 }
 
@@ -179,28 +169,41 @@
     return data;
 }
 
-+ (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
++ (NSDictionary *)userTokenPostDataWithUsername:(NSString *)username password:(NSString *)password {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data setValue:client.clientID forKey:@"client_id"];
-    [data setValue:client.clientSecret forKey:@"client_secret"];
-    [data setValue:@"refresh_token" forKey:@"grant_type"];
-    [data setValue:accessToken.refreshToken forKey:@"refresh_token"];
-    //[data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
+    [data setValue:[client clientID] forKey:@"client_id"];
+    [data setValue:[client clientSecret] forKey:@"client_secret"];
+    [data setValue:@"password" forKey:@"grant_type"];
+    [data setValue:username forKey:@"username"];
+    [data setValue:password forKey:@"password"];
     return data;
 }
 
-+ (NSString *)facebookJwtStringWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:appId forKey:@"iss"];
-    [dictionary setValue:@"authorization" forKey:@"sub"];
-    [dictionary setValue:[SPiDClient sharedInstance].tokenURL.absoluteString forKey:@"aud"];
-    [dictionary setValue:expirationDate.description forKey:@"exp"];
-    [dictionary setValue:@"facebook" forKey:@"token_type"];
-    [dictionary setValue:facebookToken forKey:@"token_value"];
-    SPiDJwt *jwt = [SPiDJwt jwtTokenWithDictionary:dictionary];
-    NSString *jwtString = jwt.encodedJwtString;
-    return jwtString;
++ (NSDictionary *)userTokenPostDataWithCode:(NSString *)code {
+    SPiDClient *client = [SPiDClient sharedInstance];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data setValue:[client clientID] forKey:@"client_id"];
+    [data setValue:[client clientSecret] forKey:@"client_secret"];
+    [data setValue:@"authorization_code" forKey:@"grant_type"];
+    [data setValue:client.redirectURI.absoluteString forKey:@"redirect_uri"];
+    [data setValue:code forKey:@"code"];
+    return data;
+}
+
++ (NSDictionary *)clientTokenPostData {
+    SPiDClient *client = [SPiDClient sharedInstance];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data setValue:[client clientID] forKey:@"client_id"];
+    [data setValue:[client clientSecret] forKey:@"client_secret"];
+    [data setValue:@"client_credentials" forKey:@"grant_type"];
+    return data;
+}
+
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
+    self = (SPiDTokenRequest *) [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
+    _tokenCompletionHandler = completionHandler;
+    return self;
 }
 
 // NSURLConnection methods
