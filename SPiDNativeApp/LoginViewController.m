@@ -79,7 +79,7 @@
     serviceLabel.textColor = [UIColor darkGrayColor];
     serviceLabel.backgroundColor = [UIColor clearColor];
     serviceLabel.font = [UIFont systemFontOfSize:12];
-    serviceLabel.textAlignment = (NSTextAlignment) UITextAlignmentCenter;
+    serviceLabel.textAlignment = NSTextAlignmentCenter;
     serviceLabel.text = @"By using this service you are agreeing the";
     [scrollView addSubview:serviceLabel];
 
@@ -87,7 +87,7 @@
     termsLabel.textColor = [UIColor darkGrayColor];
     termsLabel.backgroundColor = [UIColor clearColor];
     termsLabel.font = [UIFont boldSystemFontOfSize:12];
-    termsLabel.textAlignment = (NSTextAlignment) UITextAlignmentCenter;
+    termsLabel.textAlignment = NSTextAlignmentCenter;
     termsLabel.text = @"Terms of use";
 
     // Open WebView when "Terms of use" is clicked
@@ -131,7 +131,7 @@
 
 // Open lost password in safari
 - (void)forgotPassword:(id)sender {
-    [[SPiDClient sharedInstance] browserRedirectForgotPasswordWith];
+    [[SPiDClient sharedInstance] browserRedirectForgotPassword];
 }
 
 - (void)switchToSignUp:(id)sender {
