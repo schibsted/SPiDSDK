@@ -33,30 +33,30 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-/** Creates a GET `SPiDRequest´
+/** Creates a GET `SPiDRequest`
 
  @param requestPath API path for GET request e.g. /user
  @param completionHandler Completion handler run after request is finished
- @return `SPiDRequest´
+ @return `SPiDRequest`
 */
 + (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Creates a POST `SPiDRequest´
+/** Creates a POST `SPiDRequest`
 
  @param requestPath API path for POST request e.g. /user
  @param body The HTTP body
  @param completionHandler Completion handler run after request is finished
- @return `SPiDRequest´
+ @return `SPiDRequest`
 */
 + (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Creates a `SPiDRequest´
+/** Creates a `SPiDRequest`
 
  @param requestPath API path for request
  @param method HTTP method for the request
  @param body HTTP body, used if method is POST
  @param completionHandler Completion handler run after request is finished
- @return `SPiDRequest´
+ @return `SPiDRequest`
 */
 + (SPiDRequest *)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 

@@ -112,7 +112,7 @@
 
 - (void)createSPiDAccountWithEmail:(NSString *)email andPassword:(NSString *)password {
     [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Creating SPiD account\nPlease Wait..."];
-    [[SPiDUser alloc] createAccountWithEmail:email password:password completionHandler:^(NSError *error) {
+    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(NSError *error) {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
         if (error) {
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error localizedDescription]];

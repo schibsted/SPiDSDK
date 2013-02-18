@@ -35,7 +35,7 @@
     if (![self validateJwt]) {
         return nil;
     }
-    if ([[SPiDClient sharedInstance] sigSecret] == nil) {
+    if ([[SPiDClient sharedInstance] signSecret] == nil) {
         SPiDDebugLog(@"No signing secret found, cannot use JWT");
         return nil;
     }
@@ -66,7 +66,7 @@
     }
 
     NSString *payload = [NSString stringWithFormat:@"%@.%@", header, claim];
-    NSString *signature = [payload hmacSHA256withKey:[[SPiDClient sharedInstance] sigSecret]];
+    NSString *signature = [payload hmacSHA256withKey:[[SPiDClient sharedInstance] signSecret]];
     return [NSString stringWithFormat:@"%@.%@.%@", header, claim, signature];
 }
 

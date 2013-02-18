@@ -19,9 +19,10 @@
 
 @implementation SPiDUser
 
-- (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *response))completionHandler {
++ (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *response))completionHandler {
+    SPiDUser *user = [[SPiDUser alloc] init];
     // Validate email and password
-    NSError *validationError = [self validateEmail:email password:password];
+    NSError *validationError = [user validateEmail:email password:password];
     if (validationError) {
         completionHandler(validationError);
     }
@@ -34,13 +35,13 @@
                 completionHandler(error);
             } else {
                 SPiDDebugLog(@"Client token received, creating account");
-                [self accountRequestWithEmail:email password:password completionHandler:completionHandler];
+                [user accountRequestWithEmail:email password:password completionHandler:completionHandler];
             }
         }];
         [clientTokenRequest startRequest];
     } else {
         SPiDDebugLog(@"Client token found, creating account");
-        [self accountRequestWithEmail:email password:password completionHandler:completionHandler];
+        [user accountRequestWithEmail:email password:password completionHandler:completionHandler];
     }
 }
 

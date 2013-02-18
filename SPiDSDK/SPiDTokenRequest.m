@@ -32,7 +32,7 @@
 
 /** Generates post data for a token refresh
 
- @param accessToken ´SPiDAccessToken` to be refreshed
+ @param accessToken `SPiDAccessToken` to be refreshed
  @return Dictionary containing the post data
  */
 + (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)accessToken;

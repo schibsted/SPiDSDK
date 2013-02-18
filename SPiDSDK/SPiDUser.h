@@ -20,7 +20,7 @@
  @param password The password
  @param completionHandler Called after user has been created
 */
-- (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
++ (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Generates user credentials post data
 

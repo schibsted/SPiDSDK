@@ -45,7 +45,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @property(strong, nonatomic) NSString *clientSecret;
 
 /** Signing secret provided by SPiD  */
-@property(strong, nonatomic) NSString *sigSecret;
+@property(strong, nonatomic) NSString *signSecret;
 
 /** App URL schema
 
@@ -64,31 +64,31 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** URL to use for web authorization with SPiD
 
- This URL is normally generated using the `serverURL´/auth/login
+ This URL is normally generated using the `serverURL`/auth/login
  */
 @property(strong, nonatomic) NSURL *authorizationURL;
 
 /** URL to use for web signup with SPiD
 
- This URL is normally generated using the `serverURL´/auth/signup
+ This URL is normally generated using the `serverURL`/auth/signup
  */
 @property(strong, nonatomic) NSURL *signupURL;
 
 /** URL to use for web forgot password with SPiD
 
- This URL is normally generated using the `serverURL´/auth/forgotpassword
+ This URL is normally generated using the `serverURL`/auth/forgotpassword
  */
 @property(strong, nonatomic) NSURL *forgotPasswordURL;
 
 /** URL to use for logout with SPiD
 
- This URL is normally generated using the `serverURL´/logout
+ This URL is normally generated using the `serverURL`/logout
  */
 @property(nonatomic, strong) NSURL *logoutURL;
 
 /** URL to use for requesting access token from SPiD
 
- This URL is normally generated using the `serverURL´/oauth/token
+ This URL is normally generated using the `serverURL`/oauth/token
  */
 @property(strong, nonatomic) NSURL *tokenURL;
 
