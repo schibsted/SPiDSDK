@@ -57,13 +57,17 @@
 	
 	<option value="//api/name/encodeWithCoder:">&nbsp;&nbsp;&nbsp;&nbsp;- encodeWithCoder:</option>
 	
-	<option value="//api/name/hasTokenExpired">&nbsp;&nbsp;&nbsp;&nbsp;- hasTokenExpired</option>
+	<option value="//api/name/hasExpired">&nbsp;&nbsp;&nbsp;&nbsp;- hasExpired</option>
 	
 	<option value="//api/name/initWithCoder:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithCoder:</option>
 	
 	<option value="//api/name/initWithDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDictionary:</option>
 	
-	<option value="//api/name/initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:</option>
+	<option value="//api/name/initWithUserID:accessToken:expiresAt:refreshToken:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithUserID:accessToken:expiresAt:refreshToken:</option>
+	
+	<option value="//api/name/isClientToken">&nbsp;&nbsp;&nbsp;&nbsp;- isClientToken</option>
+	
+	<option value="//api/name/stringFromObject:">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromObject:</option>
 	
 	
 	
@@ -111,13 +115,17 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/encodeWithCoder:">encodeWithCoder:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasTokenExpired">hasTokenExpired</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasExpired">hasExpired</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithCoder:">initWithCoder:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDictionary:">initWithDictionary:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:">initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithUserID:accessToken:expiresAt:refreshToken:">initWithUserID:accessToken:expiresAt:refreshToken:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isClientToken">isClientToken</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromObject:">stringFromObject:</a></span></li>
 	
 </ul></li>
 
@@ -144,6 +152,9 @@
 						<tr>
 	<td class="specification-title">Inherits from</td>
 	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">SPiDAccessToken.h<br />SPiDAccessToken.m</td>
@@ -210,7 +221,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:">&ndash;&nbsp;initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:</a></code>
+		<code><a href="#//api/name/initWithUserID:accessToken:expiresAt:refreshToken:">&ndash;&nbsp;initWithUserID:accessToken:expiresAt:refreshToken:</a></code>
 		<span class="tooltip"><p>Initializes the AccessToken from the parameters</p></span>
 	</span>
 	
@@ -238,8 +249,22 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/hasTokenExpired">&ndash;&nbsp;hasTokenExpired</a></code>
+		<code><a href="#//api/name/stringFromObject:">&ndash;&nbsp;stringFromObject:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasExpired">&ndash;&nbsp;hasExpired</a></code>
 		<span class="tooltip"><p>Checks if the access token has expired</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isClientToken">&ndash;&nbsp;isClientToken</a></code>
+		<span class="tooltip"><p>Checks if the access token is a client token</p></span>
 	</span>
 	
 	
@@ -457,8 +482,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/hasTokenExpired" title="hasTokenExpired"></a>
-	<h3 class="subsubtitle method-title">hasTokenExpired</h3>
+	<a name="//api/name/hasExpired" title="hasExpired"></a>
+	<h3 class="subsubtitle method-title">hasExpired</h3>
 	
 	
 	
@@ -468,7 +493,7 @@
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (BOOL)hasTokenExpired</code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasExpired</code></div>
 
     
 	
@@ -600,8 +625,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:" title="initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:"></a>
-	<h3 class="subsubtitle method-title">initWithUserID:andAccessToken:andExpiresAt:andRefreshToken:</h3>
+	<a name="//api/name/initWithUserID:accessToken:expiresAt:refreshToken:" title="initWithUserID:accessToken:expiresAt:refreshToken:"></a>
+	<h3 class="subsubtitle method-title">initWithUserID:accessToken:expiresAt:refreshToken:</h3>
 	
 	
 	
@@ -611,7 +636,7 @@
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (id)initWithUserID:(NSString *)<em>userID</em> andAccessToken:(NSString *)<em>accessToken</em> andExpiresAt:(NSDate *)<em>expiresAt</em> andRefreshToken:(NSString *)<em>refreshToken</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithUserID:(NSString *)<em>userID</em> accessToken:(NSString *)<em>accessToken</em> expiresAt:(NSDate *)<em>expiresAt</em> refreshToken:(NSString *)<em>refreshToken</em></code></div>
 
     
 	
@@ -665,6 +690,58 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/isClientToken" title="isClientToken"></a>
+	<h3 class="subsubtitle method-title">isClientToken</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks if the access token is a client token</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isClientToken</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>@Return Returns YES if the access token is a client token</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDAccessToken.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromObject:" title="stringFromObject:"></a>
+	<h3 class="subsubtitle method-title">stringFromObject:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromObject:(id)<em>obj</em></code></div>
+
+    
+</div>
+						
 					</div>
 					
 					
@@ -678,7 +755,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Schibsted Payment. All rights reserved. (Last updated: 2012-11-13)</span><br />
+						<p><span class="copyright">&copy; 2013 Schibsted Payment. All rights reserved. (Last updated: 2013-02-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

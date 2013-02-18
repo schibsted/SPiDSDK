@@ -1,16 +1,15 @@
 ---
-title: Getting started with UIWebView
+title: Getting started with WebView
 layout: default
 ---
-UIWebView
+SPiDWebView
 =========
 The authorization process for UIWebView two steps, in the first we login to SPiD in a UIWebView and then receives a code. The code is then exchanged for a access token which can be used to make requests against SPiD.
-Both these steps are done automatically and the client will only have to use the method `webViewAuthorizationWithCompletionHandler` method as seen below.
+Both these steps are done automatically and the client will only have to use the method `authorizationWebViewWithCompletionHandler` method as seen below.
 {% highlight objectivec %}
-  UIWebView *webView = [[SPiDClient sharedInstance] webViewAuthorizationWithCompletionHandler:^(NSError *error) {
+  SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            // successfully logged in to SPiD and have a access token
-            // we can now call API requests
+            // Successfully logged in to SPiD!
         } else if ([error code] == SPiDUserAbortedLogin) {
             // user aborted login and pressed back to app
         } else {
@@ -21,11 +20,11 @@ Both these steps are done automatically and the client will only have to use the
 
 If the user should go directly to the registration or lost password pages the following methods can be used.
 {% highlight objectivec %}
-UIWebView *webView = [[SPiDClient sharedInstance] webViewRegistrationWithCompletionHandler:^(NSError *error) {  }];
+SPiDWebView *webView = [SPiDWebView signupWebViewWithCompletionHandler:^(NSError *error) {  }];
 {% endhighlight %}
 
 {% highlight objectivec %}
-UIWebView *webView = [[SPiDClient sharedInstance] webViewLostPasswordWithCompletionHandler:^(NSError *error) {  }];
+SPiDWebView *webView = [SPiDWebView forgotPasswordWebViewWithCompletionHandler:^(NSError *error) {  }];
 {% endhighlight %}
 
 After the login has been completed and the completion handler has been executed you can start making [API requests](using-spid-requests.html "API requests").

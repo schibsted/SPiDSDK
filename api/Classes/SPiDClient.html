@@ -40,6 +40,8 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/accessToken">&nbsp;&nbsp;&nbsp;&nbsp;accessToken</option>
+	
 	<option value="//api/name/apiVersionSPiD">&nbsp;&nbsp;&nbsp;&nbsp;apiVersionSPiD</option>
 	
 	<option value="//api/name/appURLScheme">&nbsp;&nbsp;&nbsp;&nbsp;appURLScheme</option>
@@ -50,11 +52,11 @@
 	
 	<option value="//api/name/clientSecret">&nbsp;&nbsp;&nbsp;&nbsp;clientSecret</option>
 	
-	<option value="//api/name/lostPasswordURL">&nbsp;&nbsp;&nbsp;&nbsp;lostPasswordURL</option>
+	<option value="//api/name/forgotPasswordURL">&nbsp;&nbsp;&nbsp;&nbsp;forgotPasswordURL</option>
+	
+	<option value="//api/name/logoutURL">&nbsp;&nbsp;&nbsp;&nbsp;logoutURL</option>
 	
 	<option value="//api/name/redirectURI">&nbsp;&nbsp;&nbsp;&nbsp;redirectURI</option>
-	
-	<option value="//api/name/registrationURL">&nbsp;&nbsp;&nbsp;&nbsp;registrationURL</option>
 	
 	<option value="//api/name/saveToKeychain">&nbsp;&nbsp;&nbsp;&nbsp;saveToKeychain</option>
 	
@@ -62,9 +64,15 @@
 	
 	<option value="//api/name/serverURL">&nbsp;&nbsp;&nbsp;&nbsp;serverURL</option>
 	
+	<option value="//api/name/signSecret">&nbsp;&nbsp;&nbsp;&nbsp;signSecret</option>
+	
+	<option value="//api/name/signupURL">&nbsp;&nbsp;&nbsp;&nbsp;signupURL</option>
+	
 	<option value="//api/name/tokenURL">&nbsp;&nbsp;&nbsp;&nbsp;tokenURL</option>
 	
 	<option value="//api/name/useMobileWeb">&nbsp;&nbsp;&nbsp;&nbsp;useMobileWeb</option>
+	
+	<option value="//api/name/waitingRequests">&nbsp;&nbsp;&nbsp;&nbsp;waitingRequests</option>
 	
 	<option value="//api/name/webViewInitialHTML">&nbsp;&nbsp;&nbsp;&nbsp;webViewInitialHTML</option>
 	
@@ -73,6 +81,8 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/setClientID:clientSecret:appURLScheme:serverURL:">&nbsp;&nbsp;&nbsp;&nbsp;+ setClientID:clientSecret:appURLScheme:serverURL:</option>
+	
 	<option value="//api/name/sharedInstance">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedInstance</option>
 	
 	
@@ -80,31 +90,39 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/apiGetRequestWithPath:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- apiGetRequestWithPath:andCompletionHandler:</option>
-	
-	<option value="//api/name/apiPostRequestWithPath:andBody:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- apiPostRequestWithPath:andBody:andCompletionHandler:</option>
-	
 	<option value="//api/name/authorizationComplete:">&nbsp;&nbsp;&nbsp;&nbsp;- authorizationComplete:</option>
+	
+	<option value="//api/name/authorizationURLWithQuery">&nbsp;&nbsp;&nbsp;&nbsp;- authorizationURLWithQuery</option>
 	
 	<option value="//api/name/browserRedirectAuthorizationWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- browserRedirectAuthorizationWithCompletionHandler:</option>
 	
-	<option value="//api/name/clearAuthorizationRequest">&nbsp;&nbsp;&nbsp;&nbsp;- clearAuthorizationRequest</option>
+	<option value="//api/name/browserRedirectForgotPassword">&nbsp;&nbsp;&nbsp;&nbsp;- browserRedirectForgotPassword</option>
 	
-	<option value="//api/name/createWebViewAuthRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- createWebViewAuthRequestWithCompletionHandler:</option>
+	<option value="//api/name/browserRedirectLogoutWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- browserRedirectLogoutWithCompletionHandler:</option>
+	
+	<option value="//api/name/browserRedirectSignupWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- browserRedirectSignupWithCompletionHandler:</option>
+	
+	<option value="//api/name/clearAuthorizationRequest">&nbsp;&nbsp;&nbsp;&nbsp;- clearAuthorizationRequest</option>
 	
 	<option value="//api/name/currentUserID">&nbsp;&nbsp;&nbsp;&nbsp;- currentUserID</option>
 	
-	<option value="//api/name/doBrowserRedirectAuthorizationRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- doBrowserRedirectAuthorizationRequestWithCompletionHandler:</option>
+	<option value="//api/name/doHandleOpenURL:">&nbsp;&nbsp;&nbsp;&nbsp;- doHandleOpenURL:</option>
+	
+	<option value="//api/name/forgotPasswordURLWithQuery">&nbsp;&nbsp;&nbsp;&nbsp;- forgotPasswordURLWithQuery</option>
+	
+	<option value="//api/name/getAuthorizationQuery">&nbsp;&nbsp;&nbsp;&nbsp;- getAuthorizationQuery</option>
+	
+	<option value="//api/name/getCurrentUserRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getCurrentUserRequestWithCompletionHandler:</option>
+	
+	<option value="//api/name/getLogoutQuery">&nbsp;&nbsp;&nbsp;&nbsp;- getLogoutQuery</option>
 	
 	<option value="//api/name/getMeRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getMeRequestWithCompletionHandler:</option>
 	
 	<option value="//api/name/getOneTimeCodeRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getOneTimeCodeRequestWithCompletionHandler:</option>
 	
-	<option value="//api/name/getUserLoginsRequestWithUserID:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getUserLoginsRequestWithUserID:andCompletionHandler:</option>
+	<option value="//api/name/getUserLoginsRequestWithUserID:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getUserLoginsRequestWithUserID:completionHandler:</option>
 	
-	<option value="//api/name/getUserRequestWithCurrentUserAndCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getUserRequestWithCurrentUserAndCompletionHandler:</option>
-	
-	<option value="//api/name/getUserRequestWithID:andCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getUserRequestWithID:andCompletionHandler:</option>
+	<option value="//api/name/getUserRequestWithID:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- getUserRequestWithID:completionHandler:</option>
 	
 	<option value="//api/name/handleOpenURL:">&nbsp;&nbsp;&nbsp;&nbsp;- handleOpenURL:</option>
 	
@@ -114,25 +132,19 @@
 	
 	<option value="//api/name/isAuthorized">&nbsp;&nbsp;&nbsp;&nbsp;- isAuthorized</option>
 	
+	<option value="//api/name/isClientToken">&nbsp;&nbsp;&nbsp;&nbsp;- isClientToken</option>
+	
 	<option value="//api/name/logoutComplete">&nbsp;&nbsp;&nbsp;&nbsp;- logoutComplete</option>
 	
 	<option value="//api/name/logoutRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- logoutRequestWithCompletionHandler:</option>
 	
+	<option value="//api/name/logoutURLWithQuery">&nbsp;&nbsp;&nbsp;&nbsp;- logoutURLWithQuery</option>
+	
 	<option value="//api/name/refreshAccessTokenAndRerunRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- refreshAccessTokenAndRerunRequest:</option>
 	
-	<option value="//api/name/refreshAccessTokenRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- refreshAccessTokenRequestWithCompletionHandler:</option>
-	
-	<option value="//api/name/setClientID:andClientSecret:andAppURLScheme:andServerURL:">&nbsp;&nbsp;&nbsp;&nbsp;- setClientID:andClientSecret:andAppURLScheme:andServerURL:</option>
-	
-	<option value="//api/name/softLogoutRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- softLogoutRequestWithCompletionHandler:</option>
+	<option value="//api/name/signupURLWithQuery">&nbsp;&nbsp;&nbsp;&nbsp;- signupURLWithQuery</option>
 	
 	<option value="//api/name/tokenExpiresAt">&nbsp;&nbsp;&nbsp;&nbsp;- tokenExpiresAt</option>
-	
-	<option value="//api/name/webViewAuthorizationWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- webViewAuthorizationWithCompletionHandler:</option>
-	
-	<option value="//api/name/webViewLostPasswordWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- webViewLostPasswordWithCompletionHandler:</option>
-	
-	<option value="//api/name/webViewRegistrationWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- webViewRegistrationWithCompletionHandler:</option>
 	
 	
 	
@@ -168,6 +180,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/accessToken">accessToken</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/apiVersionSPiD">apiVersionSPiD</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appURLScheme">appURLScheme</a></span></li>
@@ -178,11 +192,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clientSecret">clientSecret</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lostPasswordURL">lostPasswordURL</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/forgotPasswordURL">forgotPasswordURL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logoutURL">logoutURL</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/redirectURI">redirectURI</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registrationURL">registrationURL</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveToKeychain">saveToKeychain</a></span></li>
 	
@@ -190,9 +204,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/serverURL">serverURL</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signSecret">signSecret</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signupURL">signupURL</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tokenURL">tokenURL</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useMobileWeb">useMobileWeb</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/waitingRequests">waitingRequests</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webViewInitialHTML">webViewInitialHTML</a></span></li>
 	
@@ -202,6 +222,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setClientID:clientSecret:appURLScheme:serverURL:">setClientID:clientSecret:appURLScheme:serverURL:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedInstance">sharedInstance</a></span></li>
 	
 </ul></li>
@@ -210,31 +232,39 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/apiGetRequestWithPath:andCompletionHandler:">apiGetRequestWithPath:andCompletionHandler:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/apiPostRequestWithPath:andBody:andCompletionHandler:">apiPostRequestWithPath:andBody:andCompletionHandler:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authorizationComplete:">authorizationComplete:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authorizationURLWithQuery">authorizationURLWithQuery</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/browserRedirectAuthorizationWithCompletionHandler:">browserRedirectAuthorizationWithCompletionHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearAuthorizationRequest">clearAuthorizationRequest</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/browserRedirectForgotPassword">browserRedirectForgotPassword</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createWebViewAuthRequestWithCompletionHandler:">createWebViewAuthRequestWithCompletionHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/browserRedirectLogoutWithCompletionHandler:">browserRedirectLogoutWithCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/browserRedirectSignupWithCompletionHandler:">browserRedirectSignupWithCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearAuthorizationRequest">clearAuthorizationRequest</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUserID">currentUserID</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doBrowserRedirectAuthorizationRequestWithCompletionHandler:">doBrowserRedirectAuthorizationRequestWithCompletionHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doHandleOpenURL:">doHandleOpenURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/forgotPasswordURLWithQuery">forgotPasswordURLWithQuery</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAuthorizationQuery">getAuthorizationQuery</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCurrentUserRequestWithCompletionHandler:">getCurrentUserRequestWithCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getLogoutQuery">getLogoutQuery</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMeRequestWithCompletionHandler:">getMeRequestWithCompletionHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getOneTimeCodeRequestWithCompletionHandler:">getOneTimeCodeRequestWithCompletionHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUserLoginsRequestWithUserID:andCompletionHandler:">getUserLoginsRequestWithUserID:andCompletionHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUserLoginsRequestWithUserID:completionHandler:">getUserLoginsRequestWithUserID:completionHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUserRequestWithCurrentUserAndCompletionHandler:">getUserRequestWithCurrentUserAndCompletionHandler:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUserRequestWithID:andCompletionHandler:">getUserRequestWithID:andCompletionHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUserRequestWithID:completionHandler:">getUserRequestWithID:completionHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/handleOpenURL:">handleOpenURL:</a></span></li>
 	
@@ -244,25 +274,19 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAuthorized">isAuthorized</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isClientToken">isClientToken</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logoutComplete">logoutComplete</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logoutRequestWithCompletionHandler:">logoutRequestWithCompletionHandler:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logoutURLWithQuery">logoutURLWithQuery</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refreshAccessTokenAndRerunRequest:">refreshAccessTokenAndRerunRequest:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refreshAccessTokenRequestWithCompletionHandler:">refreshAccessTokenRequestWithCompletionHandler:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setClientID:andClientSecret:andAppURLScheme:andServerURL:">setClientID:andClientSecret:andAppURLScheme:andServerURL:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/softLogoutRequestWithCompletionHandler:">softLogoutRequestWithCompletionHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signupURLWithQuery">signupURLWithQuery</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tokenExpiresAt">tokenExpiresAt</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webViewAuthorizationWithCompletionHandler:">webViewAuthorizationWithCompletionHandler:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webViewLostPasswordWithCompletionHandler:">webViewLostPasswordWithCompletionHandler:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webViewRegistrationWithCompletionHandler:">webViewRegistrationWithCompletionHandler:</a></span></li>
 	
 </ul></li>
 
@@ -329,7 +353,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/serverClientID">&nbsp;&nbsp;serverClientID</a></code>
-		<span class="tooltip"><p>Client ID to be used when generating a one time code</p></span>
+		<span class="tooltip"><p>Client ID to be used when generating a one time code. Defaults to <a href="#//api/name/clientID"><code>clientID</code></a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -337,6 +361,13 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/clientSecret">&nbsp;&nbsp;clientSecret</a></code>
 		<span class="tooltip"><p>Client secret provided by SPiD</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signSecret">&nbsp;&nbsp;signSecret</a></code>
+		<span class="tooltip"><p>Signing secret provided by SPiD</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -364,21 +395,28 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/authorizationURL">&nbsp;&nbsp;authorizationURL</a></code>
-		<span class="tooltip"><p>URL to use for authorization to SPiD</p></span>
+		<span class="tooltip"><p>URL to use for web authorization with SPiD</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/registrationURL">&nbsp;&nbsp;registrationURL</a></code>
-		
+		<code><a href="#//api/name/signupURL">&nbsp;&nbsp;signupURL</a></code>
+		<span class="tooltip"><p>URL to use for web signup with SPiD</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/lostPasswordURL">&nbsp;&nbsp;lostPasswordURL</a></code>
-		
+		<code><a href="#//api/name/forgotPasswordURL">&nbsp;&nbsp;forgotPasswordURL</a></code>
+		<span class="tooltip"><p>URL to use for web forgot password with SPiD</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logoutURL">&nbsp;&nbsp;logoutURL</a></code>
+		<span class="tooltip"><p>URL to use for logout with SPiD</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -417,6 +455,20 @@
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/accessToken">&nbsp;&nbsp;accessToken</a></code>
+		<span class="tooltip"><p>The SPiD access token</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/waitingRequests">&nbsp;&nbsp;waitingRequests</a></code>
+		<span class="tooltip"><p>Queue for waiting requests</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -434,29 +486,36 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/setClientID:andClientSecret:andAppURLScheme:andServerURL:">&ndash;&nbsp;setClientID:andClientSecret:andAppURLScheme:andServerURL:</a></code>
-		<span class="tooltip"><p>Configures the <code>SPiDClient</code></p></span>
+		<code><a href="#//api/name/setClientID:clientSecret:appURLScheme:serverURL:">+&nbsp;setClientID:clientSecret:appURLScheme:serverURL:</a></code>
+		<span class="tooltip"><p>Configures the <code>SPiDClient</code> and creates a singleton instance</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/webViewAuthorizationWithCompletionHandler:">&ndash;&nbsp;webViewAuthorizationWithCompletionHandler:</a></code>
-		
+		<code><a href="#//api/name/browserRedirectAuthorizationWithCompletionHandler:">&ndash;&nbsp;browserRedirectAuthorizationWithCompletionHandler:</a></code>
+		<span class="tooltip"><p>Redirects to safari for authorization</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/webViewRegistrationWithCompletionHandler:">&ndash;&nbsp;webViewRegistrationWithCompletionHandler:</a></code>
-		
+		<code><a href="#//api/name/browserRedirectSignupWithCompletionHandler:">&ndash;&nbsp;browserRedirectSignupWithCompletionHandler:</a></code>
+		<span class="tooltip"><p>Redirects to safari for signup</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/webViewLostPasswordWithCompletionHandler:">&ndash;&nbsp;webViewLostPasswordWithCompletionHandler:</a></code>
-		
+		<code><a href="#//api/name/browserRedirectForgotPassword">&ndash;&nbsp;browserRedirectForgotPassword</a></code>
+		<span class="tooltip"><p>Redirects to safari for forgot password</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/browserRedirectLogoutWithCompletionHandler:">&ndash;&nbsp;browserRedirectLogoutWithCompletionHandler:</a></code>
+		<span class="tooltip"><p>Redirects to safari for logout</p></span>
 	</span>
 	
 	
@@ -469,50 +528,8 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/browserRedirectAuthorizationWithCompletionHandler:">&ndash;&nbsp;browserRedirectAuthorizationWithCompletionHandler:</a></code>
-		<span class="tooltip"><p>Authorizes with SPiD</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/logoutRequestWithCompletionHandler:">&ndash;&nbsp;logoutRequestWithCompletionHandler:</a></code>
 		<span class="tooltip"><p>Logout from SPiD</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/softLogoutRequestWithCompletionHandler:">&ndash;&nbsp;softLogoutRequestWithCompletionHandler:</a></code>
-		<span class="tooltip"><p>Soft logout from SPiD</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/refreshAccessTokenRequestWithCompletionHandler:">&ndash;&nbsp;refreshAccessTokenRequestWithCompletionHandler:</a></code>
-		<span class="tooltip"><p>Refresh access token</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/refreshAccessTokenAndRerunRequest:">&ndash;&nbsp;refreshAccessTokenAndRerunRequest:</a></code>
-		<span class="tooltip"><p>Refreshes the access token and then reruns the request</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/apiGetRequestWithPath:andCompletionHandler:">&ndash;&nbsp;apiGetRequestWithPath:andCompletionHandler:</a></code>
-		<span class="tooltip"><p>Runs a GET request against the SPiD server</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/apiPostRequestWithPath:andBody:andCompletionHandler:">&ndash;&nbsp;apiPostRequestWithPath:andBody:andCompletionHandler:</a></code>
-		<span class="tooltip"><p>Runs a POST request against the SPiD server</p></span>
 	</span>
 	
 	
@@ -540,7 +557,14 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isAuthorized">&ndash;&nbsp;isAuthorized</a></code>
-		<span class="tooltip"><p>Returns YES if <code>SPiDClient</code> has a access token and is logged in</p></span>
+		<span class="tooltip"><p>Returns YES if <code>SPiDClient</code> has a access token</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isClientToken">&ndash;&nbsp;isClientToken</a></code>
+		<span class="tooltip"><p>Returns YES if <code>SPiDClient</code> has a client access token</p></span>
 	</span>
 	
 	
@@ -569,22 +593,50 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/getUserRequestWithID:andCompletionHandler:">&ndash;&nbsp;getUserRequestWithID:andCompletionHandler:</a></code>
+		<code><a href="#//api/name/getUserRequestWithID:completionHandler:">&ndash;&nbsp;getUserRequestWithID:completionHandler:</a></code>
 		<span class="tooltip"><p>Requests the userinformation for the specified userID</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/getUserRequestWithCurrentUserAndCompletionHandler:">&ndash;&nbsp;getUserRequestWithCurrentUserAndCompletionHandler:</a></code>
+		<code><a href="#//api/name/getCurrentUserRequestWithCompletionHandler:">&ndash;&nbsp;getCurrentUserRequestWithCompletionHandler:</a></code>
 		<span class="tooltip"><p>Requests the userinformation for the current user</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/getUserLoginsRequestWithUserID:andCompletionHandler:">&ndash;&nbsp;getUserLoginsRequestWithUserID:andCompletionHandler:</a></code>
+		<code><a href="#//api/name/getUserLoginsRequestWithUserID:completionHandler:">&ndash;&nbsp;getUserLoginsRequestWithUserID:completionHandler:</a></code>
 		<span class="tooltip"><p>Request all login attempts for a specific client</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/authorizationURLWithQuery">&ndash;&nbsp;authorizationURLWithQuery</a></code>
+		<span class="tooltip"><p>Generates the authorization url with query parameters</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signupURLWithQuery">&ndash;&nbsp;signupURLWithQuery</a></code>
+		<span class="tooltip"><p>Generates the signup url with query parameters</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/forgotPasswordURLWithQuery">&ndash;&nbsp;forgotPasswordURLWithQuery</a></code>
+		<span class="tooltip"><p>Generates the forgot password url with query parameters</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logoutURLWithQuery">&ndash;&nbsp;logoutURLWithQuery</a></code>
+		<span class="tooltip"><p>Generates the logout url with query parameters</p></span>
 	</span>
 	
 	
@@ -598,15 +650,36 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/createWebViewAuthRequestWithCompletionHandler:">&ndash;&nbsp;createWebViewAuthRequestWithCompletionHandler:</a></code>
-		
+		<code><a href="#//api/name/doHandleOpenURL:">&ndash;&nbsp;doHandleOpenURL:</a></code>
+		<span class="tooltip"><p>Helper method</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/refreshAccessTokenAndRerunRequest:">&ndash;&nbsp;refreshAccessTokenAndRerunRequest:</a></code>
+		<span class="tooltip"><p>Tries to refresh access token and rerun waiting requests</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/clearAuthorizationRequest">&ndash;&nbsp;clearAuthorizationRequest</a></code>
-		
+		<span class="tooltip"><p>Clears current authorization request and waiting requests</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getAuthorizationQuery">&ndash;&nbsp;getAuthorizationQuery</a></code>
+		<span class="tooltip"><p>Builds authorization query</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getLogoutQuery">&ndash;&nbsp;getLogoutQuery</a></code>
+		<span class="tooltip"><p>Builds logout query</p></span>
 	</span>
 	
 	
@@ -627,16 +700,8 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/doBrowserRedirectAuthorizationRequestWithCompletionHandler:">&ndash;&nbsp;doBrowserRedirectAuthorizationRequestWithCompletionHandler:</a></code>
-		<span class="tooltip"><p>Creates and runs the authorization request</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/authorizationComplete:">&ndash;&nbsp;authorizationComplete:</a></code>
-		<span class="tooltip"><p>Runs after authorization has been completed, should not be called directly
-*</p></span>
+		
 	</span>
 	
 	
@@ -659,6 +724,42 @@
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/accessToken" title="accessToken"></a>
+	<h3 class="subsubtitle method-title">accessToken</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The SPiD access token</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) SPiDAccessToken *accessToken</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/apiVersionSPiD" title="apiVersionSPiD"></a>
@@ -744,7 +845,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>URL to use for authorization to SPiD</p>
+		<p>URL to use for web authorization with SPiD</p>
 	</div>		
 	
     
@@ -761,7 +862,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>This URL is normally generated using the `serverURL´/auth/login</p>
+		<p>This URL is normally generated using the <a href="#//api/name/serverURL"><code>serverURL</code></a>/auth/login</p>
 	</div>
 	
 	
@@ -851,14 +952,85 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/lostPasswordURL" title="lostPasswordURL"></a>
-	<h3 class="subsubtitle method-title">lostPasswordURL</h3>
+	<a name="//api/name/forgotPasswordURL" title="forgotPasswordURL"></a>
+	<h3 class="subsubtitle method-title">forgotPasswordURL</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>URL to use for web forgot password with SPiD</p>
+	</div>		
+	
+    
 
-	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSURL *lostPasswordURL</code></div>
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSURL *forgotPasswordURL</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This URL is normally generated using the <a href="#//api/name/serverURL"><code>serverURL</code></a>/auth/forgotpassword</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logoutURL" title="logoutURL"></a>
+	<h3 class="subsubtitle method-title">logoutURL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>URL to use for logout with SPiD</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *logoutURL</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This URL is normally generated using the <a href="#//api/name/serverURL"><code>serverURL</code></a>/logout</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -900,17 +1072,6 @@
 	</div>				
 	
 	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/registrationURL" title="registrationURL"></a>
-	<h3 class="subsubtitle method-title">registrationURL</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSURL *registrationURL</code></div>
-
-    
 </div>
 						
 						<div class="section-method">
@@ -956,7 +1117,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Client ID to be used when generating a one time code</p>
+		<p>Client ID to be used when generating a one time code. Defaults to <a href="#//api/name/clientID"><code>clientID</code></a>.</p>
 	</div>		
 	
     
@@ -970,11 +1131,6 @@
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Defaults to <a href="#//api/name/clientID">clientID</a></p>
-	</div>
 	
 	
 	
@@ -1027,6 +1183,83 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/signSecret" title="signSecret"></a>
+	<h3 class="subsubtitle method-title">signSecret</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Signing secret provided by SPiD</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSString *signSecret</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/signupURL" title="signupURL"></a>
+	<h3 class="subsubtitle method-title">signupURL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>URL to use for web signup with SPiD</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSURL *signupURL</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This URL is normally generated using the <a href="#//api/name/serverURL"><code>serverURL</code></a>/auth/signup</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/tokenURL" title="tokenURL"></a>
 	<h3 class="subsubtitle method-title">tokenURL</h3>
 	
@@ -1050,7 +1283,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>This URL is normally generated using the `serverURL´/oauth/token</p>
+		<p>This URL is normally generated using the <a href="#//api/name/serverURL"><code>serverURL</code></a>/oauth/token</p>
 	</div>
 	
 	
@@ -1080,6 +1313,42 @@
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL useMobileWeb</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/waitingRequests" title="waitingRequests"></a>
+	<h3 class="subsubtitle method-title">waitingRequests</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Queue for waiting requests</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableArray *waitingRequests</code></div>
 
     
 	
@@ -1148,6 +1417,67 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/setClientID:clientSecret:appURLScheme:serverURL:" title="setClientID:clientSecret:appURLScheme:serverURL:"></a>
+	<h3 class="subsubtitle method-title">setClientID:clientSecret:appURLScheme:serverURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Configures the <code>SPiDClient</code> and creates a singleton instance</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)setClientID:(NSString *)<em>clientID</em> clientSecret:(NSString *)<em>clientSecret</em> appURLScheme:(NSString *)<em>appURLSchema</em> serverURL:(NSURL *)<em>serverURL</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>clientID</em></dt>
+			<dd><p>The client ID provided by SPiD</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>clientSecret</em></dt>
+			<dd><p>The client secret provided by SPiD</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appURLSchema</em></dt>
+			<dd><p>The url schema for the app (eg spidtest://)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>serverURL</em></dt>
+			<dd><p>The url to SPiD</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/sharedInstance" title="sharedInstance"></a>
 	<h3 class="subsubtitle method-title">sharedInstance</h3>
 	
@@ -1174,6 +1504,11 @@
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The SPiDClient needs to be configured first with <a href="#//api/name/setClientID:clientSecret:appURLScheme:serverURL:">setClientID:clientSecret:appURLScheme:serverURL:</a></p>
+	</div>
+	
 	
 	
 	
@@ -1197,168 +1532,38 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/apiGetRequestWithPath:andCompletionHandler:" title="apiGetRequestWithPath:andCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">apiGetRequestWithPath:andCompletionHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Runs a GET request against the SPiD server</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)apiGetRequestWithPath:(NSString *)<em>path</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *))<em>completionHandler</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>path</em></dt>
-			<dd><p>Path for the request eg <em>/me</em></p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completionHandler</em></dt>
-			<dd><p>Runs after request is completed</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Uses the <a href="#//api/name/apiVersionSPiD"><code>apiVersionSPiD</code></a> property to generate a SPiD API GET request using the provided path</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="#//api/name/sharedInstance">+ sharedInstance</a></p></code></li>
-			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/apiPostRequestWithPath:andBody:andCompletionHandler:" title="apiPostRequestWithPath:andBody:andCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">apiPostRequestWithPath:andBody:andCompletionHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Runs a POST request against the SPiD server</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)apiPostRequestWithPath:(NSString *)<em>path</em> andBody:(NSDictionary *)<em>body</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *))<em>completionHandler</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>path</em></dt>
-			<dd><p>Path for the request eg <em>/me</em></p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>body</em></dt>
-			<dd><p>Http body to be posted</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completionHandler</em></dt>
-			<dd><p>Runs after request is completed</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Uses the <a href="#//api/name/apiVersionSPiD"><code>apiVersionSPiD</code></a> property to generate a SPiD API POST request using the provided path</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="#//api/name/sharedInstance">+ sharedInstance</a></p></code></li>
-			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/authorizationComplete:" title="authorizationComplete:"></a>
 	<h3 class="subsubtitle method-title">authorizationComplete:</h3>
 	
 	
-	
-	<div class="method-subsection brief-description">
-		<p>Runs after authorization has been completed, should not be called directly
-*</p>
-	</div>		
-	
-    
 
 	<div class="method-subsection method-declaration"><code>- (void)authorizationComplete:(SPiDAccessToken *)<em>token</em></code></div>
 
     
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authorizationURLWithQuery" title="authorizationURLWithQuery"></a>
+	<h3 class="subsubtitle method-title">authorizationURLWithQuery</h3>
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>token</em></dt>
-			<dd><p>Access token returned from SPiD</p></dd>
-		</dl>
-		
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates the authorization url with query parameters</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSURL *)authorizationURLWithQuery</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The url with query parameters</p>
 	</div>
-	
-	
 	
 	
 	
@@ -1372,7 +1577,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.m</code><br />
+		<code class="declared-in-ref">SPiDClient.h</code><br />
 	</div>				
 	
 	
@@ -1385,12 +1590,12 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Authorizes with SPiD</p>
+		<p>Redirects to safari for authorization</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)browserRedirectAuthorizationWithCompletionHandler:(void ( ^ ) ( NSError *response ))<em>completionHandler</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)browserRedirectAuthorizationWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
 
     
 	
@@ -1399,7 +1604,7 @@
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after authorization is completed</p></dd>
+			<dd><p>Called on login completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -1410,12 +1615,133 @@
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This requires that the <code>SPiDClient</code> has been configured.
-Redirects to safari to get code and then uses this to obtain a access token. Any exsisting access token will be logged out.
-The access token is then saved to keychain</p><div class="warning"><p><strong>Warning:</strong> <code>SPiDClient</code> has to be configured before calling <code>authorizationRequestWithCompletionHandler</code>. The receiver must also check if a error was returned to the completionHandler.</p></div>
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/browserRedirectForgotPassword" title="browserRedirectForgotPassword"></a>
+	<h3 class="subsubtitle method-title">browserRedirectForgotPassword</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Redirects to safari for forgot password</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)browserRedirectForgotPassword</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/browserRedirectLogoutWithCompletionHandler:" title="browserRedirectLogoutWithCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">browserRedirectLogoutWithCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Redirects to safari for logout</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)browserRedirectLogoutWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on logout completion or error</p></dd>
+		</dl>
+		
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/browserRedirectSignupWithCompletionHandler:" title="browserRedirectSignupWithCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">browserRedirectSignupWithCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Redirects to safari for signup</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)browserRedirectSignupWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on signup completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1436,21 +1762,35 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	<h3 class="subsubtitle method-title">clearAuthorizationRequest</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Clears current authorization request and waiting requests</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)clearAuthorizationRequest</code></div>
 
     
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/createWebViewAuthRequestWithCompletionHandler:" title="createWebViewAuthRequestWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">createWebViewAuthRequestWithCompletionHandler:</h3>
 	
 	
-
-	<div class="method-subsection method-declaration"><code>- (SPiDAuthorizationRequest *)createWebViewAuthRequestWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
-
-    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.m</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -1495,18 +1835,146 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/doBrowserRedirectAuthorizationRequestWithCompletionHandler:" title="doBrowserRedirectAuthorizationRequestWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">doBrowserRedirectAuthorizationRequestWithCompletionHandler:</h3>
+	<a name="//api/name/doHandleOpenURL:" title="doHandleOpenURL:"></a>
+	<h3 class="subsubtitle method-title">doHandleOpenURL:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Creates and runs the authorization request</p>
+		<p>Helper method</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)doBrowserRedirectAuthorizationRequestWithCompletionHandler:(void ( ^ ) ( NSError *response ))<em>completionHandler</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)doHandleOpenURL:(NSURL *)<em>url</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The url to handle</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/forgotPasswordURLWithQuery" title="forgotPasswordURLWithQuery"></a>
+	<h3 class="subsubtitle method-title">forgotPasswordURLWithQuery</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates the forgot password url with query parameters</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSURL *)forgotPasswordURLWithQuery</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The url with query parameters</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getAuthorizationQuery" title="getAuthorizationQuery"></a>
+	<h3 class="subsubtitle method-title">getAuthorizationQuery</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Builds authorization query</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)getAuthorizationQuery</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The authorization query parameters</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getCurrentUserRequestWithCompletionHandler:" title="getCurrentUserRequestWithCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">getCurrentUserRequestWithCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Requests the userinformation for the current user</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getCurrentUserRequestWithCompletionHandler:(void ( ^ ) ( SPiDResponse *))<em>completionHandler</em></code></div>
 
     
 	
@@ -1515,7 +1983,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after authorization is completed</p></dd>
+			<dd><p>Called on request completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -1528,10 +1996,58 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>This requires that the <code>SPiDClient</code> has been configured.
-Redirects to safari to get code and then uses this to obtain a access token.
-The access token is then saved to keychain</p><div class="warning"><p><strong>Warning:</strong> This should not be called directly, all validation is placed in ´authorizationRequestWithCompletionHandler:` an should be called instead. Using this method directly causes multiple active tokens on the server.</p></div>
+		<p>For information about the return object see: <a href="http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api">http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api</a></p><div class="warning"><p><strong>Warning:</strong> Requires that the user is authorized with SPiD</p></div>
 	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/isAuthorized">&ndash; isAuthorized</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getLogoutQuery" title="getLogoutQuery"></a>
+	<h3 class="subsubtitle method-title">getLogoutQuery</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Builds logout query</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)getLogoutQuery</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The logout query parameters</p>
+	</div>
+	
+	
+	
+	
 	
 	
 	
@@ -1568,7 +2084,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after request is completed</p></dd>
+			<dd><p>Called on request completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -1629,7 +2145,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after request is completed</p></dd>
+			<dd><p>Called on request completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -1660,8 +2176,8 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/getUserLoginsRequestWithUserID:andCompletionHandler:" title="getUserLoginsRequestWithUserID:andCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">getUserLoginsRequestWithUserID:andCompletionHandler:</h3>
+	<a name="//api/name/getUserLoginsRequestWithUserID:completionHandler:" title="getUserLoginsRequestWithUserID:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">getUserLoginsRequestWithUserID:completionHandler:</h3>
 	
 	
 	
@@ -1671,7 +2187,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)getUserLoginsRequestWithUserID:(NSString *)<em>userID</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)getUserLoginsRequestWithUserID:(NSString *)<em>userID</em> completionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
 
     
 	
@@ -1685,7 +2201,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after request is completed</p></dd>
+			<dd><p>Called on request completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -1725,68 +2241,8 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/getUserRequestWithCurrentUserAndCompletionHandler:" title="getUserRequestWithCurrentUserAndCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">getUserRequestWithCurrentUserAndCompletionHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Requests the userinformation for the current user</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)getUserRequestWithCurrentUserAndCompletionHandler:(void ( ^ ) ( SPiDResponse *))<em>completionHandler</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after request is completed</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>For information about the return object see: <a href="http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api">http://www.schibstedpayment.no/docs/doku.php?id=wiki:user_api</a></p><div class="warning"><p><strong>Warning:</strong> Requires that the user is authorized with SPiD</p></div>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="#//api/name/isAuthorized">&ndash; isAuthorized</a></p></code></li>
-			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/getUserRequestWithID:andCompletionHandler:" title="getUserRequestWithID:andCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">getUserRequestWithID:andCompletionHandler:</h3>
+	<a name="//api/name/getUserRequestWithID:completionHandler:" title="getUserRequestWithID:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">getUserRequestWithID:completionHandler:</h3>
 	
 	
 	
@@ -1796,7 +2252,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)getUserRequestWithID:(NSString *)<em>userID</em> andCompletionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)getUserRequestWithID:(NSString *)<em>userID</em> completionHandler:(void ( ^ ) ( SPiDResponse *response ))<em>completionHandler</em></code></div>
 
     
 	
@@ -1810,7 +2266,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after request is completed</p></dd>
+			<dd><p>Called on request completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -1989,7 +2445,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns YES if <code>SPiDClient</code> has a access token and is logged in</p>
+		<p>Returns YES if <code>SPiDClient</code> has a access token</p>
 	</div>		
 	
     
@@ -2002,7 +2458,48 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Returns YES if <code>SPiDClient</code> is logged in</p>
+		<p>Returns YES if <code>SPiDClient</code> is authorized</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isClientToken" title="isClientToken"></a>
+	<h3 class="subsubtitle method-title">isClientToken</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if <code>SPiDClient</code> has a client access token</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isClientToken</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns YES if <code>SPiDClient</code> has a client access token</p>
 	</div>
 	
 	
@@ -2071,7 +2568,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)logoutRequestWithCompletionHandler:(void ( ^ ) ( NSError *response ))<em>completionHandler</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (SPiDRequest *)logoutRequestWithCompletionHandler:(void ( ^ ) ( NSError *response ))<em>completionHandler</em></code></div>
 
     
 	
@@ -2080,7 +2577,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after logout is completed</p></dd>
+			<dd><p>Called on logout completion or error</p></dd>
 		</dl>
 		
 	</div>
@@ -2095,7 +2592,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This requires that the app has obtained a access token.
 Redirects to safari to logout from SPiD and remove cookie.
-Also removes access token from keychain</p><div class="warning"><p><strong>Warning:</strong> <code>SPiDClient</code> has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.</p></div>
+Also removes access token from keychain</p><div class="warning"><p><strong>Warning:</strong> <code>SPiDClient</code> has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.</p></div>
 	</div>
 	
 	
@@ -2110,6 +2607,47 @@ Also removes access token from keychain</p><div class="warning"><p><strong>Warni
 			
 		</ul>
 	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logoutURLWithQuery" title="logoutURLWithQuery"></a>
+	<h3 class="subsubtitle method-title">logoutURLWithQuery</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates the logout url with query parameters</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSURL *)logoutURLWithQuery</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The url with query parameters</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2128,7 +2666,7 @@ Also removes access token from keychain</p><div class="warning"><p><strong>Warni
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Refreshes the access token and then reruns the request</p>
+		<p>Tries to refresh access token and rerun waiting requests</p>
 	</div>		
 	
     
@@ -2142,134 +2680,7 @@ Also removes access token from keychain</p><div class="warning"><p><strong>Warni
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>request</em></dt>
-			<dd><p>The request to rerun after a access token has been received</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Note: The SDK enforces a number of maximum retries per request to stop requests from retrying forever</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/refreshAccessTokenRequestWithCompletionHandler:" title="refreshAccessTokenRequestWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">refreshAccessTokenRequestWithCompletionHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Refresh access token</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)refreshAccessTokenRequestWithCompletionHandler:(void ( ^ ) ( NSError *response ))<em>completionHandler</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after authorization is completed</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Forces refresh of access token, this is unusally not needed since SPiDSDK will automatically refresh token when needed.
-The access token is then saved to keychain</p><div class="warning"><p><strong>Warning:</strong> <code>SPiDClient</code> has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="#//api/name/isAuthorized">&ndash; isAuthorized</a></p></code></li>
-			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/setClientID:andClientSecret:andAppURLScheme:andServerURL:" title="setClientID:andClientSecret:andAppURLScheme:andServerURL:"></a>
-	<h3 class="subsubtitle method-title">setClientID:andClientSecret:andAppURLScheme:andServerURL:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Configures the <code>SPiDClient</code></p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)setClientID:(NSString *)<em>clientID</em> andClientSecret:(NSString *)<em>clientSecret</em> andAppURLScheme:(NSString *)<em>appURLSchema</em> andServerURL:(NSURL *)<em>serverURL</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>clientID</em></dt>
-			<dd><p>The client ID provided by SPiD</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>clientSecret</em></dt>
-			<dd><p>The client secret provided by SPiD</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>appURLSchema</em></dt>
-			<dd><p>The url schema for the app (eg spidtest://)</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>serverURL</em></dt>
-			<dd><p>The url to SPiD</p></dd>
+			<dd><p>The request to retry after a new access token has been acquired</p></dd>
 		</dl>
 		
 	</div>
@@ -2288,36 +2699,33 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDClient.h</code><br />
+		<code class="declared-in-ref">SPiDClient.m</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/softLogoutRequestWithCompletionHandler:" title="softLogoutRequestWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">softLogoutRequestWithCompletionHandler:</h3>
+	<a name="//api/name/signupURLWithQuery" title="signupURLWithQuery"></a>
+	<h3 class="subsubtitle method-title">signupURLWithQuery</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Soft logout from SPiD</p>
+		<p>Generates the signup url with query parameters</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)softLogoutRequestWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSURL *)signupURLWithQuery</code></div>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completionHandler</em></dt>
-			<dd><p>Run after logout is completed</p></dd>
-		</dl>
-		
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The url with query parameters</p>
 	</div>
 	
 	
@@ -2326,25 +2734,7 @@ The access token is then saved to keychain</p><div class="warning"><p><strong>Wa
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This requires that the app has obtained a access token.
-Logout from SPiD without redirect to Safari, cookie will not be removed
-Also removes access token from keychain</p><div class="warning"><p><strong>Warning:</strong> <code>SPiDClient</code> has to be logged in before this call .The receiver must also check if a error was returned to the completionHandler.</p></div>
-	</div>
 	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="#//api/name/isAuthorized">&ndash; isAuthorized</a></p></code></li>
-			
-		</ul>
-	</div>
 	
 	
 	
@@ -2397,39 +2787,6 @@ Also removes access token from keychain</p><div class="warning"><p><strong>Warni
 	
 </div>
 						
-						<div class="section-method">
-	<a name="//api/name/webViewAuthorizationWithCompletionHandler:" title="webViewAuthorizationWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">webViewAuthorizationWithCompletionHandler:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>- (UIWebView *)webViewAuthorizationWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/webViewLostPasswordWithCompletionHandler:" title="webViewLostPasswordWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">webViewLostPasswordWithCompletionHandler:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>- (UIWebView *)webViewLostPasswordWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
-
-    
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/webViewRegistrationWithCompletionHandler:" title="webViewRegistrationWithCompletionHandler:"></a>
-	<h3 class="subsubtitle method-title">webViewRegistrationWithCompletionHandler:</h3>
-	
-	
-
-	<div class="method-subsection method-declaration"><code>- (UIWebView *)webViewRegistrationWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
-
-    
-</div>
-						
 					</div>
 					
 					
@@ -2443,7 +2800,7 @@ Also removes access token from keychain</p><div class="warning"><p><strong>Warni
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Schibsted Payment. All rights reserved. (Last updated: 2012-11-13)</span><br />
+						<p><span class="copyright">&copy; 2013 Schibsted Payment. All rights reserved. (Last updated: 2013-02-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

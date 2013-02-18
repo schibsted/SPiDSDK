@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SPiDResponse Class Reference</title>
+		<title>SPiDUser Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SPiDResponse Class Reference</h1>
+				<h1 class="hideInXcode">SPiDUser Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,24 +38,22 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/error">&nbsp;&nbsp;&nbsp;&nbsp;error</option>
-	
-	<option value="//api/name/message">&nbsp;&nbsp;&nbsp;&nbsp;message</option>
-	
-	<option value="//api/name/rawJSON">&nbsp;&nbsp;&nbsp;&nbsp;rawJSON</option>
 	
 	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/createAccountWithEmail:password:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ createAccountWithEmail:password:completionHandler:</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithError:</option>
+	<option value="//api/name/accountRequestWithEmail:password:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- accountRequestWithEmail:password:completionHandler:</option>
 	
-	<option value="//api/name/initWithJSONData:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithJSONData:</option>
+	<option value="//api/name/userPostDataWithEmail:password:">&nbsp;&nbsp;&nbsp;&nbsp;- userPostDataWithEmail:password:</option>
+	
+	<option value="//api/name/validateEmail:password:">&nbsp;&nbsp;&nbsp;&nbsp;- validateEmail:password:</option>
 	
 	
 	
@@ -73,35 +71,29 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Public properties">Public properties</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Public methods">Public methods</a></span></li>
-	
 </ul></li>
 
 
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/error">error</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/message">message</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rawJSON">rawJSON</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createAccountWithEmail:password:completionHandler:">createAccountWithEmail:password:completionHandler:</a></span></li>
 	
 </ul></li>
-
-
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithError:">initWithError:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/accountRequestWithEmail:password:completionHandler:">accountRequestWithEmail:password:completionHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithJSONData:">initWithJSONData:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userPostDataWithEmail:password:">userPostDataWithEmail:password:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/validateEmail:password:">validateEmail:password:</a></span></li>
 	
 </ul></li>
 
@@ -110,7 +102,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SPiDResponse Class Reference" name="top"></a>
+				<a title="SPiDUser Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -119,7 +111,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SPiDResponse Class Reference</h1>
+						<h1 class="title title-header">SPiDUser Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -130,7 +122,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SPiDResponse.h<br />SPiDResponse.m</td>
+	<td class="specification-value">SPiDUser.h<br />SPiDUser.m</td>
 </tr>
 						</tbody></table></div>
 					
@@ -140,9 +132,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p><code>SPiDResponse</code> is created for each response from SPiD made by a <a href="../Classes/SPiDRequest.html"><code>SPiDRequest</code></a></p>
+						<p>Handles user creation and validation against SPiD.</p>
 
-<p>It contains the <a href="#//api/name/message">message</a> as both a object and as raw JSON.</p><div class="warning"><p><strong>Warning:</strong> Received should always check the <a href="#//api/name/error">error</a> property upon receiving a response.</p></div>
+<p>This requires access to the /signup endpoint with client credentials</p>
 					</div>
 					
 					
@@ -154,50 +146,43 @@
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						<a title="Public properties" name="task_Public properties"></a>
-						<h3 class="subsubtitle task-title">Public properties</h3>
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/error">&nbsp;&nbsp;error</a></code>
-		<span class="tooltip"><p>Contains error if there was any, otherwise nil</p></span>
+		<code><a href="#//api/name/createAccountWithEmail:password:completionHandler:">+&nbsp;createAccountWithEmail:password:completionHandler:</a></code>
+		<span class="tooltip"><p>Creates a new SPiD user account</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/message">&nbsp;&nbsp;message</a></code>
-		<span class="tooltip"><p>Received JSON message converted to a dictionary</p></span>
+		<code><a href="#//api/name/userPostDataWithEmail:password:">&ndash;&nbsp;userPostDataWithEmail:password:</a></code>
+		<span class="tooltip"><p>Generates user credentials post data</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/rawJSON">&nbsp;&nbsp;rawJSON</a></code>
-		<span class="tooltip"><p>Received JSON <a href="#//api/name/message">message</a> as a raw string</p></span>
+		<code><a href="#//api/name/validateEmail:password:">&ndash;&nbsp;validateEmail:password:</a></code>
+		<span class="tooltip"><p>Validates user credentials</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li>
 						</ul>
 						
 						
-						<a title="Public methods" name="task_Public methods"></a>
-						<h3 class="subsubtitle task-title">Public methods</h3>
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithJSONData:">&ndash;&nbsp;initWithJSONData:</a></code>
-		<span class="tooltip"><p>Initializes SPiD response with the received <a href="#//api/name/message">message</a></p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWithError:">&ndash;&nbsp;initWithError:</a></code>
-		<span class="tooltip"><p>Initializes SPiD response with a <a href="#//api/name/error">error</a></p></span>
+		<code><a href="#//api/name/accountRequestWithEmail:password:completionHandler:">&ndash;&nbsp;accountRequestWithEmail:password:completionHandler:</a></code>
+		
 	</span>
 	
 	
@@ -205,30 +190,52 @@
 						</ul>
 						
 					</div>
+					
+					
 					
 					
 					
 					
 					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/error" title="error"></a>
-	<h3 class="subsubtitle method-title">error</h3>
+	<a name="//api/name/createAccountWithEmail:password:completionHandler:" title="createAccountWithEmail:password:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">createAccountWithEmail:password:completionHandler:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Contains error if there was any, otherwise nil</p>
+		<p>Creates a new SPiD user account</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSError *error</code></div>
+	<div class="method-subsection method-declaration"><code>+ (void)createAccountWithEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em> completionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>email</em></dt>
+			<dd><p>The email</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called after user has been created</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -244,87 +251,13 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDResponse.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/message" title="message"></a>
-	<h3 class="subsubtitle method-title">message</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Received JSON message converted to a dictionary</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSDictionary *message</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDResponse.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/rawJSON" title="rawJSON"></a>
-	<h3 class="subsubtitle method-title">rawJSON</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Received JSON <a href="#//api/name/message">message</a> as a raw string</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSString *rawJSON</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDResponse.h</code><br />
+		<code class="declared-in-ref">SPiDUser.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
-					
-					
 					
 					
 					
@@ -333,18 +266,29 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithError:" title="initWithError:"></a>
-	<h3 class="subsubtitle method-title">initWithError:</h3>
+	<a name="//api/name/accountRequestWithEmail:password:completionHandler:" title="accountRequestWithEmail:password:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">accountRequestWithEmail:password:completionHandler:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)accountRequestWithEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em> completionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userPostDataWithEmail:password:" title="userPostDataWithEmail:password:"></a>
+	<h3 class="subsubtitle method-title">userPostDataWithEmail:password:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initializes SPiD response with a <a href="#//api/name/error">error</a></p>
+		<p>Generates user credentials post data</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (id)initWithError:(NSError *)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)userPostDataWithEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em></code></div>
 
     
 	
@@ -352,8 +296,13 @@
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>The received <a href="#//api/name/error">error</a></p></dd>
+			<dt><em>email</em></dt>
+			<dd><p>The email</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password</p></dd>
 		</dl>
 		
 	</div>
@@ -362,7 +311,7 @@
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><a href="../Classes/SPiDAccessToken.html">SPiDAccessToken</a></p>
+		<p>Dictionary with the post data</p>
 	</div>
 	
 	
@@ -377,25 +326,25 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDResponse.h</code><br />
+		<code class="declared-in-ref">SPiDUser.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithJSONData:" title="initWithJSONData:"></a>
-	<h3 class="subsubtitle method-title">initWithJSONData:</h3>
+	<a name="//api/name/validateEmail:password:" title="validateEmail:password:"></a>
+	<h3 class="subsubtitle method-title">validateEmail:password:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initializes SPiD response with the received <a href="#//api/name/message">message</a></p>
+		<p>Validates user credentials</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (id)initWithJSONData:(NSData *)<em>data</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSError *)validateEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em></code></div>
 
     
 	
@@ -403,8 +352,13 @@
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>data</em></dt>
-			<dd><p>Data received from SPiD</p></dd>
+			<dt><em>email</em></dt>
+			<dd><p>The email to validate</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password to validate</p></dd>
 		</dl>
 		
 	</div>
@@ -413,7 +367,7 @@
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><a href="../Classes/SPiDAccessToken.html">SPiDAccessToken</a></p>
+		<p>Validation error if found, otherwise nil</p>
 	</div>
 	
 	
@@ -428,7 +382,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPiDResponse.h</code><br />
+		<code class="declared-in-ref">SPiDUser.h</code><br />
 	</div>				
 	
 	

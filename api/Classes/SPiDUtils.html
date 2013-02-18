@@ -42,9 +42,15 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/encodedHttpBodyForDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;+ encodedHttpBodyForDictionary:</option>
+	
+	<option value="//api/name/encodedHttpQueryForDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;+ encodedHttpQueryForDictionary:</option>
+	
 	<option value="//api/name/getUrlParameter:forKey:">&nbsp;&nbsp;&nbsp;&nbsp;+ getUrlParameter:forKey:</option>
 	
 	<option value="//api/name/urlEncodeString:">&nbsp;&nbsp;&nbsp;&nbsp;+ urlEncodeString:</option>
+	
+	<option value="//api/name/validateEmail:">&nbsp;&nbsp;&nbsp;&nbsp;+ validateEmail:</option>
 	
 	
 	
@@ -76,9 +82,15 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/encodedHttpBodyForDictionary:">encodedHttpBodyForDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/encodedHttpQueryForDictionary:">encodedHttpQueryForDictionary:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUrlParameter:forKey:">getUrlParameter:forKey:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlEncodeString:">urlEncodeString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/validateEmail:">validateEmail:</a></span></li>
 	
 </ul></li>
 
@@ -137,6 +149,20 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/encodedHttpQueryForDictionary:">+&nbsp;encodedHttpQueryForDictionary:</a></code>
+		<span class="tooltip"><p>Encodes dictionary to a http query</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/encodedHttpBodyForDictionary:">+&nbsp;encodedHttpBodyForDictionary:</a></code>
+		<span class="tooltip"><p>Encodes dictionary to a http post body</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/urlEncodeString:">+&nbsp;urlEncodeString:</a></code>
 		<span class="tooltip"><p>URL encodes the specified string</p></span>
 	</span>
@@ -146,6 +172,13 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/getUrlParameter:forKey:">+&nbsp;getUrlParameter:forKey:</a></code>
 		<span class="tooltip"><p>Extracts a query parameter from a URL</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/validateEmail:">+&nbsp;validateEmail:</a></code>
+		<span class="tooltip"><p>Validates a email address</p></span>
 	</span>
 	
 	
@@ -163,6 +196,108 @@
 					<div class="section section-methods">
 						<a title="Class Methods" name="class_methods"></a>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/encodedHttpBodyForDictionary:" title="encodedHttpBodyForDictionary:"></a>
+	<h3 class="subsubtitle method-title">encodedHttpBodyForDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Encodes dictionary to a http post body</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)encodedHttpBodyForDictionary:(NSDictionary *)<em>dictionary</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictionary</em></dt>
+			<dd><p>The dictionary to be encoded</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The http post body</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDUtils.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/encodedHttpQueryForDictionary:" title="encodedHttpQueryForDictionary:"></a>
+	<h3 class="subsubtitle method-title">encodedHttpQueryForDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Encodes dictionary to a http query</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)encodedHttpQueryForDictionary:(NSDictionary *)<em>dictionary</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictionary</em></dt>
+			<dd><p>The dictionary to be encoded</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The http query</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDUtils.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/getUrlParameter:forKey:" title="getUrlParameter:forKey:"></a>
@@ -271,6 +406,62 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/validateEmail:" title="validateEmail:"></a>
+	<h3 class="subsubtitle method-title">validateEmail:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Validates a email address</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)validateEmail:(NSString *)<em>email</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>email</em></dt>
+			<dd><p>The email to validate</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the email is valid, otherwise NO</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Based on RFC 2822</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDUtils.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -286,7 +477,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Schibsted Payment. All rights reserved. (Last updated: 2012-11-13)</span><br />
+						<p><span class="copyright">&copy; 2013 Schibsted Payment. All rights reserved. (Last updated: 2013-02-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -23,7 +23,7 @@ There are some wrapper methods as the one above but the you can also write the r
 For example the following code sends a GET request to /test?user_id=123. Since the SDK takes care of versions the actual path will be ´/api/2/test?user_id=123´
 {% highlight objectivec %}
 NSString *path = [NSString stringWithFormat:@"/user/%@", @"123"];
-[[SPiDClient sharedInstance] apiGetRequestWithPath:path andCompletionHandler:completionHandler];
+[SPiDRequest apiGetRequestWithPath:path andCompletionHandler:completionHandler];
 {% endhighlight %}
 
 And a example to POST ´user_id=123´ to the endpoint ´/test´.
@@ -31,7 +31,8 @@ And a example to POST ´user_id=123´ to the endpoint ´/test´.
 NSString *path = [NSString stringWithFormat:@"/test"];
 NSMutableDictionary *data = [NSMutableDictionary dictionary];
 [data setObject:@"123" forKey:@"user_id"];
-[[SPiDClient sharedInstance] apiPostRequestWithPath:path andBody:data andCompletionHandler:completionHandler];
+[SPiDRequest apiPostRequestWithPath:path andBody:data andCompletionHandler:completionHandler];
 {% endhighlight %}
+
 For more information see the [API reference](api/index.html "API reference").
 

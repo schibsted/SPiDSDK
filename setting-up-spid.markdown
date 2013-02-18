@@ -14,10 +14,18 @@ The setup should be done after the app has loaded, preferably in `application:di
 
 The following code is used to setup the `SPiDClient`
 {% highlight objectivec %}
-[[SPiDClient sharedInstance] setClientID:@"clientID"
-                         andClientSecret:@"clientSecret"
-                         andAppURLScheme:@"urlScheme"
-                            andServerURL:[NSURL URLWithString:@"www.spid.com"]];
+[SPiDClient setClientID:@"clientID"
+		andClientSecret:@"clientSecret"
+		andAppURLScheme:@"urlScheme"
+		   andServerURL:[NSURL URLWithString:@"www.spid.com"]];
+{% endhighlight %}
+
+{% highlight objectivec %}
+if ([[SPiDClient sharedInstance] isAuthorized]) {
+    // Access token was saved in keychain
+} else {
+    // Not logged in
+}
 {% endhighlight %}
 
 Since there are times when there are redirects to the app this must be handled. One example is opening the app from Safari.
@@ -30,4 +38,4 @@ This is done by implementing the `application:openURL:sourceApplication:annotati
 }
 {% endhighlight %}
 
-The actual authorization can be done with either [Safari redirect](getting-started-safari-redirect.html "Safari redirect") or [UIWebView](getting-started-uiwebview.html "UIWebView"). For more information see the menu to the right.
+The actual authorization can be done with either [Safari redirect](getting-started-safari-redirect.html "Safari redirect") or [UIWebView](getting-started-uiwebview.html "UIWebView").

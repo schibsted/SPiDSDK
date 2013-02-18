@@ -1,0 +1,1202 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>SPiDTokenRequest Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">SPiDSDK </a></h1>
+				<a id="developerHome" href="../index.html">Schibsted Payment</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">SPiDTokenRequest Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/clientTokenPostData">&nbsp;&nbsp;&nbsp;&nbsp;+ clientTokenPostData</option>
+	
+	<option value="//api/name/clientTokenRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ clientTokenRequestWithCompletionHandler:</option>
+	
+	<option value="//api/name/facebookJwtStringWithAppId:facebookToken:expirationDate:">&nbsp;&nbsp;&nbsp;&nbsp;+ facebookJwtStringWithAppId:facebookToken:expirationDate:</option>
+	
+	<option value="//api/name/refreshTokenPostDataWithAccessToken:">&nbsp;&nbsp;&nbsp;&nbsp;+ refreshTokenPostDataWithAccessToken:</option>
+	
+	<option value="//api/name/refreshTokenRequestWithCompletionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ refreshTokenRequestWithCompletionHandler:</option>
+	
+	<option value="//api/name/userTokenPostDataWithCode:">&nbsp;&nbsp;&nbsp;&nbsp;+ userTokenPostDataWithCode:</option>
+	
+	<option value="//api/name/userTokenPostDataWithJwt:">&nbsp;&nbsp;&nbsp;&nbsp;+ userTokenPostDataWithJwt:</option>
+	
+	<option value="//api/name/userTokenPostDataWithUsername:password:">&nbsp;&nbsp;&nbsp;&nbsp;+ userTokenPostDataWithUsername:password:</option>
+	
+	<option value="//api/name/userTokenRequestWithCode:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ userTokenRequestWithCode:completionHandler:</option>
+	
+	<option value="//api/name/userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:</option>
+	
+	<option value="//api/name/userTokenRequestWithUsername:password:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ userTokenRequestWithUsername:password:completionHandler:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/connection:didFailWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- connection:didFailWithError:</option>
+	
+	<option value="//api/name/connectionDidFinishLoading:">&nbsp;&nbsp;&nbsp;&nbsp;- connectionDidFinishLoading:</option>
+	
+	<option value="//api/name/initPostTokenRequestWithPath:body:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- initPostTokenRequestWithPath:body:completionHandler:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clientTokenPostData">clientTokenPostData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clientTokenRequestWithCompletionHandler:">clientTokenRequestWithCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/facebookJwtStringWithAppId:facebookToken:expirationDate:">facebookJwtStringWithAppId:facebookToken:expirationDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refreshTokenPostDataWithAccessToken:">refreshTokenPostDataWithAccessToken:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refreshTokenRequestWithCompletionHandler:">refreshTokenRequestWithCompletionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userTokenPostDataWithCode:">userTokenPostDataWithCode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userTokenPostDataWithJwt:">userTokenPostDataWithJwt:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userTokenPostDataWithUsername:password:">userTokenPostDataWithUsername:password:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userTokenRequestWithCode:completionHandler:">userTokenRequestWithCode:completionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:">userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userTokenRequestWithUsername:password:completionHandler:">userTokenRequestWithUsername:password:completionHandler:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connection:didFailWithError:">connection:didFailWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connectionDidFinishLoading:">connectionDidFinishLoading:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initPostTokenRequestWithPath:body:completionHandler:">initPostTokenRequestWithPath:body:completionHandler:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="SPiDTokenRequest Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">SPiDTokenRequest Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/SPiDRequest.html">SPiDRequest</a> : NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">SPiDTokenRequest.h<br />SPiDTokenRequest.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>SPiDTokenRequest</code> handles a token request against SPiD.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clientTokenRequestWithCompletionHandler:">+&nbsp;clientTokenRequestWithCompletionHandler:</a></code>
+		<span class="tooltip"><p>Creates a client token request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userTokenRequestWithCode:completionHandler:">+&nbsp;userTokenRequestWithCode:completionHandler:</a></code>
+		<span class="tooltip"><p>Creates a user token request with authorization code</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userTokenRequestWithUsername:password:completionHandler:">+&nbsp;userTokenRequestWithUsername:password:completionHandler:</a></code>
+		<span class="tooltip"><p>Creates a user token request with user credentials</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:">+&nbsp;userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:</a></code>
+		<span class="tooltip"><p>Creates a JWT facebook token request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/refreshTokenRequestWithCompletionHandler:">+&nbsp;refreshTokenRequestWithCompletionHandler:</a></code>
+		<span class="tooltip"><p>Creates a token refresh token request with the current access token</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initPostTokenRequestWithPath:body:completionHandler:">&ndash;&nbsp;initPostTokenRequestWithPath:body:completionHandler:</a></code>
+		<span class="tooltip"><p>Initializes a token request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clientTokenPostData">+&nbsp;clientTokenPostData</a></code>
+		<span class="tooltip"><p>Generates post data for a client token request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userTokenPostDataWithCode:">+&nbsp;userTokenPostDataWithCode:</a></code>
+		<span class="tooltip"><p>Generates post data for a access token request using authorization code</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userTokenPostDataWithUsername:password:">+&nbsp;userTokenPostDataWithUsername:password:</a></code>
+		<span class="tooltip"><p>Generates post data for a user token request using user credentials</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userTokenPostDataWithJwt:">+&nbsp;userTokenPostDataWithJwt:</a></code>
+		<span class="tooltip"><p>Generates post data for a user token request using JWT</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/refreshTokenPostDataWithAccessToken:">+&nbsp;refreshTokenPostDataWithAccessToken:</a></code>
+		<span class="tooltip"><p>Generates post data for a token refresh</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/facebookJwtStringWithAppId:facebookToken:expirationDate:">+&nbsp;facebookJwtStringWithAppId:facebookToken:expirationDate:</a></code>
+		<span class="tooltip"><p>Generates a facebook JWT token as a encoded string</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connectionDidFinishLoading:">&ndash;&nbsp;connectionDidFinishLoading:</a></code>
+		<span class="tooltip"><p>NSURLConnectionDelegate method</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connection:didFailWithError:">&ndash;&nbsp;connection:didFailWithError:</a></code>
+		<span class="tooltip"><p>NSURLConnectionDelegate method</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/clientTokenPostData" title="clientTokenPostData"></a>
+	<h3 class="subsubtitle method-title">clientTokenPostData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates post data for a client token request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)clientTokenPostData</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A dictionary containing the post data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clientTokenRequestWithCompletionHandler:" title="clientTokenRequestWithCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">clientTokenRequestWithCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a client token request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void ( ^ ) ( NSError *error ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on token request completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The token request or nil if JWT could not be created</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>@param completionHandler</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/facebookJwtStringWithAppId:facebookToken:expirationDate:" title="facebookJwtStringWithAppId:facebookToken:expirationDate:"></a>
+	<h3 class="subsubtitle method-title">facebookJwtStringWithAppId:facebookToken:expirationDate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates a facebook JWT token as a encoded string</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)facebookJwtStringWithAppId:(NSString *)<em>appId</em> facebookToken:(NSString *)<em>facebookToken</em> expirationDate:(NSDate *)<em>expirationDate</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appId</em></dt>
+			<dd><p>Facebook appID</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>facebookToken</em></dt>
+			<dd><p>Facebook access token</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>expirationDate</em></dt>
+			<dd><p>Expiration date for the facebook token</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>JWT as a encoded string</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/refreshTokenPostDataWithAccessToken:" title="refreshTokenPostDataWithAccessToken:"></a>
+	<h3 class="subsubtitle method-title">refreshTokenPostDataWithAccessToken:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates post data for a token refresh</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)<em>accessToken</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>accessToken</em></dt>
+			<dd><p><a href="../Classes/SPiDAccessToken.html"><code>SPiDAccessToken</code></a> to be refreshed</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Dictionary containing the post data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/refreshTokenRequestWithCompletionHandler:" title="refreshTokenRequestWithCompletionHandler:"></a>
+	<h3 class="subsubtitle method-title">refreshTokenRequestWithCompletionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a token refresh token request with the current access token</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SPiDTokenRequest *)refreshTokenRequestWithCompletionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on token request completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The token request or nil if refresh token is missing</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userTokenPostDataWithCode:" title="userTokenPostDataWithCode:"></a>
+	<h3 class="subsubtitle method-title">userTokenPostDataWithCode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates post data for a access token request using authorization code</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)userTokenPostDataWithCode:(NSString *)<em>code</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>code</em></dt>
+			<dd><p>Authorization code</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Dictionary containing the post data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userTokenPostDataWithJwt:" title="userTokenPostDataWithJwt:"></a>
+	<h3 class="subsubtitle method-title">userTokenPostDataWithJwt:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates post data for a user token request using JWT</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)userTokenPostDataWithJwt:(NSString *)<em>jwtString</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>jwtString</em></dt>
+			<dd><p>JWT as a encoded string</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Dictionary containing the post data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userTokenPostDataWithUsername:password:" title="userTokenPostDataWithUsername:password:"></a>
+	<h3 class="subsubtitle method-title">userTokenPostDataWithUsername:password:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates post data for a user token request using user credentials</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)userTokenPostDataWithUsername:(NSString *)<em>username</em> password:(NSString *)<em>password</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>username</em></dt>
+			<dd><p>The username</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Dictionary containing the post data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userTokenRequestWithCode:completionHandler:" title="userTokenRequestWithCode:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">userTokenRequestWithCode:completionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a user token request with authorization code</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SPiDTokenRequest *)userTokenRequestWithCode:(NSString *)<em>code</em> completionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>code</em></dt>
+			<dd><p>The authorization code</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on token request completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The token request or nil if JWT could not be created</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:" title="userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">userTokenRequestWithFacebookAppID:facebookToken:expirationDate:completionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a JWT facebook token request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SPiDTokenRequest *)userTokenRequestWithFacebookAppID:(NSString *)<em>appId</em> facebookToken:(NSString *)<em>facebookToken</em> expirationDate:(NSDate *)<em>expirationDate</em> completionHandler:(void ( ^ ) ( NSError *))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appId</em></dt>
+			<dd><p>Facebook appID</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>facebookToken</em></dt>
+			<dd><p>Facebook access token</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>expirationDate</em></dt>
+			<dd><p>Expiration date for the facebook token</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on token request completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The token request or nil if JWT could not be created</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userTokenRequestWithUsername:password:completionHandler:" title="userTokenRequestWithUsername:password:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">userTokenRequestWithUsername:password:completionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a user token request with user credentials</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)<em>username</em> password:(NSString *)<em>password</em> completionHandler:(void ( ^ ) ( NSError *error ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>username</em></dt>
+			<dd><p>The username</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on token request completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The token request or nil if JWT could not be created</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/connection:didFailWithError:" title="connection:didFailWithError:"></a>
+	<h3 class="subsubtitle method-title">connection:didFailWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSURLConnectionDelegate method</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)connection:(NSURLConnection *)<em>connection</em> didFailWithError:(NSError *)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>connection</em></dt>
+			<dd><p>The connection sending the message.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>An error object containing details of why the connection failed to load the request successfully.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent when a connection fails to load its request successfully.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connectionDidFinishLoading:" title="connectionDidFinishLoading:"></a>
+	<h3 class="subsubtitle method-title">connectionDidFinishLoading:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSURLConnectionDelegate method</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)connectionDidFinishLoading:(NSURLConnection *)<em>connection</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>connection</em></dt>
+			<dd><p>The connection sending the message.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent when a connection has finished loading successfully.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initPostTokenRequestWithPath:body:completionHandler:" title="initPostTokenRequestWithPath:body:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">initPostTokenRequestWithPath:body:completionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes a token request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initPostTokenRequestWithPath:(NSString *)<em>requestPath</em> body:(NSDictionary *)<em>body</em> completionHandler:(void ( ^ ) ( NSError *error ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestPath</em></dt>
+			<dd><p>Path to token endpoint</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>body</em></dt>
+			<dd><p>Post body</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>Called on request completion or error</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>SPiDTokenRequest</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPiDTokenRequest.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Schibsted Payment. All rights reserved. (Last updated: 2013-02-18)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
