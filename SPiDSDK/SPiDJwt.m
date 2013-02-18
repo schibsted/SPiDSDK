@@ -10,6 +10,14 @@
 #import "NSData+Base64.h"
 #import "NSString+Crypto.h"
 
+@interface SPiDJwt ()
+/* Validates the JWT token
+
+ @return Return true of the JWT token is valid
+*/
+- (BOOL)validateJwt;
+@end
+
 @implementation SPiDJwt
 
 + (id)jwtTokenWithDictionary:(NSDictionary *)dictionary {

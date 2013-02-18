@@ -20,7 +20,6 @@
 
 /** Encodes data to a Base64 string
 
- @param base64String String to be decoded
  @return Encoded string
  */
 - (NSString *)base64EncodedString;

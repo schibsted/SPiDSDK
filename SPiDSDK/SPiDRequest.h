@@ -8,10 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "SPiDClient.h"
 
-/** `SPiDRequest` handles a request against SPiD.
-
- An instance of `SPiDClient` is setup for each request to SPiD from `SPiDClient`
-*/
+/** `SPiDRequest` handles a request against SPiD. */
 
 //TODO: static NSInteger const MaxRetryAttempts = 2;
 
@@ -36,43 +33,38 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-/** Creates a SPiD GET request
+/** Creates a GET `SPiDRequest´
 
  @param requestPath API path for GET request e.g. /user
- @param _completionHandler Completion handler run after request is finished
- @return SPiDRequest
+ @param completionHandler Completion handler run after request is finished
+ @return `SPiDRequest´
 */
 + (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Creates a SPiD POST request
+/** Creates a POST `SPiDRequest´
 
  @param requestPath API path for POST request e.g. /user
- @param body HTTP body
- @param _completionHandler Completion handler run after request is finished
- @return SPiDRequest
+ @param body The HTTP body
+ @param completionHandler Completion handler run after request is finished
+ @return `SPiDRequest´
 */
 + (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Creates a SPiD request
+/** Creates a `SPiDRequest´
 
  @param requestPath API path for request
  @param method HTTP method for the request
- @param body HTTP body, used it method is POST
- @param _completionHandler Completion handler run after request is finished
- @return SPiDRequest
+ @param body HTTP body, used if method is POST
+ @param completionHandler Completion handler run after request is finished
+ @return `SPiDRequest´
 */
 + (SPiDRequest *)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-- (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
-- (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
-/** Runs the request
-
- @param accessToken The access token to use with the request
-*/
+/** Runs the request with the current access token */
 - (void)startRequestWithAccessToken; //TODO rename
 
+/** Runs the request without access token */
 - (void)startRequest;
+
 
 @end

@@ -12,7 +12,7 @@
 #import "NSError+SPiDError.h"
 #import "SPiDTokenRequest.h"
 
-@interface SPiDClient (PrivateMethods)
+@interface SPiDClient ()
 
 /** Initializes the `SPiDClient` should not be called directly
 
@@ -20,26 +20,35 @@
  */
 - (id)init;
 
-/** Runs after authorization has been completed, should not be called directly
-*
- @param token Access token returned from SPiD
- */
-- (void)authorizationComplete:(SPiDAccessToken *)token;
-
-/** Creates and runs the authorization request
-
- This requires that the `SPiDClient` has been configured.
- Redirects to safari to get code and then uses this to obtain a access token.
- The access token is then saved to keychain
-
- @warning This should not be called directly, all validation is placed in ´authorizationRequestWithCompletionHandler:` an should be called instead. Using this method directly causes multiple active tokens on the server.
- @param _completionHandler Run after authorization is completed
- @see authorizationRequestWithCompletionHandler:
- */
-//- (void)doBrowserRedirectAuthorizationRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
-
 /** Runs after logout has been completed, should not be called directly */
 - (void)logoutComplete;
+
+/** Builds authorization query
+
+ @return The authorization query parameters
+ */
+- (NSString *)getAuthorizationQuery;
+
+/** Builds logout query
+
+ @return The logout query parameters
+ */
+- (NSString *)getLogoutQuery;
+
+/** Tries to refresh access token and rerun waiting requests
+
+ @param request The request to retry after a new access token has been acquired
+ */
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
+
+/** Clears current authorization request and waiting requests */
+- (void)clearAuthorizationRequest;
+
+/** Helper method
+
+ @param url The url to handle
+ */
+- (BOOL)doHandleOpenURL:(NSURL *)url;
 
 @end
 
@@ -50,6 +59,9 @@
     BOOL _isAuthenticating; // prevent multiple token requests
     SPiDRequest *_authorizationRequest;
     NSString *_webViewInitialHTML;
+
+    void (^_completionHandler)(NSError *error);
+
 }
 
 #pragma mark Public methods
@@ -68,7 +80,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                            NSStringFromClass([self class]),
                            NSStringFromSelector(@selector(setClientID:clientSecret:appURLScheme:serverURL:))];
     }
-    
+
     return sharedSPiDClientInstance;
 }
 
@@ -141,7 +153,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
-- (void)browserRedirectForgotPasswordWith {
+- (void)browserRedirectForgotPassword {
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
     [[UIApplication sharedApplication] openURL:requestURL];
@@ -187,7 +199,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             if (code) {
                 //NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
                 SPiDDebugLog(@"Received code: %@", code);
-                SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code authCompletionHandler:_completionHandler];
+                SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
                 [request startRequest];
             } else {
                 // Logout
@@ -207,7 +219,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         if (_authorizationRequest == nil) { // can't logout if we are already logging in
             // TODO: We should implement a api endpoint for logout
             NSString *path = [@"/logout" stringByAppendingString:[self getLogoutQuery]];
-            SPiDRequest *request = [[SPiDRequest alloc] initGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
+            SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
                 [self logoutComplete];
                 /*
                 if (response.error) {
@@ -243,10 +255,6 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     _waitingRequests = nil;
 }
 
-/** Generates the authorization URL with GET query
-
- @return Authorization URL query
- */
 - (NSURL *)authorizationURLWithQuery {
     NSString *query = [self getAuthorizationQuery];
     return [NSURL URLWithString:[self.authorizationURL.absoluteString stringByAppendingString:query]];

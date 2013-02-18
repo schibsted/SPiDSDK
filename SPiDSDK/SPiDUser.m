@@ -12,6 +12,10 @@
 #import "SPiDResponse.h"
 #import "SPiDTokenRequest.h"
 
+@interface SPiDUser ()
+- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
+
+@end
 
 @implementation SPiDUser
 
@@ -41,16 +45,16 @@
 }
 
 - (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
-    NSDictionary *postBody = [self userPostDataWithUsername:email password:password];
+    NSDictionary *postBody = [self userPostDataWithEmail:email password:password];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
     }];
     [request startRequestWithAccessToken];
 }
 
-- (NSDictionary *)userPostDataWithUsername:(NSString *)username password:(NSString *)password {
+- (NSDictionary *)userPostDataWithEmail:(NSString *)email password:(NSString *)password {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data setValue:username forKey:@"email"];
+    [data setValue:email forKey:@"email"];
     [data setValue:password forKey:@"password"];
     return data;
 }

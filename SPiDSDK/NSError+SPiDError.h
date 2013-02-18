@@ -44,6 +44,9 @@
  */
 + (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason;
 
++ (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString;
+
+
 @end
 
 enum {

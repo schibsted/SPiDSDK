@@ -41,9 +41,11 @@
  */
 - (id)initWithJSONData:(NSData *)data;
 
-// list or
-- (id)initWithError:(NSError *)error;
+/** Initializes SPiD response with a error
 
-+ (id)responseWithError:(NSError *)error;
+ @param error The received error
+ @return SPiDAccessToken
+ */
+- (id)initWithError:(NSError *)error;
 
 @end

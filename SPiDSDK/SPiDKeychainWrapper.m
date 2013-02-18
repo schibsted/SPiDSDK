@@ -7,7 +7,7 @@
 
 #import "SPiDKeychainWrapper.h"
 
-@interface SPiDKeychainWrapper (PrivateMethods)
+@interface SPiDKeychainWrapper ()
 
 /** Generates a service name to use for the keychain
 

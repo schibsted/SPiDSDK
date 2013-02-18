@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
+/** Handles user creation and validation against SPiD.
+
+ This requires access to the /signup endpoint with client credentials
+*/
 
 @interface SPiDUser : NSObject
 
@@ -18,21 +22,13 @@
 */
 - (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
 
-/** Creates and runs a signup request
-
- @param email The email
- @param password The password
- @return Dictionary with the post data
-*/
-- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
-
 /** Generates user credentials post data
 
  @param email The email
  @param password The password
  @return Dictionary with the post data
 */
-- (NSDictionary *)userPostDataWithUsername:(NSString *)username password:(NSString *)password;
+- (NSDictionary *)userPostDataWithEmail:(NSString *)email password:(NSString *)password;
 
 /** Validates user credentials
 

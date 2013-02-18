@@ -11,12 +11,32 @@
 
 @interface SPiDRequest ()
 
+/** Initializes a GET `SPiDRequest`
+
+ @param requestPath Path to endpoint
+ @param completionHandler Called on request completion or error
+ @return `SPiDRequest`
+*/
 - (id)initGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
+/** Initializes a POST `SPiDRequest`
+
+ @param requestPath Path to endpoint
+ @param body The post body
+ @param completionHandler Called on request completion or error
+ @return `SPiDRequest`
+*/
 - (id)initPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+/** Initializes a `SPiDRequest`
 
+ @param requestPath Path to endpoint
+ @param method Http request method
+ @param body The post body
+ @param completionHandler Called on request completion or error
+ @return `SPiDRequest`
+*/
+- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** 'NSURLConnectionDelegate' method
  
@@ -24,9 +44,19 @@
  
  @param connection The connection sending the data.
  @param data The newly available data.
-
  */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+
+/** 'NSURLConnectionDelegate' method
+
+ Sent when the connection determines that it must change URLs in order to continue loading a request.
+
+ @param connection The connection sending the message.
+ @param request The proposed redirected request.
+ @param response The URL response that caused the redirect
+ @return The actual URL request to use in light of the redirection response.
+ */
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response;
 
 /** NSURLConnectionDelegate method 
  
@@ -44,6 +74,13 @@
  @param error An error object containing details of why the connection failed to load the request successfully.
  */
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
+/** Starts a SPiD request
+
+ @param urlStr The url as a string
+ @param body The body
+ */
+- (void)startRequestWithURL:(NSString *)urlStr body:(NSString *)body;
 
 @end
 

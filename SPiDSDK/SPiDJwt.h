@@ -10,6 +10,8 @@
 static NSString *const JSON_WEB_ALGORITHM_HS256 = @"HS256";
 static NSString *const JSON_WEB_TOKEN_TYP_JWT = @"JWT";
 
+/** Contains a JWT token */
+
 @interface SPiDJwt : NSObject
 
 // Header
@@ -26,9 +28,18 @@ static NSString *const JSON_WEB_TOKEN_TYP_JWT = @"JWT";
 @property(strong, nonatomic) NSString *tokenType;  // type of token (facebook)
 @property(strong, nonatomic) NSString *tokenValue;
 
-+ (id)jwtTokenWithDictionary:(NSDictionary *)dictionary;
+/*
 
+ @param
+ @return
+*/
++ (SPiDJwt *)jwtTokenWithDictionary:(NSDictionary *)dictionary;
+
+/*
+
+ @param
+ @return
+*/
 - (NSString *)encodedJwtString;
-// the actual token
 
 @end

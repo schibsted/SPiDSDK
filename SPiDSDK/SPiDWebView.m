@@ -10,7 +10,7 @@
 #import "NSError+SPiDError.h"
 #import "SPiDTokenRequest.h"
 
-@interface SPiDWebView (PrivateMethods)
+@interface SPiDWebView ()
 
 /** Creates a SPiDWebView
 
@@ -22,8 +22,8 @@
 /** Sent before a web view begins loading a frame.
 
  @param webView The web view that is about to load a new frame.
- @request The content location.
- @navigationType The type of user action that started the load request.
+ @param request The content location.
+ @param navigationType The type of user action that started the load request.
  @return YES if the web view should begin loading content; otherwise, NO .
  */
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
@@ -116,7 +116,7 @@
             NSString *code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             if (code) {
                 SPiDDebugLog(@"Received code: %@", code);
-                SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithCode:code authCompletionHandler:_completionHandler];
+                SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
                 [tokenRequest startRequest];
                 //self.completionHandler(code, nil);
             } else {

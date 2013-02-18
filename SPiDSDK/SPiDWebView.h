@@ -8,13 +8,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/** WebView for handling authorization against SPiD. */
 
 @interface SPiDWebView : UIWebView <UIWebViewDelegate>
 
+/** */
 @property(nonatomic) BOOL isPending;
-@property(strong, nonatomic) NSURL *requestURL;
-@property(nonatomic, copy) void (^completionHandler)(NSError *);
 
+/** */
+@property(strong, nonatomic) NSURL *requestURL;
+
+/** */
+@property(nonatomic, copy) void (^completionHandler)(NSError *);
 
 /** Creates a authorization WebView.
 

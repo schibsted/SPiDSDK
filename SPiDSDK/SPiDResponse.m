@@ -41,7 +41,4 @@
     return self;
 }
 
-+ (id)responseWithError:(NSError *)error {
-    return [[self alloc] initWithError:error];
-}
 @end

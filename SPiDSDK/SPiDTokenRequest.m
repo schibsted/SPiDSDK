@@ -7,9 +7,82 @@
 
 #import "SPiDTokenRequest.h"
 #import "NSError+SPiDError.h"
-#import "SPiDAccessToken.h"
 #import "SPiDKeychainWrapper.h"
 #import "SPiDJwt.h"
+
+@interface SPiDTokenRequest ()
+
+/** Initializes a token request
+
+ @param requestPath Path to token endpoint
+ @param body Post body
+ @param completionHandler Called on request completion or error
+ @return SPiDTokenRequest
+ */
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
+
+/** Generates a facebook JWT token as a encoded string
+
+ @param appId Facebook appID
+ @param facebookToken Facebook access token
+ @param expirationDate Expiration date for the facebook token
+ @return JWT as a encoded string
+ */
++ (NSString *)facebookJwtStringWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate;
+
+/** Generates post data for a token refresh
+
+ @param accessToken ´SPiDAccessToken` to be refreshed
+ @return Dictionary containing the post data
+ */
++ (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)accessToken;
+
+/** Generates post data for a user token request using JWT
+
+ @param jwtString JWT as a encoded string
+ @return Dictionary containing the post data
+ */
++ (NSDictionary *)userTokenPostDataWithJwt:(NSString *)jwtString;
+
+/** Generates post data for a user token request using user credentials
+
+ @param username The username
+ @param password The password
+ @return Dictionary containing the post data
+ */
++ (NSDictionary *)userTokenPostDataWithUsername:(NSString *)username password:(NSString *)password;
+
+/** Generates post data for a access token request using authorization code
+
+ @param code Authorization code
+ @return Dictionary containing the post data
+ */
++ (NSDictionary *)userTokenPostDataWithCode:(NSString *)code;
+
+/** Generates post data for a client token request
+
+ @return A dictionary containing the post data
+ */
++ (NSDictionary *)clientTokenPostData;
+
+/** NSURLConnectionDelegate method
+
+ Sent when a connection has finished loading successfully.
+
+ @param connection The connection sending the message.
+ */
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+
+/** NSURLConnectionDelegate method
+
+ Sent when a connection fails to load its request successfully.
+
+ @param connection The connection sending the message.
+ @param error An error object containing details of why the connection failed to load the request successfully.
+ */
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
+@end
 
 @implementation SPiDTokenRequest {
 @private
@@ -24,9 +97,9 @@
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithCode:(NSString *)code authCompletionHandler:(void (^)(NSError *error))authCompletionHandler {
++ (SPiDTokenRequest *)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(NSError *error))completionHandler {
     NSDictionary *postData = [self userTokenPostDataWithCode:code];
-    SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:authCompletionHandler];
+    SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
@@ -59,7 +132,7 @@
 }
 
 - (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
-    self = (SPiDTokenRequest*)[SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
+    self = (SPiDTokenRequest *) [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
     _tokenCompletionHandler = completionHandler;
     return self;
 }
@@ -73,10 +146,6 @@
     return data;
 }
 
-/** Generates the access token post data from a authorization code
-
- @result Access token request data
- */
 + (NSDictionary *)userTokenPostDataWithCode:(NSString *)code {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
@@ -110,12 +179,6 @@
     return data;
 }
 
-
-/** Generates the access token refresh post data from a access token
-
- @param accessToken ´SPiDAccessToken` containing the refresh token
- @return Token refresh request data
- */
 + (NSDictionary *)refreshTokenPostDataWithAccessToken:(SPiDAccessToken *)accessToken {
     SPiDClient *client = [SPiDClient sharedInstance];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];

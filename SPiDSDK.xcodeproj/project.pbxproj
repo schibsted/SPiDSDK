@@ -23,13 +23,11 @@
 /* Begin PBXBuildFile section */
 		5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		5306208B16C12440001B2A08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
-		5306208D16C13288001B2A08 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306208C16C13288001B2A08 /* FacebookSDK.framework */; };
-		5306208E16C13374001B2A08 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306208C16C13288001B2A08 /* FacebookSDK.framework */; };
-		5306209016C13650001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
-		5306209516C1372F001B2A08 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */; };
 		5306209716C1375D001B2A08 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209616C1375D001B2A08 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5306209916C13764001B2A08 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209A16C1376F001B2A08 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		531E661916D234CD00CAB3C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531E661816D234CD00CAB3C0 /* FacebookSDK.framework */; };
+		531E661B16D234DB00CAB3C0 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 531E661A16D234DB00CAB3C0 /* FacebookSDKResources.bundle */; };
 		53220F2816BFB13300332D65 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53220F2716BFB13300332D65 /* CoreText.framework */; };
 		532B21B516AD5737000DBA55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		532B21B616AD5737000DBA55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
@@ -214,11 +212,11 @@
 
 /* Begin PBXFileReference section */
 		5306208716C082B8001B2A08 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		5306208C16C13288001B2A08 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		5306209616C1375D001B2A08 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		5306209816C13764001B2A08 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		5306209A16C1376F001B2A08 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		531E661816D234CD00CAB3C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Frameworks/FacebookSDK.framework; sourceTree = "<group>"; };
+		531E661A16D234DB00CAB3C0 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = Frameworks/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		53220F2716BFB13300332D65 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		532B21B316AD5737000DBA55 /* SPiDFacebookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPiDFacebookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		532B21BA16AD5737000DBA55 /* SPiDFacebookApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDFacebookApp-Info.plist"; sourceTree = "<group>"; };
@@ -352,7 +350,7 @@
 				532B21B516AD5737000DBA55 /* UIKit.framework in Frameworks */,
 				532B21B616AD5737000DBA55 /* Foundation.framework in Frameworks */,
 				532B21B716AD5737000DBA55 /* CoreGraphics.framework in Frameworks */,
-				5306208E16C13374001B2A08 /* FacebookSDK.framework in Frameworks */,
+				531E661916D234CD00CAB3C0 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +394,6 @@
 				534D652116AD937F00088B3D /* Security.framework in Frameworks */,
 				539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */,
 				537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */,
-				5306208D16C13288001B2A08 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,9 +578,9 @@
 			children = (
 				5306209A16C1376F001B2A08 /* Accounts.framework */,
 				5306209816C13764001B2A08 /* AdSupport.framework */,
+				531E661A16D234DB00CAB3C0 /* FacebookSDKResources.bundle */,
+				531E661816D234CD00CAB3C0 /* FacebookSDK.framework */,
 				5306209616C1375D001B2A08 /* Social.framework */,
-				5306208F16C13650001B2A08 /* FacebookSDKResources.bundle */,
-				5306208C16C13288001B2A08 /* FacebookSDK.framework */,
 				53220F2716BFB13300332D65 /* CoreText.framework */,
 				539B8468162FF8E60066EB89 /* UIKit.framework */,
 				E304ECEC953C2E9C143FD9E2 /* Security.framework */,
@@ -906,9 +903,9 @@
 				E304EBD0A10A44BCB90DB07B /* facebook-login-button-small-pressed@2x.png in Resources */,
 				E304E6640827CCA423BA6D78 /* facebook-login-button-small.png in Resources */,
 				E304E1EEBBDC204D1E3AB80A /* facebook-login-button-small@2x.png in Resources */,
-				5306209516C1372F001B2A08 /* FacebookSDKResources.bundle in Resources */,
 				E304E7AE251C3D4C8DC110D9 /* red_button.png in Resources */,
 				E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */,
+				531E661B16D234DB00CAB3C0 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,7 +914,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				532B21DA16AD5737000DBA55 /* InfoPlist.strings in Resources */,
-				5306209016C13650001B2A08 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,6 +1230,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
@@ -1259,6 +1256,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
@@ -1539,7 +1537,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1561,7 +1559,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

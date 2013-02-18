@@ -62,6 +62,8 @@
  */
 - (void)encodeWithCoder:(NSCoder *)coder;
 
+- (NSString *)stringFromObject:(id)obj;
+
 /** Checks if the access token has expired
 
 @Return Returns YES if access token has expired
