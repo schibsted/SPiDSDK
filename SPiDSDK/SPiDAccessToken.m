@@ -41,10 +41,10 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-    NSString *userID = [decoder decodeObjectOfClass:[NSString class] forKey:UserIDKey];
-    NSString *accessToken = [decoder decodeObjectOfClass:[NSString class] forKey:AccessTokenKey];
-    NSDate *expiresAt = [decoder decodeObjectOfClass:[NSDate class] forKey:ExpiresAtKey];
-    NSString *refreshToken = [decoder decodeObjectOfClass:[NSString class] forKey:RefreshTokenKey];
+    NSString *userID = [decoder decodeObjectForKey:UserIDKey];
+    NSString *accessToken = [decoder decodeObjectForKey:AccessTokenKey];
+    NSDate *expiresAt = [decoder decodeObjectForKey:ExpiresAtKey];
+    NSString *refreshToken = [decoder decodeObjectForKey:RefreshTokenKey];
     return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
