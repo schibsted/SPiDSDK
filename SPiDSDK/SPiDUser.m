@@ -49,6 +49,7 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:email forKey:@"email"];
     [data setValue:password forKey:@"password"];
+    [data setValue:[[SPiDClient sharedInstance] authorizationURLWithQuery].absoluteString forKey:@"redirectUri"];
     return data;
 }
 
