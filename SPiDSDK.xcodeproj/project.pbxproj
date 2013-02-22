@@ -86,6 +86,7 @@
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
 		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
+		53A8546216D76DD20005A6AF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E752C72346E314762407 /* SPiDWebView.h */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
@@ -95,6 +96,7 @@
 		E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E61B34D176733C911367 /* NSData+Base64.m */; };
 		E304E1EEBBDC204D1E3AB80A /* facebook-login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */; };
 		E304E31BE819293D63E28557 /* facebook-login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */; };
+		E304E3D68825FDD570A408A9 /* SPiDStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E4801E76F6F93C43AB67 /* SPiDStatus.m */; };
 		E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E9BAD5499EEFE7846D26 /* Default@2x.png */; };
 		E304E452044155187E8DB9B7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EE605678587B7175FCB0 /* MainViewController.m */; };
 		E304E52F3203DA6CB5061FAA /* NSString+Crypto.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */; };
@@ -130,6 +132,7 @@
 		E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E99B5C79CF60749D65AE /* red_button@2x.png */; };
 		E304EDD04520BC5FB2B516F4 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304ECA66E30DA618B5AC63F /* SPiDWebView.m */; };
 		E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */; };
+		E304EFD88EE8442DDB57ECAF /* SPiDStatus.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF14B76195254AE32548 /* SPiDStatus.h */; };
 		E304EFDA1BBFBD96DA46233F /* SPiDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E93DD2773BD78706B78C /* SPiDUser.m */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +208,7 @@
 				E304EB38611381AF6653FCE4 /* SignUpViewController.h in CopyFiles */,
 				E304EB3AAAA9C94117D0934D /* SPiDUser.h in CopyFiles */,
 				E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */,
+				E304EFD88EE8442DDB57ECAF /* SPiDStatus.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +302,7 @@
 		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
 		E304E4356DC3EEDF0A7653AB /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
+		E304E4801E76F6F93C43AB67 /* SPiDStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDStatus.m; sourceTree = "<group>"; };
 		E304E4D3494537377633CA3E /* NSError+SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiDError.h"; sourceTree = "<group>"; };
 		E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
 		E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
@@ -331,6 +336,7 @@
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
 		E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenRequest.h; sourceTree = "<group>"; };
 		E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
+		E304EF14B76195254AE32548 /* SPiDStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDStatus.h; sourceTree = "<group>"; };
 		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDKeychainWrapper.h; sourceTree = "<group>"; };
 		E304EF927327F5217C9FBBD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E304EFCE17629039E0973340 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
@@ -368,6 +374,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53A8546216D76DD20005A6AF /* AdSupport.framework in Frameworks */,
 				53220F2816BFB13300332D65 /* CoreText.framework in Frameworks */,
 				534D652816AD942400088B3D /* Security.framework in Frameworks */,
 				534D652016AD896600088B3D /* libSPiDSDK.a in Frameworks */,
@@ -622,6 +629,8 @@
 				E304E8EE461D81FA4D084AC8 /* SPiDUser.h */,
 				E304ECA66E30DA618B5AC63F /* SPiDWebView.m */,
 				E304E752C72346E314762407 /* SPiDWebView.h */,
+				E304E4801E76F6F93C43AB67 /* SPiDStatus.m */,
+				E304EF14B76195254AE32548 /* SPiDStatus.h */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -1098,6 +1107,7 @@
 				E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */,
 				E304EFDA1BBFBD96DA46233F /* SPiDUser.m in Sources */,
 				E304EDD04520BC5FB2B516F4 /* SPiDWebView.m in Sources */,
+				E304E3D68825FDD570A408A9 /* SPiDStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

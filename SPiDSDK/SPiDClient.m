@@ -11,6 +11,7 @@
 #import "SPiDResponse.h"
 #import "NSError+SPiDError.h"
 #import "SPiDTokenRequest.h"
+#import "SPiDStatus.h"
 
 @interface SPiDClient ()
 
@@ -128,6 +129,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
     if (![sharedSPiDClientInstance logoutURL])
         [sharedSPiDClientInstance setLogoutURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/logout", [sharedSPiDClientInstance serverURL]]]];
+
+    // Fire and forget
+    [SPiDStatus runStatusRequest];
 }
 
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
@@ -216,6 +220,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (NSURL *)forgotPasswordURLWithQuery {
+    //NSString *query = [self getForgotPasswordQuery];
     NSString *query = [self getAuthorizationQuery];
     return [NSURL URLWithString:[self.forgotPasswordURL.absoluteString stringByAppendingString:query]];
 }
@@ -352,6 +357,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
     if (self.useMobileWeb)
         [query setObject:@"mobile" forKey:@"platform"];
+    // TODO: needed for browser redirect
     [query setObject:@"1" forKey:@"force"];
     return [SPiDUtils encodedHttpQueryForDictionary:query];
 }

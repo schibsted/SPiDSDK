@@ -5,6 +5,8 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
+#define SPID_IOS_SDK_VERSION_STRING @"0.0.1"
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "SPiDUtils.h"
@@ -174,6 +176,30 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 - (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
+/** Generates the authorization url with query parameters
+
+ @return The url with query parameters
+ */
+- (NSURL *)authorizationURLWithQuery;
+
+/** Generates the signup url with query parameters
+
+ @return The url with query parameters
+ */
+- (NSURL *)signupURLWithQuery;
+
+/** Generates the forgot password url with query parameters
+
+ @return The url with query parameters
+ */
+- (NSURL *)forgotPasswordURLWithQuery;
+
+/** Generates the logout url with query parameters
+
+ @return The url with query parameters
+ */
+- (NSURL *)logoutURLWithQuery;
+
 /** Checks if the access token has expired
 
  @return Returns YES if access token has expired
@@ -258,29 +284,5 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @see isAuthorized
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
-
-/** Generates the authorization url with query parameters
-
- @return The url with query parameters
- */
-- (NSURL *)authorizationURLWithQuery;
-
-/** Generates the signup url with query parameters
-
- @return The url with query parameters
- */
-- (NSURL *)signupURLWithQuery;
-
-/** Generates the forgot password url with query parameters
-
- @return The url with query parameters
- */
-- (NSURL *)forgotPasswordURLWithQuery;
-
-/** Generates the logout url with query parameters
-
- @return The url with query parameters
- */
-- (NSURL *)logoutURLWithQuery;
 
 @end
