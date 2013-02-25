@@ -14,6 +14,7 @@
 @class SPiDResponse;
 @class SPiDAccessToken;
 @class SPiDRequest;
+@class SPiDError;
 
 static NSString *const defaultAPIVersionSPiD = @"2";
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
@@ -140,13 +141,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on login completion or error
 */
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Redirects to safari for signup
 
  @param completionHandler Called on signup completion or error
 */
-- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Redirects to safari for forgot password */
 - (void)browserRedirectForgotPassword; // TODO: does not need completion handler
@@ -155,7 +156,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on logout completion or error
 */
-- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler; // TODO: Should not care about errors...
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(SPiDError *))completionHandler; // TODO: Should not care about errors...
 
 /** Handles URL redirects to the app
 
@@ -174,7 +175,17 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on logout completion or error
  @see isAuthorized
  */
-- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
+- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(SPiDError *response))completionHandler;
+
+/** Tries to refresh access token and rerun waiting requests
+
+ @param request The request to retry after a new access token has been acquired
+ */
+- (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
+
+/**
+ */
+- (void)authorizationComplete;
 
 /** Generates the authorization url with query parameters
 

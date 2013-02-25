@@ -6,7 +6,7 @@
 //
 
 #import "SPiDTokenRequest.h"
-#import "NSError+SPiDError.h"
+#import "SPiDError.h"
 #import "SPiDKeychainWrapper.h"
 #import "SPiDJwt.h"
 
@@ -63,7 +63,7 @@
  @param completionHandler Called on request completion or error
  @return SPiDTokenRequest
  */
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** NSURLConnectionDelegate method
 
@@ -80,36 +80,36 @@
  @param connection The connection sending the message.
  @param error An error object containing details of why the connection failed to load the request successfully.
  */
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(SPiDError *)error;
 
 @end
 
 @implementation SPiDTokenRequest {
 @private
 
-    void(^_tokenCompletionHandler)(NSError *error);
+    void(^_tokenCompletionHandler)(SPiDError *error);
 
 }
 
-+ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
++ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self clientTokenPostData];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(NSError *error))completionHandler {
++ (SPiDTokenRequest *)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self userTokenPostDataWithCode:code];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(NSError *error))completionHandler {
++ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self userTokenPostDataWithUsername:username password:password];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler {
++ (SPiDTokenRequest *)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
     NSString *jwtString = [self facebookJwtStringWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
     if (jwtString == nil) {
         return nil; // Should not happen, throw exception
@@ -119,7 +119,7 @@
     return request;
 }
 
-+ (SPiDTokenRequest *)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler {
++ (SPiDTokenRequest *)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || accessToken.refreshToken == nil) {
         SPiDDebugLog(@"No access token, cannot refreshTrying to refresh access token with refresh token: %@", accessToken.refreshToken);
@@ -200,7 +200,7 @@
     return data;
 }
 
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
+- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDError *error))completionHandler {
     self = (SPiDTokenRequest *) [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
     _tokenCompletionHandler = completionHandler;
     return self;
@@ -208,23 +208,24 @@
 
 // NSURLConnection methods
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError *jsonError = nil;
+    SPiDError *jsonError = nil;
     NSDictionary *jsonObject = nil;
     SPiDDebugLog(@"Response token data: %@", [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding]);
     if ([_receivedData length] > 0) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:_receivedData options:NSJSONReadingMutableContainers error:&jsonError];
     } else {
-        _tokenCompletionHandler([NSError oauth2ErrorWithCode:SPiDAPIExceptionErrorCode description:@"Recevied empty response" reason:@"ApiException"]);
+        _tokenCompletionHandler([SPiDError oauth2ErrorWithCode:SPiDAPIExceptionErrorCode reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]);
     }
 
     if (!jsonError) {
         if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            NSError *error = [NSError errorFromJSONData:jsonObject];
+            SPiDError *error = [SPiDError errorFromJSONData:jsonObject];
             _tokenCompletionHandler(error);
         } else /*if (_receivedData)*/ {
             SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
             [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
             [[SPiDClient sharedInstance] setAccessToken:accessToken];
+            [[SPiDClient sharedInstance] authorizationComplete];
             _tokenCompletionHandler(nil);
         }
     } else {
@@ -235,7 +236,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
-    _tokenCompletionHandler(error);
+    _tokenCompletionHandler((SPiDError *) error);
 }
 
 @end

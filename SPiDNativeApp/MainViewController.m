@@ -70,7 +70,7 @@
 }
 
 - (void)logoutFromSPiD:(id)sender {
-    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *response) {
+    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(SPiDError *response) {
         // TODO: this is a ugly solution
         [self viewWillDisappear:NO];
         [self viewWillAppear:NO];

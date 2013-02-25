@@ -5,65 +5,71 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "NSError+SPiDError.h"
+#import "SPiDError.h"
 #import "SPiDClient.h"
 
-@implementation NSError (SPiDError)
+@implementation SPiDError
 
-+ (NSError *)errorFromJSONData:(NSDictionary *)dictionary {
-    NSString *errorString;
-    NSString *errorDescription;
++ (SPiDError *)errorFromJSONData:(NSDictionary *)dictionary {
+    NSString *domain;
+    NSDictionary *descriptions;
     NSInteger originalErrorCode;
     NSInteger errorCode;
 
     if ([[dictionary objectForKey:@"error"] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
-        errorString = [errorDict objectForKey:@"type"];
+        domain = [errorDict objectForKey:@"type"];
         originalErrorCode = [[errorDict objectForKey:@"code"] integerValue];
-        errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+        errorCode = [self getSPiDOAuth2ErrorCode:domain];
         if ([[errorDict objectForKey:@"description"] isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *descDict = [errorDict objectForKey:@"description"];
-            errorDescription = [[descDict allValues] objectAtIndex:0];
+            descriptions = [errorDict objectForKey:@"description"];
         } else {
-            errorDescription = [errorDict objectForKey:@"description"];
+            descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[errorDict objectForKey:@"description"], @"error", nil];
         }
     } else {
-        errorString = [dictionary objectForKey:@"error"];
-        errorDescription = [dictionary objectForKey:@"error_description"];
+        domain = [dictionary objectForKey:@"error"];
+        descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"error_description"], @"error", nil];
         originalErrorCode = [[dictionary objectForKey:@"error_code"] integerValue];
-        errorCode = [self getSPiDOAuth2ErrorCode:errorString];
+        errorCode = [self getSPiDOAuth2ErrorCode:domain];
     }
 
-    SPiDDebugLog("Received '%@' with code '%d' and description: %@", errorString, originalErrorCode, errorDescription);
+    if (descriptions.count == 0) {
+        descriptions = [NSDictionary dictionaryWithObjectsAndKeys:domain, @"error", nil];
+    }
 
-    return [self oauth2ErrorWithCode:errorCode description:errorDescription reason:errorString];
+    SPiDDebugLog("Received '%@' with code '%d' and description: %@", domain, originalErrorCode, [descriptions description]);
+    SPiDError *error = [SPiDError errorWithDomain:domain code:errorCode userInfo:nil];
+    error.descriptions = descriptions;
+    return error;
 }
 
-+ (NSError *)oauth2ErrorWithString:(NSString *)errorString {
++ (SPiDError *)oauth2ErrorWithString:(NSString *)errorString {
     NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
-    return [self oauth2ErrorWithCode:errorCode description:errorString reason:errorString];
+    NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
+    return [self oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
 }
 
 
-+ (NSError *)oauth2ErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
++ (SPiDError *)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
-    if ([description length] > 0 || [reason length] > 0) {
-        info = [NSMutableDictionary dictionaryWithCapacity:2];
-        if ([description length] > 0) [info setObject:description forKey:NSLocalizedDescriptionKey];
+    if ([reason length] > 0) {
+        info = [NSMutableDictionary dictionary];
         if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
     }
-    return [self errorWithDomain:@"SPiDOAuth2" code:code userInfo:info];
+    SPiDError *error = [SPiDError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:nil];
+    error.descriptions = descriptions;
+    return error;
 }
 
-
-+ (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason {
++ (SPiDError *)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
-    if ([description length] > 0 || [reason length] > 0) {
-        info = [NSMutableDictionary dictionaryWithCapacity:2];
-        if ([description length] > 0) [info setObject:description forKey:NSLocalizedDescriptionKey];
+    if ([reason length] > 0) {
+        info = [NSMutableDictionary dictionary];
         if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
     }
-    return [self errorWithDomain:@"ApiException" code:code userInfo:info];
+    SPiDError *error = [SPiDError errorWithDomain:@"ApiException" code:errorCode userInfo:nil];
+    error.descriptions = descriptions;
+    return error;
 }
 
 + (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString {

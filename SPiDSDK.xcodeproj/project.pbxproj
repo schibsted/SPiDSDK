@@ -103,8 +103,8 @@
 		E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EC34E54EE6F302C3BE2A /* red_button@2x.png */; };
 		E304E5886D575207EE4574AD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7EE2A65B25A228D8133 /* LoginViewController.m */; };
 		E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */; };
-		E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiDError.m */; };
-		E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiDError.h */; };
+		E304E5C0409AACEABCFE6A9D /* SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* SPiDError.m */; };
+		E304E5E647CEE9ECDCD6ACED /* SPiDError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* SPiDError.h */; };
 		E304E62AC86C9650891094B6 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E4602FCA00B6130BF009 /* red_button.png */; };
 		E304E6640827CCA423BA6D78 /* facebook-login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E78AD685949E4766960F /* facebook-login-button-small.png */; };
 		E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */; };
@@ -200,7 +200,7 @@
 				E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */,
 				E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */,
 				E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */,
-				E304E5E647CEE9ECDCD6ACED /* NSError+SPiDError.h in CopyFiles */,
+				E304E5E647CEE9ECDCD6ACED /* SPiDError.h in CopyFiles */,
 				E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */,
 				E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */,
 				E304E9ECCDD994BB72DD543D /* SPiDJwt.h in CopyFiles */,
@@ -292,7 +292,7 @@
 		E304E18838B69AB7C22D2017 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E304E189CF307C539E49A2A1 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		E304E1D5F9987092B6438572 /* SPiDJwt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDJwt.m; sourceTree = "<group>"; };
-		E304E24883200DCA88A4E70C /* NSError+SPiDError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SPiDError.m"; sourceTree = "<group>"; };
+		E304E24883200DCA88A4E70C /* SPiDError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDError.m; sourceTree = "<group>"; };
 		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUtils.h; sourceTree = "<group>"; };
 		E304E28946789A36FF358EC0 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 		E304E4356DC3EEDF0A7653AB /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E4801E76F6F93C43AB67 /* SPiDStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDStatus.m; sourceTree = "<group>"; };
-		E304E4D3494537377633CA3E /* NSError+SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiDError.h"; sourceTree = "<group>"; };
+		E304E4D3494537377633CA3E /* SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDError.h; sourceTree = "<group>"; };
 		E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
 		E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
 		E304E61B34D176733C911367 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
@@ -602,8 +602,8 @@
 		537D21F415FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXGroup;
 			children = (
-				E304E4D3494537377633CA3E /* NSError+SPiDError.h */,
-				E304E24883200DCA88A4E70C /* NSError+SPiDError.m */,
+				E304E4D3494537377633CA3E /* SPiDError.h */,
+				E304E24883200DCA88A4E70C /* SPiDError.m */,
 				E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */,
 				E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */,
 				E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */,
@@ -1100,7 +1100,7 @@
 				E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */,
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
-				E304E5C0409AACEABCFE6A9D /* NSError+SPiDError.m in Sources */,
+				E304E5C0409AACEABCFE6A9D /* SPiDError.m in Sources */,
 				E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */,
 				E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */,
 				E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */,

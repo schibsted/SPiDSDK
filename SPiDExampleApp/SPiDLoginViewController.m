@@ -7,7 +7,7 @@
 //
 
 #import "SPiDLoginViewController.h"
-#import "NSError+SPiDError.h"
+#import "SPiDError.h"
 #import "SPiDWebView.h"
 
 @implementation SPiDLoginViewController {
@@ -23,7 +23,7 @@
 - (IBAction)loginWithBrowserRedirect:(id)sender {
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:NO];
-    [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(NSError *error) {
+    [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(SPiDError *error) {
         if (!error) {
             [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
         }
@@ -34,7 +34,7 @@
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:YES];
     UIViewController *webViewController = [[UIViewController alloc] init];
-    SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:^(NSError *error) {
+    SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:^(SPiDError *error) {
         if (!error) {
             [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromRight
@@ -61,7 +61,7 @@
                                 [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
                             }
                             completion:NULL];
-            [[[UIAlertView alloc] initWithTitle:@"Error loading WebView" message:[error description] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"Error loading WebView" message:error.descriptions.description delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         }
     }];
     [[webViewController view] addSubview:webView];

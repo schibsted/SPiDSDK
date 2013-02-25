@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDTokenRequest.h"
-#import "NSError+SPiDError.h"
+#import "SPiDError.h"
 #import "SignUpViewController.h"
 #import "TermsViewController.h"
 
@@ -109,7 +109,7 @@
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty"];
     } else {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
-        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
+        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(SPiDError *error) {
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
 
             NSString *title;
@@ -121,7 +121,7 @@
             } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
                 title = @"Invalid email and/or password";
             } else {
-                title = [NSString stringWithFormat:@"Received error: %@", [[error userInfo] objectForKey:NSLocalizedFailureReasonErrorKey]];
+                title = [NSString stringWithFormat:@"Received error: %@", error.descriptions.description];
             }
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
         }];

@@ -8,6 +8,7 @@
 #import "SPiDRequest.h"
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
+#import "SPiDError.h"
 
 @interface SPiDRequest ()
 
@@ -110,7 +111,7 @@
     NSString *urlStr = [_url absoluteString];
     NSString *body = @"";
     if ([_httpMethod isEqualToString:@"GET"]) {
-        if ([urlStr rangeOfString:@"?"].location > NSNotFound) {
+        if ([urlStr rangeOfString:@"?"].location == NSNotFound) {
             urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
         } else {
             urlStr = [NSString stringWithFormat:@"%@&oauth_token=%@", urlStr, accessToken.accessToken];
@@ -194,10 +195,9 @@
     SPiDDebugLog(@"Received response from: %@", [_url absoluteString]);
     SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:_receivedData];
     _receivedData = nil;
-    /*
     NSError *error = [response error];
     if (error && ([error code] == SPiDOAuth2InvalidTokenErrorCode || [error code] == SPiDOAuth2ExpiredTokenErrorCode)) {
-        if ([self retryCount] < MaxRetryAttempts) {
+        if ([self retryCount] < 3) {
             SPiDDebugLog(@"Invalid token, trying to refresh");
             [self setRetryCount:[self retryCount] + 1];
             [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
@@ -206,10 +206,10 @@
             if (_completionHandler != nil)
                 _completionHandler(response);
         }
-    } else {*/
-    if (_completionHandler != nil)
-        _completionHandler(response);
-    //}
+    } else {
+        if (_completionHandler != nil)
+            _completionHandler(response);
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

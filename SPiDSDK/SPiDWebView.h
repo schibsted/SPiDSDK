@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class SPiDError;
+
 /** WebView for handling authorization against SPiD. */
 
 @interface SPiDWebView : UIWebView <UIWebViewDelegate>
@@ -23,7 +25,7 @@
 @property(strong, nonatomic) NSURL *requestURL;
 
 /** */
-@property(nonatomic, copy) void (^completionHandler)(NSError *);
+@property(nonatomic, copy) void (^completionHandler)(SPiDError *);
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
@@ -34,20 +36,20 @@
  @param completionHandler Called after authorization is completed
  @return The new WebView
 */
-+ (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
++ (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Creates a registration WebView
 
  @param completionHandler Called after signup is completed
  @return The new WebView
 */
-+ (SPiDWebView *)signupWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
++ (SPiDWebView *)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Creates a forgot password WebView
 
  @param completionHandler Called after forgot password is completed
  @return The new WebView
 */
-+ (SPiDWebView *)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
++ (SPiDWebView *)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 @end

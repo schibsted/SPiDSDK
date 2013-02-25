@@ -10,6 +10,7 @@
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDUser.h"
 #import "TermsViewController.h"
+#import "SPiDError.h"
 
 @implementation SignUpViewController
 
@@ -112,10 +113,16 @@
 
 - (void)createSPiDAccountWithEmail:(NSString *)email andPassword:(NSString *)password {
     [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Creating SPiD account\nPlease Wait..."];
-    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(NSError *error) {
+    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(SPiDError *error) {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
         if (error) {
-            [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error localizedDescription]];
+            if ([error.descriptions objectForKey:@"blocked"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"blocked"]];
+            } else if ([error.descriptions objectForKey:@"exists"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"exists"]];
+            } else {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"error"]];
+            }
         } else {
             //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Successfully created SPiD account\nCheck your email for verification"];

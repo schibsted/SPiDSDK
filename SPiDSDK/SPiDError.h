@@ -7,45 +7,54 @@
 
 #import <Foundation/Foundation.h>
 
-/** Adds helper methods to `NSError` for more organized code. */
-@interface NSError (SPiDError)
+/** Subclass of `NSError` to add support for multiple error descriptions.
 
-/** Creates a new `NSError` with SPiD OAuth2 domain and given dictionary.
+
+ */
+@interface SPiDError : NSError
+
+/** Dictionary of error descriptions */
+@property(strong, nonatomic) NSDictionary *descriptions;
+
+/** Creates a new `SPiDError` with SPiD OAuth2 domain and given dictionary.
 
  @param dictionary Dictionary containing error data received from SPiD
- @return Returns `NSError` with the given data.
+ @return Returns `SPiDError` with the given data.
  */
 
-+ (NSError *)errorFromJSONData:(NSDictionary *)dictionary;
++ (SPiDError *)errorFromJSONData:(NSDictionary *)dictionary;
 
-/** Creates a new `NSError` with SPiD OAuth2 domain and the given string.
+/** Creates a new `SPiDError` with SPiD OAuth2 domain and the given string.
 
  @param errorString Error received from SPiD.
- @return Returns `NSError` with the given data.
+ @return Returns `SPiDError` with the given data.
  */
-+ (NSError *)oauth2ErrorWithString:(NSString *)errorString;
++ (SPiDError *)oauth2ErrorWithString:(NSString *)errorString;
 
-/** Creates a new `NSError` with SPiD OAuth2 domain and the given paramters
+/** Creates a new `SPiDError` with SPiD OAuth2 domain and the given paramters
 
- @param code Error code.
- @param description Error description.
+ @param errorCode Error code.
+ @param descriptions Dictionary container error descriptions.
  @param reason Error reason.
- @return Returns `NSError` with the given data.
+ @return Returns `SPiDError` with the given data.
  */
-+ (NSError *)oauth2ErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason;
++ (SPiDError *)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
 
-/** Creates a new `NSError` with SPiD API domain and the given paramters 
- 
- @warning Not implemented yet
- @param code Error code.
- @param description Error description.
+/** Creates a new `SPiDError` with SPiD API domain and the given paramters 
+
+ @param errorCode Error code.
+ @param descriptions Dictionary container error descriptions.
  @param reason Error reason.
- @return Returns `NSError` with the given data.
+ @return Returns `SPiDError` with the given data.
  */
-+ (NSError *)apiErrorWithCode:(NSInteger)code description:(NSString *)description reason:(NSString *)reason;
++ (SPiDError *)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
 
+/**
+
+ @param errorString Error string.
+ @return Returns internal SPiD code for the given error.
+ */
 + (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString;
-
 
 @end
 
@@ -75,6 +84,6 @@ enum {
     SPiDUserAbortedLogin = -1100,
     SPiDJSONParseErrorCode = -1200, // JSON Parse error
 
-    SPiDAPIExceptionErrorCode = 404
+    SPiDAPIExceptionErrorCode = -1300
 
 };

@@ -7,7 +7,7 @@
 
 #import "SPiDResponse.h"
 #import "SPiDClient.h"
-#import "NSError+SPiDError.h"
+#import "SPiDError.h"
 
 @implementation SPiDResponse
 
@@ -23,11 +23,11 @@
                 SPiDDebugLog(@"JSON parse error: %@", [[self error] description]);
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
-                    [self setError:[NSError errorFromJSONData:[self message]]];
+                    [self setError:[SPiDError errorFromJSONData:[self message]]];
                 } // else everything ok
             }
         } else {
-            [self setError:[NSError apiErrorWithCode:SPiDAPIExceptionErrorCode description:@"Recevied empty response" reason:@"ApiException"]];
+            [self setError:[SPiDError apiErrorWithCode:SPiDUserAbortedLogin reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]];
         }
     }
     return self;
