@@ -91,25 +91,25 @@
 
 }
 
-+ (SPiDTokenRequest *)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
++ (id)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self clientTokenPostData];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *error))completionHandler {
++ (id)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self userTokenPostDataWithCode:code];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler {
++ (id)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self userTokenPostDataWithUsername:username password:password];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (SPiDTokenRequest *)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
++ (id)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
     NSString *jwtString = [self facebookJwtStringWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
     if (jwtString == nil) {
         return nil; // Should not happen, throw exception
@@ -119,7 +119,7 @@
     return request;
 }
 
-+ (SPiDTokenRequest *)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (id)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || accessToken.refreshToken == nil) {
         SPiDDebugLog(@"No access token, cannot refreshTrying to refresh access token with refresh token: %@", accessToken.refreshToken);

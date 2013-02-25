@@ -45,7 +45,7 @@
 
 @implementation SPiDWebView
 
-+ (SPiDWebView *)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
++ (id)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] authorizationURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -55,7 +55,7 @@
     return webView;
 }
 
-+ (SPiDWebView *)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (id)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] signupURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -65,7 +65,7 @@
     return webView;
 }
 
-+ (SPiDWebView *)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (id)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] forgotPasswordURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");

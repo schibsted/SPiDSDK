@@ -19,7 +19,7 @@
             [self setRawJSON:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
             [self setMessage:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
-                [self setError:jsonError];
+                [self setError:[SPiDError errorFromNSError:jsonError]];
                 SPiDDebugLog(@"JSON parse error: %@", [[self error] description]);
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
@@ -36,7 +36,7 @@
 - (id)initWithError:(NSError *)error {
     self = [super self];
     if (self) {
-        [self setError:error];
+        [self setError:[SPiDError errorFromNSError:error]];
     }
     return self;
 }

@@ -39,7 +39,7 @@
  @param completionHandler Completion handler run after request is finished
  @return `SPiDRequest`
 */
-+ (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (id)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a POST `SPiDRequest`
 
@@ -48,7 +48,7 @@
  @param completionHandler Completion handler run after request is finished
  @return `SPiDRequest`
 */
-+ (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (id)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a `SPiDRequest`
 
@@ -58,7 +58,7 @@
  @param completionHandler Completion handler run after request is finished
  @return `SPiDRequest`
 */
-+ (SPiDRequest *)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (id)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Runs the request with the current access token */
 - (void)startRequestWithAccessToken; //TODO rename

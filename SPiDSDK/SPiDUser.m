@@ -21,11 +21,12 @@
 
 + (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *response))completionHandler {
     SPiDUser *user = [[SPiDUser alloc] init];
+/*
     // Validate email and password
     SPiDError *validationError = [user validateEmail:email password:password];
-    if (validationError) {
+    if (validationError != nil) {
         completionHandler(validationError);
-    }
+    }*/
     // Get client token
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || !accessToken.isClientToken) {

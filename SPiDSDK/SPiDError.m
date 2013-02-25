@@ -10,7 +10,7 @@
 
 @implementation SPiDError
 
-+ (SPiDError *)errorFromJSONData:(NSDictionary *)dictionary {
++ (id)errorFromJSONData:(NSDictionary *)dictionary {
     NSString *domain;
     NSDictionary *descriptions;
     NSInteger originalErrorCode;
@@ -43,14 +43,14 @@
     return error;
 }
 
-+ (SPiDError *)oauth2ErrorWithString:(NSString *)errorString {
++ (id)oauth2ErrorWithString:(NSString *)errorString {
     NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
     return [self oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
 }
 
 
-+ (SPiDError *)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
++ (id)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
     if ([reason length] > 0) {
         info = [NSMutableDictionary dictionary];
@@ -61,7 +61,7 @@
     return error;
 }
 
-+ (SPiDError *)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
++ (id)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
     if ([reason length] > 0) {
         info = [NSMutableDictionary dictionary];
@@ -69,6 +69,12 @@
     }
     SPiDError *error = [SPiDError errorWithDomain:@"ApiException" code:errorCode userInfo:nil];
     error.descriptions = descriptions;
+    return error;
+}
+
++ (id)errorFromNSError:(NSError *)error {
+    SPiDError *spidError = [SPiDError errorWithDomain:error.domain code:error.code userInfo:error.userInfo];
+    spidError.descriptions = nil;
     return error;
 }
 

@@ -120,8 +120,16 @@
                 [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"blocked"]];
             } else if ([error.descriptions objectForKey:@"exists"]) {
                 [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"exists"]];
+            } else if ([error.descriptions objectForKey:@"email"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"email"]];
+            } else if ([error.descriptions objectForKey:@"password"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"password"]];
             } else {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"error"]];
+                NSString *errorString = nil;
+                NSArray *values = [error.descriptions allValues];
+                if ([values count] != 0)
+                    errorString = [values objectAtIndex:0];
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:errorString];
             }
         } else {
             //[self.navigationController dismissViewControllerAnimated:YES completion:nil];

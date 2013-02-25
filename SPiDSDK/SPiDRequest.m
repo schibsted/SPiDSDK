@@ -91,17 +91,17 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-+ (SPiDRequest *)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler {
++ (id)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *completePath = [NSString stringWithFormat:@"/api/%@%@", [[SPiDClient sharedInstance] apiVersionSPiD], requestPath];
     return [[self alloc] initRequestWithPath:completePath method:@"GET" body:nil completionHandler:completionHandler];
 }
 
-+ (SPiDRequest *)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
++ (id)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *completePath = [NSString stringWithFormat:@"/api/%@%@", [[SPiDClient sharedInstance] apiVersionSPiD], requestPath];
     return [[self alloc] initPostRequestWithPath:completePath body:body completionHandler:completionHandler];
 }
 
-+ (SPiDRequest *)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
++ (id)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     return [[self alloc] initRequestWithPath:requestPath method:method body:body completionHandler:completionHandler];
 }
 
