@@ -5,7 +5,7 @@ layout: default
 Setting up Facebook
 ===================
 Following the SPiD 2.7 release, login and signup through Facebook is now supported.
-The SPiD SDK uses the Facebook SDK to enable login. The currently supported version of the Facebook SDK is 3.1.
+The SPiD SDK uses the Facebook SDK to enable login. The currently supported version of the Facebook SDK is 3.2.
 This also requires a FacebookApp to be setup for your application.
 
 For information about downloading the SDK, adding it to the project and creating a Facebook app see [Facebook getting started with iOS](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/3.1/ "Facebook getting started with iOS").
@@ -22,7 +22,7 @@ First we define the callback for when the session state changes for Facebook. If
             if (error) {
                 // Something went wrong with the Facebook login
             } else {
-                // We now have a valid facebook session and can get the token from [FBSession activeSession].accessToken;
+                // We now have a valid facebook session and can get the token from [FBSession activeSession].accessTokenData.accessToken;
                 [self userTokenRequestWithFacebookTokenSession:[FBSession activeSession]];
             }
             break;
@@ -74,8 +74,8 @@ Note that if the user does not exist, the user will be created using the email a
 {% highlight objectivec %}
 - (void)userTokenRequestWithFacebookToken:(FBSession *)facebookSession {
     SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithFacebookAppID:facebookSession.appID
-                                                                      facebookToken:facebookSession.accessToken
-                                                                     expirationDate:facebookSession.expirationDate
+                                                                      facebookToken:facebookSession.accessTokenData.accessToken
+                                                                     expirationDate:facebookSession.accessTokenData.expirationDate
                                                                   completionHandler:^(NSError *tokenError) {
                                                                       if (tokenError) {
                                                                           // Something went wrong
