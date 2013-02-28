@@ -7,6 +7,21 @@
 
 #import <Foundation/Foundation.h>
 
+/** Dictionary key for user id */
+extern NSString *const SPiDAccessTokenUserIdKey;
+
+/** Dictionary key for access token */
+extern NSString *const SPiDAccessTokenKey;
+
+/** Dictionary key for expires in */
+extern NSString *const SPiDAccessTokenExpiresInKey;
+
+/** Dictionary key for expires at */
+extern NSString *const SPiDAccessTokenExpiresAtKey;
+
+/** Dictionary key for refresh token */
+extern NSString *const SPiDAccessTokenRefreshTokenKey;
+
 /** Contains a access token that can be saved to the keychain */
 
 @interface SPiDAccessToken : NSObject <NSCoding>
@@ -38,21 +53,21 @@
  @param accessToken Access token
  @param expiresAt Access token expires at date
  @param refreshToken Refresh token
- @return SPiDAccessToken
+ @return SPiDAccessToken or nil if token is invalid
  */
 - (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken;
 
 /** Initializes the AccessToken from a dictionary
 
  @param dictionary Received data from SPiD
- @return SPiDAccessToken
+ @return SPiDAccessToken or nil if token is invalid
  */
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 /** Decodes the access token
 
  @param decoder Decoder to use
- @return SPiDAccessToken
+ @return SPiDAccessToken or nil if token is invalid
  */
 - (id)initWithCoder:(NSCoder *)decoder;
 

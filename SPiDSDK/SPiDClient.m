@@ -36,9 +36,6 @@
  */
 - (NSString *)getLogoutQuery;
 
-/** Clears current authorization request and waiting requests */
-- (void)clearAuthorizationRequest;
-
 /** Helper method
 
  @param url The url to handle

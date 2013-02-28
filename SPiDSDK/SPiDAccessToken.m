@@ -8,30 +8,46 @@
 #import "SPiDAccessToken.h"
 #import "SPiDClient.h"
 
-static NSString *const UserIDKey = @"user_id";
-static NSString *const AccessTokenKey = @"access_token";
-static NSString *const ExpiresInKey = @"expires_in";
-static NSString *const ExpiresAtKey = @"expires_at";
-static NSString *const RefreshTokenKey = @"refresh_token";
+NSString *const SPiDAccessTokenUserIdKey = @"user_id";
+NSString *const SPiDAccessTokenKey = @"access_token";
+NSString *const SPiDAccessTokenExpiresInKey = @"expires_in";
+NSString *const SPiDAccessTokenExpiresAtKey = @"expires_at";
+NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
 
 @implementation SPiDAccessToken
+
++ (BOOL)isValidToken:(SPiDAccessToken *)accessToken {
+    if (accessToken.accessToken == nil) {
+        SPiDDebugLog(@"Could not create SPiDAccessToken, missing access_token parameter");
+        return NO;
+    }
+    if (accessToken.expiresAt == nil) {
+        SPiDDebugLog(@"Could not create SPiDAccessToken, missing expires_in parameter");
+        return NO;
+    }
+    return YES;
+}
 
 - (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken {
     self = [super init];
     if (self) {
-        [self setUserID:userID];
-        [self setAccessToken:accessToken];
-        [self setExpiresAt:expiresAt];
-        [self setRefreshToken:refreshToken];
+        _userID = userID;
+        _accessToken = accessToken;
+        _expiresAt = expiresAt;
+        _refreshToken = refreshToken;
+
+        if (![SPiDAccessToken isValidToken:self]) {
+            return nil;
+        }
     }
     return self;
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    NSString *userID = [self stringFromObject:[dictionary objectForKey:UserIDKey]];
-    NSString *accessToken = [self stringFromObject:[dictionary objectForKey:AccessTokenKey]];
-    NSString *expiresIn = [self stringFromObject:[dictionary objectForKey:ExpiresInKey]];
-    NSString *refreshToken = [self stringFromObject:[dictionary objectForKey:RefreshTokenKey]];
+    NSString *userID = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenUserIdKey]];
+    NSString *accessToken = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenKey]];
+    NSString *expiresIn = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenExpiresInKey]];
+    NSString *refreshToken = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenRefreshTokenKey]];
 
     NSDate *expiresAt;
     if (expiresIn) {
@@ -41,18 +57,18 @@ static NSString *const RefreshTokenKey = @"refresh_token";
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-    NSString *userID = [decoder decodeObjectForKey:UserIDKey];
-    NSString *accessToken = [decoder decodeObjectForKey:AccessTokenKey];
-    NSDate *expiresAt = [decoder decodeObjectForKey:ExpiresAtKey];
-    NSString *refreshToken = [decoder decodeObjectForKey:RefreshTokenKey];
+    NSString *userID = [decoder decodeObjectForKey:SPiDAccessTokenUserIdKey];
+    NSString *accessToken = [decoder decodeObjectForKey:SPiDAccessTokenKey];
+    NSDate *expiresAt = [decoder decodeObjectForKey:SPiDAccessTokenExpiresAtKey];
+    NSString *refreshToken = [decoder decodeObjectForKey:SPiDAccessTokenRefreshTokenKey];
     return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:[self userID] forKey:UserIDKey];
-    [coder encodeObject:[self accessToken] forKey:AccessTokenKey];
-    [coder encodeObject:[self expiresAt] forKey:ExpiresAtKey];
-    [coder encodeObject:[self refreshToken] forKey:RefreshTokenKey];
+    [coder encodeObject:[self userID] forKey:SPiDAccessTokenUserIdKey];
+    [coder encodeObject:[self accessToken] forKey:SPiDAccessTokenKey];
+    [coder encodeObject:[self expiresAt] forKey:SPiDAccessTokenExpiresAtKey];
+    [coder encodeObject:[self refreshToken] forKey:SPiDAccessTokenRefreshTokenKey];
 }
 
 - (NSString *)stringFromObject:(id)obj {

@@ -183,8 +183,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 - (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request;
 
-/**
- */
+/** Clears current authorization request and waiting requests */
+- (void)clearAuthorizationRequest;
+
+/** Called when authorization is complete */
 - (void)authorizationComplete;
 
 /** Generates the authorization url with query parameters
