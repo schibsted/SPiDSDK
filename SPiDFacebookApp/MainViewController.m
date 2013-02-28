@@ -32,7 +32,7 @@
         self.userLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalCenter - 145, 50, 290, 43)];
         self.userLabel.backgroundColor = [UIColor clearColor];
         self.userLabel.textColor = [UIColor blackColor];
-        self.userLabel.textAlignment = (NSTextAlignment) UITextAlignmentCenter;
+        self.userLabel.textAlignment = NSTextAlignmentCenter;
         self.userLabel.text = @"";
         [self.view addSubview:self.userLabel];
 

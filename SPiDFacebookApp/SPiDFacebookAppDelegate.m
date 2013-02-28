@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "FacebookLoginViewController.h"
 #import "SPiDTokenRequest.h"
+#import "SPiDError.h"
 
 static NSString *const ClientID = @"your-client-id";
 static NSString *const ClientSecret = @"your-client-secret";
@@ -81,7 +82,7 @@ static NSString *const SignSecret = @"your-sign-secret";
             if (!error) {
                 [self dismissAlertView];
                 // We have a valid session
-                NSLog(@"User session found with access token: %@", [FBSession activeSession].accessToken);
+                SPiDDebugLog(@"User session found with access token: %@", [FBSession activeSession].accessTokenData.accessToken);
                 [self getSPiDToken];
             }
             break;
@@ -105,13 +106,13 @@ static NSString *const SignSecret = @"your-sign-secret";
 
 - (void)getSPiDToken {
     SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithFacebookAppID:[FBSession activeSession].appID
-                                                                      facebookToken:[FBSession activeSession].accessToken
-                                                                     expirationDate:[FBSession activeSession].expirationDate
-                                                                  completionHandler:^(NSError *tokenError) {
+                                                                      facebookToken:[FBSession activeSession].accessTokenData.accessToken
+                                                                     expirationDate:[FBSession activeSession].accessTokenData.expirationDate
+                                                                  completionHandler:^(SPiDError *tokenError) {
                                                                       if (tokenError) {
                                                                           UIAlertView *alertView = [[UIAlertView alloc]
                                                                                   initWithTitle:@"Error"
-                                                                                        message:tokenError.localizedDescription
+                                                                                        message:[tokenError.descriptions objectForKey:@"error"]
                                                                                        delegate:nil cancelButtonTitle:@"OK"
                                                                               otherButtonTitles:nil];
                                                                           [alertView show];
