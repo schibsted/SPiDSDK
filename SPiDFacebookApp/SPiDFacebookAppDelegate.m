@@ -13,6 +13,8 @@
 #import "FacebookLoginViewController.h"
 #import "SPiDTokenRequest.h"
 #import "SPiDError.h"
+#import "SPiDUser.h"
+#import "LoginViewController.h"
 
 static NSString *const ClientID = @"your-client-id";
 static NSString *const ClientSecret = @"your-client-secret";
@@ -105,22 +107,71 @@ static NSString *const SignSecret = @"your-sign-secret";
 }
 
 - (void)getSPiDToken {
-    SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithFacebookAppID:[FBSession activeSession].appID
-                                                                      facebookToken:[FBSession activeSession].accessTokenData.accessToken
-                                                                     expirationDate:[FBSession activeSession].accessTokenData.expirationDate
-                                                                  completionHandler:^(SPiDError *tokenError) {
-                                                                      if (tokenError) {
-                                                                          UIAlertView *alertView = [[UIAlertView alloc]
-                                                                                  initWithTitle:@"Error"
-                                                                                        message:[tokenError.descriptions objectForKey:@"error"]
-                                                                                       delegate:nil cancelButtonTitle:@"OK"
-                                                                              otherButtonTitles:nil];
-                                                                          [alertView show];
-                                                                      } else {
-                                                                          [self.rootNavigationController dismissViewControllerAnimated:YES completion:nil];
-                                                                      }
-                                                                  }];
+    SPiDTokenRequest *request = [SPiDTokenRequest
+            userTokenRequestWithFacebookAppID:[FBSession activeSession].appID
+                                facebookToken:[FBSession activeSession].accessTokenData.accessToken
+                               expirationDate:[FBSession activeSession].accessTokenData.expirationDate
+                            completionHandler:^(SPiDError *tokenError) {
+                                if (tokenError) {
+                                    if (tokenError.code == SPiDOAuth2UnknownUserErrorCode) {
+                                        UIAlertView *alertView = [[UIAlertView alloc]
+                                                initWithTitle:@"User does not exist"
+                                                      message:@"No SPiD user exists for your facebook account, do you want to create a user or attach your facebook to a existing SPiD account?"
+                                                     delegate:self cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:nil];
+                                        [alertView addButtonWithTitle:@"New user"];
+                                        [alertView addButtonWithTitle:@"Existing user"];
+                                        [alertView show];
+                                    } else {
+                                        UIAlertView *alertView = [[UIAlertView alloc]
+                                                initWithTitle:@"Error"
+                                                      message:[tokenError.descriptions objectForKey:@"error"]
+                                                     delegate:nil cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+                                        [alertView show];
+                                    }
+                                } else {
+                                    // Login OK!
+                                    [self.rootNavigationController dismissViewControllerAnimated:YES completion:nil];
+                                }
+                            }];
     [request startRequest];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"New user"]) {
+        SPiDDebugLog(@"Trying to create a new user");
+        [SPiDUser createAccountWithFacebookAppID:[FBSession activeSession].appID
+                                   facebookToken:[FBSession activeSession].accessTokenData.accessToken
+                                  expirationDate:[FBSession activeSession].accessTokenData.expirationDate
+                               completionHandler:^(SPiDError *error) {
+                                   if (error) {
+                                       UIAlertView *alertView = [[UIAlertView alloc]
+                                               initWithTitle:@"Error"
+                                                     message:[error.descriptions objectForKey:@"error"]
+                                                    delegate:nil cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                                       [alertView show];
+                                   } else {
+                                       /*UIAlertView *alertView = [[UIAlertView alloc]
+                                               initWithTitle:@"User successfully created"
+                                                     message:nil delegate:nil cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                                       [alertView show];*/
+                                       // Try to login with the new user
+                                       [self getSPiDToken];
+                                   }
+                               }];
+    }
+    else if ([title isEqualToString:@"Existing user"]) {
+        SPiDFacebookAppDelegate *appDelegate = (SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate];
+        LoginViewController *loginUpViewController = [[LoginViewController alloc] init];
+        [appDelegate.facebookNavigationController pushViewController:loginUpViewController animated:YES];
+    }
+    else if ([title isEqualToString:@"Cancel"]) {
+        NSLog(@"Login canceled.");
+    }
 }
 
 - (void)showActivityIndicatorAlert:(NSString *)title {

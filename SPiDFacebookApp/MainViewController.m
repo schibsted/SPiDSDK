@@ -61,11 +61,14 @@
     SPiDFacebookAppDelegate *appDelegate = (SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
     [[SPiDClient sharedInstance] getCurrentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
+        [appDelegate dismissAlertView];
         if (![response error]) {
-            [appDelegate dismissAlertView];
             NSDictionary *data = [[response message] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
             [[self userLabel] setText:user];
+        } else {
+            [self logoutFromSPiD:self];
+            [appDelegate showAlertViewWithTitle:@"An error occured, logging out from SPiD"];
         }
     }];
 }

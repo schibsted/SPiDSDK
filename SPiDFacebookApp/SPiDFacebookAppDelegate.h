@@ -10,7 +10,7 @@
 
 extern NSString *const FBSessionStateChangedNotification;
 
-@interface SPiDFacebookAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SPiDFacebookAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
 @property(strong, nonatomic) UINavigationController *rootNavigationController;
