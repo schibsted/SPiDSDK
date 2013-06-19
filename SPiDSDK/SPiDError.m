@@ -114,6 +114,8 @@
         errorCode = SPiDOAuth2UnverifiedUserErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"invalid_user_credentials"] == NSOrderedSame) {
         errorCode = SPiDOAuth2InvalidUserCredentialsErrorCode;
+    } else if ([errorString caseInsensitiveCompare:@"unknown_user"] == NSOrderedSame) {
+        errorCode = SPiDOAuth2UnknownUserErrorCode;
     }
 
     return errorCode;

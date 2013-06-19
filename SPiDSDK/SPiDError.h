@@ -80,6 +80,7 @@ enum {
     SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020, // Grant type error
     SPiDOAuth2InvalidUserCredentialsErrorCode = -1030,
     SPiDOAuth2UnverifiedUserErrorCode = -1031,
+    SPiDOAuth2UnknownUserErrorCode = -1032,
 
     SPiDInvalidEmailAddressErrorCode = -1050,
     SPiDInvalidPasswordErrorCode = -1051,

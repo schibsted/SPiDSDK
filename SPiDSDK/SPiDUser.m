@@ -11,10 +11,46 @@
 #import "SPiDError.h"
 #import "SPiDResponse.h"
 #import "SPiDTokenRequest.h"
+#import "SPiDJwt.h"
 
 @interface SPiDUser ()
+
+/**
+*
+* @param
+* @param
+* @return
+*/
++ (SPiDJwt *)facebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate;
+
+/**
+*
+* @param
+* @param
+* @return
+*/
++ (SPiDJwt *)attachFacebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate;
+
+/** Generates user credentials post data
+
+ @param email The email
+ @param password The password
+ @return Dictionary with the post data
+*/
+- (NSDictionary *)userPostDataWithEmail:(NSString *)email password:(NSString *)password;
+
+/** Generates user credentials post data
+
+ @param jwt The jwt
+ @return Dictionary with the post data
+*/
+- (NSDictionary *)userPostDataWithJwt:(SPiDJwt *)jwt;
+
 - (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *))completionHandler;
 
+- (void)accountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler;
+
+- (void)attachAccountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler;
 @end
 
 @implementation SPiDUser
@@ -46,11 +82,75 @@
     }
 }
 
++ (void)createAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
+    SPiDJwt *jwt = [self facebookJwtWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
+    SPiDUser *user = [[SPiDUser alloc] init];
+
+    // Get client token
+    SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
+    if (accessToken == nil || !accessToken.isClientToken) {
+        SPiDDebugLog(@"No client token found, trying to request one");
+        SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(SPiDError *error) {
+            if (error) {
+                completionHandler(error);
+            } else {
+                SPiDDebugLog(@"Client token received, creating account");
+                [user accountRequestWithJwt:jwt completionHandler:completionHandler];
+            }
+        }];
+        [clientTokenRequest startRequest];
+    } else {
+        SPiDDebugLog(@"Client token found, creating account");
+        [user accountRequestWithJwt:jwt completionHandler:completionHandler];
+    }
+}
+
++ (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
+    if (![SPiDClient sharedInstance].isAuthorized || [SPiDClient sharedInstance].isClientToken) {
+        completionHandler([SPiDError oauth2ErrorWithCode:-9999 reason:@"User token needed" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User token needed to attach facebook", @"error", nil]]);
+    }
+
+    SPiDJwt *jwt = [self attachFacebookJwtWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
+    SPiDUser *user = [[SPiDUser alloc] init];
+    [user attachAccountRequestWithJwt:jwt completionHandler:completionHandler];
+}
+
++ (SPiDJwt *)facebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:appId forKey:@"iss"];
+    [dictionary setValue:@"registration" forKey:@"sub"];
+    [dictionary setValue:@"http://spp.dev/api/2/signup_jwt" forKey:@"aud"]; // TODO!
+    [dictionary setValue:expirationDate.description forKey:@"exp"];
+    [dictionary setValue:@"facebook" forKey:@"token_type"];
+    [dictionary setValue:facebookToken forKey:@"token_value"];
+    SPiDJwt *jwt = [SPiDJwt jwtTokenWithDictionary:dictionary];
+    return jwt;
+}
+
++ (SPiDJwt *)attachFacebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:appId forKey:@"iss"];
+    [dictionary setValue:@"attach" forKey:@"sub"];
+    [dictionary setValue:@"http://spp.dev/api/2/user/attach_jwt" forKey:@"aud"]; // TODO!
+    [dictionary setValue:expirationDate.description forKey:@"exp"];
+    [dictionary setValue:@"facebook" forKey:@"token_type"];
+    [dictionary setValue:facebookToken forKey:@"token_value"];
+    SPiDJwt *jwt = [SPiDJwt jwtTokenWithDictionary:dictionary];
+    return jwt;
+}
+
 - (NSDictionary *)userPostDataWithEmail:(NSString *)email password:(NSString *)password {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setValue:email forKey:@"email"];
     [data setValue:password forKey:@"password"];
     [data setValue:[[SPiDClient sharedInstance] authorizationURLWithQuery].absoluteString forKey:@"redirectUri"];
+    return data;
+}
+
+- (NSDictionary *)userPostDataWithJwt:(SPiDJwt *)jwt {
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    // TODO: should check for nil even though it should not happen!
+    [data setValue:jwt.encodedJwtString forKey:@"jwt"];
     return data;
 }
 
@@ -70,6 +170,22 @@
 - (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *))completionHandler {
     NSDictionary *postBody = [self userPostDataWithEmail:email password:password];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup" body:postBody completionHandler:^(SPiDResponse *response) {
+        completionHandler([response error]);
+    }];
+    [request startRequestWithAccessToken];
+}
+
+- (void)accountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler {
+    NSDictionary *postBody = [self userPostDataWithJwt:jwt];
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup_jwt" body:postBody completionHandler:^(SPiDResponse *response) {
+        completionHandler([response error]);
+    }];
+    [request startRequestWithAccessToken];
+}
+
+- (void)attachAccountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler {
+    NSDictionary *postBody = [self userPostDataWithJwt:jwt];
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/user/attach_jwt" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
     }];
     [request startRequestWithAccessToken];

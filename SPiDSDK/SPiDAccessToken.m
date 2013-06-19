@@ -77,7 +77,7 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
     } else if ([obj isKindOfClass:[NSNumber class]]) {
         return [obj stringValue];
     } else {
-        SPiDDebugLog(@"Warning....");
+        SPiDDebugLog(@"Could not decode object");
     }
     return obj;
 }

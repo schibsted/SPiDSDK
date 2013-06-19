@@ -28,13 +28,23 @@
 */
 + (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *))completionHandler;
 
-/** Generates user credentials post data
+/** Creates a new SPiD user account using a Facebook user
 
- @param email The email
- @param password The password
- @return Dictionary with the post data
+ @param appId Facebook app id
+ @param facebookToken Facebook access token
+ @param expirationDate Facebook access token expiration date
+ @param completionHandler Called after user has been created
 */
-- (NSDictionary *)userPostDataWithEmail:(NSString *)email password:(NSString *)password;
++ (void)createAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler;
+
+/** Attaches a Facebook user to the currently logged in user
+
+ @param appId Facebook app id
+ @param facebookToken Facebook access token
+ @param expirationDate Facebook access token expiration date
+ @param completionHandler Called after user has been created
+*/
++ (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Validates user credentials
 
@@ -43,6 +53,5 @@
  @return Validation error if found, otherwise nil
 */
 - (SPiDError *)validateEmail:(NSString *)email password:(NSString *)password;
-
 
 @end

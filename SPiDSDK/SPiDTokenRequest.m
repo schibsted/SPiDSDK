@@ -80,7 +80,7 @@
  @param connection The connection sending the message.
  @param error An error object containing details of why the connection failed to load the request successfully.
  */
-- (void)connection:(NSURLConnection *)connection didFailWithError:(SPiDError *)error;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end
 
@@ -230,13 +230,13 @@
         }
     } else {
         SPiDDebugLog(@"Received jsonerror: %@", [jsonError description]);
-        _tokenCompletionHandler(jsonError);
+        _tokenCompletionHandler([SPiDError apiErrorWithCode:SPiDJSONParseErrorCode reason:@"Faild to parse JSON response" descriptions:[NSDictionary dictionaryWithObject:[jsonError description] forKey:@"error"]]);
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
-    _tokenCompletionHandler((SPiDError *) error);
+    _tokenCompletionHandler([SPiDError errorFromNSError:error]);
 }
 
 @end
