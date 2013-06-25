@@ -115,6 +115,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     if (![sharedSPiDClientInstance serverClientID])
         [sharedSPiDClientInstance setServerClientID:clientID];
 
+    if (![sharedSPiDClientInstance serverRedirectUri])
+        [sharedSPiDClientInstance setServerRedirectUri:[NSURL URLWithString:[NSString stringWithFormat:@"%@://spid", [sharedSPiDClientInstance appURLScheme]]]];
+
     if (![sharedSPiDClientInstance webViewInitialHTML])
         [sharedSPiDClientInstance setWebViewInitialHTML:@""];
 
@@ -267,6 +270,17 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [data setObject:[self serverClientID] forKey:@"clientId"];
     [data setObject:[self serverClientID] forKey:@"client_id"];
     [data setObject:@"code" forKey:@"type"];
+    SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:path body:data completionHandler:completionHandler];
+    [request startRequestWithAccessToken];
+}
+
+- (void)getSessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+    NSString *path = [NSString stringWithFormat:@"/oauth/exchange"];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+
+    [data setObject:[self serverClientID] forKey:@"clientId"];
+    [data setObject:[[self serverRedirectUri] absoluteString] forKey:@"redirectUri"];
+    [data setObject:@"session" forKey:@"type"];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:path body:data completionHandler:completionHandler];
     [request startRequestWithAccessToken];
 }

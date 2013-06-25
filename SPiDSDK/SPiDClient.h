@@ -62,6 +62,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 @property(strong, nonatomic) NSURL *redirectURI; // Note: Defaults to appURLScheme://spid/{login|logout|failure}
 
+/** Redirect URI for the server client
+
+ Defaults to the redirect uri for app client
+ */
+@property(strong, nonatomic) NSURL *serverRedirectUri;
+
 /** URL to the SPiD server */
 @property(strong, nonatomic) NSURL *serverURL;
 
@@ -255,6 +261,14 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 
 - (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+
+/** Requests a session code to be used in a WebView.
+*
+ @note The code is generated using the server client id/redirect uri and not the applications client id/redirect uri.
+ @warning Requires that the user is authorized with SPiD
+ @param completionHandler Called on request completion or error
+ */
+- (void)getSessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the currently logged in user’s object. Note that the user session does not last as long as the access token, therefor the me request should only be used right after the app has received a access token. The user id should then be saved and used with the `getUserRequestWithID:andCompletionHandler`
 
