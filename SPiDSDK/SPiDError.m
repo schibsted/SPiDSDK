@@ -74,8 +74,8 @@
 
 + (id)errorFromNSError:(NSError *)error {
     SPiDError *spidError = [SPiDError errorWithDomain:error.domain code:error.code userInfo:error.userInfo];
-    spidError.descriptions = nil;
-    return error;
+    spidError.descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[spidError localizedDescription], @"error", nil];;
+    return spidError;
 }
 
 + (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString {

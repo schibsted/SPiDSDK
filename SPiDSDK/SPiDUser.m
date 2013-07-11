@@ -116,10 +116,11 @@
 }
 
 + (SPiDJwt *)facebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate {
+    NSString *aud = [NSString stringWithFormat:@"%@/api/2/signup_jwt", [SPiDClient sharedInstance].serverURL.absoluteString];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:appId forKey:@"iss"];
     [dictionary setValue:@"registration" forKey:@"sub"];
-    [dictionary setValue:@"http://spp.dev/api/2/signup_jwt" forKey:@"aud"]; // TODO!
+    [dictionary setValue:aud forKey:@"aud"];
     [dictionary setValue:expirationDate.description forKey:@"exp"];
     [dictionary setValue:@"facebook" forKey:@"token_type"];
     [dictionary setValue:facebookToken forKey:@"token_value"];
@@ -128,10 +129,11 @@
 }
 
 + (SPiDJwt *)attachFacebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate {
+    NSString *aud = [NSString stringWithFormat:@"%@/api/2/attach_jwt", [SPiDClient sharedInstance].serverURL.absoluteString];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:appId forKey:@"iss"];
     [dictionary setValue:@"attach" forKey:@"sub"];
-    [dictionary setValue:@"http://spp.dev/api/2/user/attach_jwt" forKey:@"aud"]; // TODO!
+    [dictionary setValue:aud forKey:@"aud"];
     [dictionary setValue:expirationDate.description forKey:@"exp"];
     [dictionary setValue:@"facebook" forKey:@"token_type"];
     [dictionary setValue:facebookToken forKey:@"token_value"];

@@ -20,7 +20,7 @@
             [self setMessage:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
                 [self setError:[SPiDError errorFromNSError:jsonError]];
-                SPiDDebugLog(@"JSON parse error: %@", [[self error] description]);
+                SPiDDebugLog(@"JSON parse error: %@", self.rawJSON);
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
                     [self setError:[SPiDError errorFromJSONData:[self message]]];
