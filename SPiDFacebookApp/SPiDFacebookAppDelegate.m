@@ -60,6 +60,7 @@ static NSString *const SignSecret = @"your-sign-secret";
 - (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
     [self showActivityIndicatorAlert:@"Logging in to SPiD..."];
     NSArray *permissions = [[NSArray alloc] initWithObjects:
+            @"basic_info",
             @"email",
             nil];
     return [FBSession openActiveSessionWithReadPermissions:permissions
@@ -82,15 +83,22 @@ static NSString *const SignSecret = @"your-sign-secret";
     switch (state) {
         case FBSessionStateOpen:
             if (!error) {
-                [self dismissAlertView];
-                // We have a valid session
                 SPiDDebugLog(@"User session found with access token: %@", [FBSession activeSession].accessTokenData.accessToken);
-                [self getSPiDToken];
+                [self dismissAlertView];
+                [self getFacebookUser];
             }
             break;
         case FBSessionStateClosed:
         case FBSessionStateClosedLoginFailed:
             [FBSession.activeSession closeAndClearTokenInformation];
+
+            // Check for errors requiring to reopen session
+            if (error != nil && error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession) {
+                error = nil;
+                [self openSessionWithAllowLoginUI:YES];
+            } else {
+                SPiDDebugLog(@"Received login error from Facebook");
+            }
             break;
         default:
             break;
@@ -106,7 +114,17 @@ static NSString *const SignSecret = @"your-sign-secret";
     }
 }
 
-- (void)getSPiDToken {
+- (void)getFacebookUser {
+    FBRequest *fbRequest = [FBRequest requestForMe];
+    [fbRequest startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary <FBGraphUser> *result, NSError *error) {
+        // If we can get a user from the facebook token, use that token and try to login to SPiD
+        if (error == nil) {
+            [self loginToSPiD];
+        }
+    }];
+}
+
+- (void)loginToSPiD {
     SPiDTokenRequest *request = [SPiDTokenRequest
             userTokenRequestWithFacebookAppID:[FBSession activeSession].appID
                                 facebookToken:[FBSession activeSession].accessTokenData.accessToken
@@ -160,7 +178,7 @@ static NSString *const SignSecret = @"your-sign-secret";
                                            otherButtonTitles:nil];
                                        [alertView show];*/
                                        // Try to login with the new user
-                                       [self getSPiDToken];
+                                       [self loginToSPiD];
                                    }
                                }];
     }
