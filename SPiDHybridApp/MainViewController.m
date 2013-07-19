@@ -115,7 +115,8 @@
             NSString *code = [data objectForKey:@"code"];
             [self dismissModalLogin:nil];
 
-            NSString *url = [NSString stringWithFormat:@"http://spp.dev/session/%@", code];
+            NSString *serverUrl = [SPiDClient sharedInstance].serverURL.absoluteString;
+            NSString *url = [NSString stringWithFormat:@"%@/session/%@", serverUrl, code];
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
             [self.webView loadRequest:request];
         } else {
@@ -172,8 +173,10 @@
     NSString *url = [NSString stringWithFormat:@"%@://%@%@", [[request URL] scheme], [[request URL] host], [[request URL] path]];
 
     // These are the two urls we need to catch
-    NSString *serverLoginUrl = @"http://spp.dev/auth/login";
-    NSString *serverLogoutUrl = @"http://spp.dev/logout";
+    NSString *serverUrl = [SPiDClient sharedInstance].serverURL.absoluteString;
+    NSString *serverLoginUrl = [NSString stringWithFormat:@"%@/auth/login", serverUrl];
+    NSString *serverLogoutUrl = [NSString stringWithFormat:@"%@/logout", serverUrl];
+    NSString *serverAccountSummaryUrl = [NSString stringWithFormat:@"%@/account/summary", serverUrl];
 
     SPiDDebugLog(@"Loading: %@?%@", url, [[request URL] query]);
 
@@ -185,7 +188,7 @@
         SPiDDebugLog(@"Intercepted SPiD logout page");
         [self logout:nil];
         return NO;
-    } else if ([url isEqualToString:@"http://spp.dev/account/summary"]) { // This is the page we get redirected to when the login is completed (the example uses redirect uri back to spid)
+    } else if ([url hasPrefix:serverAccountSummaryUrl]) { // This is the page we get redirected to when the login is completed (the example uses redirect uri back to spid)
         self.loginBarButton.title = @"Logout";
         [self.loginBarButton setAction:@selector(logout:)];
         [self.loadingSpinner dismissAlert];
