@@ -29,7 +29,7 @@
                 @"<html>"
                         "<head>"
                         "<style>"
-                        "body { text-align: left; color: #666; }\n"
+                        "body { text-align: left; color: #666; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }\n"
                         "h2 { counter-reset:section; margin: 20px 0 10px 0; font-size: 14px; }\n"
                         "h3 { margin: 15px 0; font-size: 13px; }\n"
                         "h3:before { counter-increment:section; content: counter(section); margin: 0 10px 0 0; }\n"
