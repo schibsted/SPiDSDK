@@ -144,6 +144,11 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(SPiDError *response))completionHandler {
+    _completionHandler = completionHandler;
+    [self browserRedirectForgotPassword];
+}
+
 - (void)browserRedirectForgotPassword {
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
@@ -173,6 +178,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             return [self doHandleOpenURL:url];
         }
     }
+
     return NO;
 }
 
@@ -344,8 +350,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (NSString *)getAuthorizationQuery {
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
     [query setObject:self.clientID forKey:@"client_id"];
-    [query setObject:@"code" forKey:@"response_type"];
     [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
+    [query setObject:@"authorization_code" forKey:@"grant_type"];
+    [query setObject:@"code" forKey:@"response_type"];
     if (self.useMobileWeb)
         [query setObject:@"mobile" forKey:@"platform"];
     // TODO: needed for browser redirect
