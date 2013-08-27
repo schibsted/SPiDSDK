@@ -1,9 +1,9 @@
 //
-// Created by mikaellindstrom on 9/17/12.
+//  SPiDMainViewController.h
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Copyright (c) 2013 Mikael Lindström. All rights reserved.
 //
-
 
 #import "SPiDMainViewController.h"
 #import "SPiDResponse.h"
@@ -56,7 +56,7 @@
 }
 
 - (void)refreshToken {
-    SPiDTokenRequest *request = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
+    SPiDTokenRequest *request = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(SPiDError *error) {
         if (!error) {
             [self setTokenExpiresLabel];
         }
@@ -86,7 +86,7 @@
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     SPiDRequest *request;
     if ([appDelegate useWebView]) {
-        request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
+        request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(SPiDError *error) {
             if (!error) {
                 [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight
@@ -98,7 +98,7 @@
         }];
         [request startRequest];
     } else {
-        [[SPiDClient sharedInstance] browserRedirectLogoutWithCompletionHandler:^(NSError *error) {
+        [[SPiDClient sharedInstance] browserRedirectLogoutWithCompletionHandler:^(SPiDError *error) {
             if (!error) {
                 [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight

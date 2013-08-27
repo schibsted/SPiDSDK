@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  SPiDHybridAppDelegate.h
 //  SPiDExampleApp
 //
 //  Created by Mikael Lindström on 9/11/12.

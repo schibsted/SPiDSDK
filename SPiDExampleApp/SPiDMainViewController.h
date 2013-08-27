@@ -1,9 +1,9 @@
 //
-// Created by mikaellindstrom on 9/17/12.
+//  SPiDMainViewController.m
+//  SPiDSDK
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Copyright (c) 2013 Mikael Lindström. All rights reserved.
 //
-
 
 #import <Foundation/Foundation.h>
 #include "SPiDClient.h"
