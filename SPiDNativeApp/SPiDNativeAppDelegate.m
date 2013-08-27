@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  SPiDHybridAppDelegate.m
 //  SPiDNativeApp
 //
 //  Created by Mikael Lindström on 1/21/13.
@@ -35,6 +35,13 @@ static NSString *const ServerURL = @"your-spidserver-url";
 
     [self.window makeKeyAndVisible];
 
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    BOOL didSPiDHandleURL = [[SPiDClient sharedInstance] handleOpenURL:url];
+
+    // Always return that the URL was handled by the application
     return YES;
 }
 

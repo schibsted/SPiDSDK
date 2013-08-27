@@ -131,7 +131,11 @@
 
 // Open lost password in safari
 - (void)forgotPassword:(id)sender {
-    [[SPiDClient sharedInstance] browserRedirectForgotPassword];
+    [[SPiDClient sharedInstance] browserRedirectForgotPasswordWithCompletionHandler:^(SPiDError *error) {
+        if (!error) {
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)switchToSignUp:(id)sender {

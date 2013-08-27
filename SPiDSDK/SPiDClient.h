@@ -155,6 +155,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 */
 - (void)browserRedirectSignupWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(SPiDError *response))completionHandler;
+
 /** Redirects to safari for forgot password */
 - (void)browserRedirectForgotPassword; // TODO: does not need completion handler
 
