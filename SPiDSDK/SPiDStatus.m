@@ -90,6 +90,16 @@
     return uuid;
 }
 
++ (NSString *)spidUserAgent {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *bundleDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSString *bundleMinorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+    NSString *deviceModel = [UIDevice currentDevice].model;
+    NSString *systemVersion = [UIDevice currentDevice].systemVersion;
+    
+    return [NSString stringWithFormat:@"%@/%@ SPiDIOSSDK/%@ %@/%@", bundleDisplayName, bundleMinorVersion, SPID_IOS_SDK_VERSION_STRING, deviceModel, systemVersion];
+}
+
 + (NSString *)advertisingTrackingEnabled {
     if ([ASIdentifierManager class] && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
         return @"1";

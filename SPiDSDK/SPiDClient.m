@@ -166,6 +166,11 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
+- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(SPiDError *response))completionHandler {
+    _completionHandler = completionHandler;
+    return [self handleOpenURL:url];
+}
+
 - (BOOL)handleOpenURL:(NSURL *)url {
     SPiDDebugLog(@"SPiDSDK received url: %@", [url absoluteString]);
     NSString *redirectURLString = [[self redirectURI] absoluteString];
@@ -364,7 +369,11 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (NSString *)getAuthorizationQuery {
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
     [query setObject:self.clientID forKey:@"client_id"];
-    [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
+    if ([self.redirectURI.absoluteString hasSuffix:@"/"]) {
+        [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"login"] forKey:@"redirect_uri"];
+    } else {
+        [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
+    }
     [query setObject:@"authorization_code" forKey:@"grant_type"];
     [query setObject:@"code" forKey:@"response_type"];
     if (self.useMobileWeb)
@@ -377,7 +386,11 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (NSString *)getLogoutQuery {
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
     [query setObject:self.clientID forKey:@"client_id"];
-    [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/logout"] forKey:@"redirect_uri"]; // add spid/logout
+    if ([self.redirectURI.absoluteString hasSuffix:@"/"]) {
+        [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"logout"] forKey:@"redirect_uri"]; // add spid/logout
+    } else {
+        [query setObject:[self.redirectURI.absoluteString stringByAppendingString:@"/logout"] forKey:@"redirect_uri"]; // add spid/logout
+    }
     if (self.useMobileWeb)
         [query setObject:@"mobile" forKey:@"platform"];
     [query setObject:@"1" forKey:@"force"];

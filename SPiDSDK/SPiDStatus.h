@@ -23,4 +23,6 @@
 
 + (NSString *)orientationToString:(UIDeviceOrientation)orientation;
 
++ (NSString *)spidUserAgent;
+
 @end

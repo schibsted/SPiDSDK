@@ -9,6 +9,7 @@
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
 #import "SPiDError.h"
+#import "SPiDStatus.h"
 
 @interface SPiDRequest ()
 
@@ -167,6 +168,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:_httpMethod];
 
+    [request setValue:[SPiDStatus spidUserAgent] forHTTPHeaderField:@"User-Agent"];
     SPiDDebugLog(@"Running request: %@", urlStr);
 
     if (body) {

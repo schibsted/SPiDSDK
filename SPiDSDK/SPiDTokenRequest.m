@@ -186,7 +186,11 @@
     [data setValue:[client clientID] forKey:@"client_id"];
     [data setValue:[client clientSecret] forKey:@"client_secret"];
     [data setValue:@"authorization_code" forKey:@"grant_type"];
-    [data setValue:client.redirectURI.absoluteString forKey:@"redirect_uri"];
+    if ([client.redirectURI.absoluteString hasSuffix:@"/"]) {
+        [data setValue:[client.redirectURI.absoluteString stringByAppendingString:@"login"] forKey:@"redirect_uri"];
+    } else {
+        [data setValue:[client.redirectURI.absoluteString stringByAppendingString:@"/login"] forKey:@"redirect_uri"];
+    }
     [data setValue:code forKey:@"code"];
     return data;
 }

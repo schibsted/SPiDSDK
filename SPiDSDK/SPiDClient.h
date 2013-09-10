@@ -166,6 +166,14 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 */
 - (void)browserRedirectLogoutWithCompletionHandler:(void (^)(SPiDError *))completionHandler; // TODO: Should not care about errors...
 
+/** Handles URL redirects to the app with completion handler
+ 
+ @param url Input URL
+ @param completionHandler Called on successful login/logout or error
+ @return Returns YES if URL was handled by `SPiDClient`
+ */
+- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(SPiDError *response))completionHandler;
+
 /** Handles URL redirects to the app
 
 @param url Input URL
