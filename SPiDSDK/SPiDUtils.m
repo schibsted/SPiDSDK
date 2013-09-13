@@ -46,14 +46,14 @@
     return body;
 }
 
-+ (NSURL *)urlEncodeString:(NSString *)unescaped {
++ (NSString *)urlEncodeString:(NSString *)unescaped {
     NSString *escapedString = (NSString *) CFBridgingRelease((CFTypeRef) CFURLCreateStringByAddingPercentEscapes(
             NULL,
             (__bridge CFStringRef) unescaped,
             NULL,
             (CFStringRef) @"!*'();:@&=+$,/?%#[]",
             kCFStringEncodingUTF8));
-    return [NSURL URLWithString:escapedString];
+    return escapedString;
 }
 
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key {

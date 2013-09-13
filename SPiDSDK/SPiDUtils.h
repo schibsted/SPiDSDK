@@ -34,9 +34,9 @@
 /** URL encodes the specified string
 
  @param unescaped String to be encoded
- @return Encoded URL
+ @return Encoded NSString
  */
-+ (NSURL *)urlEncodeString:(NSString *)unescaped;
++ (NSString *)urlEncodeString:(NSString *)unescaped;
 
 /** Extracts a query parameter from a URL
 
