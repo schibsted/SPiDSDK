@@ -7,8 +7,8 @@
 
 #import "SPiDWebView.h"
 #import "SPiDClient.h"
-#import "SPiDError.h"
 #import "SPiDTokenRequest.h"
+#import "NSError+SPiDError.h"
 
 @interface SPiDWebView ()
 
@@ -45,7 +45,7 @@
 
 @implementation SPiDWebView
 
-+ (id)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
++ (id)authorizationWebViewWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] authorizationURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -55,7 +55,7 @@
     return webView;
 }
 
-+ (id)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (id)signupWebViewWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] signupURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -65,7 +65,7 @@
     return webView;
 }
 
-+ (id)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (id)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] forgotPasswordURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -108,7 +108,7 @@
         if ([webView isLoading])
             [webView stopLoading];
         [webView setDelegate:nil];
-        _completionHandler([SPiDError oauth2ErrorWithString:error]);
+        _completionHandler([NSError spidOauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -124,7 +124,7 @@
                 [tokenRequest startRequest];
                 //self.completionHandler(code, nil);
             } else {
-                _completionHandler([SPiDError oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                _completionHandler([NSError spidOauth2ErrorWithCode:SPiDUserAbortedLogin userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
             }
         } /*else if ([urlString hasSuffix:@"failure"]) {
             _completionHandler(nil, [NSError oauth2ErrorWithString:]);
@@ -151,7 +151,7 @@
             [webView stopLoading];
         [webView setDelegate:nil];
 
-        _completionHandler((SPiDError *) error);
+        _completionHandler(error);
     }
 }
 

@@ -7,7 +7,7 @@
 
 #import "SPiDResponse.h"
 #import "SPiDClient.h"
-#import "SPiDError.h"
+#import "NSError+SPiDError.h"
 
 @implementation SPiDResponse
 
@@ -19,15 +19,16 @@
             [self setRawJSON:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
             [self setMessage:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError]];
             if (jsonError) {
-                [self setError:[SPiDError errorFromNSError:jsonError]];
+                [self setError:jsonError];
                 SPiDDebugLog(@"JSON parse error: %@", self.rawJSON);
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
-                    [self setError:[SPiDError errorFromJSONData:[self message]]];
+                    [self setError:[NSError spidErrorFromJSONData:[self message]]];
                 } // else everything ok
             }
         } else {
-            [self setError:[SPiDError apiErrorWithCode:SPiDUserAbortedLogin reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]];
+            [self setError:[NSError spidApiErrorWithCode:SPiDUserAbortedLogin userInfo:
+                            [NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]];
         }
     }
     return self;
@@ -36,7 +37,7 @@
 - (id)initWithError:(NSError *)error {
     self = [super self];
     if (self) {
-        [self setError:[SPiDError errorFromNSError:error]];
+        [self setError:error];
     }
     return self;
 }

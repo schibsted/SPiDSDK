@@ -10,7 +10,6 @@
 #import "LoginViewController.h"
 #import "SPiDFacebookAppDelegate.h"
 #import "SPiDTokenRequest.h"
-#import "SPiDError.h"
 #import "TermsViewController.h"
 #import "SPiDUser.h"
 
@@ -98,7 +97,7 @@
         [(SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty"];
     } else {
         [(SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
-        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(SPiDError *error) {
+        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
             [(SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
 
             NSString *title;
@@ -110,7 +109,7 @@
             } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
                 title = @"Invalid email and/or password";
             } else {
-                title = [NSString stringWithFormat:@"Received error: %@", error.descriptions.description];
+                title = [NSString stringWithFormat:@"Received error: %@", [error.userInfo objectForKey:@"error"]];
             }
             [(SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
         }];
@@ -122,11 +121,11 @@
     [SPiDUser attachAccountWithFacebookAppID:[FBSession activeSession].appID
                                facebookToken:[FBSession activeSession].accessTokenData.accessToken
                               expirationDate:[FBSession activeSession].accessTokenData.expirationDate
-                           completionHandler:^(SPiDError *error) {
+                           completionHandler:^(NSError *error) {
                                if (error) {
                                    UIAlertView *alertView = [[UIAlertView alloc]
                                            initWithTitle:@"Error"
-                                                 message:[error.descriptions objectForKey:@"error"]
+                                                 message:[[error userInfo] objectForKey:@"error"]
                                                 delegate:nil cancelButtonTitle:@"OK"
                                        otherButtonTitles:nil];
                                    [alertView show];

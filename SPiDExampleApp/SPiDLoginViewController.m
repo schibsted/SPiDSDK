@@ -7,7 +7,6 @@
 //
 
 #import "SPiDLoginViewController.h"
-#import "SPiDError.h"
 #import "SPiDWebView.h"
 
 @implementation SPiDLoginViewController {
@@ -23,7 +22,7 @@
 - (IBAction)loginWithBrowserRedirect:(id)sender {
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:NO];
-    [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(SPiDError *error) {
+    [[SPiDClient sharedInstance] browserRedirectAuthorizationWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [[self navigationController] pushViewController:[appDelegate mainView] animated:YES];
         }
@@ -34,7 +33,7 @@
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate setUseWebView:YES];
     UIViewController *webViewController = [[UIViewController alloc] init];
-    SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:^(SPiDError *error) {
+    SPiDWebView *webView = [SPiDWebView authorizationWebViewWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromRight

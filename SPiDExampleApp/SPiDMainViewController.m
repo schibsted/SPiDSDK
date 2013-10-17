@@ -56,7 +56,7 @@
 }
 
 - (void)refreshToken {
-    SPiDTokenRequest *request = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(SPiDError *error) {
+    SPiDTokenRequest *request = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [self setTokenExpiresLabel];
         }
@@ -86,7 +86,7 @@
     SPiDExampleAppDelegate *appDelegate = (SPiDExampleAppDelegate *) [[UIApplication sharedApplication] delegate];
     SPiDRequest *request;
     if ([appDelegate useWebView]) {
-        request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(SPiDError *error) {
+        request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *error) {
             if (!error) {
                 [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight
@@ -98,7 +98,7 @@
         }];
         [request startRequest];
     } else {
-        [[SPiDClient sharedInstance] browserRedirectLogoutWithCompletionHandler:^(SPiDError *error) {
+        [[SPiDClient sharedInstance] browserRedirectLogoutWithCompletionHandler:^(NSError *error) {
             if (!error) {
                 [UIView transitionWithView:[[self navigationController] view] duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromRight

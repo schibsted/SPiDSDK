@@ -1,21 +1,22 @@
 //
-//  NSError+SPiDError
+//  NSError+SPiDError.m
 //  SPiDSDK
 //
-//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
+//  Created by Mikael Lindström on 14/10/13.
+//  Copyright (c) 2013 Mikael Lindström. All rights reserved.
 //
 
-#import "SPiDError.h"
+#import "NSError+SPiDError.h"
 #import "SPiDClient.h"
 
-@implementation SPiDError
+@implementation NSError (SPiDError)
 
-+ (id)errorFromJSONData:(NSDictionary *)dictionary {
++ (id)spidErrorFromJSONData:(NSDictionary *)dictionary {
     NSString *domain;
     NSDictionary *descriptions;
     NSInteger originalErrorCode;
     NSInteger errorCode;
-
+    
     if ([[dictionary objectForKey:@"error"] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
         domain = [errorDict objectForKey:@"type"];
@@ -32,50 +33,30 @@
         originalErrorCode = [[dictionary objectForKey:@"error_code"] integerValue];
         errorCode = [self getSPiDOAuth2ErrorCode:domain];
     }
-
+    
     if (descriptions.count == 0) {
         descriptions = [NSDictionary dictionaryWithObjectsAndKeys:domain, @"error", nil];
     }
-
+    
     SPiDDebugLog("Received '%@' with code '%d' and description: %@", domain, originalErrorCode, [descriptions description]);
-    SPiDError *error = [SPiDError errorWithDomain:domain code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
+    NSError *error = [NSError errorWithDomain:domain code:errorCode userInfo:dictionary];
     return error;
 }
 
-+ (id)oauth2ErrorWithString:(NSString *)errorString {
++ (id)spidOauth2ErrorWithString:(NSString *)errorString {
     NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
-    return [self oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
+    return [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:descriptions];
 }
 
-
-+ (id)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
-    NSMutableDictionary *info = nil;
-    if ([reason length] > 0) {
-        info = [NSMutableDictionary dictionary];
-        if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
-    }
-    SPiDError *error = [SPiDError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
++ (id)spidOauth2ErrorWithCode:(NSInteger)errorCode userInfo:(NSDictionary *)userInfo {
+    NSError *error = [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:userInfo];
     return error;
 }
 
-+ (id)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
-    NSMutableDictionary *info = nil;
-    if ([reason length] > 0) {
-        info = [NSMutableDictionary dictionary];
-        if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
-    }
-    SPiDError *error = [SPiDError errorWithDomain:@"ApiException" code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
++ (id)spidApiErrorWithCode:(NSInteger)errorCode userInfo:(NSDictionary *)userInfo {
+    NSError *error = [NSError errorWithDomain:@"SPiDApiException" code:errorCode userInfo:userInfo];
     return error;
-}
-
-+ (id)errorFromNSError:(NSError *)error {
-    SPiDError *spidError = [SPiDError errorWithDomain:error.domain code:error.code userInfo:error.userInfo];
-    spidError.descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[spidError localizedDescription], @"error", nil];;
-    return spidError;
 }
 
 + (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString {
@@ -106,7 +87,7 @@
         errorCode = SPiDOAuth2InsufficientScopeErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"expired_token"] == NSOrderedSame) {
         errorCode = SPiDOAuth2ExpiredTokenErrorCode;
-    } else if ([errorString caseInsensitiveCompare:@"ApiException"] == NSOrderedSame) {
+    } else if ([errorString caseInsensitiveCompare:@"SPiDApiException"] == NSOrderedSame) {
         errorCode = SPiDAPIExceptionErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"UserAbortedLogin"] == NSOrderedSame) {
         errorCode = SPiDUserAbortedLogin;
@@ -117,8 +98,9 @@
     } else if ([errorString caseInsensitiveCompare:@"unknown_user"] == NSOrderedSame) {
         errorCode = SPiDOAuth2UnknownUserErrorCode;
     }
-
+    
     return errorCode;
 }
 
 @end
+

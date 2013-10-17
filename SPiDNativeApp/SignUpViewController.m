@@ -10,7 +10,6 @@
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDUser.h"
 #import "TermsViewController.h"
-#import "SPiDError.h"
 
 @implementation SignUpViewController
 
@@ -113,20 +112,20 @@
 
 - (void)createSPiDAccountWithEmail:(NSString *)email andPassword:(NSString *)password {
     [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Creating SPiD account\nPlease Wait..."];
-    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(SPiDError *error) {
+    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(NSError *error) {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
         if (error) {
-            if ([error.descriptions objectForKey:@"blocked"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"blocked"]];
-            } else if ([error.descriptions objectForKey:@"exists"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"exists"]];
-            } else if ([error.descriptions objectForKey:@"email"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"email"]];
-            } else if ([error.descriptions objectForKey:@"password"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"password"]];
+            if ([error.userInfo objectForKey:@"blocked"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"blocked"]];
+            } else if ([error.userInfo objectForKey:@"exists"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"exists"]];
+            } else if ([error.userInfo objectForKey:@"email"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"email"]];
+            } else if ([error.userInfo objectForKey:@"password"]) {
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"password"]];
             } else {
                 NSString *errorString = nil;
-                NSArray *values = [error.descriptions allValues];
+                NSArray *values = [error.userInfo allValues];
                 if ([values count] != 0)
                     errorString = [values objectAtIndex:0];
                 [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:errorString];

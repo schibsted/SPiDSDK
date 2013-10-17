@@ -24,7 +24,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (id)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler;
++ (id)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler;
 
 /** Creates a user token request with authorization code
 
@@ -32,7 +32,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (id)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *))completionHandler;
++ (id)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a user token request with user credentials
 
@@ -41,7 +41,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (id)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler;
++ (id)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(NSError *error))completionHandler;
 
 /** Creates a JWT facebook token request
 
@@ -51,14 +51,14 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (id)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler;
++ (id)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a token refresh token request with the current access token
 
  @param completionHandler Called on token request completion or error
  @return The token request or nil if refresh token is missing
 */
-+ (id)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (id)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 
 @end

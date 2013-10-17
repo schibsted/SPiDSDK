@@ -9,9 +9,9 @@
 #import "SPiDRequest.h"
 #import "SPiDKeychainWrapper.h"
 #import "SPiDResponse.h"
-#import "SPiDError.h"
 #import "SPiDTokenRequest.h"
 #import "SPiDStatus.h"
+#import "NSError+SPiDError.h"
 
 @interface SPiDClient ()
 
@@ -52,7 +52,7 @@
     SPiDRequest *_authorizationRequest;
     NSString *_webViewInitialHTML;
 
-    void (^_completionHandler)(SPiDError *error);
+    void (^_completionHandler)(NSError *error);
 
 }
 
@@ -128,7 +128,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [SPiDStatus runStatusRequest];
 }
 
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(SPiDError *response))completionHandler {
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     if (self.accessToken) { // we already have a access token
         SPiDDebugLog(@"Already logged in, aborting redirect");
         completionHandler(nil);
@@ -140,14 +140,14 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     }
 }
 
-- (void)browserRedirectSignupWithCompletionHandler:(void (^)(SPiDError *response))completionHandler {
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     _completionHandler = completionHandler;
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
-- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(SPiDError *response))completionHandler {
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     _completionHandler = completionHandler;
     [self browserRedirectForgotPassword];
 }
@@ -158,7 +158,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
-- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(SPiDError *response))completionHandler {
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *response))completionHandler {
     _completionHandler = completionHandler;
     NSURL *requestURL = [self logoutURLWithQuery];
     SPiDDebugLog(@"Trying to logout from SPiD");
@@ -166,7 +166,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
-- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(SPiDError *response))completionHandler {
+- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError *response))completionHandler {
     _completionHandler = completionHandler;
     return [self handleOpenURL:url];
 }
@@ -190,7 +190,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return NO;
 }
 
-- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
+- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     @synchronized (_authorizationRequest) {
         if (_authorizationRequest == nil) { // can't logout if we are already logging in
             // TODO: We should implement a api endpoint for logout
@@ -341,7 +341,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         SPiDDebugLog(@"Received error from SPiD: %@", error)
-        _completionHandler([SPiDError oauth2ErrorWithString:error]);
+        _completionHandler([NSError spidOauth2ErrorWithString:error]);
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -355,7 +355,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                 [request startRequest];
             } else {
                 // Logout
-                _completionHandler([SPiDError oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                _completionHandler([NSError spidOauth2ErrorWithCode:SPiDUserAbortedLogin userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
             }
         } else if ([urlString hasSuffix:@"logout"]) {
             SPiDDebugLog(@"Logged out from SPiD");
@@ -405,7 +405,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
     @synchronized (_authorizationRequest) {
         if (_authorizationRequest == nil) { // can't logout if we are already logging in
-            _authorizationRequest = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(SPiDError *error) {
+            _authorizationRequest = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
                 [self authorizationComplete];
             }];
             [_authorizationRequest startRequest];
@@ -444,3 +444,4 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 @end
+
