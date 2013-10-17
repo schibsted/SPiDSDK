@@ -5,8 +5,9 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "SPiDResponse.h"
 #import "SPiDClient.h"
+#import "SPiDSDK.h"
+#import "SPiDResponse.h"
 #import "NSError+SPiDError.h"
 
 @implementation SPiDResponse

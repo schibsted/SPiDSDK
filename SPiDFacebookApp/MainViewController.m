@@ -6,11 +6,13 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "MainViewController.h"
 #import "SPiDClient.h"
-#import "SPiDFacebookAppDelegate.h"
 #import "SPiDResponse.h"
 #import "SPiDRequest.h"
+
+#import "MainViewController.h"
+#import "SPiDFacebookAppDelegate.h"
+
 
 @implementation MainViewController
 

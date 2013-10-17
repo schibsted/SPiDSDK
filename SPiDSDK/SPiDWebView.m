@@ -7,6 +7,7 @@
 
 #import "SPiDWebView.h"
 #import "SPiDClient.h"
+#import "SPiDSDK.h"
 #import "SPiDTokenRequest.h"
 #import "NSError+SPiDError.h"
 

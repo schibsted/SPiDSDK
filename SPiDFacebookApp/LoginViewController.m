@@ -12,6 +12,7 @@
 #import "SPiDTokenRequest.h"
 #import "TermsViewController.h"
 #import "SPiDUser.h"
+#import "SPiDSDK.h"
 
 @implementation LoginViewController
 

@@ -6,6 +6,7 @@
 //
 
 #import "SPiDTokenRequest.h"
+#import "SPiDSDK.h"
 #import "SPiDKeychainWrapper.h"
 #import "SPiDJwt.h"
 #import "NSError+SPiDError.h"

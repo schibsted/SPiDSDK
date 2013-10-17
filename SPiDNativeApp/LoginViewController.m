@@ -6,12 +6,13 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
+#import "SPiDSDK.h"
+#import "SPiDTokenRequest.h"
+
 #import "LoginViewController.h"
 #import "SPiDNativeAppDelegate.h"
-#import "SPiDTokenRequest.h"
 #import "SignUpViewController.h"
 #import "TermsViewController.h"
-#import "NSError+SPiDError.h"
 
 @implementation LoginViewController
 

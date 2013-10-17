@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "TermsViewController.h"
 #import "SPiDResponse.h"
 #import "SPiDRequest.h"
+
+#import "TermsViewController.h"
 
 @implementation TermsViewController
 

@@ -6,6 +6,7 @@
 //
 
 #import "SPiDClient.h"
+#import "SPiDSDK.h"
 #import "SPiDRequest.h"
 #import "SPiDKeychainWrapper.h"
 #import "SPiDResponse.h"

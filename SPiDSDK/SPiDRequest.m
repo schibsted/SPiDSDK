@@ -6,6 +6,7 @@
 //
 
 #import "SPiDRequest.h"
+#import "SPiDSDK.h"
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
 #import "SPiDStatus.h"
