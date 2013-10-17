@@ -9,7 +9,8 @@
 #import "SPiDClient.h"
 #import "SPiDSDK.h"
 
-NSString *const SPiDSDKErrorDomain = @"com.spid.ios.sdk";
+NSString *const SPiDOAuth2ErrorDomain = @"SPiDOAuth2";
+NSString *const SPiDApiErrorDomain = @"ApiException";
 
 @implementation NSError (SPiDError)
 
@@ -41,23 +42,23 @@ NSString *const SPiDSDKErrorDomain = @"com.spid.ios.sdk";
     }
     
     SPiDDebugLog("Received '%@' with code '%d' and description: %@", domain, originalErrorCode, [descriptions description]);
-    NSError *error = [NSError errorWithDomain:domain code:errorCode userInfo:dictionary];
+    NSError *error = [NSError errorWithDomain:domain code:errorCode userInfo:descriptions];
     return error;
 }
 
 + (id)spidOauth2ErrorWithString:(NSString *)errorString {
     NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
-    return [NSError errorWithDomain:SPiDSDKErrorDomain code:errorCode userInfo:descriptions];
+    return [NSError errorWithDomain:SPiDOAuth2ErrorDomain code:errorCode userInfo:descriptions];
 }
 
 + (id)spidOauth2ErrorWithCode:(NSInteger)errorCode userInfo:(NSDictionary *)userInfo {
-    NSError *error = [NSError errorWithDomain:SPiDSDKErrorDomain code:errorCode userInfo:userInfo];
+    NSError *error = [NSError errorWithDomain:SPiDOAuth2ErrorDomain code:errorCode userInfo:userInfo];
     return error;
 }
 
 + (id)spidApiErrorWithCode:(NSInteger)errorCode userInfo:(NSDictionary *)userInfo {
-    NSError *error = [NSError errorWithDomain:SPiDSDKErrorDomain code:errorCode userInfo:userInfo];
+    NSError *error = [NSError errorWithDomain:SPiDApiErrorDomain code:errorCode userInfo:userInfo];
     return error;
 }
 
@@ -89,7 +90,7 @@ NSString *const SPiDSDKErrorDomain = @"com.spid.ios.sdk";
         errorCode = SPiDOAuth2InsufficientScopeErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"expired_token"] == NSOrderedSame) {
         errorCode = SPiDOAuth2ExpiredTokenErrorCode;
-    } else if ([errorString caseInsensitiveCompare:@"SPiDApiException"] == NSOrderedSame) {
+    } else if ([errorString caseInsensitiveCompare:@"ApiException"] == NSOrderedSame) {
         errorCode = SPiDAPIExceptionErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"UserAbortedLogin"] == NSOrderedSame) {
         errorCode = SPiDUserAbortedLogin;
