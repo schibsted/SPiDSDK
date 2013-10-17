@@ -2,12 +2,14 @@
 //  NSError+SPiDError.m
 //  SPiDSDK
 //
-//  Created by Mikael Lindström on 14/10/13.
-//  Copyright (c) 2013 Mikael Lindström. All rights reserved.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
 #import "NSError+SPiDError.h"
 #import "SPiDClient.h"
+#import "SPiDSDK.h"
+
+NSString *const SPiDSDKErrorDomain = @"com.spid.ios.sdk";
 
 @implementation NSError (SPiDError)
 
@@ -46,16 +48,16 @@
 + (id)spidOauth2ErrorWithString:(NSString *)errorString {
     NSInteger errorCode = [self getSPiDOAuth2ErrorCode:errorString];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
-    return [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:descriptions];
+    return [NSError errorWithDomain:SPiDSDKErrorDomain code:errorCode userInfo:descriptions];
 }
 
 + (id)spidOauth2ErrorWithCode:(NSInteger)errorCode userInfo:(NSDictionary *)userInfo {
-    NSError *error = [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:userInfo];
+    NSError *error = [NSError errorWithDomain:SPiDSDKErrorDomain code:errorCode userInfo:userInfo];
     return error;
 }
 
 + (id)spidApiErrorWithCode:(NSInteger)errorCode userInfo:(NSDictionary *)userInfo {
-    NSError *error = [NSError errorWithDomain:@"SPiDApiException" code:errorCode userInfo:userInfo];
+    NSError *error = [NSError errorWithDomain:SPiDSDKErrorDomain code:errorCode userInfo:userInfo];
     return error;
 }
 
@@ -78,9 +80,9 @@
     } else if ([errorString caseInsensitiveCompare:@"invalid_client"] == NSOrderedSame) {
         errorCode = SPiDOAuth2InvalidClientErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"invalid_client_id"] == NSOrderedSame) {
-        errorCode = SPiDOAuth2InvalidClientIDErrorCode; // Replaced by "invalid_client" in draft 10 of oauth 2.0
+        errorCode = SPiDOAuth2InvalidClientIDErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"invalid_client_credentials"] == NSOrderedSame) {
-        errorCode = SPiDOAuth2InvalidClientCredentialsErrorCode; // Replaced by "invalid_client" in draft 10 of oauth 2.0
+        errorCode = SPiDOAuth2InvalidClientCredentialsErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"invalid_token"] == NSOrderedSame) {
         errorCode = SPiDOAuth2InvalidTokenErrorCode;
     } else if ([errorString caseInsensitiveCompare:@"insufficient_scope"] == NSOrderedSame) {

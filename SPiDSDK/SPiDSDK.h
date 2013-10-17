@@ -2,14 +2,10 @@
 //  SPiDSDK.h
 //  SPiDSDK
 //
-//  Created by Mikael Lindström on 14/10/13.
-//  Copyright (c) 2013 Mikael Lindström. All rights reserved.
+//  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#ifndef SPiDSDK_SPiDSDK_h
-#define SPiDSDK_SPiDSDK_h
-
-enum {
+typedef NS_ENUM( NSUInteger, SPiDErrorCode ) {
     SPiDOAuth2RedirectURIMismatchErrorCode = -1000,
     SPiDOAuth2UnauthorizedClientErrorCode = -1001,
     SPiDOAuth2AccessDeniedErrorCode = -1002,
@@ -21,11 +17,11 @@ enum {
     SPiDOAuth2InvalidClientIDErrorCode = -1008, // Replaced by "invalid_client" in draft 10 of OAuth 2.0
     SPiDOAuth2InvalidClientCredentialsErrorCode = -1009, // Replaced by "invalid_client" in draft 10 of OAuth 2.0
     
-    SPiDOAuth2InvalidTokenErrorCode = -1010, // Protected resource errors
+    SPiDOAuth2InvalidTokenErrorCode = -1010,
     SPiDOAuth2InsufficientScopeErrorCode = -1011,
     SPiDOAuth2ExpiredTokenErrorCode = -1012,
     
-    SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020, // Grant type error
+    SPiDOAuth2UnsupportedGrantTypeErrorCode = -1020,
     SPiDOAuth2InvalidUserCredentialsErrorCode = -1030,
     SPiDOAuth2UnverifiedUserErrorCode = -1031,
     SPiDOAuth2UnknownUserErrorCode = -1032,
@@ -34,11 +30,8 @@ enum {
     SPiDInvalidPasswordErrorCode = -1051,
     
     SPiDUserAbortedLogin = -1100,
-    SPiDJSONParseErrorCode = -1200, // JSON Parse error
+    SPiDJSONParseErrorCode = -1200,
     
     SPiDAPIExceptionErrorCode = -1300
     
 };
-
-
-#endif
