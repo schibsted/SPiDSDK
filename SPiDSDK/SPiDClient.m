@@ -12,6 +12,7 @@
 #import "SPiDError.h"
 #import "SPiDTokenRequest.h"
 #import "SPiDStatus.h"
+#import "NSData+Base64.h"
 
 @interface SPiDClient ()
 
@@ -318,6 +319,14 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [request startRequestWithAccessToken];
 }
 
+- (void)getEmailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler {
+    NSData *data = [email dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedEmail = [data base64EncodedUrlSafeString];
+    
+    NSString *path = [NSString stringWithFormat:@"/email/%@/status", encodedEmail];
+    SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
+    [request startRequestWithAccessToken];
+}
 
 #pragma mark Private methods
 

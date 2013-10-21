@@ -24,4 +24,6 @@
  */
 - (NSString *)base64EncodedString;
 
+- (NSString *)base64EncodedUrlSafeString;
+
 @end
