@@ -142,4 +142,12 @@ static const short _base64DecodingTable[256] = {
     return base64String;
 }
 
+- (NSString *)base64EncodedUrlSafeString {
+    NSString *urlSafeBase64String = [self base64EncodedString];
+    urlSafeBase64String = [urlSafeBase64String stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
+    urlSafeBase64String = [urlSafeBase64String stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+    urlSafeBase64String = [urlSafeBase64String stringByReplacingOccurrencesOfString:@"=" withString:@""];
+    return urlSafeBase64String;
+}
+
 @end

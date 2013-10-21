@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#define SPID_IOS_SDK_VERSION_STRING @"1.2.2"
+#define SPID_IOS_SDK_VERSION_STRING @"1.2.3"
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -320,5 +320,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @see isAuthorized
  */
 - (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+
+/** Checks of status of email
+ 
+ @warning Requires a client token with SPiD
+ @param email The email that should be checked
+ @param completionHandler Called on request completion or error
+ */
+- (void)getEmailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler;
 
 @end
