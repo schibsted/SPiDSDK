@@ -208,6 +208,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                 */
                 completionHandler(nil);
             }];
+            [request startRequestWithAccessToken];
             return request;
         } else {
             // TODO completionHandler( already running);
