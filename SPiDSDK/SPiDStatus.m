@@ -35,8 +35,6 @@
 
     [body setValue:[SPiDStatus applicationId] forKey:@"applicationId"];
     [body setValue:[SPiDStatus vendorId] forKey:@"vendorId"];
-    [body setValue:[SPiDStatus advertisingId] forKey:@"advertisingId"];
-    [body setValue:[SPiDStatus advertisingTrackingEnabled] forKey:@"advertisingTrackingEnabled"];
 
     [body setValue:SPID_IOS_SDK_VERSION_STRING forKey:@"sdkVersion"];
 
@@ -50,23 +48,12 @@
     NSData *json = [NSJSONSerialization dataWithJSONObject:body options:(NSJSONWritingOptions) 0 error:&error];
     NSString *jsonString = [json base64EncodedString];
 
-    //SPiDDebugLog(@"Json: %@", [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding]);
-
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:jsonString forKey:@"fp"];
     [dict setValue:[[SPiDClient sharedInstance] clientID] forKey:@"clientId"];
 
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/status" body:dict completionHandler:completionHandler];
     return request;
-}
-
-+ (NSString *)advertisingId {
-    NSString *advertiserID = nil;
-    if ([ASIdentifierManager class]) {
-        ASIdentifierManager *manager = [ASIdentifierManager sharedManager];
-        advertiserID = [[manager advertisingIdentifier] UUIDString];
-    }
-    return advertiserID;
 }
 
 + (NSString *)vendorId {
@@ -98,13 +85,6 @@
     NSString *systemVersion = [UIDevice currentDevice].systemVersion;
     
     return [NSString stringWithFormat:@"%@/%@ SPiDIOSSDK/%@ %@/%@", bundleDisplayName, bundleMinorVersion, SPID_IOS_SDK_VERSION_STRING, deviceModel, systemVersion];
-}
-
-+ (NSString *)advertisingTrackingEnabled {
-    if ([ASIdentifierManager class] && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
-        return @"1";
-    }
-    return @"0";
 }
 
 + (NSString *)orientationToString:(UIDeviceOrientation)orientation {

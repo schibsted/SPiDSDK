@@ -24,7 +24,6 @@
 		5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		5306208B16C12440001B2A08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		5306209716C1375D001B2A08 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209616C1375D001B2A08 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		5306209916C13764001B2A08 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209A16C1376F001B2A08 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		531E475B17782E6500AB6B6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		531E475C17782E6500AB6B6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
@@ -42,7 +41,6 @@
 		531E478317782E6500AB6B6B /* SPiDHybridAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 531E478217782E6500AB6B6B /* SPiDHybridAppTests.m */; };
 		531E478A1778333500AB6B6B /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		531E478B1778335300AB6B6B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
-		531E478C1778336500AB6B6B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		531E478D1778693700AB6B6B /* SPiDLogoTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E87BEEF3B1CCBFE79313 /* SPiDLogoTest@2x.png */; };
 		531E478E1778693700AB6B6B /* mainpage.html in Resources */ = {isa = PBXBuildFile; fileRef = E304E9E3B2550A68C86B42E0 /* mainpage.html */; };
 		531E478F1778693700AB6B6B /* SPiDLogoTest.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E8933EB93788905BE88E /* SPiDLogoTest.png */; };
@@ -105,9 +103,7 @@
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
 		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
-		53A8546216D76DD20005A6AF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		53AAD36617247DDA00C2F497 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */; };
-		53DB78D817030E5B002B6583 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209816C13764001B2A08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E752C72346E314762407 /* SPiDWebView.h */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
@@ -406,7 +402,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				531E478C1778336500AB6B6B /* AdSupport.framework in Frameworks */,
 				531E478B1778335300AB6B6B /* Security.framework in Frameworks */,
 				531E478A1778333500AB6B6B /* libSPiDSDK.a in Frameworks */,
 				531E475B17782E6500AB6B6B /* UIKit.framework in Frameworks */,
@@ -430,7 +425,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */,
-				5306209916C13764001B2A08 /* AdSupport.framework in Frameworks */,
 				5306209716C1375D001B2A08 /* Social.framework in Frameworks */,
 				5306208B16C12440001B2A08 /* Security.framework in Frameworks */,
 				5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */,
@@ -455,7 +449,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53A8546216D76DD20005A6AF /* AdSupport.framework in Frameworks */,
 				53220F2816BFB13300332D65 /* CoreText.framework in Frameworks */,
 				534D652816AD942400088B3D /* Security.framework in Frameworks */,
 				534D652016AD896600088B3D /* libSPiDSDK.a in Frameworks */,
@@ -499,7 +492,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53DB78D817030E5B002B6583 /* AdSupport.framework in Frameworks */,
 				537EFFD216B6A912008069DC /* UIKit.framework in Frameworks */,
 				537EFFD116B6A888008069DC /* libSPiDSDK.a in Frameworks */,
 				53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */,

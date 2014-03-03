@@ -15,11 +15,7 @@
 
 + (SPiDRequest *)statusRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
-+ (NSString *)advertisingId;
-
 + (NSString *)vendorId;
-
-+ (NSString *)advertisingTrackingEnabled;
 
 + (NSString *)orientationToString:(UIDeviceOrientation)orientation;
 
