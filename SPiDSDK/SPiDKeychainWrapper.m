@@ -92,7 +92,9 @@
     NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
 
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef) query);
-    SPiDDebugLog(@"Error deleting item to keychain");
+    if (status != noErr) {
+        SPiDDebugLog(@"Error deleting item to keychain");
+    }
 }
 
 #pragma mark Private methods
