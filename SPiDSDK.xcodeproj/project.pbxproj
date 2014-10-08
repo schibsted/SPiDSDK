@@ -139,7 +139,6 @@
 		E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */; };
 		E304E9ECCDD994BB72DD543D /* SPiDJwt.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E028433CF8954B044781 /* SPiDJwt.h */; };
 		E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
-		E304EA74C865B5C825FB7F3D /* SPiDAccessTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E391019514DB903535FF /* SPiDAccessTokenTests.m */; };
 		E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E74CE552DDD7DA85CADB /* SPiDResponse.h */; };
 		E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF927327F5217C9FBBD0 /* Default.png */; };
 		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
@@ -339,7 +338,6 @@
 		E304E28946789A36FF358EC0 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
-		E304E391019514DB903535FF /* SPiDAccessTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessTokenTests.m; sourceTree = "<group>"; };
 		E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Crypto.h"; sourceTree = "<group>"; };
 		E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed.png"; sourceTree = "<group>"; };
 		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 		E304E9BAD5499EEFE7846D26 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
 		E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
-		E304E9E202656E517CD6E518 /* SPiDAccessTokenTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessTokenTests.h; sourceTree = "<group>"; };
 		E304E9E3B2550A68C86B42E0 /* mainpage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mainpage.html; sourceTree = "<group>"; };
 		E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
@@ -781,8 +778,6 @@
 				537D220A15FF224C000ABCA6 /* Supporting Files */,
 				537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */,
 				537D221015FF224C000ABCA6 /* SPiDSDKTests.m */,
-				E304E9E202656E517CD6E518 /* SPiDAccessTokenTests.h */,
-				E304E391019514DB903535FF /* SPiDAccessTokenTests.m */,
 			);
 			path = SPiDSDKTests;
 			sourceTree = "<group>";
@@ -884,7 +879,7 @@
 			name = SPiDHybridAppTests;
 			productName = SPiDHybridAppTests;
 			productReference = 531E477517782E6500AB6B6B /* SPiDHybridAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		532B21B216AD5737000DBA55 /* SPiDFacebookApp */ = {
 			isa = PBXNativeTarget;
@@ -921,7 +916,7 @@
 			name = SPiDFacebookAppTests;
 			productName = SPiDFacebookAppTests;
 			productReference = 532B21CF16AD5737000DBA55 /* SPiDFacebookAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		532B21E716AD5786000DBA55 /* SPiDNativeApp */ = {
 			isa = PBXNativeTarget;
@@ -958,7 +953,7 @@
 			name = SPiDNativeAppTests;
 			productName = SPiDNativeAppTests;
 			productReference = 532B220416AD5786000DBA55 /* SPiDNativeAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		537D21EE15FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXNativeTarget;
@@ -994,7 +989,7 @@
 			name = SPiDSDKTests;
 			productName = SPiDSDKTests;
 			productReference = 537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		537D221D15FF2374000ABCA6 /* SPiDExampleApp */ = {
 			isa = PBXNativeTarget;
@@ -1031,7 +1026,7 @@
 			name = SPiDExampleAppTests;
 			productName = SPiDExampleAppTests;
 			productReference = 537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -1342,7 +1337,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */,
-				E304EA74C865B5C825FB7F3D /* SPiDAccessTokenTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1807,6 +1801,7 @@
 		537D221515FF224C000ABCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/SPiDSDK.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1823,6 +1818,7 @@
 		537D221615FF224C000ABCA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/SPiDSDK.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1839,6 +1835,7 @@
 		537D221815FF224C000ABCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -1854,6 +1851,7 @@
 		537D221915FF224C000ABCA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",

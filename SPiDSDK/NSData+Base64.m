@@ -96,7 +96,6 @@ static const short _base64DecodingTable[256] = {
     }
 
     NSData *objData = [NSData dataWithBytesNoCopy:objResult length:(NSUInteger) j freeWhenDone:YES];
-    free(objResult);
     return objData;
 }
 
@@ -105,7 +104,7 @@ static const short _base64DecodingTable[256] = {
     char *objPointer;
     char *strResult;
 
-    int intLength = [self length];
+    NSUInteger intLength = [self length];
     if (intLength == 0) return nil;
 
     strResult = (char *) calloc((size_t) ((((intLength + 2) / 3) * 4) + 1), sizeof(char));
