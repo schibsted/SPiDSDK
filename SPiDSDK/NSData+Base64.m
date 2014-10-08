@@ -96,7 +96,6 @@ static const short _base64DecodingTable[256] = {
     }
 
     NSData *objData = [NSData dataWithBytesNoCopy:objResult length:(NSUInteger) j freeWhenDone:YES];
-    free(objResult);
     return objData;
 }
 
