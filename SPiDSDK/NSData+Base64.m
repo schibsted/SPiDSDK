@@ -29,83 +29,12 @@ static const short _base64DecodingTable[256] = {
         -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2
 };
 
-+ (NSData *)decodeBase64String:(NSString *)base64String {
-    const char *objPointer = [base64String cStringUsingEncoding:NSASCIIStringEncoding];
-    size_t intLength = strlen(objPointer);
-    int intCurrent;
-    int i = 0, j = 0, k;
-
-    unsigned char *objResult = calloc(intLength, sizeof(unsigned char));
-
-    while (((intCurrent = *objPointer++) != '\0') && (intLength-- > 0)) {
-        if (intCurrent == '=') {
-            if (*objPointer != '=' && ((i % 4) == 1)) {
-                // the padding character is invalid
-                free(objResult);
-                return nil;
-            }
-            continue;
-        }
-
-        intCurrent = _base64DecodingTable[intCurrent];
-        if (intCurrent == -1) {
-            // skip whitespace
-            continue;
-        } else if (intCurrent == -2) {
-            // invalid character
-            free(objResult);
-            return nil;
-        }
-
-        switch (i % 4) {
-            case 0:
-                objResult[j] = (unsigned char) (intCurrent << 2);
-                break;
-
-            case 1:
-                objResult[j++] |= intCurrent >> 4;
-                objResult[j] = (unsigned char) ((intCurrent & 0x0f) << 4);
-                break;
-
-            case 2:
-                objResult[j++] |= intCurrent >> 2;
-                objResult[j] = (unsigned char) ((intCurrent & 0x03) << 6);
-                break;
-
-            default: //case 3:
-                objResult[j++] |= intCurrent;
-                break;
-        }
-        i++;
-    }
-
-    k = j;
-    if (intCurrent == '=') {
-        switch (i % 4) {
-            case 1:
-                // Invalid state
-                free(objResult);
-                return nil;
-
-            case 2:
-                k++;
-                // flow through
-            default: //case 3:
-                objResult[k] = 0;
-        }
-    }
-
-    NSData *objData = [NSData dataWithBytesNoCopy:objResult length:(NSUInteger) j freeWhenDone:YES];
-    free(objResult);
-    return objData;
-}
-
 - (NSString *)base64EncodedString {
     const unsigned char *objRawData = [self bytes];
     char *objPointer;
     char *strResult;
 
-    int intLength = [self length];
+    NSUInteger intLength = [self length];
     if (intLength == 0) return nil;
 
     strResult = (char *) calloc((size_t) ((((intLength + 2) / 3) * 4) + 1), sizeof(char));

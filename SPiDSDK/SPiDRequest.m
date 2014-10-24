@@ -204,7 +204,7 @@
             [self setRetryCount:[self retryCount] + 1];
             [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
         } else {
-            SPiDDebugLog(@"Retried request: %d times, aborting", [self retryCount]);
+            SPiDDebugLog(@"Retried request: %ld times, aborting", [self retryCount]);
             if (_completionHandler != nil)
                 _completionHandler(response);
         }
