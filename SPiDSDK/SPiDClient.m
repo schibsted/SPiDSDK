@@ -198,17 +198,18 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             NSString *path = [@"/logout" stringByAppendingString:[self getLogoutQuery]];
             SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
                 [self logoutComplete];
-                /*
+/*
                 if (response.error) {
                     [self clearAuthorizationRequest];
                 } else{
                     [self logoutComplete];
                 }
-                */
-                completionHandler(nil);
+*/
+                completionHandler(response.error);
             }];
             return request;
         } else {
+            completionHandler([SPiDError apiErrorWithCode:-123 reason:@"SPiD request already in progress" descriptions:nil]);
             // TODO completionHandler( already running);
         }
     }

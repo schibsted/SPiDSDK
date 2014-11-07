@@ -6,6 +6,7 @@
 //
 
 #import "SPiDKeychainWrapper.h"
+#import "SPiDClient.h"
 
 @interface SPiDKeychainWrapper ()
 
@@ -91,7 +92,9 @@
     NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
 
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef) query);
-    NSAssert(status == noErr, @"Error deleting item to keychain");
+    if (status != noErr) {
+        SPiDDebugLog(@"Error deleting item to keychain");
+    }
 }
 
 #pragma mark Private methods
