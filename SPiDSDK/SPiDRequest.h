@@ -36,7 +36,7 @@
 /** Creates a GET `SPiDRequest`
 
  @param requestPath API path for GET request e.g. /user
- @param completionHandler Completion handler run after request is finished
+ @param completionHandler Completion handler run after request is finished, will be called on the main thread.
  @return `SPiDRequest`
 */
 + (id)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
@@ -45,7 +45,7 @@
 
  @param requestPath API path for POST request e.g. /user
  @param body The HTTP body
- @param completionHandler Completion handler run after request is finished
+ @param completionHandler Completion handler run after request is finished, will be called on the main thread.
  @return `SPiDRequest`
 */
 + (id)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
@@ -55,7 +55,7 @@
  @param requestPath API path for request
  @param method HTTP method for the request
  @param body HTTP body, used if method is POST
- @param completionHandler Completion handler run after request is finished
+ @param completionHandler Completion handler run after request is finished, will be called on the main thread.
  @return `SPiDRequest`
 */
 + (id)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
