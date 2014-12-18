@@ -104,7 +104,8 @@
 }
 
 + (id)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler {
-    NSDictionary *postData = [self userTokenPostDataWithUsername:username password:password];
+    NSString *trimmedUserName = [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSDictionary *postData = [self userTokenPostDataWithUsername:trimmedUserName password:password];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
