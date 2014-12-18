@@ -175,10 +175,14 @@
         [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
     }
     _receivedData = [[NSMutableData alloc] init];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-value"
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-#pragma clang diagnostic pop
+    
+    // Always run on the main run loop.
+    // If not and this method gets called from a background thread, that thread is likely to exit before any of the delegate methods are called.
+    // Since the request isn't blocking the thread and we aren't doing any heavy computation this should be OK to run on main.
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+    [connection scheduleInRunLoop:[NSRunLoop mainRunLoop]
+                          forMode:NSRunLoopCommonModes];
+    [connection start];
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
