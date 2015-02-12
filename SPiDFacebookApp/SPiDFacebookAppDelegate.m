@@ -60,7 +60,7 @@ static NSString *const SignSecret = @"your-sign-secret";
 - (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
     [self showActivityIndicatorAlert:@"Logging in to SPiD..."];
     NSArray *permissions = [[NSArray alloc] initWithObjects:
-            @"basic_info",
+            @"public_profile",
             @"email",
             nil];
     return [FBSession openActiveSessionWithReadPermissions:permissions
