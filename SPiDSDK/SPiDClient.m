@@ -106,6 +106,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
     if (![sharedSPiDClientInstance signupURL])
         [sharedSPiDClientInstance setSignupURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [sharedSPiDClientInstance serverURL]]]];
+    
+    if (![sharedSPiDClientInstance accountSummaryURL])
+        [sharedSPiDClientInstance setAccountSummaryURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/account/summary?client_id=%@", [sharedSPiDClientInstance serverURL], clientID]]];
 
     if (![sharedSPiDClientInstance forgotPasswordURL])
         [sharedSPiDClientInstance setForgotPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [sharedSPiDClientInstance serverURL]]]];
@@ -157,6 +160,15 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
     [[UIApplication sharedApplication] openURL:requestURL];
+}
+
+- (void)browserRedirectAccountSummary {
+    NSURL *requestURL = [self accountSummaryURL];
+
+    SPiDDebugLog(@"Trying to open account summary: %@", requestURL);
+    if([[UIApplication sharedApplication] canOpenURL:requestURL]) {
+       [[UIApplication sharedApplication] openURL:requestURL];
+    }
 }
 
 - (void)browserRedirectLogoutWithCompletionHandler:(void (^)(SPiDError *response))completionHandler {
