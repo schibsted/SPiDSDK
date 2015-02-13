@@ -83,6 +83,12 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  */
 @property(strong, nonatomic) NSURL *signupURL;
 
+/** URL to use for account summary
+ *
+ * This URL is normally generated using the 'serverURL/account/summary'
+ * */
+@property (nonatomic, strong) NSURL *accountSummaryURL;
+
 /** URL to use for web forgot password with SPiD
 
  This URL is normally generated using the `serverURL`/auth/forgotpassword
@@ -159,6 +165,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** Redirects to safari for forgot password */
 - (void)browserRedirectForgotPassword; // TODO: does not need completion handler
+
+/** Redirects to safari for forgot password */
+- (void)browserRedirectAccountSummary;
 
 /** Redirects to safari for logout
 

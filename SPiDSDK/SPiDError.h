@@ -51,10 +51,11 @@
 
 /**
 
- @param errorString Error string.
+ @param errorDomain Error domain string.
+ @param error code from api or 0
  @return Returns internal SPiD code for the given error.
  */
-+ (NSInteger)getSPiDOAuth2ErrorCode:(NSString *)errorString;
++ (NSInteger)getSPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;
 
 + (id)errorFromNSError:(NSError *)error;
 
@@ -88,6 +89,6 @@ enum {
     SPiDUserAbortedLogin = -1100,
     SPiDJSONParseErrorCode = -1200, // JSON Parse error
 
-    SPiDAPIExceptionErrorCode = -1300
-
+    SPiDAPIExceptionErrorCode = -1300,
+    SPiDAPIExceptionExistingUser = -1302 //User already exists
 };
