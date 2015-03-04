@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SPiDSDK"
-  s.version      = "1.2.6"
+  s.version      = "1.2.7"
   s.summary      = "iOS SDK for using SPiD"
 
   s.description  = <<-DESC
@@ -15,12 +15,14 @@ Pod::Spec.new do |s|
 
   s.authors      = { "Mikael Lindström" => "mikael.lindstrom@schibsted.com", "Oskar Höjwall" => "oskar.hojwall@schibsted.com" }
 
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "6.0"
 
-  s.source       = { :git => 'https://github.com/schibsted/sdk-ios.git', :tag => '1.2.6' }
+  s.source       = { :git => 'https://github.com/schibsted/sdk-ios.git', :tag => '1.2.7' }
 
   s.source_files = "Classes", "SPiDSDK/**/*.{h,m}"
 
-  s.requires_arc = false
+  s.frameworks = "Security"
+
+  s.requires_arc = true
 
 end
