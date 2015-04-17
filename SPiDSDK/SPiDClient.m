@@ -102,10 +102,10 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         [sharedSPiDClientInstance setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://spid", [sharedSPiDClientInstance appURLScheme]]]];
 
     if (![sharedSPiDClientInstance authorizationURL])
-        [sharedSPiDClientInstance setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/login", [sharedSPiDClientInstance serverURL]]]];
+        [sharedSPiDClientInstance setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/flow/login", [sharedSPiDClientInstance serverURL]]]];
 
     if (![sharedSPiDClientInstance signupURL])
-        [sharedSPiDClientInstance setSignupURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/signup", [sharedSPiDClientInstance serverURL]]]];
+        [sharedSPiDClientInstance setSignupURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/flow/signup", [sharedSPiDClientInstance serverURL]]]];
     
     if (![sharedSPiDClientInstance accountSummaryURL])
         [sharedSPiDClientInstance setAccountSummaryURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/account/summary?client_id=%@", [sharedSPiDClientInstance serverURL], clientID]]];

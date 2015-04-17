@@ -73,13 +73,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** URL to use for web authorization with SPiD
 
- This URL is normally generated using the `serverURL`/auth/login
+ This URL is normally generated using the `serverURL`/flow/login
  */
 @property(strong, nonatomic) NSURL *authorizationURL;
 
 /** URL to use for web signup with SPiD
 
- This URL is normally generated using the `serverURL`/auth/signup
+ This URL is normally generated using the `serverURL`/flow/signup
  */
 @property(strong, nonatomic) NSURL *signupURL;
 
