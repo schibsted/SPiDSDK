@@ -186,7 +186,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 /** Handles URL redirects to the app
 
 @param url Input URL
-@return Returns YES if URL was handled by `SPiDClient`
+@return Returns YES if URL was handled by `SPiDClient` and there is a registered completionHandler for the SPiDClient
 */
 - (BOOL)handleOpenURL:(NSURL *)url;
 
