@@ -6,6 +6,8 @@
 //
 
 #import "NSString+Crypto.h"
+#import <CommonCrypto/CommonHMAC.h>
+
 
 @implementation NSString (Crypto)
 
