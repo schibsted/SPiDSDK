@@ -36,20 +36,20 @@
  @param completionHandler Called after authorization is completed
  @return The new WebView
 */
-+ (id)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Creates a registration WebView
 
  @param completionHandler Called after signup is completed
  @return The new WebView
 */
-+ (id)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 /** Creates a forgot password WebView
 
  @param completionHandler Called after forgot password is completed
  @return The new WebView
 */
-+ (id)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
 
 @end

@@ -25,7 +25,7 @@
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
-+ (id)jwtTokenWithDictionary:(NSDictionary *)dictionary {
++ (instancetype)jwtTokenWithDictionary:(NSDictionary *)dictionary {
     SPiDJwt *jwtToken = [[SPiDJwt alloc] init];
     jwtToken.iss = [dictionary objectForKey:@"iss"];
     jwtToken.sub = [dictionary objectForKey:@"sub"];

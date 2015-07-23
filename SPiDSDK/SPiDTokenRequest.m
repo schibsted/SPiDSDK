@@ -91,26 +91,26 @@
 
 }
 
-+ (id)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
++ (instancetype)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self clientTokenPostData];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (id)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *error))completionHandler {
++ (instancetype)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *error))completionHandler {
     NSDictionary *postData = [self userTokenPostDataWithCode:code];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (id)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler {
++ (instancetype)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler {
     NSString *trimmedUserName = [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSDictionary *postData = [self userTokenPostDataWithUsername:trimmedUserName password:password];
     SPiDTokenRequest *request = [[self alloc] initPostTokenRequestWithPath:@"/oauth/token" body:postData completionHandler:completionHandler];
     return request;
 }
 
-+ (id)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
++ (instancetype)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
     NSString *jwtString = [self facebookJwtStringWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
     if (jwtString == nil) {
         return nil; // Should not happen, throw exception
@@ -120,7 +120,7 @@
     return request;
 }
 
-+ (id)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (instancetype)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || accessToken.refreshToken == nil) {
         SPiDDebugLog(@"No access token, cannot refreshTrying to refresh access token with refresh token: %@", accessToken.refreshToken);
