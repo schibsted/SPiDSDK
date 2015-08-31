@@ -91,7 +91,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** URL to use for web forgot password with SPiD
 
- This URL is normally generated using the `serverURL`/auth/forgotpassword
+ This URL is normally generated using the `serverURL`/flow/password?client_id=123&redirect_uri=urlscheme://spid
  */
 @property(strong, nonatomic) NSURL *forgotPasswordURL;
 

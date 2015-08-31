@@ -96,10 +96,16 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSString *escapedAppURL = [appURLSchema stringByReplacingOccurrencesOfString:@":" withString:@""];
     escapedAppURL = [escapedAppURL stringByReplacingOccurrencesOfString:@"/" withString:@""];
     [sharedSPiDClientInstance setAppURLScheme:escapedAppURL];
+    
+    NSString *redirectUri = nil;
 
     // Generates URL default urls
-    if (![sharedSPiDClientInstance redirectURI])
-        [sharedSPiDClientInstance setRedirectURI:[NSURL URLWithString:[NSString stringWithFormat:@"%@://spid", [sharedSPiDClientInstance appURLScheme]]]];
+    if (![sharedSPiDClientInstance redirectURI]) {
+        redirectUri = [NSString stringWithFormat:@"%@://spid", [sharedSPiDClientInstance appURLScheme]];
+        [sharedSPiDClientInstance setRedirectURI:[NSURL URLWithString:redirectUri]];
+    } else {
+        redirectUri = [[sharedSPiDClientInstance redirectURI] absoluteString];
+    }
 
     if (![sharedSPiDClientInstance authorizationURL])
         [sharedSPiDClientInstance setAuthorizationURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/flow/login", [sharedSPiDClientInstance serverURL]]]];
@@ -110,8 +116,10 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     if (![sharedSPiDClientInstance accountSummaryURL])
         [sharedSPiDClientInstance setAccountSummaryURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/account/summary?client_id=%@", [sharedSPiDClientInstance serverURL], clientID]]];
 
-    if (![sharedSPiDClientInstance forgotPasswordURL])
-        [sharedSPiDClientInstance setForgotPasswordURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/forgotpassword", [sharedSPiDClientInstance serverURL]]]];
+    if (![sharedSPiDClientInstance forgotPasswordURL]) {
+        NSString *forgotPasswordUrl = [NSString stringWithFormat:@"%@/flow/password?client_id=%@&redirect_uri=%@", [sharedSPiDClientInstance serverURL], clientID, [redirectUri stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+        [sharedSPiDClientInstance setForgotPasswordURL:[NSURL URLWithString:forgotPasswordUrl]];
+    }
 
     if (![sharedSPiDClientInstance tokenURL])
         [sharedSPiDClientInstance setTokenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/token", [sharedSPiDClientInstance serverURL]]]];
