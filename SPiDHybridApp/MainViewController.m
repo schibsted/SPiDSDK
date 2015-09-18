@@ -174,7 +174,7 @@
 
     // These are the two urls we need to catch
     NSString *serverUrl = [SPiDClient sharedInstance].serverURL.absoluteString;
-    NSString *serverLoginUrl = [NSString stringWithFormat:@"%@/auth/login", serverUrl];
+    NSString *serverLoginUrl = [NSString stringWithFormat:@"%@/flow/login", serverUrl];
     NSString *serverLogoutUrl = [NSString stringWithFormat:@"%@/logout", serverUrl];
     NSString *serverAccountSummaryUrl = [NSString stringWithFormat:@"%@/account/summary", serverUrl];
 

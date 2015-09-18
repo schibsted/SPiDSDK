@@ -73,13 +73,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** URL to use for web authorization with SPiD
 
- This URL is normally generated using the `serverURL`/auth/login
+ This URL is normally generated using the `serverURL`/flow/login
  */
 @property(strong, nonatomic) NSURL *authorizationURL;
 
 /** URL to use for web signup with SPiD
 
- This URL is normally generated using the `serverURL`/auth/signup
+ This URL is normally generated using the `serverURL`/flow/signup
  */
 @property(strong, nonatomic) NSURL *signupURL;
 
@@ -91,7 +91,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** URL to use for web forgot password with SPiD
 
- This URL is normally generated using the `serverURL`/auth/forgotpassword
+ This URL is normally generated using the `serverURL`/flow/password?client_id=123&redirect_uri=urlscheme://spid
  */
 @property(strong, nonatomic) NSURL *forgotPasswordURL;
 
@@ -186,7 +186,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 /** Handles URL redirects to the app
 
 @param url Input URL
-@return Returns YES if URL was handled by `SPiDClient`
+@return Returns YES if URL was handled by `SPiDClient` and there is a registered completionHandler for the SPiDClient
 */
 - (BOOL)handleOpenURL:(NSURL *)url;
 

@@ -40,7 +40,7 @@ static NSString *const JSON_WEB_TOKEN_TYP_JWT = @"JWT";
  @param dictionary Dictionary containing JWT parameters
  @return `SPiDJwt`
 */
-+ (SPiDJwt *)jwtTokenWithDictionary:(NSDictionary *)dictionary;
++ (instancetype)jwtTokenWithDictionary:(NSDictionary *)dictionary;
 
 /* Encodes JWT token to a string
 

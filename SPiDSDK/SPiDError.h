@@ -22,14 +22,14 @@
  @return Returns `SPiDError` with the given data.
  */
 
-+ (id)errorFromJSONData:(NSDictionary *)dictionary;
++ (instancetype)errorFromJSONData:(NSDictionary *)dictionary;
 
 /** Creates a new `SPiDError` with SPiD OAuth2 domain and the given string.
 
  @param errorString Error received from SPiD.
  @return Returns `SPiDError` with the given data.
  */
-+ (id)oauth2ErrorWithString:(NSString *)errorString;
++ (instancetype)oauth2ErrorWithString:(NSString *)errorString;
 
 /** Creates a new `SPiDError` with SPiD OAuth2 domain and the given paramters
 
@@ -38,7 +38,7 @@
  @param reason Error reason.
  @return Returns `SPiDError` with the given data.
  */
-+ (id)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
++ (instancetype)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
 
 /** Creates a new `SPiDError` with SPiD API domain and the given paramters 
 
@@ -47,7 +47,7 @@
  @param reason Error reason.
  @return Returns `SPiDError` with the given data.
  */
-+ (id)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
++ (instancetype)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
 
 /**
 
@@ -57,7 +57,7 @@
  */
 + (NSInteger)getSPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;
 
-+ (id)errorFromNSError:(NSError *)error;
++ (instancetype)errorFromNSError:(NSError *)error;
 
 
 @end

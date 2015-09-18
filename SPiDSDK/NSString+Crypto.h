@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CommonCrypto/CommonHMAC.h>
 
 /** Adds HMAC SHA256 generations to `NSString` */
 
