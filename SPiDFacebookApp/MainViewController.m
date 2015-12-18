@@ -60,7 +60,7 @@
 - (void)getUserName {
     SPiDFacebookAppDelegate *appDelegate = (SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
-    [[SPiDClient sharedInstance] getCurrentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
         [appDelegate dismissAlertView];
         if (![response error]) {
             NSDictionary *data = [[response message] objectForKey:@"data"];

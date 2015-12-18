@@ -289,7 +289,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 /// @name Request wrappers
 ///---------------------------------------------------------------------------------------
 
-- (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)oneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/oauth/exchange"];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
 
@@ -301,7 +301,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [request startRequestWithAccessToken];
 }
 
-- (void)getSessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)sessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/oauth/exchange"];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
 
@@ -312,29 +312,29 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [request startRequestWithAccessToken];
 }
 
-- (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)meRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/me"];
     SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
     [request startRequestWithAccessToken];
 }
 
-- (void)getUserRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *))completionHandler {
+- (void)userRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/user/%@", userID];
     SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
     [request startRequestWithAccessToken];
 }
 
-- (void)getCurrentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
-    [self getUserRequestWithID:self.accessToken.userID completionHandler:completionHandler];
+- (void)currentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler {
+    [self userRequestWithID:self.accessToken.userID completionHandler:completionHandler];
 }
 
-- (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler {
+- (void)userLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSString *path = [NSString stringWithFormat:@"/user/%@/logins", userID];
     SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
     [request startRequestWithAccessToken];
 }
 
-- (void)getEmailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler {
+- (void)emailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler {
     NSData *data = [email dataUsingEncoding:NSUTF8StringEncoding];
     NSString *encodedEmail = [data base64EncodedUrlSafeString];
     

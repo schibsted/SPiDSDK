@@ -45,7 +45,7 @@
 
 #pragma mark Private methods
 - (void)getUserName {
-    [[SPiDClient sharedInstance] getCurrentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response message] objectForKey:@"data"];
             NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
@@ -65,7 +65,7 @@
 }
 
 - (void)getOneTimeToken {
-    [[SPiDClient sharedInstance] getOneTimeCodeRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] oneTimeCodeRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response message] objectForKey:@"data"];
             NSString *code = [data objectForKey:@"code"];

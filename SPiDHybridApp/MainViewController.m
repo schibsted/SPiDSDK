@@ -108,7 +108,7 @@
 }
 
 - (void)loginWebView {
-    [[SPiDClient sharedInstance] getSessionCodeRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] sessionCodeRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             NSDictionary *data = [[response message] objectForKey:@"data"];
             NSString *code = [data objectForKey:@"code"];

@@ -282,7 +282,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  */
 
-- (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)oneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Requests a session code to be used in a WebView.
 *
@@ -290,7 +290,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Called on request completion or error
  */
-- (void)getSessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)sessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the currently logged in user’s object. Note that the user session does not last as long as the access token, therefor the me request should only be used right after the app has received a access token. The user id should then be saved and used with the `getUserRequestWithID:andCompletionHandler`
 
@@ -300,7 +300,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)meRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the userinformation for the specified userID
 
@@ -311,7 +311,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getUserRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)userRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the userinformation for the current user
 
@@ -321,7 +321,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getCurrentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)currentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Request all login attempts for a specific client
 
@@ -332,7 +332,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)userLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Checks of status of email
  
@@ -340,6 +340,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param email The email that should be checked
  @param completionHandler Called on request completion or error
  */
-- (void)getEmailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler;
+- (void)emailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler;
 
 @end

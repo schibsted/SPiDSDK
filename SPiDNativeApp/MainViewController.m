@@ -59,7 +59,7 @@
 - (void)getUserName {
     SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
-    [[SPiDClient sharedInstance] getCurrentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
         if (![response error]) {
             [appDelegate dismissAlertView];
             NSDictionary *data = [[response message] objectForKey:@"data"];
