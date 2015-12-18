@@ -24,7 +24,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)clientTokenRequestWithCompletionHandler:(void (^)(SPiDError *error))completionHandler;
++ (instancetype)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler;
 
 /** Creates a user token request with authorization code
 
@@ -32,7 +32,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a user token request with user credentials
 
@@ -41,7 +41,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(SPiDError *error))completionHandler;
++ (instancetype)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(NSError *error))completionHandler;
 
 /** Creates a JWT facebook token request
 
@@ -51,14 +51,14 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a token refresh token request with the current access token
 
  @param completionHandler Called on token request completion or error
  @return The token request or nil if refresh token is missing
 */
-+ (instancetype)refreshTokenRequestWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 
 @end

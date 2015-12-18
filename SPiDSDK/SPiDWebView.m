@@ -7,7 +7,7 @@
 
 #import "SPiDWebView.h"
 #import "SPiDClient.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SPiDTokenRequest.h"
 
 @interface SPiDWebView ()
@@ -39,13 +39,13 @@
  @param webView The web view that failed to load a frame.
  @param error The error that occurred during loading.
 */
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(SPiDError *)error;
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
 
 @end
 
 @implementation SPiDWebView
 
-+ (instancetype)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *error))completionHandler {
++ (instancetype)authorizationWebViewWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] authorizationURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -55,7 +55,7 @@
     return webView;
 }
 
-+ (instancetype)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (instancetype)signupWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] signupURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -65,7 +65,7 @@
     return webView;
 }
 
-+ (instancetype)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler {
++ (instancetype)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler {
     NSString *url = [[[SPiDClient sharedInstance] forgotPasswordURLWithQuery] absoluteString];
     url = [url stringByAppendingFormat:@"&webview=1"];
     SPiDDebugLog(@"Trying to authorize using webview");
@@ -108,7 +108,7 @@
         if ([webView isLoading])
             [webView stopLoading];
         [webView setDelegate:nil];
-        _completionHandler([SPiDError oauth2ErrorWithString:error]);
+        _completionHandler([NSError oauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -124,7 +124,7 @@
                 [tokenRequest startRequest];
                 //self.completionHandler(code, nil);
             } else {
-                _completionHandler([SPiDError oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                _completionHandler([NSError oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
             }
         } /*else if ([urlString hasSuffix:@"failure"]) {
             _completionHandler(nil, [NSError oauth2ErrorWithString:]);
@@ -151,7 +151,7 @@
             [webView stopLoading];
         [webView setDelegate:nil];
 
-        _completionHandler((SPiDError *) error);
+        _completionHandler((NSError *) error);
     }
 }
 

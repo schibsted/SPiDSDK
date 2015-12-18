@@ -8,7 +8,7 @@
 #import "SPiDRequest.h"
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SPiDStatus.h"
 
 @interface SPiDRequest ()

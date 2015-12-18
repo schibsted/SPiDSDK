@@ -153,15 +153,15 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on login completion or error
 */
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Redirects to safari for signup
 
  @param completionHandler Called on signup completion or error
 */
-- (void)browserRedirectSignupWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
-- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(SPiDError *response))completionHandler;
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Redirects to safari for forgot password */
 - (void)browserRedirectForgotPassword; // TODO: does not need completion handler
@@ -173,7 +173,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on logout completion or error
 */
-- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(SPiDError *))completionHandler; // TODO: Should not care about errors...
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler; // TODO: Should not care about errors...
 
 /** Handles URL redirects to the app with completion handler
  
@@ -181,7 +181,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on successful login/logout or error
  @return Returns YES if URL was handled by `SPiDClient`
  */
-- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(SPiDError *response))completionHandler;
+- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Handles URL redirects to the app
 
@@ -200,7 +200,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on logout completion or error
  @see isAuthorized
  */
-- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(SPiDError *response))completionHandler;
+- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Tries to refresh access token and rerun waiting requests
 

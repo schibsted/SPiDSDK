@@ -5,10 +5,10 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SPiDClient.h"
 
-@implementation SPiDError
+@implementation NSError (SPiD)
 
 + (instancetype)errorFromJSONData:(NSDictionary *)dictionary {
     NSString *domain;
@@ -20,7 +20,7 @@
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
         domain = [errorDict objectForKey:@"type"];
         originalErrorCode = [[errorDict objectForKey:@"code"] integerValue];
-        errorCode = [self getSPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
+        errorCode = [self SPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
         if ([[errorDict objectForKey:@"description"] isKindOfClass:[NSDictionary class]]) {
             descriptions = [errorDict objectForKey:@"description"];
         } else {
@@ -30,7 +30,7 @@
         domain = [dictionary objectForKey:@"error"];
         descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"error_description"], @"error", nil];
         originalErrorCode = [[dictionary objectForKey:@"error_code"] integerValue];
-        errorCode = [self getSPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
+        errorCode = [self SPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
     }
 
     if (descriptions.count == 0) {
@@ -38,13 +38,11 @@
     }
 
     SPiDDebugLog("Received '%@' with code '%ld' and description: %@", domain, originalErrorCode, [descriptions description]);
-    SPiDError *error = [SPiDError errorWithDomain:domain code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
-    return error;
+    return [NSError errorWithDomain:domain code:errorCode userInfo:descriptions];
 }
 
 + (instancetype)oauth2ErrorWithString:(NSString *)errorString {
-    NSInteger errorCode = [self getSPiDOAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
+    NSInteger errorCode = [self SPiDOAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
     return [self oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
 }
@@ -55,9 +53,7 @@
         info = [NSMutableDictionary dictionary];
         if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
     }
-    SPiDError *error = [SPiDError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
-    return error;
+    return [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:descriptions];
 }
 
 + (instancetype)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
@@ -66,18 +62,10 @@
         info = [NSMutableDictionary dictionary];
         if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
     }
-    SPiDError *error = [SPiDError errorWithDomain:@"ApiException" code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
-    return error;
+    return [NSError errorWithDomain:@"ApiException" code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)errorFromNSError:(NSError *)error {
-    SPiDError *spidError = [SPiDError errorWithDomain:error.domain code:error.code userInfo:error.userInfo];
-    spidError.descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[spidError localizedDescription], @"error", nil];;
-    return spidError;
-}
-
-+ (NSInteger)getSPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError {
++ (NSInteger)SPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError {
     NSInteger errorCode = 0;
     if ([errorDomain caseInsensitiveCompare:@"redirect_uri_mismatch"] == NSOrderedSame) {
         errorCode = SPiDOAuth2RedirectURIMismatchErrorCode;

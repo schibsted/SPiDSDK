@@ -12,7 +12,7 @@
 #import "SPiDResponse.h"
 #import "ModalLoginView.h"
 #import "LoadingAlertView.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 
 @implementation MainViewController
 
@@ -92,7 +92,7 @@
 - (void)login:(id)sender {
     NSString *email = self.modalView.emailTextField.text;
     NSString *password = self.modalView.passwordTextField.text;
-    SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(SPiDError *error) {
+    SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
         [self showLoadingSpinner];
         if (error == nil) {
             // Logged in
@@ -102,7 +102,7 @@
         } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
             [self showAlertViewWithTitle:@"Invalid email and/or password"];
         } else {
-            [self showAlertViewWithTitle:[NSString stringWithFormat:@"Received error: %@", error.descriptions.description]];
+            [self showAlertViewWithTitle:[NSString stringWithFormat:@"Received error: %@", error.userInfo.description]];
         }
     }];
     [tokenRequest startRequest];
@@ -126,7 +126,7 @@
 }
 
 - (void)logout:(id)logout {
-    SPiDRequest *logoutRequest = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(SPiDError *response) {
+    SPiDRequest *logoutRequest = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *response) {
         // Load html
         NSString *path = [[NSBundle mainBundle] pathForResource:@"mainpage" ofType:@"html"];
         NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];

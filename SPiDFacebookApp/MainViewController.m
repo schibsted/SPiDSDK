@@ -11,7 +11,7 @@
 #import "SPiDFacebookAppDelegate.h"
 #import "SPiDResponse.h"
 #import "SPiDRequest.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 
 
 @implementation MainViewController
@@ -74,7 +74,7 @@
 }
 
 - (void)logoutFromSPiD:(id)sender {
-    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(SPiDError *response) {
+    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *response) {
         // TODO: this is a ugly solution
         [self viewWillDisappear:NO];
         [self viewWillAppear:NO];

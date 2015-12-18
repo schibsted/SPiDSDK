@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDTokenRequest.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SignUpViewController.h"
 #import "TermsViewController.h"
 
@@ -109,7 +109,7 @@
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty"];
     } else {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
-        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(SPiDError *error) {
+        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
 
             NSString *title;
@@ -121,7 +121,7 @@
             } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
                 title = @"Invalid email and/or password";
             } else {
-                title = [NSString stringWithFormat:@"Received error: %@", error.descriptions.description];
+                title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
             }
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
         }];
@@ -131,7 +131,7 @@
 
 // Open lost password in safari
 - (void)forgotPassword:(id)sender {
-    [[SPiDClient sharedInstance] browserRedirectForgotPasswordWithCompletionHandler:^(SPiDError *error) {
+    [[SPiDClient sharedInstance] browserRedirectForgotPasswordWithCompletionHandler:^(NSError *error) {
         if (!error) {
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }

@@ -7,14 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-/** Subclass of `NSError` to add support for multiple error descriptions.
-
-
- */
-@interface SPiDError : NSError
-
-/** Dictionary of error descriptions */
-@property(strong, nonatomic) NSDictionary *descriptions;
+@interface NSError (SPiD)
 
 /** Creates a new `SPiDError` with SPiD OAuth2 domain and given dictionary.
 
@@ -55,10 +48,7 @@
  @param error code from api or 0
  @return Returns internal SPiD code for the given error.
  */
-+ (NSInteger)getSPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;
-
-+ (instancetype)errorFromNSError:(NSError *)error;
-
++ (NSInteger)SPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;
 
 @end
 

@@ -25,7 +25,7 @@
 @property(strong, nonatomic) NSURL *requestURL;
 
 /** */
-@property(nonatomic, copy) void (^completionHandler)(SPiDError *);
+@property(nonatomic, copy) void (^completionHandler)(NSError *);
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
@@ -36,20 +36,20 @@
  @param completionHandler Called after authorization is completed
  @return The new WebView
 */
-+ (instancetype)authorizationWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)authorizationWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a registration WebView
 
  @param completionHandler Called after signup is completed
  @return The new WebView
 */
-+ (instancetype)signupWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)signupWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a forgot password WebView
 
  @param completionHandler Called after forgot password is completed
  @return The new WebView
 */
-+ (instancetype)forgotPasswordWebViewWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
++ (instancetype)forgotPasswordWebViewWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 @end
