@@ -57,12 +57,6 @@
 
 + (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *response))completionHandler {
     SPiDUser *user = [[SPiDUser alloc] init];
-/*
-    // Validate email and password
-    SPiDError *validationError = [user validateEmail:email password:password];
-    if (validationError != nil) {
-        completionHandler(validationError);
-    }*/
     // Get client token
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || !accessToken.isClientToken) {
@@ -159,8 +153,6 @@
 - (SPiDError *)validateEmail:(NSString *)email password:(NSString *)password {
     if (![SPiDUtils validateEmail:email]) {
         return [SPiDError oauth2ErrorWithCode:SPiDInvalidEmailAddressErrorCode reason:@"ValidationError" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"The email address is invalid", @"error", nil]];
-    } else if ([password length] < 8) {
-        return [SPiDError oauth2ErrorWithCode:SPiDInvalidPasswordErrorCode reason:@"ValidationError" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Password needs to contain at least 8 letters", @"error", nil]];
     }
     return nil;
 }
