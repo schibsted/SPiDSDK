@@ -85,7 +85,6 @@
     [termsLabel addGestureRecognizer:gesture];
     [scrollView addSubview:termsLabel];
 
-
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:scrollView];
 }
