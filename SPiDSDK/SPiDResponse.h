@@ -7,8 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class SPiDError;
-
 /**
  `SPiDResponse` is created for each response from SPiD made by a `SPiDRequest`
 

@@ -56,7 +56,7 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
     return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (instancetype)initWithCoder:(NSCoder *)decoder {
     NSString *userID = [decoder decodeObjectForKey:SPiDAccessTokenUserIdKey];
     NSString *accessToken = [decoder decodeObjectForKey:SPiDAccessTokenKey];
     NSDate *expiresAt = [decoder decodeObjectForKey:SPiDAccessTokenExpiresAtKey];

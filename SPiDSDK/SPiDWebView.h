@@ -8,8 +8,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class SPiDError;
-
 /** WebView for handling authorization against SPiD. */
 
 @interface SPiDWebView : UIWebView <UIWebViewDelegate>

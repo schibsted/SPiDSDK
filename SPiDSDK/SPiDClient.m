@@ -23,13 +23,13 @@
 
  @return The authorization query parameters
  */
-- (NSString *)getAuthorizationQuery;
+- (NSString *)authorizationQuery;
 
 /** Builds logout query
 
  @return The logout query parameters
  */
-- (NSString *)getLogoutQuery;
+- (NSString *)logoutQuery;
 
 /** Helper method
 
@@ -37,21 +37,14 @@
  */
 - (BOOL)doHandleOpenURL:(NSURL *)url;
 
-@property (nonatomic, strong) NSURLSession *URLSession;
+@property (nonatomic, strong, readwrite) NSURLSession *URLSession;
+@property (nonatomic, strong, readwrite) NSMutableArray *waitingRequests;
+@property (nonatomic, strong) SPiDRequest *authorizationRequest;
+@property (nonatomic, copy) void (^completionHandler)(NSError *error);
 
 @end
 
-@implementation SPiDClient {
-@private
-    NSMutableArray *_waitingRequests;
-    NSInteger tokenRefreshRetryCount;
-    BOOL _isAuthenticating; // prevent multiple token requests
-    SPiDRequest *_authorizationRequest;
-    NSString *_webViewInitialHTML;
-
-    void (^_completionHandler)(NSError *error);
-
-}
+@implementation SPiDClient
 
 #pragma mark Public methods
 static SPiDClient *sharedSPiDClientInstance = nil;
@@ -141,7 +134,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         SPiDDebugLog(@"Already logged in, aborting redirect");
         completionHandler(nil);
     } else {
-        _completionHandler = completionHandler;
+        self.completionHandler = completionHandler;
         NSURL *requestURL = [self authorizationURLWithQuery];
         SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
         [[UIApplication sharedApplication] openURL:requestURL];
@@ -149,14 +142,14 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    _completionHandler = completionHandler;
+    self.completionHandler = completionHandler;
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
     [[UIApplication sharedApplication] openURL:requestURL];
 }
 
 - (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    _completionHandler = completionHandler;
+    self.completionHandler = completionHandler;
     [self browserRedirectForgotPassword];
 }
 
@@ -176,7 +169,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *response))completionHandler {
-    _completionHandler = completionHandler;
+    self.completionHandler = completionHandler;
     NSURL *requestURL = [self logoutURLWithQuery];
     SPiDDebugLog(@"Trying to logout from SPiD");
     SPiDDebugLog(@"%@", requestURL.absoluteString);
@@ -184,7 +177,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError *response))completionHandler {
-    _completionHandler = completionHandler;
+    self.completionHandler = completionHandler;
     return [self handleOpenURL:url];
 }
 
@@ -193,7 +186,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSString *redirectURLString = [[self redirectURI] absoluteString];
     NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    if ([urlString hasPrefix:redirectURLString] && _completionHandler) {
+    if ([urlString hasPrefix:redirectURLString] && self.completionHandler) {
         if ([urlString hasSuffix:@"login"]) {
             // Assert
             return [self doHandleOpenURL:url];
@@ -208,10 +201,10 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
-    @synchronized (_authorizationRequest) {
-        if (_authorizationRequest == nil) { // can't logout if we are already logging in
+    @synchronized (self.authorizationRequest) {
+        if (self.authorizationRequest == nil) { // can't logout if we are already logging in
             // TODO: We should implement a api endpoint for logout
-            NSString *path = [@"/logout" stringByAppendingString:[self getLogoutQuery]];
+            NSString *path = [@"/logout" stringByAppendingString:[self logoutQuery]];
             SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
                 [self logoutComplete];
                 
@@ -231,23 +224,23 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (NSURL *)authorizationURLWithQuery {
-    NSString *query = [self getAuthorizationQuery];
+    NSString *query = [self authorizationQuery];
     return [NSURL URLWithString:[self.authorizationURL.absoluteString stringByAppendingString:query]];
 }
 
 - (NSURL *)signupURLWithQuery {
-    NSString *query = [self getAuthorizationQuery];
+    NSString *query = [self authorizationQuery];
     return [NSURL URLWithString:[self.signupURL.absoluteString stringByAppendingString:query]];
 }
 
 - (NSURL *)forgotPasswordURLWithQuery {
     //NSString *query = [self getForgotPasswordQuery];
-    NSString *query = [self getAuthorizationQuery];
+    NSString *query = [self authorizationQuery];
     return [NSURL URLWithString:[self.forgotPasswordURL.absoluteString stringByAppendingString:query]];
 }
 
 - (NSURL *)logoutURLWithQuery {
-    NSString *query = [self getLogoutQuery];
+    NSString *query = [self logoutQuery];
     return [NSURL URLWithString:[self.logoutURL.absoluteString stringByAppendingString:query]];
 }
 
@@ -365,7 +358,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         SPiDDebugLog(@"Received error from SPiD: %@", error)
-        _completionHandler([NSError sp_oauth2ErrorWithString:error]);
+        if(self.completionHandler) {
+            self.completionHandler([NSError sp_oauth2ErrorWithString:error]);
+        }
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -375,22 +370,26 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             if (code) {
                 //NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
                 SPiDDebugLog(@"Received code: %@", code);
-                SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
+                SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:self.completionHandler];
                 [request start];
             } else {
                 // Logout
-                _completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                if(self.completionHandler) {
+                    self.completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                }
             }
         } else if ([urlString hasSuffix:@"logout"]) {
             SPiDDebugLog(@"Logged out from SPiD");
             [self logoutComplete];
-            _completionHandler(nil);
+            if(self.completionHandler) {
+                self.completionHandler(nil);
+            }
         }
         return YES;
     }
 }
 
-- (NSString *)getAuthorizationQuery {
+- (NSString *)authorizationQuery {
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
     [query setObject:self.clientID forKey:@"client_id"];
     if ([self.redirectURI.absoluteString hasSuffix:@"/"]) {
@@ -407,7 +406,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return [SPiDUtils encodedHttpQueryForDictionary:query];
 }
 
-- (NSString *)getLogoutQuery {
+- (NSString *)logoutQuery {
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
     [query setObject:self.clientID forKey:@"client_id"];
     if ([self.redirectURI.absoluteString hasSuffix:@"/"]) {
@@ -422,24 +421,24 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (void)refreshAccessTokenAndRerunRequest:(SPiDRequest *)request {
-    if (!_waitingRequests) {
-        _waitingRequests = [[NSMutableArray alloc] init];
+    if (!self.waitingRequests) {
+        self.waitingRequests = [[NSMutableArray alloc] init];
     }
-    [_waitingRequests addObject:request];
+    [self.waitingRequests addObject:request];
 
-    @synchronized (_authorizationRequest) {
-        if (_authorizationRequest == nil) { // can't logout if we are already logging in
-            _authorizationRequest = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
+    @synchronized (self.authorizationRequest) {
+        if (self.authorizationRequest == nil) { // can't logout if we are already logging in
+            self.authorizationRequest = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
                 [self authorizationComplete];
             }];
-            [_authorizationRequest start];
+            [self.authorizationRequest start];
         }
     }
 }
 
 - (void)clearAuthorizationRequest {
-    @synchronized (_authorizationRequest) {
-        _authorizationRequest = nil;
+    @synchronized (self.authorizationRequest) {
+        self.authorizationRequest = nil;
     }
     self.waitingRequests = nil;
 }
@@ -464,7 +463,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
     [self clearAuthorizationRequest];
 
-    _waitingRequests = nil;
+    self.waitingRequests = nil;
 }
 
 @end

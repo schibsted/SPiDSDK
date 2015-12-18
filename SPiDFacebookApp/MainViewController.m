@@ -20,7 +20,7 @@
 @synthesize userLabel = _userLabel;
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
     if ([[SPiDClient sharedInstance] isAuthorized]) {
         self.title = @"SPiD";
         self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];

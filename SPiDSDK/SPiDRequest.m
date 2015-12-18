@@ -9,7 +9,6 @@
 #import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
 #import "NSError+SPiD.h"
-#import "SPiDStatus.h"
 #import "NSURLRequest+SPiD.h"
 
 @interface SPiDRequest ()
@@ -139,9 +138,9 @@
     NSURLSessionDataTask *task = [[[SPiDClient sharedInstance] URLSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error) {
             SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
-            SPiDResponse *response = [[SPiDResponse alloc] initWithError:error];
+            SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithError:error];
             if (self.completionHandler)
-                self.completionHandler(response);
+                self.completionHandler(spidResponse);
         } else {
             SPiDDebugLog(@"Received response from: %@", [self.URL absoluteString]);
             SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithJSONData:data];

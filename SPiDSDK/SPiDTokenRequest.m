@@ -65,14 +65,11 @@
  */
 - (instancetype)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
 
+@property (nonatomic, copy) void(^tokenCompletionHandler)(NSError *error);
+
 @end
 
-@implementation SPiDTokenRequest {
-@private
-
-    void(^_tokenCompletionHandler)(NSError *error);
-
-}
+@implementation SPiDTokenRequest
 
 + (instancetype)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler {
     NSDictionary *postData = [self clientTokenPostData];
@@ -189,7 +186,7 @@
 
 - (instancetype)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
     if ((self = [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil])) {
-        _tokenCompletionHandler = completionHandler;
+        self.tokenCompletionHandler = completionHandler;
     }
     
     return self;
@@ -201,7 +198,7 @@
     NSURLSessionDataTask *task = [[[SPiDClient sharedInstance] URLSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error) {
             SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
-            _tokenCompletionHandler(error);
+            self.tokenCompletionHandler(error);
         } else {
             NSError *jsonError = nil;
             NSDictionary *jsonObject = nil;
@@ -209,23 +206,23 @@
             if ([data length] > 0) {
                 jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
             } else {
-                _tokenCompletionHandler([NSError sp_oauth2ErrorWithCode:SPiDAPIExceptionErrorCode reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]);
+                self.tokenCompletionHandler([NSError sp_oauth2ErrorWithCode:SPiDAPIExceptionErrorCode reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]);
             }
             
             if (!jsonError) {
                 if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
                     NSError *error = [NSError sp_errorFromJSONData:jsonObject];
-                    _tokenCompletionHandler(error);
+                    self.tokenCompletionHandler(error);
                 } else /*if (_receivedData)*/ {
                     SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
                     [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
                     [[SPiDClient sharedInstance] setAccessToken:accessToken];
                     [[SPiDClient sharedInstance] authorizationComplete];
-                    _tokenCompletionHandler(nil);
+                    self.tokenCompletionHandler(nil);
                 }
             } else {
                 SPiDDebugLog(@"Received jsonerror: %@", [jsonError userInfo]);
-                _tokenCompletionHandler([NSError sp_apiErrorWithCode:SPiDJSONParseErrorCode reason:@"Faild to parse JSON response" descriptions:[NSDictionary dictionaryWithObject:[jsonError description] forKey:@"error"]]);
+                self.tokenCompletionHandler([NSError sp_apiErrorWithCode:SPiDJSONParseErrorCode reason:@"Faild to parse JSON response" descriptions:[NSDictionary dictionaryWithObject:[jsonError description] forKey:@"error"]]);
             }
         }
     }];

@@ -14,7 +14,6 @@
 @class SPiDResponse;
 @class SPiDAccessToken;
 @class SPiDRequest;
-@class SPiDError;
 
 static NSString *const defaultAPIVersionSPiD = @"2";
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
@@ -123,7 +122,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @property(strong, nonatomic) SPiDAccessToken *accessToken;
 
 /** Queue for waiting requests */
-@property(nonatomic, strong) NSMutableArray *waitingRequests;
+@property(nonatomic, strong, readonly) NSMutableArray *waitingRequests;
 
 /** NSURLSession for the SPiDClient */
 @property (nonatomic, strong, readonly) NSURLSession *URLSession;

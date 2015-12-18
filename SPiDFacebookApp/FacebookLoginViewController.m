@@ -15,7 +15,7 @@
 @synthesize facebookButton = _facebookButton;
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
 
     self.title = @"SPiD Facebook Example";
     self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];

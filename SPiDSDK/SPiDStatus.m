@@ -5,7 +5,6 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <AdSupport/AdSupport.h>
 #import "SPiDStatus.h"
 #import "NSData+Base64.h"
 

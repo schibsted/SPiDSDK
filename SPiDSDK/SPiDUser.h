@@ -7,8 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class SPiDError;
-
 /** Handles user creation and validation against SPiD.
 
  This requires access to the /signup endpoint with client credentials
