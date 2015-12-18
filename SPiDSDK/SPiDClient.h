@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#define SPID_IOS_SDK_VERSION_STRING @"1.2.4"
+#define SPID_IOS_SDK_VERSION_STRING @"2.0.0"
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -124,6 +124,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
 /** Queue for waiting requests */
 @property(nonatomic, strong) NSMutableArray *waitingRequests;
+
+/** NSURLSession for the SPiDClient */
+@property (nonatomic, strong, readonly) NSURLSession *URLSession;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public Methods

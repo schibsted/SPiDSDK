@@ -16,12 +16,6 @@
 
 @interface SPiDClient ()
 
-/** Initializes the `SPiDClient` should not be called directly
-
- Tries to load the access token from the keychain
- */
-- (id)init;
-
 /** Runs after logout has been completed, should not be called directly */
 - (void)logoutComplete;
 
@@ -42,6 +36,8 @@
  @param url The url to handle
  */
 - (BOOL)doHandleOpenURL:(NSURL *)url;
+
+@property (nonatomic, strong) NSURLSession *URLSession;
 
 @end
 
@@ -218,19 +214,17 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             NSString *path = [@"/logout" stringByAppendingString:[self getLogoutQuery]];
             SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
                 [self logoutComplete];
-/*
-                if (response.error) {
-                    [self clearAuthorizationRequest];
-                } else{
-                    [self logoutComplete];
+                
+                if(completionHandler) {
+                    completionHandler(response.error);
                 }
-*/
-                completionHandler(response.error);
             }];
             return request;
         } else {
-            completionHandler([NSError sp_apiErrorWithCode:-123 reason:@"SPiD request already in progress" descriptions:nil]);
-            // TODO completionHandler( already running);
+            if(completionHandler) {
+                completionHandler([NSError sp_apiErrorWithCode:-123 reason:@"SPiD request already in progress" descriptions:nil]);
+                // TODO completionHandler( already running);
+            }
         }
     }
     return nil;
@@ -356,13 +350,13 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 ///---------------------------------------------------------------------------------------
 
 - (id)init {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         self.accessToken = [SPiDKeychainWrapper getAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
         if (![self apiVersionSPiD]) {
             [self setApiVersionSPiD:[NSString stringWithFormat:@"%@", defaultAPIVersionSPiD]];
         }
         [self setUseMobileWeb:YES];
+        self.URLSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     }
     return self;
 }
