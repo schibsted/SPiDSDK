@@ -20,7 +20,7 @@
     if ([SPiDClient sharedInstance].isAuthorized && ![SPiDClient sharedInstance].isClientToken) {
         [statusRequest startRequestWithAccessToken];
     } else {
-        [statusRequest startRequest];
+        [statusRequest start];
     }
 }
 

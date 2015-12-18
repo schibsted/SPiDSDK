@@ -41,7 +41,7 @@
     return [NSError errorWithDomain:domain code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)spid_oauth2ErrorWithString:(NSString *)errorString {
++ (instancetype)sp_oauth2ErrorWithString:(NSString *)errorString {
     NSInteger errorCode = [self sp_OAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
     return [self sp_oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];

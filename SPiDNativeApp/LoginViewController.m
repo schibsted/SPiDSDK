@@ -125,7 +125,7 @@
             }
             [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
         }];
-        [tokenRequest startRequest];
+        [tokenRequest start];
     }
 }
 

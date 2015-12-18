@@ -69,7 +69,7 @@
                 [user accountRequestWithEmail:email password:password completionHandler:completionHandler];
             }
         }];
-        [clientTokenRequest startRequest];
+        [clientTokenRequest start];
     } else {
         SPiDDebugLog(@"Client token found, creating account");
         [user accountRequestWithEmail:email password:password completionHandler:completionHandler];
@@ -92,7 +92,7 @@
                 [user accountRequestWithJwt:jwt completionHandler:completionHandler];
             }
         }];
-        [clientTokenRequest startRequest];
+        [clientTokenRequest start];
     } else {
         SPiDDebugLog(@"Client token found, creating account");
         [user accountRequestWithJwt:jwt completionHandler:completionHandler];

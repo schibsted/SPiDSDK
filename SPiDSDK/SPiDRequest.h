@@ -15,16 +15,13 @@
 @class SPiDAccessToken;
 @class SPiDResponse;
 
-@interface SPiDRequest : NSObject <NSURLConnectionDelegate> {
+@interface SPiDRequest : NSObject {
 @private
     NSURL *_url;
     NSString *_httpMethod;
     NSString *_httpBody;
 
     void (^_completionHandler)(SPiDResponse *response);
-
-@protected
-    NSMutableData *_receivedData;
 }
 
 @property(nonatomic) NSInteger retryCount;
@@ -64,7 +61,9 @@
 - (void)startRequestWithAccessToken; //TODO rename
 
 /** Runs the request without access token */
-- (void)startRequest;
+- (void)start;
 
+/** Runs a SPiDRequest for a given NSURLRequest */
+- (void)startWithRequest:(NSURLRequest *)request;
 
 @end

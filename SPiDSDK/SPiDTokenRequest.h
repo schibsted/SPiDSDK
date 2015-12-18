@@ -60,5 +60,4 @@
 */
 + (instancetype)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
-
 @end

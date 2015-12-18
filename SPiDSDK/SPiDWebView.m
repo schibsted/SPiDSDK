@@ -121,7 +121,7 @@
             if (code) {
                 SPiDDebugLog(@"Received code: %@", code);
                 SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
-                [tokenRequest startRequest];
+                [tokenRequest start];
                 //self.completionHandler(code, nil);
             } else {
                 _completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);

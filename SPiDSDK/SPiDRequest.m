@@ -10,6 +10,7 @@
 #import "SPiDResponse.h"
 #import "NSError+SPiD.h"
 #import "SPiDStatus.h"
+#import "NSURLRequest+SPiD.h"
 
 @interface SPiDRequest ()
 
@@ -40,49 +41,12 @@
 */
 - (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** 'NSURLConnectionDelegate' method
- 
- Sent as a connection loads message incrementally and concatenates the message to the private instance variable '_receivedData'.
- 
- @param connection The connection sending the data.
- @param data The newly available data.
- */
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-
-/** 'NSURLConnectionDelegate' method
-
- Sent when the connection determines that it must change URLs in order to continue loading a request.
-
- @param connection The connection sending the message.
- @param request The proposed redirected request.
- @param response The URL response that caused the redirect
- @return The actual URL request to use in light of the redirection response.
- */
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response;
-
-/** NSURLConnectionDelegate method 
- 
- Sent when a connection has finished loading successfully.
- 
- @param connection The connection sending the message.
- */
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-
-/** NSURLConnectionDelegate method
- 
- Sent when a connection fails to load its request successfully.
- 
- @param connection The connection sending the message.
- @param error An error object containing details of why the connection failed to load the request successfully.
- */
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
-
 /** Starts a SPiD request
 
  @param urlStr The url as a string
  @param body The body
  */
-- (void)startRequestWithURL:(NSString *)urlStr body:(NSString *)body;
+- (void)startWithRequest:(NSURLRequest *)request;
 
 @end
 
@@ -125,11 +89,11 @@
         }
     }
 
-    [self startRequestWithURL:urlStr body:body];
+    [self startWithRequest:[NSURLRequest sp_requestWithURL:[NSURL URLWithString:urlStr] method:_httpMethod andBody:_httpBody]];
 }
 
-- (void)startRequest {
-    [self startRequestWithURL:[_url absoluteString] body:_httpBody];
+- (void)start {
+    [self startWithRequest:[NSURLRequest sp_requestWithURL:_url method:_httpMethod andBody:_httpBody]];
 }
 
 #pragma mark Private methods
@@ -164,65 +128,37 @@
     return self;
 }
 
-- (void)startRequestWithURL:(NSString *)urlStr body:(NSString *)body {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    [request setHTTPMethod:_httpMethod];
-
-    [request setValue:[SPiDStatus spidUserAgent] forHTTPHeaderField:@"User-Agent"];
-    SPiDDebugLog(@"Running request: %@", urlStr);
-
-    if (body) {
-        [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    _receivedData = [[NSMutableData alloc] init];
+- (void)startWithRequest:(NSURLRequest *)request {
+    SPiDDebugLog(@"Running request: %@", request.URL);
     
-    // Always run on the main run loop.
-    // If not and this method gets called from a background thread, that thread is likely to exit before any of the delegate methods are called.
-    // Since the request isn't blocking the thread and we aren't doing any heavy computation this should be OK to run on main.
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-    [connection scheduleInRunLoop:[NSRunLoop mainRunLoop]
-                          forMode:NSRunLoopCommonModes];
-    [connection start];
-}
-
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
-    if ([[[request URL] absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
-        SPiDDebugLog(@"Redirecting to: %@", [request URL]);
-        return nil;
-    }
-    return request;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [_receivedData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    SPiDDebugLog(@"Received response from: %@", [_url absoluteString]);
-    SPiDResponse *response = [[SPiDResponse alloc] initWithJSONData:_receivedData];
-    _receivedData = nil;
-    NSError *error = [response error];
-    if (error && ([error code] == SPiDOAuth2InvalidTokenErrorCode || [error code] == SPiDOAuth2ExpiredTokenErrorCode)) {
-        if ([self retryCount] < 3) {
-            SPiDDebugLog(@"Invalid token, trying to refresh");
-            [self setRetryCount:[self retryCount] + 1];
-            [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
-        } else {
-            SPiDDebugLog(@"Retried request: %ld times, aborting", [self retryCount]);
+    NSURLSessionDataTask *task = [[[SPiDClient sharedInstance] URLSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(error) {
+            SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
+            SPiDResponse *response = [[SPiDResponse alloc] initWithError:error];
             if (_completionHandler != nil)
                 _completionHandler(response);
+        } else {
+            SPiDDebugLog(@"Received response from: %@", [_url absoluteString]);
+            SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithJSONData:data];
+            NSError *spidError = [spidResponse error];
+            if (spidError && ([spidError code] == SPiDOAuth2InvalidTokenErrorCode || [spidError code] == SPiDOAuth2ExpiredTokenErrorCode)) {
+                if ([self retryCount] < 3) {
+                    SPiDDebugLog(@"Invalid token, trying to refresh");
+                    [self setRetryCount:[self retryCount] + 1];
+                    [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
+                } else {
+                    SPiDDebugLog(@"Retried request: %ld times, aborting", [self retryCount]);
+                    if (_completionHandler != nil)
+                        _completionHandler(spidResponse);
+                }
+            } else {
+                if (_completionHandler != nil)
+                    _completionHandler(spidResponse);
+            }
         }
-    } else {
-        if (_completionHandler != nil)
-            _completionHandler(response);
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
-    SPiDResponse *response = [[SPiDResponse alloc] initWithError:error];
-    if (_completionHandler != nil)
-        _completionHandler(response);
+    }];
+    
+    [task resume];
 }
 
 @end

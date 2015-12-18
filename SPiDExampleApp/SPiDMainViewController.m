@@ -96,7 +96,7 @@
                                 completion:NULL];
             }
         }];
-        [request startRequest];
+        [request start];
     } else {
         [[SPiDClient sharedInstance] browserRedirectLogoutWithCompletionHandler:^(NSError *error) {
             if (!error) {

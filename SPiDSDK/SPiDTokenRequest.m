@@ -63,24 +63,7 @@
  @param completionHandler Called on request completion or error
  @return SPiDTokenRequest
  */
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
-
-/** NSURLConnectionDelegate method
-
- Sent when a connection has finished loading successfully.
-
- @param connection The connection sending the message.
- */
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-
-/** NSURLConnectionDelegate method
-
- Sent when a connection fails to load its request successfully.
-
- @param connection The connection sending the message.
- @param error An error object containing details of why the connection failed to load the request successfully.
- */
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+- (instancetype)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
 
 @end
 
@@ -155,7 +138,6 @@
     [data setValue:client.clientSecret forKey:@"client_secret"];
     [data setValue:@"refresh_token" forKey:@"grant_type"];
     [data setValue:accessToken.refreshToken forKey:@"refresh_token"];
-    //[data setValue:client.tokenURL.absoluteString forKey:@"redirect_uri"];
     return data;
 }
 
@@ -205,43 +187,50 @@
     return data;
 }
 
-- (id)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
-    self = (SPiDTokenRequest *) [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil];
-    _tokenCompletionHandler = completionHandler;
+- (instancetype)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *error))completionHandler {
+    if ((self = [SPiDTokenRequest requestWithPath:requestPath method:@"POST" body:body completionHandler:nil])) {
+        _tokenCompletionHandler = completionHandler;
+    }
+    
     return self;
 }
 
-// NSURLConnection methods
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError *jsonError = nil;
-    NSDictionary *jsonObject = nil;
-    SPiDDebugLog(@"Response token data: %@", [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding]);
-    if ([_receivedData length] > 0) {
-        jsonObject = [NSJSONSerialization JSONObjectWithData:_receivedData options:NSJSONReadingMutableContainers error:&jsonError];
-    } else {
-        _tokenCompletionHandler([NSError sp_oauth2ErrorWithCode:SPiDAPIExceptionErrorCode reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]);
-    }
-
-    if (!jsonError) {
-        if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
-            NSError *error = [NSError sp_errorFromJSONData:jsonObject];
+- (void)startWithRequest:(NSURLRequest *)request {
+    SPiDDebugLog(@"Running token request: %@", request.URL);
+    
+    NSURLSessionDataTask *task = [[[SPiDClient sharedInstance] URLSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(error) {
+            SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
             _tokenCompletionHandler(error);
-        } else /*if (_receivedData)*/ {
-            SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
-            [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
-            [[SPiDClient sharedInstance] setAccessToken:accessToken];
-            [[SPiDClient sharedInstance] authorizationComplete];
-            _tokenCompletionHandler(nil);
+        } else {
+            NSError *jsonError = nil;
+            NSDictionary *jsonObject = nil;
+            SPiDDebugLog(@"Response token data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+            if ([data length] > 0) {
+                jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+            } else {
+                _tokenCompletionHandler([NSError sp_oauth2ErrorWithCode:SPiDAPIExceptionErrorCode reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]);
+            }
+            
+            if (!jsonError) {
+                if ([jsonObject objectForKey:@"error"] && ![[jsonObject objectForKey:@"error"] isEqual:[NSNull null]]) {
+                    NSError *error = [NSError sp_errorFromJSONData:jsonObject];
+                    _tokenCompletionHandler(error);
+                } else /*if (_receivedData)*/ {
+                    SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
+                    [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
+                    [[SPiDClient sharedInstance] setAccessToken:accessToken];
+                    [[SPiDClient sharedInstance] authorizationComplete];
+                    _tokenCompletionHandler(nil);
+                }
+            } else {
+                SPiDDebugLog(@"Received jsonerror: %@", [jsonError userInfo]);
+                _tokenCompletionHandler([NSError sp_apiErrorWithCode:SPiDJSONParseErrorCode reason:@"Faild to parse JSON response" descriptions:[NSDictionary dictionaryWithObject:[jsonError description] forKey:@"error"]]);
+            }
         }
-    } else {
-        SPiDDebugLog(@"Received jsonerror: %@", [jsonError userInfo]);
-        _tokenCompletionHandler([NSError sp_apiErrorWithCode:SPiDJSONParseErrorCode reason:@"Faild to parse JSON response" descriptions:[NSDictionary dictionaryWithObject:[jsonError description] forKey:@"error"]]);
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
-    _tokenCompletionHandler(error);
+    }];
+    
+    [task resume];
 }
 
 @end

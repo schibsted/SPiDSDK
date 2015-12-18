@@ -376,7 +376,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                 //NSAssert(code, @"SPiDOAuth2 missing code, this should not happen.");
                 SPiDDebugLog(@"Received code: %@", code);
                 SPiDTokenRequest *request = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
-                [request startRequest];
+                [request start];
             } else {
                 // Logout
                 _completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
@@ -432,7 +432,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             _authorizationRequest = [SPiDTokenRequest refreshTokenRequestWithCompletionHandler:^(NSError *error) {
                 [self authorizationComplete];
             }];
-            [_authorizationRequest startRequest];
+            [_authorizationRequest start];
         }
     }
 }

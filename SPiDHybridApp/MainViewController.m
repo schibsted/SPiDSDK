@@ -88,7 +88,6 @@
     [self.alertView show];
 }
 
-
 - (void)login:(id)sender {
     NSString *email = self.modalView.emailTextField.text;
     NSString *password = self.modalView.passwordTextField.text;
@@ -105,7 +104,7 @@
             [self showAlertViewWithTitle:[NSString stringWithFormat:@"Received error: %@", error.userInfo.description]];
         }
     }];
-    [tokenRequest startRequest];
+    [tokenRequest start];
 }
 
 - (void)loginWebView {
