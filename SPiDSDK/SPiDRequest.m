@@ -48,6 +48,11 @@
  */
 - (void)startWithRequest:(NSURLRequest *)request;
 
+@property (nonatomic, strong, readwrite) NSURL *URL;
+@property (nonatomic, strong, readwrite) NSString *HTTPMethod;
+@property (nonatomic, strong, readwrite) NSString *HTTPBody;
+@property (nonatomic, copy) void (^completionHandler)(SPiDResponse *response);
+
 @end
 
 @implementation SPiDRequest
@@ -73,27 +78,27 @@
 - (void)startRequestWithAccessToken {
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     //TODO: Should verify this
-    NSString *urlStr = [_url absoluteString];
+    NSString *urlStr = [self.URL absoluteString];
     NSString *body = @"";
-    if ([_httpMethod isEqualToString:@"GET"]) {
+    if ([self.HTTPMethod isEqualToString:@"GET"]) {
         if ([urlStr rangeOfString:@"?"].location == NSNotFound) {
             urlStr = [NSString stringWithFormat:@"%@?oauth_token=%@", urlStr, accessToken.accessToken];
         } else {
             urlStr = [NSString stringWithFormat:@"%@&oauth_token=%@", urlStr, accessToken.accessToken];
         }
-    } else if ([_httpMethod isEqualToString:@"POST"]) {
-        if ([_httpBody length] > 0) {
-            body = [_httpBody stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
+    } else if ([self.HTTPMethod isEqualToString:@"POST"]) {
+        if ([self.HTTPBody length] > 0) {
+            body = [self.HTTPBody stringByAppendingFormat:@"&oauth_token=%@", accessToken.accessToken];
         } else {
-            body = [_httpBody stringByAppendingFormat:@"oauth_token=%@", accessToken.accessToken];
+            body = [self.HTTPBody stringByAppendingFormat:@"oauth_token=%@", accessToken.accessToken];
         }
     }
 
-    [self startWithRequest:[NSURLRequest sp_requestWithURL:[NSURL URLWithString:urlStr] method:_httpMethod andBody:_httpBody]];
+    [self startWithRequest:[NSURLRequest sp_requestWithURL:[NSURL URLWithString:urlStr] method:self.HTTPMethod andBody:self.HTTPBody]];
 }
 
 - (void)start {
-    [self startWithRequest:[NSURLRequest sp_requestWithURL:_url method:_httpMethod andBody:_httpBody]];
+    [self startWithRequest:[NSURLRequest sp_requestWithURL:self.URL method:self.HTTPMethod andBody:self.HTTPBody]];
 }
 
 #pragma mark Private methods
@@ -115,15 +120,15 @@
     if (self) {
         NSString *requestURL = [NSString stringWithFormat:@"%@%@", [[[SPiDClient sharedInstance] serverURL] absoluteString], requestPath];
         if ([method isEqualToString:@""] || [method isEqualToString:@"GET"]) { // Default to GET
-            _url = [NSURL URLWithString:requestURL];
-            _httpMethod = @"GET";
+            self.URL = [NSURL URLWithString:requestURL];
+            self.HTTPMethod = @"GET";
         } else if ([method isEqualToString:@"POST"]) {
-            _url = [NSURL URLWithString:requestURL];
-            _httpMethod = @"POST";
-            _httpBody = [SPiDUtils encodedHttpBodyForDictionary:body];
+            self.URL = [NSURL URLWithString:requestURL];
+            self.HTTPMethod = @"POST";
+            self.HTTPBody = [SPiDUtils encodedHttpBodyForDictionary:body];
         }
         [self setRetryCount:0];
-        self->_completionHandler = completionHandler;
+        self.completionHandler = completionHandler;
     }
     return self;
 }
@@ -135,10 +140,10 @@
         if(error) {
             SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
             SPiDResponse *response = [[SPiDResponse alloc] initWithError:error];
-            if (_completionHandler != nil)
-                _completionHandler(response);
+            if (self.completionHandler)
+                self.completionHandler(response);
         } else {
-            SPiDDebugLog(@"Received response from: %@", [_url absoluteString]);
+            SPiDDebugLog(@"Received response from: %@", [self.URL absoluteString]);
             SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithJSONData:data];
             NSError *spidError = [spidResponse error];
             if (spidError && ([spidError code] == SPiDOAuth2InvalidTokenErrorCode || [spidError code] == SPiDOAuth2ExpiredTokenErrorCode)) {
@@ -148,12 +153,12 @@
                     [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
                 } else {
                     SPiDDebugLog(@"Retried request: %ld times, aborting", [self retryCount]);
-                    if (_completionHandler != nil)
-                        _completionHandler(spidResponse);
+                    if (self.completionHandler)
+                        self.completionHandler(spidResponse);
                 }
             } else {
-                if (_completionHandler != nil)
-                    _completionHandler(spidResponse);
+                if (self.completionHandler)
+                    self.completionHandler(spidResponse);
             }
         }
     }];

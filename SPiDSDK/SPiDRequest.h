@@ -15,15 +15,11 @@
 @class SPiDAccessToken;
 @class SPiDResponse;
 
-@interface SPiDRequest : NSObject {
-@private
-    NSURL *_url;
-    NSString *_httpMethod;
-    NSString *_httpBody;
+@interface SPiDRequest : NSObject
 
-    void (^_completionHandler)(SPiDResponse *response);
-}
-
+@property (nonatomic, strong, readonly) NSURL *URL;
+@property (nonatomic, strong, readonly) NSString *HTTPMethod;
+@property (nonatomic, strong, readonly) NSString *HTTPBody;
 @property(nonatomic) NSInteger retryCount;
 
 ///---------------------------------------------------------------------------------------
