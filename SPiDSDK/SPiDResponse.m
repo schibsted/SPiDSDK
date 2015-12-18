@@ -23,11 +23,11 @@
                 SPiDDebugLog(@"JSON parse error: %@", self.rawJSON);
             } else {
                 if ([[self message] objectForKey:@"error"] && ![[[self message] objectForKey:@"error"] isEqual:[NSNull null]]) {
-                    [self setError:[NSError errorFromJSONData:[self message]]];
+                    [self setError:[NSError sp_errorFromJSONData:[self message]]];
                 } // else everything ok
             }
         } else {
-            [self setError:[NSError apiErrorWithCode:SPiDUserAbortedLogin reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]];
+            [self setError:[NSError sp_apiErrorWithCode:SPiDUserAbortedLogin reason:@"ApiException" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"Recevied empty response", @"error", nil]]];
         }
     }
     return self;

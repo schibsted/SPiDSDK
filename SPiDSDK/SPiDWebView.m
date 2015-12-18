@@ -108,7 +108,7 @@
         if ([webView isLoading])
             [webView stopLoading];
         [webView setDelegate:nil];
-        _completionHandler([NSError oauth2ErrorWithString:error]);
+        _completionHandler([NSError sp_oauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -124,12 +124,9 @@
                 [tokenRequest startRequest];
                 //self.completionHandler(code, nil);
             } else {
-                _completionHandler([NSError oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                _completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
             }
-        } /*else if ([urlString hasSuffix:@"failure"]) {
-            _completionHandler(nil, [NSError oauth2ErrorWithString:]);
-            return NO;
-        }*/
+        }
         return NO;
     }
     return YES;

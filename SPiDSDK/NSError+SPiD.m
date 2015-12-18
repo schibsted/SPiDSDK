@@ -10,7 +10,7 @@
 
 @implementation NSError (SPiD)
 
-+ (instancetype)errorFromJSONData:(NSDictionary *)dictionary {
++ (instancetype)sp_errorFromJSONData:(NSDictionary *)dictionary {
     NSString *domain;
     NSDictionary *descriptions;
     NSInteger originalErrorCode;
@@ -20,7 +20,7 @@
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
         domain = [errorDict objectForKey:@"type"];
         originalErrorCode = [[errorDict objectForKey:@"code"] integerValue];
-        errorCode = [self SPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
+        errorCode = [self sp_OAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
         if ([[errorDict objectForKey:@"description"] isKindOfClass:[NSDictionary class]]) {
             descriptions = [errorDict objectForKey:@"description"];
         } else {
@@ -30,7 +30,7 @@
         domain = [dictionary objectForKey:@"error"];
         descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"error_description"], @"error", nil];
         originalErrorCode = [[dictionary objectForKey:@"error_code"] integerValue];
-        errorCode = [self SPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
+        errorCode = [self sp_OAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
     }
 
     if (descriptions.count == 0) {
@@ -41,13 +41,13 @@
     return [NSError errorWithDomain:domain code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)oauth2ErrorWithString:(NSString *)errorString {
-    NSInteger errorCode = [self SPiDOAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
++ (instancetype)spid_oauth2ErrorWithString:(NSString *)errorString {
+    NSInteger errorCode = [self sp_OAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
-    return [self oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
+    return [self sp_oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
 }
 
-+ (instancetype)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
++ (instancetype)sp_oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
     if ([reason length] > 0) {
         info = [NSMutableDictionary dictionary];
@@ -56,7 +56,7 @@
     return [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
++ (instancetype)sp_apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
     if ([reason length] > 0) {
         info = [NSMutableDictionary dictionary];
@@ -65,7 +65,7 @@
     return [NSError errorWithDomain:@"ApiException" code:errorCode userInfo:descriptions];
 }
 
-+ (NSInteger)SPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError {
++ (NSInteger)sp_OAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError {
     NSInteger errorCode = 0;
     if ([errorDomain caseInsensitiveCompare:@"redirect_uri_mismatch"] == NSOrderedSame) {
         errorCode = SPiDOAuth2RedirectURIMismatchErrorCode;

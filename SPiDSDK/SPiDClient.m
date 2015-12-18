@@ -229,7 +229,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
             }];
             return request;
         } else {
-            completionHandler([NSError apiErrorWithCode:-123 reason:@"SPiD request already in progress" descriptions:nil]);
+            completionHandler([NSError sp_apiErrorWithCode:-123 reason:@"SPiD request already in progress" descriptions:nil]);
             // TODO completionHandler( already running);
         }
     }
@@ -371,7 +371,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSString *error = [SPiDUtils getUrlParameter:url forKey:@"error"];
     if (error) {
         SPiDDebugLog(@"Received error from SPiD: %@", error)
-        _completionHandler([NSError oauth2ErrorWithString:error]);
+        _completionHandler([NSError sp_oauth2ErrorWithString:error]);
         return NO;
     } else {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -385,7 +385,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                 [request startRequest];
             } else {
                 // Logout
-                _completionHandler([NSError oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                _completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
             }
         } else if ([urlString hasSuffix:@"logout"]) {
             SPiDDebugLog(@"Logged out from SPiD");

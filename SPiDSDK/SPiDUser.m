@@ -101,7 +101,7 @@
 
 + (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler {
     if (![SPiDClient sharedInstance].isAuthorized || [SPiDClient sharedInstance].isClientToken) {
-        completionHandler([NSError oauth2ErrorWithCode:-9999 reason:@"User token needed" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User token needed to attach facebook", @"error", nil]]);
+        completionHandler([NSError sp_oauth2ErrorWithCode:-9999 reason:@"User token needed" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User token needed to attach facebook", @"error", nil]]);
     }
 
     SPiDJwt *jwt = [self attachFacebookJwtWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
@@ -152,7 +152,7 @@
 
 - (NSError *)validateEmail:(NSString *)email password:(NSString *)password {
     if (![SPiDUtils validateEmail:email]) {
-        return [NSError oauth2ErrorWithCode:SPiDInvalidEmailAddressErrorCode reason:@"ValidationError" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"The email address is invalid", @"error", nil]];
+        return [NSError sp_oauth2ErrorWithCode:SPiDInvalidEmailAddressErrorCode reason:@"ValidationError" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"The email address is invalid", @"error", nil]];
     }
     return nil;
 }
