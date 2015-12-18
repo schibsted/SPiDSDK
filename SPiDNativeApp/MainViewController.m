@@ -18,7 +18,7 @@
 @synthesize logoutButton = _logoutButton;
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
     // Requires user token
     if ([SPiDClient sharedInstance].isAuthorized && ![SPiDClient sharedInstance].isClientToken) {
         self.title = @"SPiD";
