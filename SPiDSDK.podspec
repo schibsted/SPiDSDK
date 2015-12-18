@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.authors      = { "Mikael Lindström" => "mikael.lindstrom@schibsted.com", "Oskar Höjwall" => "oskar.hojwall@schibsted.com" }
 
-  s.platform     = :ios, "6.0"
+  s.platform     = :ios, "7.0"
 
   s.source       = { :git => 'https://github.com/schibsted/sdk-ios.git', :tag => s.version.to_s }
 
