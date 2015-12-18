@@ -110,20 +110,22 @@
     } else {
         [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
         SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
-            [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
-
-            NSString *title;
-            if (error == nil) {
-                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-                return;
-            } else if ([error code] == SPiDOAuth2UnverifiedUserErrorCode) {
-                title = @"Unverified user, please check your email";
-            } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
-                title = @"Invalid email and/or password";
-            } else {
-                title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
-            }
-            [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
+                
+                NSString *title;
+                if (error == nil) {
+                    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                    return;
+                } else if ([error code] == SPiDOAuth2UnverifiedUserErrorCode) {
+                    title = @"Unverified user, please check your email";
+                } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
+                    title = @"Invalid email and/or password";
+                } else {
+                    title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
+                }
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
+            });
         }];
         [tokenRequest start];
     }
@@ -148,7 +150,6 @@
     TermsViewController *termsViewController = [[TermsViewController alloc] init];
     [self.navigationController pushViewController:termsViewController animated:YES];
 }
-
 
 - (IBAction)dismissKeyboard:(id)sender {
     [[self view] endEditing:YES];

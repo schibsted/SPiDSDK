@@ -60,12 +60,14 @@
     SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
     [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
-        if (![response error]) {
-            [appDelegate dismissAlertView];
-            NSDictionary *data = [[response message] objectForKey:@"data"];
-            NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
-            [[self userLabel] setText:user];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (![response error]) {
+                [appDelegate dismissAlertView];
+                NSDictionary *data = [[response message] objectForKey:@"data"];
+                NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
+                [[self userLabel] setText:user];
+            }
+        });
     }];
 }
 
