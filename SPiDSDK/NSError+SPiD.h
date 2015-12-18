@@ -52,7 +52,7 @@
 
 @end
 
-enum {
+typedef NS_ENUM(NSInteger, SPiD) {
     SPiDOAuth2RedirectURIMismatchErrorCode = -1000,
     SPiDOAuth2UnauthorizedClientErrorCode = -1001,
     SPiDOAuth2AccessDeniedErrorCode = -1002,
