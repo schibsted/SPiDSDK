@@ -94,7 +94,7 @@
         }
     }
 
-    [self startWithRequest:[NSURLRequest sp_requestWithURL:[NSURL URLWithString:urlStr] method:self.HTTPMethod andBody:self.HTTPBody]];
+    [self startWithRequest:[NSURLRequest sp_requestWithURL:[NSURL URLWithString:urlStr] method:self.HTTPMethod andBody:body]];
 }
 
 - (void)start {
