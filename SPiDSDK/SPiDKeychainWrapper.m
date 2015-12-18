@@ -35,7 +35,7 @@
 /// @name Public methods
 ///---------------------------------------------------------------------------------------
 
-+ (SPiDAccessToken *)getAccessTokenFromKeychainForIdentifier:(NSString *)identifier; {
++ (SPiDAccessToken *)accessTokenFromKeychainForIdentifier:(NSString *)identifier; {
     NSMutableDictionary *query = [self setupSearchQueryForIdentifier:identifier];
 
     // search attributes

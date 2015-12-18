@@ -198,7 +198,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  Redirects to safari to logout from SPiD and remove cookie.
  Also removes access token from keychain
 
- @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.
+ @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Called on logout completion or error
  @see isAuthorized
  */

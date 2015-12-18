@@ -344,7 +344,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
 - (id)init {
     if (self = [super init]) {
-        self.accessToken = [SPiDKeychainWrapper getAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
+        self.accessToken = [SPiDKeychainWrapper accessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
         if (![self apiVersionSPiD]) {
             [self setApiVersionSPiD:[NSString stringWithFormat:@"%@", defaultAPIVersionSPiD]];
         }

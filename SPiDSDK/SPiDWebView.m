@@ -108,7 +108,7 @@
         if ([webView isLoading])
             [webView stopLoading];
         [webView setDelegate:nil];
-        _completionHandler([NSError sp_oauth2ErrorWithString:error]);
+        self.completionHandler([NSError sp_oauth2ErrorWithString:error]);
         return NO;
     } else if ([[url absoluteString] hasPrefix:[[SPiDClient sharedInstance] appURLScheme]]) {
         NSString *urlString = [[[url absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0];
@@ -120,11 +120,11 @@
             NSString *code = [SPiDUtils getUrlParameter:url forKey:@"code"];
             if (code) {
                 SPiDDebugLog(@"Received code: %@", code);
-                SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:_completionHandler];
+                SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithCode:code completionHandler:self.completionHandler];
                 [tokenRequest start];
                 //self.completionHandler(code, nil);
             } else {
-                _completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
+                self.completionHandler([NSError sp_oauth2ErrorWithCode:SPiDUserAbortedLogin reason:@"UserAbortedLogin" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User aborted login", @"error", nil]]);
             }
         }
         return NO;
@@ -148,7 +148,7 @@
             [webView stopLoading];
         [webView setDelegate:nil];
 
-        _completionHandler((NSError *) error);
+        self.completionHandler((NSError *) error);
     }
 }
 
