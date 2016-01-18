@@ -8,7 +8,7 @@
 #import "SPiDUser.h"
 #import "SPiDClient.h"
 #import "SPiDAccessToken.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SPiDResponse.h"
 #import "SPiDTokenRequest.h"
 #import "SPiDJwt.h"
@@ -46,22 +46,22 @@
 */
 - (NSDictionary *)userPostDataWithJwt:(SPiDJwt *)jwt;
 
-- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
 
-- (void)accountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)accountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(NSError *))completionHandler;
 
-- (void)attachAccountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)attachAccountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(NSError *))completionHandler;
 @end
 
 @implementation SPiDUser
 
-+ (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *response))completionHandler {
++ (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *response))completionHandler {
     SPiDUser *user = [[SPiDUser alloc] init];
     // Get client token
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || !accessToken.isClientToken) {
         SPiDDebugLog(@"No client token found, trying to request one");
-        SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(SPiDError *error) {
+        SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(NSError *error) {
             if (error) {
                 completionHandler(error);
             } else {
@@ -69,14 +69,14 @@
                 [user accountRequestWithEmail:email password:password completionHandler:completionHandler];
             }
         }];
-        [clientTokenRequest startRequest];
+        [clientTokenRequest start];
     } else {
         SPiDDebugLog(@"Client token found, creating account");
         [user accountRequestWithEmail:email password:password completionHandler:completionHandler];
     }
 }
 
-+ (void)createAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
++ (void)createAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler {
     SPiDJwt *jwt = [self facebookJwtWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
     SPiDUser *user = [[SPiDUser alloc] init];
 
@@ -84,7 +84,7 @@
     SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
     if (accessToken == nil || !accessToken.isClientToken) {
         SPiDDebugLog(@"No client token found, trying to request one");
-        SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(SPiDError *error) {
+        SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(NSError *error) {
             if (error) {
                 completionHandler(error);
             } else {
@@ -92,16 +92,16 @@
                 [user accountRequestWithJwt:jwt completionHandler:completionHandler];
             }
         }];
-        [clientTokenRequest startRequest];
+        [clientTokenRequest start];
     } else {
         SPiDDebugLog(@"Client token found, creating account");
         [user accountRequestWithJwt:jwt completionHandler:completionHandler];
     }
 }
 
-+ (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler {
++ (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler {
     if (![SPiDClient sharedInstance].isAuthorized || [SPiDClient sharedInstance].isClientToken) {
-        completionHandler([SPiDError oauth2ErrorWithCode:-9999 reason:@"User token needed" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User token needed to attach facebook", @"error", nil]]);
+        completionHandler([NSError sp_oauth2ErrorWithCode:-9999 reason:@"User token needed" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"User token needed to attach facebook", @"error", nil]]);
     }
 
     SPiDJwt *jwt = [self attachFacebookJwtWithAppId:appId facebookToken:facebookToken expirationDate:expirationDate];
@@ -150,9 +150,9 @@
     return data;
 }
 
-- (SPiDError *)validateEmail:(NSString *)email password:(NSString *)password {
+- (NSError *)validateEmail:(NSString *)email password:(NSString *)password {
     if (![SPiDUtils validateEmail:email]) {
-        return [SPiDError oauth2ErrorWithCode:SPiDInvalidEmailAddressErrorCode reason:@"ValidationError" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"The email address is invalid", @"error", nil]];
+        return [NSError sp_oauth2ErrorWithCode:SPiDInvalidEmailAddressErrorCode reason:@"ValidationError" descriptions:[NSDictionary dictionaryWithObjectsAndKeys:@"The email address is invalid", @"error", nil]];
     }
     return nil;
 }
@@ -161,7 +161,7 @@
 /// @name Private Methods
 ///---------------------------------------------------------------------------------------
 
-- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *))completionHandler {
+- (void)accountRequestWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler {
     NSDictionary *postBody = [self userPostDataWithEmail:email password:password];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
@@ -169,7 +169,7 @@
     [request startRequestWithAccessToken];
 }
 
-- (void)accountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler {
+- (void)accountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(NSError *))completionHandler {
     NSDictionary *postBody = [self userPostDataWithJwt:jwt];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/signup_jwt" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);
@@ -177,7 +177,7 @@
     [request startRequestWithAccessToken];
 }
 
-- (void)attachAccountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(SPiDError *))completionHandler {
+- (void)attachAccountRequestWithJwt:(SPiDJwt *)jwt completionHandler:(void (^)(NSError *))completionHandler {
     NSDictionary *postBody = [self userPostDataWithJwt:jwt];
     SPiDRequest *request = [SPiDRequest apiPostRequestWithPath:@"/user/attach_jwt" body:postBody completionHandler:^(SPiDResponse *response) {
         completionHandler([response error]);

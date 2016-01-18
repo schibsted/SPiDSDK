@@ -104,6 +104,7 @@
 		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		53AAD36617247DDA00C2F497 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */; };
+		5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */; };
 		E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E752C72346E314762407 /* SPiDWebView.h */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
@@ -120,8 +121,8 @@
 		E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EC34E54EE6F302C3BE2A /* red_button@2x.png */; };
 		E304E5886D575207EE4574AD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7EE2A65B25A228D8133 /* LoginViewController.m */; };
 		E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */; };
-		E304E5C0409AACEABCFE6A9D /* SPiDError.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* SPiDError.m */; };
-		E304E5E647CEE9ECDCD6ACED /* SPiDError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* SPiDError.h */; };
+		E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiD.m */; };
+		E304E5E647CEE9ECDCD6ACED /* NSError+SPiD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiD.h */; };
 		E304E6160DDD5CEE381C1946 /* ModalLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E960D295875190CA848E /* ModalLoginView.m */; };
 		E304E62AC86C9650891094B6 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E4602FCA00B6130BF009 /* red_button.png */; };
 		E304E6640827CCA423BA6D78 /* facebook-login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E78AD685949E4766960F /* facebook-login-button-small.png */; };
@@ -139,7 +140,6 @@
 		E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */; };
 		E304E9ECCDD994BB72DD543D /* SPiDJwt.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E028433CF8954B044781 /* SPiDJwt.h */; };
 		E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
-		E304EA74C865B5C825FB7F3D /* SPiDAccessTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E391019514DB903535FF /* SPiDAccessTokenTests.m */; };
 		E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E74CE552DDD7DA85CADB /* SPiDResponse.h */; };
 		E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF927327F5217C9FBBD0 /* Default.png */; };
 		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
@@ -228,7 +228,7 @@
 				E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */,
 				E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */,
 				E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */,
-				E304E5E647CEE9ECDCD6ACED /* SPiDError.h in CopyFiles */,
+				E304E5E647CEE9ECDCD6ACED /* NSError+SPiD.h in CopyFiles */,
 				E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */,
 				E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */,
 				E304E9ECCDD994BB72DD543D /* SPiDJwt.h in CopyFiles */,
@@ -328,25 +328,26 @@
 		53989FC4160726C900CB1BDD /* SPiDMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDMainView.xib; sourceTree = "<group>"; };
 		539B8468162FF8E60066EB89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SPiD.h"; sourceTree = "<group>"; };
+		5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+SPiD.m"; sourceTree = "<group>"; };
 		E304E028433CF8954B044781 /* SPiDJwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDJwt.h; sourceTree = "<group>"; };
 		E304E0F3D65E0934EEC9BCBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small@2x.png"; sourceTree = "<group>"; };
 		E304E18838B69AB7C22D2017 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E304E189CF307C539E49A2A1 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		E304E1D5F9987092B6438572 /* SPiDJwt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDJwt.m; sourceTree = "<group>"; };
-		E304E24883200DCA88A4E70C /* SPiDError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDError.m; sourceTree = "<group>"; };
+		E304E24883200DCA88A4E70C /* NSError+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SPiD.m"; sourceTree = "<group>"; };
 		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUtils.h; sourceTree = "<group>"; };
 		E304E28946789A36FF358EC0 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
-		E304E391019514DB903535FF /* SPiDAccessTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessTokenTests.m; sourceTree = "<group>"; };
 		E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Crypto.h"; sourceTree = "<group>"; };
 		E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed.png"; sourceTree = "<group>"; };
 		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
 		E304E4356DC3EEDF0A7653AB /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E4801E76F6F93C43AB67 /* SPiDStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDStatus.m; sourceTree = "<group>"; };
-		E304E4D3494537377633CA3E /* SPiDError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDError.h; sourceTree = "<group>"; };
+		E304E4D3494537377633CA3E /* NSError+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiD.h"; sourceTree = "<group>"; };
 		E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
 		E304E57DC15056390ADACC87 /* LoadingAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingAlertView.m; sourceTree = "<group>"; };
 		E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
@@ -373,7 +374,6 @@
 		E304E9BAD5499EEFE7846D26 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
 		E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
-		E304E9E202656E517CD6E518 /* SPiDAccessTokenTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessTokenTests.h; sourceTree = "<group>"; };
 		E304E9E3B2550A68C86B42E0 /* mainpage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mainpage.html; sourceTree = "<group>"; };
 		E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
@@ -734,8 +734,8 @@
 		537D21F415FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXGroup;
 			children = (
-				E304E4D3494537377633CA3E /* SPiDError.h */,
-				E304E24883200DCA88A4E70C /* SPiDError.m */,
+				E304E4D3494537377633CA3E /* NSError+SPiD.h */,
+				E304E24883200DCA88A4E70C /* NSError+SPiD.m */,
 				E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */,
 				E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */,
 				E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */,
@@ -763,6 +763,8 @@
 				E304E752C72346E314762407 /* SPiDWebView.h */,
 				E304E4801E76F6F93C43AB67 /* SPiDStatus.m */,
 				E304EF14B76195254AE32548 /* SPiDStatus.h */,
+				5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */,
+				5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -781,8 +783,6 @@
 				537D220A15FF224C000ABCA6 /* Supporting Files */,
 				537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */,
 				537D221015FF224C000ABCA6 /* SPiDSDKTests.m */,
-				E304E9E202656E517CD6E518 /* SPiDAccessTokenTests.h */,
-				E304E391019514DB903535FF /* SPiDAccessTokenTests.m */,
 			);
 			path = SPiDSDKTests;
 			sourceTree = "<group>";
@@ -884,7 +884,7 @@
 			name = SPiDHybridAppTests;
 			productName = SPiDHybridAppTests;
 			productReference = 531E477517782E6500AB6B6B /* SPiDHybridAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		532B21B216AD5737000DBA55 /* SPiDFacebookApp */ = {
 			isa = PBXNativeTarget;
@@ -921,7 +921,7 @@
 			name = SPiDFacebookAppTests;
 			productName = SPiDFacebookAppTests;
 			productReference = 532B21CF16AD5737000DBA55 /* SPiDFacebookAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		532B21E716AD5786000DBA55 /* SPiDNativeApp */ = {
 			isa = PBXNativeTarget;
@@ -958,7 +958,7 @@
 			name = SPiDNativeAppTests;
 			productName = SPiDNativeAppTests;
 			productReference = 532B220416AD5786000DBA55 /* SPiDNativeAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		537D21EE15FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXNativeTarget;
@@ -994,7 +994,7 @@
 			name = SPiDSDKTests;
 			productName = SPiDSDKTests;
 			productReference = 537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		537D221D15FF2374000ABCA6 /* SPiDExampleApp */ = {
 			isa = PBXNativeTarget;
@@ -1031,7 +1031,7 @@
 			name = SPiDExampleAppTests;
 			productName = SPiDExampleAppTests;
 			productReference = 537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -1039,7 +1039,8 @@
 		537D21E615FF224C000ABCA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastTestingUpgradeCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Mikael Lindström";
 			};
 			buildConfigurationList = 537D21E915FF224C000ABCA6 /* Build configuration list for PBXProject "SPiDSDK" */;
@@ -1320,13 +1321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */,
 				535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */,
 				E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */,
 				E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */,
 				E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */,
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
-				E304E5C0409AACEABCFE6A9D /* SPiDError.m in Sources */,
+				E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */,
 				E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */,
 				E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */,
 				E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */,
@@ -1342,7 +1344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */,
-				E304EA74C865B5C825FB7F3D /* SPiDAccessTokenTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1487,9 +1488,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridApp/SPiDHybridApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1505,9 +1507,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridApp/SPiDHybridApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1529,6 +1532,7 @@
 				INFOPLIST_FILE = "SPiDHybridAppTests/SPiDHybridAppTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1549,6 +1553,7 @@
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridAppTests/SPiDHybridAppTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1569,12 +1574,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookApp/SPiDFacebookApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.spid.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1595,12 +1601,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookApp/SPiDFacebookApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.spid.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1622,6 +1629,7 @@
 				INFOPLIST_FILE = "SPiDFacebookAppTests/SPiDFacebookAppTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1642,6 +1650,7 @@
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookAppTests/SPiDFacebookAppTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1657,9 +1666,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeApp/SPiDNativeApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1675,9 +1685,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeApp/SPiDNativeApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1699,6 +1710,7 @@
 				INFOPLIST_FILE = "SPiDNativeAppTests/SPiDNativeAppTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1719,6 +1731,7 @@
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeAppTests/SPiDNativeAppTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1750,12 +1763,16 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/builds/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1763,12 +1780,13 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
@@ -1786,18 +1804,22 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/builds/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1846,6 +1868,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
 				INFOPLIST_FILE = "SPiDSDKTests/SPiDSDKTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1861,6 +1884,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
 				INFOPLIST_FILE = "SPiDSDKTests/SPiDSDKTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1878,8 +1902,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.schibsted.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1900,9 +1925,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.schibsted.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1922,6 +1948,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleAppTests/SPiDExampleAppTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1939,6 +1966,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleAppTests/SPiDExampleAppTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

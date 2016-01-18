@@ -5,12 +5,12 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SPiDClient.h"
 
-@implementation SPiDError
+@implementation NSError (SPiD)
 
-+ (instancetype)errorFromJSONData:(NSDictionary *)dictionary {
++ (instancetype)sp_errorFromJSONData:(NSDictionary *)dictionary {
     NSString *domain;
     NSDictionary *descriptions;
     NSInteger originalErrorCode;
@@ -20,7 +20,7 @@
         NSDictionary *errorDict = [dictionary objectForKey:@"error"];
         domain = [errorDict objectForKey:@"type"];
         originalErrorCode = [[errorDict objectForKey:@"code"] integerValue];
-        errorCode = [self getSPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
+        errorCode = [self sp_OAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
         if ([[errorDict objectForKey:@"description"] isKindOfClass:[NSDictionary class]]) {
             descriptions = [errorDict objectForKey:@"description"];
         } else {
@@ -30,7 +30,7 @@
         domain = [dictionary objectForKey:@"error"];
         descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"error_description"], @"error", nil];
         originalErrorCode = [[dictionary objectForKey:@"error_code"] integerValue];
-        errorCode = [self getSPiDOAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
+        errorCode = [self sp_OAuth2ErrorCodeFromDomain:domain andAPIErrorCode:originalErrorCode];
     }
 
     if (descriptions.count == 0) {
@@ -38,46 +38,34 @@
     }
 
     SPiDDebugLog("Received '%@' with code '%ld' and description: %@", domain, originalErrorCode, [descriptions description]);
-    SPiDError *error = [SPiDError errorWithDomain:domain code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
-    return error;
+    return [NSError errorWithDomain:domain code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)oauth2ErrorWithString:(NSString *)errorString {
-    NSInteger errorCode = [self getSPiDOAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
++ (instancetype)sp_oauth2ErrorWithString:(NSString *)errorString {
+    NSInteger errorCode = [self sp_OAuth2ErrorCodeFromDomain:errorString andAPIErrorCode:0];
     NSDictionary *descriptions = [NSDictionary dictionaryWithObjectsAndKeys:errorString, @"error", nil];
-    return [self oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
+    return [self sp_oauth2ErrorWithCode:errorCode reason:errorString descriptions:descriptions];
 }
 
-+ (instancetype)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
++ (instancetype)sp_oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
     if ([reason length] > 0) {
         info = [NSMutableDictionary dictionary];
         if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
     }
-    SPiDError *error = [SPiDError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
-    return error;
+    return [NSError errorWithDomain:@"SPiDOAuth2" code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
++ (instancetype)sp_apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions {
     NSMutableDictionary *info = nil;
     if ([reason length] > 0) {
         info = [NSMutableDictionary dictionary];
         if ([reason length] > 0) [info setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
     }
-    SPiDError *error = [SPiDError errorWithDomain:@"ApiException" code:errorCode userInfo:nil];
-    error.descriptions = descriptions;
-    return error;
+    return [NSError errorWithDomain:@"ApiException" code:errorCode userInfo:descriptions];
 }
 
-+ (instancetype)errorFromNSError:(NSError *)error {
-    SPiDError *spidError = [SPiDError errorWithDomain:error.domain code:error.code userInfo:error.userInfo];
-    spidError.descriptions = [NSDictionary dictionaryWithObjectsAndKeys:[spidError localizedDescription], @"error", nil];;
-    return spidError;
-}
-
-+ (NSInteger)getSPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError {
++ (NSInteger)sp_OAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError {
     NSInteger errorCode = 0;
     if ([errorDomain caseInsensitiveCompare:@"redirect_uri_mismatch"] == NSOrderedSame) {
         errorCode = SPiDOAuth2RedirectURIMismatchErrorCode;

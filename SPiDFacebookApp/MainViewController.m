@@ -11,7 +11,7 @@
 #import "SPiDFacebookAppDelegate.h"
 #import "SPiDResponse.h"
 #import "SPiDRequest.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 
 
 @implementation MainViewController
@@ -20,7 +20,7 @@
 @synthesize userLabel = _userLabel;
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
     if ([[SPiDClient sharedInstance] isAuthorized]) {
         self.title = @"SPiD";
         self.view.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
@@ -60,7 +60,7 @@
 - (void)getUserName {
     SPiDFacebookAppDelegate *appDelegate = (SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
-    [[SPiDClient sharedInstance] getCurrentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
+    [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
         [appDelegate dismissAlertView];
         if (![response error]) {
             NSDictionary *data = [[response message] objectForKey:@"data"];
@@ -74,7 +74,7 @@
 }
 
 - (void)logoutFromSPiD:(id)sender {
-    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(SPiDError *response) {
+    SPiDRequest *request = [[SPiDClient sharedInstance] logoutRequestWithCompletionHandler:^(NSError *response) {
         // TODO: this is a ugly solution
         [self viewWillDisappear:NO];
         [self viewWillAppear:NO];

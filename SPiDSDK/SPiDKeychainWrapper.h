@@ -25,7 +25,7 @@
  @param identifier Unique identification for this keychain item
  @return Access token if available otherwise nil
  */
-+ (SPiDAccessToken *)getAccessTokenFromKeychainForIdentifier:(NSString *)identifier;
++ (SPiDAccessToken *)accessTokenFromKeychainForIdentifier:(NSString *)identifier;
 
 /** Saves access token to keychain
  Tries to save the access token to the keychain

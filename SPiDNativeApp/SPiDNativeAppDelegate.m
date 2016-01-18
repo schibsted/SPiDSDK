@@ -9,7 +9,7 @@
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDTokenRequest.h"
 #import "MainViewController.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 
 static NSString *const ClientID = @"your-client-id";
 static NSString *const ClientSecret = @"your-client-secret";
@@ -40,14 +40,14 @@ static NSString *const ServerURL = @"your-spidserver-url";
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    BOOL didSPiDHandleURL = [[SPiDClient sharedInstance] handleOpenURL:url completionHandler:^(SPiDError *error) {
+    BOOL didSPiDHandleURL = [[SPiDClient sharedInstance] handleOpenURL:url completionHandler:^(NSError *error) {
         if (error == nil) {
             if ([SPiDClient sharedInstance].isAuthorized && ![SPiDClient sharedInstance].isClientToken) {
                 SPiDDebugLog(@"SPiD login successful");
                 [self.rootNavigationController dismissViewControllerAnimated:YES completion:nil];
             }
         } else {
-            SPiDDebugLog(@"Received error: %@", error.descriptions.description);
+            SPiDDebugLog(@"Received error: %@", error.userInfo.description);
         }
     }];
 

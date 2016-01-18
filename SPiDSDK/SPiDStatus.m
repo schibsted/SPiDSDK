@@ -5,7 +5,6 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <AdSupport/AdSupport.h>
 #import "SPiDStatus.h"
 #import "NSData+Base64.h"
 
@@ -20,7 +19,7 @@
     if ([SPiDClient sharedInstance].isAuthorized && ![SPiDClient sharedInstance].isClientToken) {
         [statusRequest startRequestWithAccessToken];
     } else {
-        [statusRequest startRequest];
+        [statusRequest start];
     }
 }
 

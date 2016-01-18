@@ -64,19 +64,6 @@ extern NSString *const SPiDAccessTokenRefreshTokenKey;
  */
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
-/** Decodes the access token
-
- @param decoder Decoder to use
- @return SPiDAccessToken or nil if token is invalid
- */
-- (id)initWithCoder:(NSCoder *)decoder;
-
-/** Encodes the access token
-
- @param coder Encoder to use
- */
-- (void)encodeWithCoder:(NSCoder *)coder;
-
 - (NSString *)stringFromObject:(id)obj;
 
 /** Checks if the access token has expired

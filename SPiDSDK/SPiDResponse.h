@@ -7,8 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class SPiDError;
-
 /**
  `SPiDResponse` is created for each response from SPiD made by a `SPiDRequest`
 
@@ -24,7 +22,7 @@
 ///---------------------------------------------------------------------------------------
 
 /** Contains error if there was any, otherwise nil */
-@property(strong, nonatomic) SPiDError *error;
+@property(strong, nonatomic) NSError *error;
 
 /** Received JSON message converted to a dictionary */
 @property(strong, nonatomic) NSDictionary *message;

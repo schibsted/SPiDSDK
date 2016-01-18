@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#define SPID_IOS_SDK_VERSION_STRING @"1.2.4"
+#define SPID_IOS_SDK_VERSION_STRING @"2.0.0"
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -14,7 +14,6 @@
 @class SPiDResponse;
 @class SPiDAccessToken;
 @class SPiDRequest;
-@class SPiDError;
 
 static NSString *const defaultAPIVersionSPiD = @"2";
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
@@ -123,7 +122,10 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @property(strong, nonatomic) SPiDAccessToken *accessToken;
 
 /** Queue for waiting requests */
-@property(nonatomic, strong) NSMutableArray *waitingRequests;
+@property(nonatomic, strong, readonly) NSMutableArray *waitingRequests;
+
+/** NSURLSession for the SPiDClient */
+@property (nonatomic, strong, readonly) NSURLSession *URLSession;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public Methods
@@ -153,15 +155,15 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on login completion or error
 */
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
 /** Redirects to safari for signup
 
  @param completionHandler Called on signup completion or error
 */
-- (void)browserRedirectSignupWithCompletionHandler:(void (^)(SPiDError *))completionHandler;
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler;
 
-- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(SPiDError *response))completionHandler;
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Redirects to safari for forgot password */
 - (void)browserRedirectForgotPassword; // TODO: does not need completion handler
@@ -173,7 +175,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on logout completion or error
 */
-- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(SPiDError *))completionHandler; // TODO: Should not care about errors...
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler; // TODO: Should not care about errors...
 
 /** Handles URL redirects to the app with completion handler
  
@@ -181,7 +183,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on successful login/logout or error
  @return Returns YES if URL was handled by `SPiDClient`
  */
-- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(SPiDError *response))completionHandler;
+- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Handles URL redirects to the app
 
@@ -196,11 +198,11 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  Redirects to safari to logout from SPiD and remove cookie.
  Also removes access token from keychain
 
- @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the _completionHandler.
+ @warning `SPiDClient` has to be logged in before this call. The receiver must also check if a error was returned to the completionHandler.
  @param completionHandler Called on logout completion or error
  @see isAuthorized
  */
-- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(SPiDError *response))completionHandler;
+- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
 
 /** Tries to refresh access token and rerun waiting requests
 
@@ -279,7 +281,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  */
 
-- (void)getOneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)oneTimeCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Requests a session code to be used in a WebView.
 *
@@ -287,7 +289,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @warning Requires that the user is authorized with SPiD
  @param completionHandler Called on request completion or error
  */
-- (void)getSessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)sessionCodeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the currently logged in user’s object. Note that the user session does not last as long as the access token, therefor the me request should only be used right after the app has received a access token. The user id should then be saved and used with the `getUserRequestWithID:andCompletionHandler`
 
@@ -297,7 +299,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getMeRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)meRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the userinformation for the specified userID
 
@@ -308,7 +310,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getUserRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)userRequestWithID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Requests the userinformation for the current user
 
@@ -318,7 +320,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getCurrentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
+- (void)currentUserRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 /** Request all login attempts for a specific client
 
@@ -329,7 +331,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  @see isAuthorized
  */
-- (void)getUserLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (void)userLoginsRequestWithUserID:(NSString *)userID completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Checks of status of email
  
@@ -337,6 +339,6 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param email The email that should be checked
  @param completionHandler Called on request completion or error
  */
-- (void)getEmailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler;
+- (void)emailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler;
 
 @end

@@ -12,7 +12,7 @@
 #import "MainViewController.h"
 #import "FacebookLoginViewController.h"
 #import "SPiDTokenRequest.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 #import "SPiDUser.h"
 #import "LoginViewController.h"
 
@@ -129,7 +129,7 @@ static NSString *const SignSecret = @"your-sign-secret";
             userTokenRequestWithFacebookAppID:[FBSession activeSession].appID
                                 facebookToken:[FBSession activeSession].accessTokenData.accessToken
                                expirationDate:[FBSession activeSession].accessTokenData.expirationDate
-                            completionHandler:^(SPiDError *tokenError) {
+                            completionHandler:^(NSError *tokenError) {
                                 if (tokenError) {
                                     if (tokenError.code == SPiDOAuth2UnknownUserErrorCode) {
                                         UIAlertView *alertView = [[UIAlertView alloc]
@@ -163,7 +163,7 @@ static NSString *const SignSecret = @"your-sign-secret";
         [SPiDUser createAccountWithFacebookAppID:[FBSession activeSession].appID
                                    facebookToken:[FBSession activeSession].accessTokenData.accessToken
                                   expirationDate:[FBSession activeSession].accessTokenData.expirationDate
-                               completionHandler:^(SPiDError *error) {
+                               completionHandler:^(NSError *error) {
                                    if (error) {
                                        UIAlertView *alertView = [[UIAlertView alloc]
                                                initWithTitle:@"Error"

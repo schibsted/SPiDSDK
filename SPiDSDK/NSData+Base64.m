@@ -137,6 +137,7 @@ static const short _base64DecodingTable[256] = {
     *objPointer = '\0';
 
     NSString *base64String = [NSString stringWithCString:strResult encoding:NSASCIIStringEncoding];
+    free(strResult);
     return base64String;
 }
 

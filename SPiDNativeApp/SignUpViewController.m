@@ -10,7 +10,7 @@
 #import "SPiDNativeAppDelegate.h"
 #import "SPiDUser.h"
 #import "TermsViewController.h"
-#import "SPiDError.h"
+#import "NSError+SPiD.h"
 
 @implementation SignUpViewController
 
@@ -85,7 +85,6 @@
     [termsLabel addGestureRecognizer:gesture];
     [scrollView addSubview:termsLabel];
 
-
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:scrollView];
 }
@@ -113,29 +112,31 @@
 
 - (void)createSPiDAccountWithEmail:(NSString *)email andPassword:(NSString *)password {
     [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Creating SPiD account\nPlease Wait..."];
-    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(SPiDError *error) {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
-        if (error) {
-            if ([error.descriptions objectForKey:@"blocked"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"blocked"]];
-            } else if ([error.descriptions objectForKey:@"exists"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"exists"]];
-            } else if ([error.descriptions objectForKey:@"email"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"email"]];
-            } else if ([error.descriptions objectForKey:@"password"]) {
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.descriptions objectForKey:@"password"]];
+    [SPiDUser createAccountWithEmail:email password:password completionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
+            if (error) {
+                if ([error.userInfo objectForKey:@"blocked"]) {
+                    [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"blocked"]];
+                } else if ([error.userInfo objectForKey:@"exists"]) {
+                    [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"exists"]];
+                } else if ([error.userInfo objectForKey:@"email"]) {
+                    [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"email"]];
+                } else if ([error.userInfo objectForKey:@"password"]) {
+                    [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:[error.userInfo objectForKey:@"password"]];
+                } else {
+                    NSString *errorString = nil;
+                    NSArray *values = [error.userInfo allValues];
+                    if ([values count] != 0)
+                        errorString = [values objectAtIndex:0];
+                    [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:errorString];
+                }
             } else {
-                NSString *errorString = nil;
-                NSArray *values = [error.descriptions allValues];
-                if ([values count] != 0)
-                    errorString = [values objectAtIndex:0];
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:errorString];
+                //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Successfully created SPiD account\nCheck your email for verification"];
+                [self switchToLogin:nil];
             }
-        } else {
-            //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
-            [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Successfully created SPiD account\nCheck your email for verification"];
-            [self switchToLogin:nil];
-        }
+        });
     }];
 }
 

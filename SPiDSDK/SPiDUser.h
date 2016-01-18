@@ -7,8 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class SPiDError;
-
 /** Handles user creation and validation against SPiD.
 
  This requires access to the /signup endpoint with client credentials
@@ -26,7 +24,7 @@
  @param password The password
  @param completionHandler Called after user has been created
 */
-+ (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(SPiDError *))completionHandler;
++ (void)createAccountWithEmail:(NSString *)email password:(NSString *)password completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Creates a new SPiD user account using a Facebook user
 
@@ -35,7 +33,7 @@
  @param expirationDate Facebook access token expiration date
  @param completionHandler Called after user has been created
 */
-+ (void)createAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler;
++ (void)createAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Attaches a Facebook user to the currently logged in user
 
@@ -44,7 +42,7 @@
  @param expirationDate Facebook access token expiration date
  @param completionHandler Called after user has been created
 */
-+ (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(SPiDError *))completionHandler;
++ (void)attachAccountWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler;
 
 /** Validates user credentials
 
@@ -52,6 +50,6 @@
  @param password The password to validate
  @return Validation error if found, otherwise nil
 */
-- (SPiDError *)validateEmail:(NSString *)email password:(NSString *)password;
+- (NSError *)validateEmail:(NSString *)email password:(NSString *)password;
 
 @end

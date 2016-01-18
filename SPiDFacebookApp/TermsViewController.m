@@ -48,7 +48,7 @@
                         "</html>", [[[response message] objectForKey:@"data"] objectForKey:@"terms"]];
         [self.termsWebView loadHTMLString:terms baseURL:nil];
     }];
-    [request startRequest];
+    [request start];
 }
 
 @end

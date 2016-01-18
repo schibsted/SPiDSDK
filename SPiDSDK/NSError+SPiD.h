@@ -7,14 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-/** Subclass of `NSError` to add support for multiple error descriptions.
-
-
- */
-@interface SPiDError : NSError
-
-/** Dictionary of error descriptions */
-@property(strong, nonatomic) NSDictionary *descriptions;
+@interface NSError (SPiD)
 
 /** Creates a new `SPiDError` with SPiD OAuth2 domain and given dictionary.
 
@@ -22,14 +15,14 @@
  @return Returns `SPiDError` with the given data.
  */
 
-+ (instancetype)errorFromJSONData:(NSDictionary *)dictionary;
++ (instancetype)sp_errorFromJSONData:(NSDictionary *)dictionary;
 
 /** Creates a new `SPiDError` with SPiD OAuth2 domain and the given string.
 
  @param errorString Error received from SPiD.
  @return Returns `SPiDError` with the given data.
  */
-+ (instancetype)oauth2ErrorWithString:(NSString *)errorString;
++ (instancetype)sp_oauth2ErrorWithString:(NSString *)errorString;
 
 /** Creates a new `SPiDError` with SPiD OAuth2 domain and the given paramters
 
@@ -38,7 +31,7 @@
  @param reason Error reason.
  @return Returns `SPiDError` with the given data.
  */
-+ (instancetype)oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
++ (instancetype)sp_oauth2ErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
 
 /** Creates a new `SPiDError` with SPiD API domain and the given paramters 
 
@@ -47,7 +40,7 @@
  @param reason Error reason.
  @return Returns `SPiDError` with the given data.
  */
-+ (instancetype)apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
++ (instancetype)sp_apiErrorWithCode:(NSInteger)errorCode reason:(NSString *)reason descriptions:(NSDictionary *)descriptions;
 
 /**
 
@@ -55,14 +48,11 @@
  @param error code from api or 0
  @return Returns internal SPiD code for the given error.
  */
-+ (NSInteger)getSPiDOAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;
-
-+ (instancetype)errorFromNSError:(NSError *)error;
-
++ (NSInteger)sp_OAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;
 
 @end
 
-enum {
+typedef NS_ENUM(NSInteger, SPiD) {
     SPiDOAuth2RedirectURIMismatchErrorCode = -1000,
     SPiDOAuth2UnauthorizedClientErrorCode = -1001,
     SPiDOAuth2AccessDeniedErrorCode = -1002,
