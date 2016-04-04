@@ -23,7 +23,7 @@
 }
 
 - (void)testExample {
-    STFail(@"Unit tests are not implemented yet in SPiDNativeAppTests");
+    XCTFail(@"Unit tests are not implemented yet in SPiDNativeAppTests");
 }
 
 @end

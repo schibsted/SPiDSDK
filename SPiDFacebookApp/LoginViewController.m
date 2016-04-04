@@ -110,11 +110,11 @@
             } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
                 title = @"Invalid email and/or password";
             } else {
-                title = [NSString stringWithFormat:@"Received error: %@", error.descriptions.description];
+                title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
             }
             [(SPiDFacebookAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
         }];
-        [tokenRequest startRequest];
+        [tokenRequest start];
     }
 }
 
@@ -126,7 +126,7 @@
                                if (error) {
                                    UIAlertView *alertView = [[UIAlertView alloc]
                                            initWithTitle:@"Error"
-                                                 message:[error.descriptions objectForKey:@"error"]
+                                                 message:[error.userInfo objectForKey:@"error"]
                                                 delegate:nil cancelButtonTitle:@"OK"
                                        otherButtonTitles:nil];
                                    [alertView show];

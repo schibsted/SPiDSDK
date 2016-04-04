@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 Mikael Lindström. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface SPiDSDKTests : SenTestCase
+@interface SPiDSDKTests : XCTestCase
 
 @end
+

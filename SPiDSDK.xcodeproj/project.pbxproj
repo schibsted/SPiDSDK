@@ -34,7 +34,6 @@
 		531E476B17782E6500AB6B6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 531E476A17782E6500AB6B6B /* Default.png */; };
 		531E476D17782E6500AB6B6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531E476C17782E6500AB6B6B /* Default@2x.png */; };
 		531E476F17782E6500AB6B6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531E476E17782E6500AB6B6B /* Default-568h@2x.png */; };
-		531E477617782E6500AB6B6B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
 		531E477717782E6500AB6B6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		531E477817782E6500AB6B6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		531E478017782E6500AB6B6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 531E477E17782E6500AB6B6B /* InfoPlist.strings */; };
@@ -56,7 +55,6 @@
 		532B21C516AD5737000DBA55 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 532B21C416AD5737000DBA55 /* Default.png */; };
 		532B21C716AD5737000DBA55 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 532B21C616AD5737000DBA55 /* Default@2x.png */; };
 		532B21C916AD5737000DBA55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 532B21C816AD5737000DBA55 /* Default-568h@2x.png */; };
-		532B21D016AD5737000DBA55 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
 		532B21D116AD5737000DBA55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		532B21D216AD5737000DBA55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		532B21DA16AD5737000DBA55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 532B21D816AD5737000DBA55 /* InfoPlist.strings */; };
@@ -70,7 +68,6 @@
 		532B21FA16AD5786000DBA55 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 532B21F916AD5786000DBA55 /* Default.png */; };
 		532B21FC16AD5786000DBA55 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 532B21FB16AD5786000DBA55 /* Default@2x.png */; };
 		532B21FE16AD5786000DBA55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 532B21FD16AD5786000DBA55 /* Default-568h@2x.png */; };
-		532B220516AD5786000DBA55 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
 		532B220616AD5786000DBA55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		532B220716AD5786000DBA55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		532B220F16AD5787000DBA55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 532B220D16AD5787000DBA55 /* InfoPlist.strings */; };
@@ -81,7 +78,6 @@
 		534D652816AD942400088B3D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
 		537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
-		537D220215FF224C000ABCA6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
 		537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		537D220E15FF224C000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D220C15FF224C000ABCA6 /* InfoPlist.strings */; };
@@ -90,7 +86,6 @@
 		537D222315FF2374000ABCA6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D222215FF2374000ABCA6 /* CoreGraphics.framework */; };
 		537D222B15FF2374000ABCA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D222A15FF2374000ABCA6 /* main.m */; };
 		537D222F15FF2374000ABCA6 /* SPiDExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */; };
-		537D223615FF2374000ABCA6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D220115FF224C000ABCA6 /* SenTestingKit.framework */; };
 		537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D223E15FF2374000ABCA6 /* InfoPlist.strings */; };
 		537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */; };
@@ -257,7 +252,7 @@
 		531E476A17782E6500AB6B6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		531E476C17782E6500AB6B6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		531E476E17782E6500AB6B6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		531E477517782E6500AB6B6B /* SPiDHybridAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDHybridAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		531E477517782E6500AB6B6B /* SPiDHybridAppTests. */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDHybridAppTests.; sourceTree = BUILT_PRODUCTS_DIR; };
 		531E477D17782E6500AB6B6B /* SPiDHybridAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDHybridAppTests-Info.plist"; sourceTree = "<group>"; };
 		531E477F17782E6500AB6B6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		531E478117782E6500AB6B6B /* SPiDHybridAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDHybridAppTests.h; sourceTree = "<group>"; };
@@ -290,7 +285,7 @@
 		532B21F916AD5786000DBA55 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		532B21FB16AD5786000DBA55 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		532B21FD16AD5786000DBA55 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		532B220416AD5786000DBA55 /* SPiDNativeAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDNativeAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		532B220416AD5786000DBA55 /* SPiDNativeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDNativeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		532B220C16AD5787000DBA55 /* SPiDNativeAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDNativeAppTests-Info.plist"; sourceTree = "<group>"; };
 		532B220E16AD5787000DBA55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		532B221016AD5787000DBA55 /* SPiDNativeAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDNativeAppTests.h; sourceTree = "<group>"; };
@@ -302,8 +297,7 @@
 		537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPiDSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D21F215FF224C000ABCA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPiDSDK-Prefix.pch"; sourceTree = "<group>"; };
-		537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDSDKTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		537D220115FF224C000ABCA6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		537D220015FF224C000ABCA6 /* SPiDSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D220B15FF224C000ABCA6 /* SPiDSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDSDKTests-Info.plist"; sourceTree = "<group>"; };
 		537D220D15FF224C000ABCA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDSDKTests.h; sourceTree = "<group>"; };
@@ -315,7 +309,7 @@
 		537D222C15FF2374000ABCA6 /* SPiDExampleApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPiDExampleApp-Prefix.pch"; sourceTree = "<group>"; };
 		537D222D15FF2374000ABCA6 /* SPiDExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDExampleAppDelegate.h; sourceTree = "<group>"; };
 		537D222E15FF2374000ABCA6 /* SPiDExampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDExampleAppDelegate.m; sourceTree = "<group>"; };
-		537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDExampleAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		537D223515FF2374000ABCA6 /* SPiDExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDExampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D223D15FF2374000ABCA6 /* SPiDExampleAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDExampleAppTests-Info.plist"; sourceTree = "<group>"; };
 		537D223F15FF2374000ABCA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		537D224115FF2374000ABCA6 /* SPiDExampleAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDExampleAppTests.h; sourceTree = "<group>"; };
@@ -414,7 +408,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				531E477617782E6500AB6B6B /* SenTestingKit.framework in Frameworks */,
 				531E477717782E6500AB6B6B /* UIKit.framework in Frameworks */,
 				531E477817782E6500AB6B6B /* Foundation.framework in Frameworks */,
 			);
@@ -439,7 +432,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				532B21D016AD5737000DBA55 /* SenTestingKit.framework in Frameworks */,
 				532B21D116AD5737000DBA55 /* UIKit.framework in Frameworks */,
 				532B21D216AD5737000DBA55 /* Foundation.framework in Frameworks */,
 			);
@@ -462,7 +454,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				532B220516AD5786000DBA55 /* SenTestingKit.framework in Frameworks */,
 				532B220616AD5786000DBA55 /* UIKit.framework in Frameworks */,
 				532B220716AD5786000DBA55 /* Foundation.framework in Frameworks */,
 			);
@@ -482,7 +473,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				537D220215FF224C000ABCA6 /* SenTestingKit.framework in Frameworks */,
 				537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */,
 				537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */,
 			);
@@ -505,7 +495,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				537D223615FF2374000ABCA6 /* SenTestingKit.framework in Frameworks */,
 				537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,15 +688,15 @@
 			isa = PBXGroup;
 			children = (
 				537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */,
-				537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */,
+				537D220015FF224C000ABCA6 /* SPiDSDKTests.xctest */,
 				537D221E15FF2374000ABCA6 /* SPiDExampleApp.app */,
-				537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */,
+				537D223515FF2374000ABCA6 /* SPiDExampleAppTests.xctest */,
 				532B21B316AD5737000DBA55 /* SPiDFacebookApp.app */,
 				532B21CF16AD5737000DBA55 /* SPiDFacebookAppTests.octest */,
 				532B21E816AD5786000DBA55 /* SPiDNativeApp.app */,
-				532B220416AD5786000DBA55 /* SPiDNativeAppTests.octest */,
+				532B220416AD5786000DBA55 /* SPiDNativeAppTests.xctest */,
 				531E475A17782E6500AB6B6B /* SPiDHybridApp.app */,
-				531E477517782E6500AB6B6B /* SPiDHybridAppTests.octest */,
+				531E477517782E6500AB6B6B /* SPiDHybridAppTests. */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -725,7 +714,6 @@
 				E304ECEC953C2E9C143FD9E2 /* Security.framework */,
 				53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */,
 				537D21F215FF224C000ABCA6 /* Foundation.framework */,
-				537D220115FF224C000ABCA6 /* SenTestingKit.framework */,
 				537D222215FF2374000ABCA6 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -883,8 +871,8 @@
 			);
 			name = SPiDHybridAppTests;
 			productName = SPiDHybridAppTests;
-			productReference = 531E477517782E6500AB6B6B /* SPiDHybridAppTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = 531E477517782E6500AB6B6B /* SPiDHybridAppTests. */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		532B21B216AD5737000DBA55 /* SPiDFacebookApp */ = {
 			isa = PBXNativeTarget;
@@ -957,8 +945,8 @@
 			);
 			name = SPiDNativeAppTests;
 			productName = SPiDNativeAppTests;
-			productReference = 532B220416AD5786000DBA55 /* SPiDNativeAppTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = 532B220416AD5786000DBA55 /* SPiDNativeAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		537D21EE15FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXNativeTarget;
@@ -993,8 +981,8 @@
 			);
 			name = SPiDSDKTests;
 			productName = SPiDSDKTests;
-			productReference = 537D220015FF224C000ABCA6 /* SPiDSDKTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = 537D220015FF224C000ABCA6 /* SPiDSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		537D221D15FF2374000ABCA6 /* SPiDExampleApp */ = {
 			isa = PBXNativeTarget;
@@ -1030,8 +1018,8 @@
 			);
 			name = SPiDExampleAppTests;
 			productName = SPiDExampleAppTests;
-			productReference = 537D223515FF2374000ABCA6 /* SPiDExampleAppTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = 537D223515FF2374000ABCA6 /* SPiDExampleAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -1526,6 +1514,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
@@ -1535,7 +1524,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = "";
 			};
 			name = Debug;
 		};
@@ -1548,6 +1537,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
@@ -1556,7 +1546,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = "";
 			};
 			name = Release;
 		};
@@ -1704,6 +1694,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
@@ -1713,7 +1704,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1726,6 +1716,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
@@ -1734,7 +1725,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1864,13 +1854,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
 				INFOPLIST_FILE = "SPiDSDKTests/SPiDSDKTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1880,13 +1870,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
 				INFOPLIST_FILE = "SPiDSDKTests/SPiDSDKTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1944,6 +1934,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
@@ -1951,7 +1942,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1962,6 +1952,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
@@ -1969,7 +1960,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
