@@ -143,7 +143,7 @@ static NSString *const SignSecret = @"your-sign-secret";
                                     } else {
                                         UIAlertView *alertView = [[UIAlertView alloc]
                                                 initWithTitle:@"Error"
-                                                      message:[tokenError.descriptions objectForKey:@"error"]
+                                                      message:[tokenError.userInfo objectForKey:@"error"]
                                                      delegate:nil cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
                                         [alertView show];
@@ -153,7 +153,7 @@ static NSString *const SignSecret = @"your-sign-secret";
                                     [self.rootNavigationController dismissViewControllerAnimated:YES completion:nil];
                                 }
                             }];
-    [request startRequest];
+    [request start];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -167,7 +167,7 @@ static NSString *const SignSecret = @"your-sign-secret";
                                    if (error) {
                                        UIAlertView *alertView = [[UIAlertView alloc]
                                                initWithTitle:@"Error"
-                                                     message:[error.descriptions objectForKey:@"error"]
+                                                     message:[error.userInfo objectForKey:@"error"]
                                                     delegate:nil cancelButtonTitle:@"OK"
                                            otherButtonTitles:nil];
                                        [alertView show];

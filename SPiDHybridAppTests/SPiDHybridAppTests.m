@@ -23,7 +23,7 @@
 }
 
 - (void)testExample {
-    STFail(@"Unit tests are not implemented yet in SPiDHybridAppTests");
+    XCTFail(@"Unit tests are not implemented yet in SPiDHybridAppTests");
 }
 
 @end
