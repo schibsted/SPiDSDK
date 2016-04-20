@@ -329,7 +329,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
 - (void)emailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler {
     NSData *data = [email dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *encodedEmail = [data base64EncodedUrlSafeString];
+    NSString *encodedEmail = [data sp_base64EncodedUrlSafeString];
     
     NSString *path = [NSString stringWithFormat:@"/email/%@/status", encodedEmail];
     SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];

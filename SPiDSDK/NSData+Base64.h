@@ -15,8 +15,8 @@
 
  @return Encoded string
  */
-- (NSString *)base64EncodedString;
+- (NSString *)sp_base64EncodedString;
 
-- (NSString *)base64EncodedUrlSafeString;
+- (NSString *)sp_base64EncodedUrlSafeString;
 
 @end
