@@ -11,8 +11,7 @@
 
 static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-
-- (NSString *)base64EncodedString {
+- (NSString *)sp_base64EncodedString {
     const unsigned char *objRawData = [self bytes];
     char *objPointer;
     char *strResult;
@@ -54,8 +53,8 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
     return base64String;
 }
 
-- (NSString *)base64EncodedUrlSafeString {
-    NSString *urlSafeBase64String = [self base64EncodedString];
+- (NSString *)sp_base64EncodedUrlSafeString {
+    NSString *urlSafeBase64String = [self sp_base64EncodedString];
     urlSafeBase64String = [urlSafeBase64String stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
     urlSafeBase64String = [urlSafeBase64String stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
     urlSafeBase64String = [urlSafeBase64String stringByReplacingOccurrencesOfString:@"=" withString:@""];

@@ -45,7 +45,7 @@
 
     NSError *error;
     NSData *json = [NSJSONSerialization dataWithJSONObject:body options:(NSJSONWritingOptions) 0 error:&error];
-    NSString *jsonString = [json base64EncodedString];
+    NSString *jsonString = [json sp_base64EncodedString];
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:jsonString forKey:@"fp"];
