@@ -10,10 +10,7 @@
 #import "NSError+SPiD.h"
 #import "SPiDWebView.h"
 
-@implementation SPiDLoginViewController {
-@private
-    //UIViewController *webViewController;
-}
+@implementation SPiDLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

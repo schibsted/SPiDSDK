@@ -155,27 +155,27 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on login completion or error
 */
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler __WATCHOS_PROHIBITED;
 
 /** Redirects to safari for signup
 
  @param completionHandler Called on signup completion or error
 */
-- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler;
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler __WATCHOS_PROHIBITED;
 
-- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler;
-
-/** Redirects to safari for forgot password */
-- (void)browserRedirectForgotPassword; // TODO: does not need completion handler
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler __WATCHOS_PROHIBITED;
 
 /** Redirects to safari for forgot password */
-- (void)browserRedirectAccountSummary;
+- (void)browserRedirectForgotPassword __WATCHOS_PROHIBITED;
+
+/** Redirects to safari for forgot password */
+- (void)browserRedirectAccountSummary __WATCHOS_PROHIBITED;
 
 /** Redirects to safari for logout
 
  @param completionHandler Called on logout completion or error
 */
-- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler; // TODO: Should not care about errors...
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler __WATCHOS_PROHIBITED; // TODO: Should not care about errors...
 
 /** Handles URL redirects to the app with completion handler
  

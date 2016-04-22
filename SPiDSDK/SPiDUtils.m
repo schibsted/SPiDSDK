@@ -47,13 +47,7 @@
 }
 
 + (NSString *)urlEncodeString:(NSString *)unescaped {
-    NSString *escapedString = (NSString *) CFBridgingRelease((CFTypeRef) CFURLCreateStringByAddingPercentEscapes(
-            NULL,
-            (__bridge CFStringRef) unescaped,
-            NULL,
-            (CFStringRef) @"!*'();:@&=+$,/?%#[]",
-            kCFStringEncodingUTF8));
-    return escapedString;
+    return [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
 }
 
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key {
