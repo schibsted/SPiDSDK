@@ -100,6 +100,9 @@
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		53AAD36617247DDA00C2F497 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */; };
 		5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */; };
+		DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */; };
+		DAC183B81CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
+		DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAFD37491CD9F9B300BF0DE3 /* SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAFD37481CD9F9B300BF0DE3 /* SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiD.m */; };
@@ -358,6 +361,8 @@
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SPiD.h"; sourceTree = "<group>"; };
 		5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+SPiD.m"; sourceTree = "<group>"; };
+		DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+SPiD.h"; sourceTree = "<group>"; };
+		DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+SPiD.m"; sourceTree = "<group>"; };
 		DAFD37461CD9F9B200BF0DE3 /* SPiD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPiD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFD37481CD9F9B300BF0DE3 /* SPiD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiD.h; sourceTree = "<group>"; };
 		DAFD374A1CD9F9B300BF0DE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -802,6 +807,8 @@
 				E304EF14B76195254AE32548 /* SPiDStatus.h */,
 				5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */,
 				5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */,
+				DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */,
+				DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -915,6 +922,7 @@
 				DAFD37581CD9F9D700BF0DE3 /* SPiDUtils.h in Headers */,
 				DAFD376A1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.h in Headers */,
 				DAFD37631CD9F9D700BF0DE3 /* NSString+Crypto.h in Headers */,
+				DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */,
 				DAFD375D1CD9F9D700BF0DE3 /* NSData+Base64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1429,6 +1437,7 @@
 				E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */,
 				E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */,
 				E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */,
+				DAC183B81CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */,
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
 				E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */,
@@ -1478,6 +1487,7 @@
 				DAFD37571CD9F9D700BF0DE3 /* SPiDRequest.m in Sources */,
 				DAFD37541CD9F9D700BF0DE3 /* SPiDResponse.m in Sources */,
 				DAFD37601CD9F9D700BF0DE3 /* SPiDJwt.m in Sources */,
+				DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */,
 				DAFD375E1CD9F9D700BF0DE3 /* SPiDTokenRequest.m in Sources */,
 				DAFD37621CD9F9D700BF0DE3 /* NSString+Crypto.m in Sources */,
 				DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */,
