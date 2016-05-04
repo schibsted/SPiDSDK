@@ -54,7 +54,7 @@
 
 + (NSString *)urlEncodeString:(NSString *)unescaped
 {
-    NSString *escapedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLAllowedCharacterSet]];
+    NSString *escapedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryPartAllowedCharacterSet]];
     return escapedString;
 }
 

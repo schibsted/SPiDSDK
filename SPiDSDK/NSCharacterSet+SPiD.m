@@ -10,8 +10,10 @@
 
 @implementation NSCharacterSet (SPiD)
 
-+ (NSCharacterSet*) URLAllowedCharacterSet
++ (NSCharacterSet *)URLQueryPartAllowedCharacterSet
 {
-    return [NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"];
+    NSMutableCharacterSet *URLQueryPartAllowedCharacterSet = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+    [URLQueryPartAllowedCharacterSet removeCharactersInString:@"!*'();:@&=+$,/?%#[]"];
+    return URLQueryPartAllowedCharacterSet;
 }
 @end
