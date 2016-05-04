@@ -5,7 +5,7 @@ SPiD SDK for iOS
 [![License](https://img.shields.io/cocoapods/l/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
 [![Platform](https://img.shields.io/cocoapods/p/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
 
-Supported versions of iOS is 5 or greater.
+Supported versions of iOS is 7 or greater.
 
 For information and the development guides see our [Documentation](http://schibsted.github.com/sdk-ios "Documentation").
 

@@ -8,7 +8,17 @@
 #import "SPiDStatus.h"
 #import "NSData+Base64.h"
 
-//#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#if TARGET_OS_WATCH
+    #import <WatchKit/WatchKit.h>
+#else
+    #import <UIKit/UIDevice.h>
+#endif
+
+@interface SPiDStatus (orientation)
+
++ (NSString *)orientationString;
+
+@end
 
 @implementation SPiDStatus
 
@@ -25,12 +35,14 @@
 
 + (SPiDRequest *)statusRequestWithCompletionHandler:(void (^)(SPiDResponse *response))completionHandler {
     NSMutableDictionary *body = [NSMutableDictionary dictionary];
+#if TARGET_OS_IOS || TARGET_OS_TV
     [body setValue:[UIDevice currentDevice].name forKey:@"deviceName"];
     [body setValue:[UIDevice currentDevice].model forKey:@"deviceModel"];
-    [body setValue:[SPiDStatus orientationToString:[UIDevice currentDevice].orientation] forKey:@"deviceOrientation"];
+    [body setValue:[SPiDStatus orientationString] forKey:@"deviceOrientation"];
 
     [body setValue:[UIDevice currentDevice].systemName forKey:@"systemName"];
     [body setValue:[UIDevice currentDevice].systemVersion forKey:@"systemVersion"];
+#endif
 
     [body setValue:[SPiDStatus applicationId] forKey:@"applicationId"];
     [body setValue:[SPiDStatus vendorId] forKey:@"vendorId"];
@@ -57,9 +69,11 @@
 
 + (NSString *)vendorId {
     NSString *vendorID = nil;
+#if !TARGET_OS_WATCH
     if ([[UIDevice currentDevice] respondsToSelector:@selector(identifierForVendor)]) {
         vendorID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     }
+#endif
     return vendorID;
 }
 
@@ -80,15 +94,28 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *bundleDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSString *bundleMinorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+    
+#if TARGET_OS_WATCH
+    NSString *deviceModel = [WKInterfaceDevice currentDevice].model;
+    NSOperatingSystemVersion version = [NSProcessInfo processInfo].operatingSystemVersion;
+    NSString *systemVersion = [NSString stringWithFormat:@"%zd.%zd.%zd", version.majorVersion, version.minorVersion, version.patchVersion];
+#else
     NSString *deviceModel = [UIDevice currentDevice].model;
     NSString *systemVersion = [UIDevice currentDevice].systemVersion;
+#endif
     
     return [NSString stringWithFormat:@"%@/%@ SPiDIOSSDK/%@ %@/%@", bundleDisplayName, bundleMinorVersion, SPID_IOS_SDK_VERSION_STRING, deviceModel, systemVersion];
 }
 
-+ (NSString *)orientationToString:(UIDeviceOrientation)orientation {
-    NSString *result = nil;
+@end
 
+@implementation SPiDStatus (orientation)
+
++ (NSString *)orientationString {
+#if TARGET_OS_IOS
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    NSString *result = nil;
+    
     switch (orientation) {
         case UIDeviceOrientationPortrait:
             result = @"DeviceOrientationPortrait";
@@ -114,6 +141,9 @@
             break;
     }
     return result;
+#else
+    return @"DeviceOrientationUnknown";
+#endif
 }
 
 @end
