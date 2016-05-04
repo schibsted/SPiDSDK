@@ -28,10 +28,10 @@
     NSString *query = @"";
     for (NSString *key in dictionary) {
         if ([query length] > 0) {
-            query = [query stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            query = [query stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeQueryString:key], [SPiDUtils urlEncodeQueryString:[dictionary objectForKey:key]]];
         }
         else {
-            query = [query stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            query = [query stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeQueryString:key], [SPiDUtils urlEncodeQueryString:[dictionary objectForKey:key]]];
         }
     }
     return query;
@@ -53,7 +53,19 @@
 
 + (NSString *)urlEncodeString:(NSString *)unescaped
 {
+    NSString *escapedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    return escapedString;
+}
+
++ (NSString *)urlEncodeQueryString:(NSString *)unescaped
+{
     NSString *escapedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return escapedString;
+}
+
++ (NSString *)urlEncodeBodyString:(NSString *)unescaped
+{
+    NSString *escapedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     return escapedString;
 }
 
