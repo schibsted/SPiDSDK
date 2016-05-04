@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIDevice.h>
 #import "SPiDRequest.h"
 #import "SPiDResponse.h"
 
@@ -16,8 +15,6 @@
 + (SPiDRequest *)statusRequestWithCompletionHandler:(void (^)(SPiDResponse *))completionHandler;
 
 + (NSString *)vendorId;
-
-+ (NSString *)orientationToString:(UIDeviceOrientation)orientation;
 
 + (NSString *)spidUserAgent;
 

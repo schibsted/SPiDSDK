@@ -106,7 +106,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         [sharedSPiDClientInstance setAccountSummaryURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/account/summary?client_id=%@", [sharedSPiDClientInstance serverURL], clientID]]];
 
     if (![sharedSPiDClientInstance forgotPasswordURL]) {
-        NSString *forgotPasswordUrl = [NSString stringWithFormat:@"%@/flow/password?client_id=%@&redirect_uri=%@", [sharedSPiDClientInstance serverURL], clientID, [redirectUri stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+        NSString *forgotPasswordUrl = [NSString stringWithFormat:@"%@/flow/password?client_id=%@&redirect_uri=%@", [sharedSPiDClientInstance serverURL], clientID, [SPiDUtils urlEncodeString:redirectUri]];
         [sharedSPiDClientInstance setForgotPasswordURL:[NSURL URLWithString:forgotPasswordUrl]];
     }
 
@@ -130,6 +130,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+#if !TARGET_OS_WATCH
     if (self.accessToken) { // we already have a access token
         SPiDDebugLog(@"Already logged in, aborting redirect");
         completionHandler(nil);
@@ -139,13 +140,16 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
         [[UIApplication sharedApplication] openURL:requestURL];
     }
+#endif
 }
 
 - (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+#if !TARGET_OS_WATCH
     self.completionHandler = completionHandler;
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
     [[UIApplication sharedApplication] openURL:requestURL];
+#endif
 }
 
 - (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler {
@@ -154,26 +158,32 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (void)browserRedirectForgotPassword {
+#if !TARGET_OS_WATCH
     NSURL *requestURL = [self forgotPasswordURLWithQuery];
     SPiDDebugLog(@"Trying to authorize using browser redirect: %@", requestURL);
     [[UIApplication sharedApplication] openURL:requestURL];
+#endif
 }
 
 - (void)browserRedirectAccountSummary {
+#if !TARGET_OS_WATCH
     NSURL *requestURL = [self accountSummaryURL];
 
     SPiDDebugLog(@"Trying to open account summary: %@", requestURL);
     if([[UIApplication sharedApplication] canOpenURL:requestURL]) {
        [[UIApplication sharedApplication] openURL:requestURL];
     }
+#endif
 }
 
 - (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *response))completionHandler {
+#if !TARGET_OS_WATCH
     self.completionHandler = completionHandler;
     NSURL *requestURL = [self logoutURLWithQuery];
     SPiDDebugLog(@"Trying to logout from SPiD");
     SPiDDebugLog(@"%@", requestURL.absoluteString);
     [[UIApplication sharedApplication] openURL:requestURL];
+#endif
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError *response))completionHandler {

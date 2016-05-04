@@ -100,7 +100,7 @@
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		53AAD36617247DDA00C2F497 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */; };
 		5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */; };
-		E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E752C72346E314762407 /* SPiDWebView.h */; };
+		55A747531CC8D177003B77D9 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A747521CC8D177003B77D9 /* SPiDWebView.m */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
 		E304E0AE6047B3934ABC68A6 /* FacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */; };
@@ -145,7 +145,6 @@
 		E304EC9922D515E29B4349DD /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */; };
 		E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E99B5C79CF60749D65AE /* red_button@2x.png */; };
-		E304EDD04520BC5FB2B516F4 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304ECA66E30DA618B5AC63F /* SPiDWebView.m */; };
 		E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */; };
 		E304EF18BF8CE80E4FDFB243 /* LoadingAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E57DC15056390ADACC87 /* LoadingAlertView.m */; };
 		E304EFD88EE8442DDB57ECAF /* SPiDStatus.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF14B76195254AE32548 /* SPiDStatus.h */; };
@@ -230,7 +229,6 @@
 				E304E52F3203DA6CB5061FAA /* NSString+Crypto.h in CopyFiles */,
 				E304EB38611381AF6653FCE4 /* SignUpViewController.h in CopyFiles */,
 				E304EB3AAAA9C94117D0934D /* SPiDUser.h in CopyFiles */,
-				E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */,
 				E304EFD88EE8442DDB57ECAF /* SPiDStatus.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,6 +322,8 @@
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SPiD.h"; sourceTree = "<group>"; };
 		5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+SPiD.m"; sourceTree = "<group>"; };
+		55A747511CC8D177003B77D9 /* SPiDWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDWebView.h; sourceTree = "<group>"; };
+		55A747521CC8D177003B77D9 /* SPiDWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDWebView.m; sourceTree = "<group>"; };
 		E304E028433CF8954B044781 /* SPiDJwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDJwt.h; sourceTree = "<group>"; };
 		E304E0F3D65E0934EEC9BCBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small@2x.png"; sourceTree = "<group>"; };
@@ -350,7 +350,6 @@
 		E304E682B974C240DE9BC5E1 /* SPiDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUtils.m; sourceTree = "<group>"; };
 		E304E719EC65DE9788499BD0 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDResponse.h; sourceTree = "<group>"; };
-		E304E752C72346E314762407 /* SPiDWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDWebView.h; sourceTree = "<group>"; };
 		E304E78AD685949E4766960F /* facebook-login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small.png"; sourceTree = "<group>"; };
 		E304E7CA07B5345E3D5632D9 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		E304E7EE2A65B25A228D8133 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -375,7 +374,6 @@
 		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
 		E304EC34E54EE6F302C3BE2A /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
 		E304EC3BEEF375752E9E16CE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		E304ECA66E30DA618B5AC63F /* SPiDWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDWebView.m; sourceTree = "<group>"; };
 		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E304ED208F9AB009F9EA38B8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E304ED5327F4289586BCF80C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -722,6 +720,7 @@
 		537D21F415FF224C000ABCA6 /* SPiDSDK */ = {
 			isa = PBXGroup;
 			children = (
+				55A747501CC8D177003B77D9 /* iOS */,
 				E304E4D3494537377633CA3E /* NSError+SPiD.h */,
 				E304E24883200DCA88A4E70C /* NSError+SPiD.m */,
 				E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */,
@@ -747,8 +746,6 @@
 				E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */,
 				E304E93DD2773BD78706B78C /* SPiDUser.m */,
 				E304E8EE461D81FA4D084AC8 /* SPiDUser.h */,
-				E304ECA66E30DA618B5AC63F /* SPiDWebView.m */,
-				E304E752C72346E314762407 /* SPiDWebView.h */,
 				E304E4801E76F6F93C43AB67 /* SPiDStatus.m */,
 				E304EF14B76195254AE32548 /* SPiDStatus.h */,
 				5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */,
@@ -833,6 +830,15 @@
 				537D223E15FF2374000ABCA6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55A747501CC8D177003B77D9 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				55A747511CC8D177003B77D9 /* SPiDWebView.h */,
+				55A747521CC8D177003B77D9 /* SPiDWebView.m */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1317,12 +1323,12 @@
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
 				E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */,
+				55A747531CC8D177003B77D9 /* SPiDWebView.m in Sources */,
 				E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */,
 				E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */,
 				E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */,
 				E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */,
 				E304EFDA1BBFBD96DA46233F /* SPiDUser.m in Sources */,
-				E304EDD04520BC5FB2B516F4 /* SPiDWebView.m in Sources */,
 				E304E3D68825FDD570A408A9 /* SPiDStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
