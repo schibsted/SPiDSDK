@@ -4,6 +4,7 @@ SPiD SDK for iOS
 [![Version](https://img.shields.io/cocoapods/v/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
 [![License](https://img.shields.io/cocoapods/l/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
 [![Platform](https://img.shields.io/cocoapods/p/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Supported versions of iOS is 7 or greater.
 
