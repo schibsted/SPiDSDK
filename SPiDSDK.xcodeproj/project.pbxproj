@@ -105,6 +105,9 @@
 		DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		DAF1DE3D1CDC706D007B15B3 /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
+		DAF1DE3E1CDC78B1007B15B3 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A747521CC8D177003B77D9 /* SPiDWebView.m */; };
+		DAF1DE3F1CDC78B2007B15B3 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A747521CC8D177003B77D9 /* SPiDWebView.m */; };
+		DAF1DE401CDC78B8007B15B3 /* SPiDWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A747511CC8D177003B77D9 /* SPiDWebView.h */; };
 		DAFD37491CD9F9B300BF0DE3 /* SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAFD37481CD9F9B300BF0DE3 /* SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiD.m */; };
@@ -916,6 +919,7 @@
 			files = (
 				DAFD37551CD9F9D700BF0DE3 /* SPiDResponse.h in Headers */,
 				DAFD37611CD9F9D700BF0DE3 /* SPiDJwt.h in Headers */,
+				DAF1DE401CDC78B8007B15B3 /* SPiDWebView.h in Headers */,
 				DAFD375A1CD9F9D700BF0DE3 /* SPiDClient.h in Headers */,
 				DAFD37691CD9F9D700BF0DE3 /* SPiDStatus.h in Headers */,
 				DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */,
@@ -1071,7 +1075,6 @@
 				537D21FB15FF224C000ABCA6 /* Sources */,
 				537D21FC15FF224C000ABCA6 /* Frameworks */,
 				537D21FD15FF224C000ABCA6 /* Resources */,
-				537D21FE15FF224C000ABCA6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1344,19 +1347,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc $SOURCE_ROOT/AppledocSettings.plist $SOURCE_ROOT/SPiDSDK";
 		};
-		537D21FE15FF224C000ABCA6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		537D223315FF2374000ABCA6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1440,6 +1430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */,
+				DAF1DE3F1CDC78B2007B15B3 /* SPiDWebView.m in Sources */,
 				535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */,
 				E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */,
 				E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */,
@@ -1500,6 +1491,7 @@
 				DAFD37621CD9F9D700BF0DE3 /* NSString+Crypto.m in Sources */,
 				DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */,
 				DAFD37531CD9F9D700BF0DE3 /* SPiDAccessToken.m in Sources */,
+				DAF1DE3E1CDC78B1007B15B3 /* SPiDWebView.m in Sources */,
 				DAFD37661CD9F9D700BF0DE3 /* (null) in Sources */,
 				DAFD37641CD9F9D700BF0DE3 /* SPiDUser.m in Sources */,
 				DAFD375C1CD9F9D700BF0DE3 /* NSData+Base64.m in Sources */,

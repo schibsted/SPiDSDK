@@ -109,7 +109,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
         [sharedSPiDClientInstance setAccountSummaryURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/account/summary?client_id=%@", [sharedSPiDClientInstance serverURL], clientID]]];
 
     if (![sharedSPiDClientInstance forgotPasswordURL]) {
-        NSString *forgotPasswordUrl = [NSString stringWithFormat:@"%@/flow/password?client_id=%@&redirect_uri=%@", [sharedSPiDClientInstance serverURL], clientID, [SPiDUtils urlEncodeString:redirectUri]];
+        NSString *forgotPasswordUrl = [NSString stringWithFormat:@"%@/flow/password?client_id=%@&redirect_uri=%@", [sharedSPiDClientInstance serverURL], clientID, [SPiDUtils urlEncodeQueryParameter:redirectUri]];
         [sharedSPiDClientInstance setForgotPasswordURL:[NSURL URLWithString:forgotPasswordUrl]];
     }
 
