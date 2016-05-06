@@ -103,6 +103,8 @@
 		DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */; };
 		DAC183B81CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
+		DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
+		DAF1DE3D1CDC706D007B15B3 /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAFD37491CD9F9B300BF0DE3 /* SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAFD37481CD9F9B300BF0DE3 /* SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiD.m */; };
@@ -128,8 +130,8 @@
 		DAFD37631CD9F9D700BF0DE3 /* NSString+Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */; };
 		DAFD37641CD9F9D700BF0DE3 /* SPiDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E93DD2773BD78706B78C /* SPiDUser.m */; };
 		DAFD37651CD9F9D700BF0DE3 /* SPiDUser.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E8EE461D81FA4D084AC8 /* SPiDUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DAFD37661CD9F9D700BF0DE3 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304ECA66E30DA618B5AC63F /* SPiDWebView.m */; };
-		DAFD37671CD9F9D700BF0DE3 /* SPiDWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E752C72346E314762407 /* SPiDWebView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DAFD37661CD9F9D700BF0DE3 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		DAFD37671CD9F9D700BF0DE3 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD37681CD9F9D700BF0DE3 /* SPiDStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E4801E76F6F93C43AB67 /* SPiDStatus.m */; };
 		DAFD37691CD9F9D700BF0DE3 /* SPiDStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = E304EF14B76195254AE32548 /* SPiDStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD376A1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = 5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */; };
@@ -137,7 +139,6 @@
 		DAFD376D1CD9FA1100BF0DE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		DAFD376E1CD9FA1700BF0DE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		DAFD376F1CD9FA1C00BF0DE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
-		E304E04EEBE6DFFB60F2368E /* SPiDWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E752C72346E314762407 /* SPiDWebView.h */; };
 		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
 		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
 		E304E0AE6047B3934ABC68A6 /* FacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */; };
@@ -918,7 +919,7 @@
 				DAFD375A1CD9F9D700BF0DE3 /* SPiDClient.h in Headers */,
 				DAFD37691CD9F9D700BF0DE3 /* SPiDStatus.h in Headers */,
 				DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */,
-				DAFD37671CD9F9D700BF0DE3 /* SPiDWebView.h in Headers */,
+				DAFD37671CD9F9D700BF0DE3 /* (null) in Headers */,
 				DAFD37561CD9F9D700BF0DE3 /* SPiDRequest.h in Headers */,
 				DAFD37491CD9F9B300BF0DE3 /* SPiD.h in Headers */,
 				DAFD37521CD9F9D700BF0DE3 /* SPiDAccessToken.h in Headers */,
@@ -1447,7 +1448,6 @@
 				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
 				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
 				E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */,
-				55A747531CC8D177003B77D9 /* SPiDWebView.m in Sources */,
 				E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */,
 				E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */,
 				E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */,
@@ -1461,7 +1461,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF1DE3D1CDC706D007B15B3 /* NSCharacterSet+SPiD.m in Sources */,
 				537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */,
+				DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,7 +1500,7 @@
 				DAFD37621CD9F9D700BF0DE3 /* NSString+Crypto.m in Sources */,
 				DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */,
 				DAFD37531CD9F9D700BF0DE3 /* SPiDAccessToken.m in Sources */,
-				DAFD37661CD9F9D700BF0DE3 /* SPiDWebView.m in Sources */,
+				DAFD37661CD9F9D700BF0DE3 /* (null) in Sources */,
 				DAFD37641CD9F9D700BF0DE3 /* SPiDUser.m in Sources */,
 				DAFD375C1CD9F9D700BF0DE3 /* NSData+Base64.m in Sources */,
 				DAFD37511CD9F9D700BF0DE3 /* SPiDKeychainWrapper.m in Sources */,
