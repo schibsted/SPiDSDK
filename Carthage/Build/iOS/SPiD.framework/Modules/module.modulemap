@@ -1,6 +1,0 @@
-framework module SPiD {
-  umbrella header "SPiD.h"
-
-  export *
-  module * { export * }
-}
