@@ -17,13 +17,13 @@
 ///---------------------------------------------------------------------------------------
 
 /** */
-@property (nonatomic) BOOL isPending;
+@property(nonatomic) BOOL isPending;
 
 /** */
-@property (strong, nonatomic) NSURL *requestURL;
+@property(strong, nonatomic) NSURL *requestURL;
 
 /** */
-@property (nonatomic, copy) void (^completionHandler)(NSError *);
+@property(nonatomic, copy) void (^completionHandler)(NSError *);
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
