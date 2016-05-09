@@ -132,8 +132,7 @@
     return YES;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     // Are we showing a loading screen?
     if (_isPending) {
         _isPending = NO;
@@ -141,8 +140,7 @@
     }
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     // WebKitErrorFrameLoadInterruptedByPolicyChange = 102
     // this is caused by policy change after WebView is finished and can safely be ignored
     if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
@@ -150,7 +148,7 @@
             [webView stopLoading];
         [webView setDelegate:nil];
 
-        self.completionHandler((NSError *)error);
+        self.completionHandler((NSError *) error);
     }
 }
 
