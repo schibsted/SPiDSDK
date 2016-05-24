@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		5306208B16C12440001B2A08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		5306209716C1375D001B2A08 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209616C1375D001B2A08 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209A16C1376F001B2A08 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -38,7 +37,6 @@
 		531E477817782E6500AB6B6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		531E478017782E6500AB6B6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 531E477E17782E6500AB6B6B /* InfoPlist.strings */; };
 		531E478317782E6500AB6B6B /* SPiDHybridAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 531E478217782E6500AB6B6B /* SPiDHybridAppTests.m */; };
-		531E478A1778333500AB6B6B /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		531E478B1778335300AB6B6B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		531E478D1778693700AB6B6B /* SPiDLogoTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E87BEEF3B1CCBFE79313 /* SPiDLogoTest@2x.png */; };
 		531E478E1778693700AB6B6B /* mainpage.html in Resources */ = {isa = PBXBuildFile; fileRef = E304E9E3B2550A68C86B42E0 /* mainpage.html */; };
@@ -73,13 +71,8 @@
 		532B220F16AD5787000DBA55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 532B220D16AD5787000DBA55 /* InfoPlist.strings */; };
 		532B221216AD5787000DBA55 /* SPiDNativeAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B221116AD5787000DBA55 /* SPiDNativeAppTests.m */; };
 		532BF074160A0A6100FC860E /* SPiDLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 532BF073160A0A6100FC860E /* SPiDLogo.jpg */; };
-		534D652016AD896600088B3D /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
-		534D652116AD937F00088B3D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		534D652816AD942400088B3D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
-		535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 535AA9B515FF31AD00D9F52B /* SPiDClient.m */; };
-		537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
-		537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		537D220E15FF224C000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D220C15FF224C000ABCA6 /* InfoPlist.strings */; };
 		537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D221015FF224C000ABCA6 /* SPiDSDKTests.m */; };
 		537D222115FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
@@ -89,26 +82,25 @@
 		537D223815FF2374000ABCA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
 		537D224015FF2374000ABCA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 537D223E15FF2374000ABCA6 /* InfoPlist.strings */; };
 		537D224315FF2374000ABCA6 /* SPiDExampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D224215FF2374000ABCA6 /* SPiDExampleAppTests.m */; };
-		537EFFD116B6A888008069DC /* libSPiDSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */; };
 		537EFFD216B6A912008069DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		538E694416313AA4006890C1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 538E694216313AA4006890C1 /* icon.png */; };
 		538E694516313AA4006890C1 /* icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 538E694316313AA4006890C1 /* icon-retina.png */; };
 		53989FBF1607186B00CB1BDD /* SPiDLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FBE1607186B00CB1BDD /* SPiDLoginView.xib */; };
 		53989FC31607199A00CB1BDD /* SPiDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53989FC21607199A00CB1BDD /* SPiDLoginViewController.m */; };
 		53989FC5160726C900CB1BDD /* SPiDMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53989FC4160726C900CB1BDD /* SPiDMainView.xib */; };
-		539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */; };
 		53AAD36617247DDA00C2F497 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */; };
-		5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */; };
+		553E8E5C1CF44AA4001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
+		553E8E5D1CF44AEA001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
+		553E8E5E1CF44AEE001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
+		553E8E5F1CF44AFF001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
 		DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */; };
-		DAC183B81CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		DAF1DE3D1CDC706D007B15B3 /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAF1DE3E1CDC78B1007B15B3 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A747521CC8D177003B77D9 /* SPiDWebView.m */; };
-		DAF1DE3F1CDC78B2007B15B3 /* SPiDWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A747521CC8D177003B77D9 /* SPiDWebView.m */; };
 		DAF1DE401CDC78B8007B15B3 /* SPiDWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A747511CC8D177003B77D9 /* SPiDWebView.h */; };
-		DAFD37491CD9F9B300BF0DE3 /* SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAFD37481CD9F9B300BF0DE3 /* SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DAFD37491CD9F9B300BF0DE3 /* SPiDSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DAFD37481CD9F9B300BF0DE3 /* SPiDSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiD.m */; };
 		DAFD37501CD9F9D700BF0DE3 /* SPiDKeychainWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -142,64 +134,32 @@
 		DAFD376D1CD9FA1100BF0DE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		DAFD376E1CD9FA1700BF0DE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B8468162FF8E60066EB89 /* UIKit.framework */; };
 		DAFD376F1CD9FA1C00BF0DE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D21F215FF224C000ABCA6 /* Foundation.framework */; };
-		E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EDA55B1715BF5E738193 /* SPiDResponse.m */; };
-		E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E27376450C44AB802870 /* SPiDUtils.h */; };
 		E304E0AE6047B3934ABC68A6 /* FacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */; };
-		E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C449C522B81621B33E /* SPiDAccessToken.m */; };
-		E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */; };
-		E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E61B34D176733C911367 /* NSData+Base64.m */; };
 		E304E1EEBBDC204D1E3AB80A /* facebook-login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */; };
 		E304E31BE819293D63E28557 /* facebook-login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */; };
-		E304E3D68825FDD570A408A9 /* SPiDStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E4801E76F6F93C43AB67 /* SPiDStatus.m */; };
 		E304E44AB90F3FCE432BB08D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E9BAD5499EEFE7846D26 /* Default@2x.png */; };
 		E304E452044155187E8DB9B7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EE605678587B7175FCB0 /* MainViewController.m */; };
-		E304E52F3203DA6CB5061FAA /* NSString+Crypto.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */; };
 		E304E541F1BE6AC6573A7BC0 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EC34E54EE6F302C3BE2A /* red_button@2x.png */; };
 		E304E5886D575207EE4574AD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7EE2A65B25A228D8133 /* LoginViewController.m */; };
-		E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */; };
-		E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E24883200DCA88A4E70C /* NSError+SPiD.m */; };
-		E304E5E647CEE9ECDCD6ACED /* NSError+SPiD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E4D3494537377633CA3E /* NSError+SPiD.h */; };
 		E304E6160DDD5CEE381C1946 /* ModalLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E960D295875190CA848E /* ModalLoginView.m */; };
 		E304E62AC86C9650891094B6 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E4602FCA00B6130BF009 /* red_button.png */; };
 		E304E6640827CCA423BA6D78 /* facebook-login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E78AD685949E4766960F /* facebook-login-button-small.png */; };
-		E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */; };
 		E304E6C8D41DFF94D38EB78B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E28946789A36FF358EC0 /* SignUpViewController.m */; };
 		E304E6CE390767859B6A31AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
-		E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E1D5F9987092B6438572 /* SPiDJwt.m */; };
 		E304E729715A2E316DA6D29C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E809BD21771F4972CA71 /* MainViewController.m */; };
 		E304E738EDA6D1A280B464C9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EA4B6709698E065E9263 /* MainViewController.m */; };
 		E304E7AE251C3D4C8DC110D9 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E719EC65DE9788499BD0 /* red_button.png */; };
-		E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */; };
 		E304E8380C41C1C4EED2F62F /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E7CA07B5345E3D5632D9 /* TermsViewController.m */; };
 		E304E8B07F0AB36216D2DCF4 /* SPiDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EA067760998928321774 /* SPiDMainViewController.m */; };
-		E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */; };
 		E304E9D1EC52036778DAA55D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */; };
-		E304E9ECCDD994BB72DD543D /* SPiDJwt.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E028433CF8954B044781 /* SPiDJwt.h */; };
-		E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
-		E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E74CE552DDD7DA85CADB /* SPiDResponse.h */; };
 		E304EAD8A6D8219C8A7C5CD3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF927327F5217C9FBBD0 /* Default.png */; };
-		E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E29BE892318CE0CCF648 /* SPiDRequest.h */; };
-		E304EB38611381AF6653FCE4 /* SignUpViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304ED5327F4289586BCF80C /* SignUpViewController.h */; };
-		E304EB3AAAA9C94117D0934D /* SPiDUser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304E8EE461D81FA4D084AC8 /* SPiDUser.h */; };
 		E304EBD0A10A44BCB90DB07B /* facebook-login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */; };
-		E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E304EB249FB072F13F1947F9 /* SPiDRequest.m */; };
 		E304EC9922D515E29B4349DD /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */; };
-		E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
 		E304ECD70A207DA0F4170D05 /* red_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E304E99B5C79CF60749D65AE /* red_button@2x.png */; };
-		E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */; };
 		E304EF18BF8CE80E4FDFB243 /* LoadingAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E57DC15056390ADACC87 /* LoadingAlertView.m */; };
-		E304EFD88EE8442DDB57ECAF /* SPiDStatus.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E304EF14B76195254AE32548 /* SPiDStatus.h */; };
-		E304EFDA1BBFBD96DA46233F /* SPiDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E93DD2773BD78706B78C /* SPiDUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5306208916C123E1001B2A08 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
-			remoteInfo = SPiDSDK;
-		};
 		531E477917782E6500AB6B6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
@@ -221,27 +181,6 @@
 			remoteGlobalIDString = 532B21E716AD5786000DBA55;
 			remoteInfo = SPiDNativeApp;
 		};
-		532B223D16AD88C3000DBA55 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
-			remoteInfo = SPiDSDK;
-		};
-		534D651D16AD893000088B3D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
-			remoteInfo = SPiDSDK;
-		};
-		537D220615FF224C000ABCA6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 537D21EE15FF224C000ABCA6;
-			remoteInfo = SPiDSDK;
-		};
 		537D223915FF2374000ABCA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 537D21E615FF224C000ABCA6 /* Project object */;
@@ -250,31 +189,6 @@
 			remoteInfo = SPiDExampleApp;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		537D21ED15FF224C000ABCA6 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
-			files = (
-				E304E0AC7DD307B5B65448E4 /* SPiDUtils.h in CopyFiles */,
-				E304EB003F1651870D51980A /* SPiDRequest.h in CopyFiles */,
-				E304EA7F7E97D986311BD8BD /* SPiDResponse.h in CopyFiles */,
-				E304E6876A41824E1787D0C3 /* SPiDAccessToken.h in CopyFiles */,
-				E304E80825F19C5AA6726F94 /* SPiDKeychainWrapper.h in CopyFiles */,
-				E304E5E647CEE9ECDCD6ACED /* NSError+SPiD.h in CopyFiles */,
-				E304E0E494A6B5F312B0C981 /* NSData+Base64.h in CopyFiles */,
-				E304E5A5DE23A7C2E2ED5363 /* SPiDTokenRequest.h in CopyFiles */,
-				E304E9ECCDD994BB72DD543D /* SPiDJwt.h in CopyFiles */,
-				E304E52F3203DA6CB5061FAA /* NSString+Crypto.h in CopyFiles */,
-				E304EB38611381AF6653FCE4 /* SignUpViewController.h in CopyFiles */,
-				E304EB3AAAA9C94117D0934D /* SPiDUser.h in CopyFiles */,
-				E304EFD88EE8442DDB57ECAF /* SPiDStatus.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5306208716C082B8001B2A08 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -331,11 +245,9 @@
 		532B221116AD5787000DBA55 /* SPiDNativeAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPiDNativeAppTests.m; sourceTree = "<group>"; };
 		532BF073160A0A6100FC860E /* SPiDLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SPiDLogo.jpg; sourceTree = "<group>"; };
 		5340F74516197A6700B990C4 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
-		535AA9B415FF31AD00D9F52B /* SPiDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDClient.h; sourceTree = "<group>"; };
-		535AA9B515FF31AD00D9F52B /* SPiDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDClient.m; sourceTree = "<group>"; };
-		537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPiDSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		535AA9B415FF31AD00D9F52B /* SPiDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDClient.h; path = SPiDSDK/SPiDClient.h; sourceTree = SOURCE_ROOT; };
+		535AA9B515FF31AD00D9F52B /* SPiDClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDClient.m; path = SPiDSDK/SPiDClient.m; sourceTree = SOURCE_ROOT; };
 		537D21F215FF224C000ABCA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPiDSDK-Prefix.pch"; sourceTree = "<group>"; };
 		537D220015FF224C000ABCA6 /* SPiDSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPiDSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D220B15FF224C000ABCA6 /* SPiDSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPiDSDKTests-Info.plist"; sourceTree = "<group>"; };
 		537D220D15FF224C000ABCA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -361,78 +273,78 @@
 		53989FC4160726C900CB1BDD /* SPiDMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPiDMainView.xib; sourceTree = "<group>"; };
 		539B8468162FF8E60066EB89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53A690EC1600B7C700ECFA5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SPiD.h"; sourceTree = "<group>"; };
-		5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+SPiD.m"; sourceTree = "<group>"; };
+		5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURLRequest+SPiD.h"; path = "SPiDSDK/NSURLRequest+SPiD.h"; sourceTree = SOURCE_ROOT; };
+		5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+SPiD.m"; path = "SPiDSDK/NSURLRequest+SPiD.m"; sourceTree = SOURCE_ROOT; };
 		55A747511CC8D177003B77D9 /* SPiDWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDWebView.h; sourceTree = "<group>"; };
 		55A747521CC8D177003B77D9 /* SPiDWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDWebView.m; sourceTree = "<group>"; };
-		DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+SPiD.h"; sourceTree = "<group>"; };
-		DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+SPiD.m"; sourceTree = "<group>"; };
-		DAFD37461CD9F9B200BF0DE3 /* SPiD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPiD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAFD37481CD9F9B300BF0DE3 /* SPiD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiD.h; sourceTree = "<group>"; };
+		DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCharacterSet+SPiD.h"; path = "SPiDSDK/NSCharacterSet+SPiD.h"; sourceTree = SOURCE_ROOT; };
+		DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSCharacterSet+SPiD.m"; path = "SPiDSDK/NSCharacterSet+SPiD.m"; sourceTree = SOURCE_ROOT; };
+		DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPiDSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAFD37481CD9F9B300BF0DE3 /* SPiDSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPiDSDK.h; sourceTree = "<group>"; };
 		DAFD374A1CD9F9B300BF0DE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E304E028433CF8954B044781 /* SPiDJwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDJwt.h; sourceTree = "<group>"; };
+		E304E028433CF8954B044781 /* SPiDJwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDJwt.h; path = SPiDSDK/SPiDJwt.h; sourceTree = SOURCE_ROOT; };
 		E304E0F3D65E0934EEC9BCBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E304E16FAB2E2242CB775D79 /* facebook-login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small@2x.png"; sourceTree = "<group>"; };
 		E304E18838B69AB7C22D2017 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E304E189CF307C539E49A2A1 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		E304E1D5F9987092B6438572 /* SPiDJwt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDJwt.m; sourceTree = "<group>"; };
-		E304E24883200DCA88A4E70C /* NSError+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SPiD.m"; sourceTree = "<group>"; };
-		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUtils.h; sourceTree = "<group>"; };
+		E304E1D5F9987092B6438572 /* SPiDJwt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDJwt.m; path = SPiDSDK/SPiDJwt.m; sourceTree = SOURCE_ROOT; };
+		E304E24883200DCA88A4E70C /* NSError+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSError+SPiD.m"; path = "SPiDSDK/NSError+SPiD.m"; sourceTree = SOURCE_ROOT; };
+		E304E27376450C44AB802870 /* SPiDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDUtils.h; path = SPiDSDK/SPiDUtils.h; sourceTree = SOURCE_ROOT; };
 		E304E28946789A36FF358EC0 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E304E28E9E0B4E40E2DBED48 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDRequest.h; sourceTree = "<group>"; };
-		E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Crypto.h"; sourceTree = "<group>"; };
+		E304E29BE892318CE0CCF648 /* SPiDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDRequest.h; path = SPiDSDK/SPiDRequest.h; sourceTree = SOURCE_ROOT; };
+		E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Crypto.h"; path = "SPiDSDK/NSString+Crypto.h"; sourceTree = SOURCE_ROOT; };
 		E304E3BCC47DB5D09ED73E01 /* facebook-login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed.png"; sourceTree = "<group>"; };
-		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenRequest.m; sourceTree = "<group>"; };
+		E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDTokenRequest.m; path = SPiDSDK/SPiDTokenRequest.m; sourceTree = SOURCE_ROOT; };
 		E304E4356DC3EEDF0A7653AB /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		E304E4602FCA00B6130BF009 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
-		E304E4801E76F6F93C43AB67 /* SPiDStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDStatus.m; sourceTree = "<group>"; };
-		E304E4D3494537377633CA3E /* NSError+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SPiD.h"; sourceTree = "<group>"; };
+		E304E4801E76F6F93C43AB67 /* SPiDStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDStatus.m; path = SPiDSDK/SPiDStatus.m; sourceTree = SOURCE_ROOT; };
+		E304E4D3494537377633CA3E /* NSError+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSError+SPiD.h"; path = "SPiDSDK/NSError+SPiD.h"; sourceTree = SOURCE_ROOT; };
 		E304E562CF026A8519F40E75 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
 		E304E57DC15056390ADACC87 /* LoadingAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingAlertView.m; sourceTree = "<group>"; };
 		E304E5B7F36284D3BBC4AD3D /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
-		E304E61B34D176733C911367 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		E304E61B34D176733C911367 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "SPiDSDK/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		E304E665CA050F736399C314 /* LoadingAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingAlertView.h; sourceTree = "<group>"; };
-		E304E682B974C240DE9BC5E1 /* SPiDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUtils.m; sourceTree = "<group>"; };
+		E304E682B974C240DE9BC5E1 /* SPiDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDUtils.m; path = SPiDSDK/SPiDUtils.m; sourceTree = SOURCE_ROOT; };
 		E304E719EC65DE9788499BD0 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
-		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDResponse.h; sourceTree = "<group>"; };
+		E304E74CE552DDD7DA85CADB /* SPiDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDResponse.h; path = SPiDSDK/SPiDResponse.h; sourceTree = SOURCE_ROOT; };
 		E304E78AD685949E4766960F /* facebook-login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small.png"; sourceTree = "<group>"; };
 		E304E7CA07B5345E3D5632D9 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		E304E7EE2A65B25A228D8133 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E304E809BD21771F4972CA71 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Crypto.m"; sourceTree = "<group>"; };
-		E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAccessToken.h; sourceTree = "<group>"; };
-		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDKeychainWrapper.m; sourceTree = "<group>"; };
+		E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Crypto.m"; path = "SPiDSDK/NSString+Crypto.m"; sourceTree = SOURCE_ROOT; };
+		E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDAccessToken.h; path = SPiDSDK/SPiDAccessToken.h; sourceTree = SOURCE_ROOT; };
+		E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDKeychainWrapper.m; path = SPiDSDK/SPiDKeychainWrapper.m; sourceTree = SOURCE_ROOT; };
 		E304E87BEEF3B1CCBFE79313 /* SPiDLogoTest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SPiDLogoTest@2x.png"; sourceTree = "<group>"; };
 		E304E8933EB93788905BE88E /* SPiDLogoTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SPiDLogoTest.png; sourceTree = "<group>"; };
-		E304E8EE461D81FA4D084AC8 /* SPiDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDUser.h; sourceTree = "<group>"; };
-		E304E93DD2773BD78706B78C /* SPiDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDUser.m; sourceTree = "<group>"; };
+		E304E8EE461D81FA4D084AC8 /* SPiDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDUser.h; path = SPiDSDK/SPiDUser.h; sourceTree = SOURCE_ROOT; };
+		E304E93DD2773BD78706B78C /* SPiDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDUser.m; path = SPiDSDK/SPiDUser.m; sourceTree = SOURCE_ROOT; };
 		E304E960D295875190CA848E /* ModalLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalLoginView.m; sourceTree = "<group>"; };
 		E304E99B5C79CF60749D65AE /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
 		E304E9B9D3E94D86126C4DE6 /* ModalLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalLoginView.h; sourceTree = "<group>"; };
 		E304E9BAD5499EEFE7846D26 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAccessToken.m; sourceTree = "<group>"; };
+		E304E9C449C522B81621B33E /* SPiDAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDAccessToken.m; path = SPiDSDK/SPiDAccessToken.m; sourceTree = SOURCE_ROOT; };
 		E304E9C8040ED3CEC15AEB1D /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		E304E9E3B2550A68C86B42E0 /* mainpage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mainpage.html; sourceTree = "<group>"; };
 		E304E9F0F64BC63AE69BA2D0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E304EA067760998928321774 /* SPiDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDMainViewController.m; sourceTree = "<group>"; };
 		E304EA4B6709698E065E9263 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDRequest.m; sourceTree = "<group>"; };
+		E304EB249FB072F13F1947F9 /* SPiDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDRequest.m; path = SPiDSDK/SPiDRequest.m; sourceTree = SOURCE_ROOT; };
 		E304EC34E54EE6F302C3BE2A /* red_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_button@2x.png"; sourceTree = "<group>"; };
 		E304EC3BEEF375752E9E16CE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E304ECEC953C2E9C143FD9E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E304ED208F9AB009F9EA38B8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E304ED5327F4289586BCF80C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		E304EDA55B1715BF5E738193 /* SPiDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDResponse.m; sourceTree = "<group>"; };
+		E304EDA55B1715BF5E738193 /* SPiDResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPiDResponse.m; path = SPiDSDK/SPiDResponse.m; sourceTree = SOURCE_ROOT; };
 		E304EE605678587B7175FCB0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		E304EE911E35212A60E66C70 /* SPiDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDMainViewController.h; sourceTree = "<group>"; };
-		E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenRequest.h; sourceTree = "<group>"; };
+		E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDTokenRequest.h; path = SPiDSDK/SPiDTokenRequest.h; sourceTree = SOURCE_ROOT; };
 		E304EF0069F03FFE596FC8B1 /* facebook-login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
-		E304EF14B76195254AE32548 /* SPiDStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDStatus.h; sourceTree = "<group>"; };
-		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDKeychainWrapper.h; sourceTree = "<group>"; };
+		E304EF14B76195254AE32548 /* SPiDStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDStatus.h; path = SPiDSDK/SPiDStatus.h; sourceTree = SOURCE_ROOT; };
+		E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPiDKeychainWrapper.h; path = SPiDSDK/SPiDKeychainWrapper.h; sourceTree = SOURCE_ROOT; };
 		E304EF927327F5217C9FBBD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E304EFCE17629039E0973340 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
-		E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "SPiDSDK/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,8 +352,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553E8E5E1CF44AEE001482E7 /* SPiDSDK.framework in Frameworks */,
 				531E478B1778335300AB6B6B /* Security.framework in Frameworks */,
-				531E478A1778333500AB6B6B /* libSPiDSDK.a in Frameworks */,
 				531E475B17782E6500AB6B6B /* UIKit.framework in Frameworks */,
 				531E475C17782E6500AB6B6B /* Foundation.framework in Frameworks */,
 				531E475D17782E6500AB6B6B /* CoreGraphics.framework in Frameworks */,
@@ -461,10 +373,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553E8E5D1CF44AEA001482E7 /* SPiDSDK.framework in Frameworks */,
 				5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */,
 				5306209716C1375D001B2A08 /* Social.framework in Frameworks */,
 				5306208B16C12440001B2A08 /* Security.framework in Frameworks */,
-				5306208816C10B12001B2A08 /* libSPiDSDK.a in Frameworks */,
 				532B21B516AD5737000DBA55 /* UIKit.framework in Frameworks */,
 				532B21B616AD5737000DBA55 /* Foundation.framework in Frameworks */,
 				532B21B716AD5737000DBA55 /* CoreGraphics.framework in Frameworks */,
@@ -485,9 +397,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553E8E5F1CF44AFF001482E7 /* SPiDSDK.framework in Frameworks */,
 				53220F2816BFB13300332D65 /* CoreText.framework in Frameworks */,
 				534D652816AD942400088B3D /* Security.framework in Frameworks */,
-				534D652016AD896600088B3D /* libSPiDSDK.a in Frameworks */,
 				532B21EA16AD5786000DBA55 /* UIKit.framework in Frameworks */,
 				532B21EB16AD5786000DBA55 /* Foundation.framework in Frameworks */,
 				532B21EC16AD5786000DBA55 /* CoreGraphics.framework in Frameworks */,
@@ -503,22 +415,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		537D21EC15FF224C000ABCA6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				534D652116AD937F00088B3D /* Security.framework in Frameworks */,
-				539B8469162FF8E60066EB89 /* UIKit.framework in Frameworks */,
-				537D21F315FF224C000ABCA6 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		537D21FC15FF224C000ABCA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */,
-				537D220815FF224C000ABCA6 /* libSPiDSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,8 +427,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553E8E5C1CF44AA4001482E7 /* SPiDSDK.framework in Frameworks */,
 				537EFFD216B6A912008069DC /* UIKit.framework in Frameworks */,
-				537EFFD116B6A888008069DC /* libSPiDSDK.a in Frameworks */,
 				53A690ED1600B7C700ECFA5E /* SystemConfiguration.framework in Frameworks */,
 				537D222115FF2374000ABCA6 /* Foundation.framework in Frameworks */,
 				537D222315FF2374000ABCA6 /* CoreGraphics.framework in Frameworks */,
@@ -721,7 +622,7 @@
 		537D21E415FF224C000ABCA6 = {
 			isa = PBXGroup;
 			children = (
-				537D21F415FF224C000ABCA6 /* SPiDSDK */,
+				DAFD37471CD9F9B200BF0DE3 /* SPiDSDK */,
 				537D220915FF224C000ABCA6 /* SPiDSDKTests */,
 				537D222415FF2374000ABCA6 /* SPiDExampleApp */,
 				537D223B15FF2374000ABCA6 /* SPiDExampleAppTests */,
@@ -731,7 +632,6 @@
 				532B220A16AD5786000DBA55 /* SPiDNativeAppTests */,
 				531E475E17782E6500AB6B6B /* SPiDHybridApp */,
 				531E477B17782E6500AB6B6B /* SPiDHybridAppTests */,
-				DAFD37471CD9F9B200BF0DE3 /* SPiD */,
 				537D21F115FF224C000ABCA6 /* Frameworks */,
 				537D21F015FF224C000ABCA6 /* Products */,
 				5340F74516197A6700B990C4 /* AppledocSettings.plist */,
@@ -742,7 +642,6 @@
 		537D21F015FF224C000ABCA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */,
 				537D220015FF224C000ABCA6 /* SPiDSDKTests.xctest */,
 				537D221E15FF2374000ABCA6 /* SPiDExampleApp.app */,
 				537D223515FF2374000ABCA6 /* SPiDExampleAppTests.xctest */,
@@ -752,7 +651,7 @@
 				532B220416AD5786000DBA55 /* SPiDNativeAppTests.xctest */,
 				531E475A17782E6500AB6B6B /* SPiDHybridApp.app */,
 				531E477517782E6500AB6B6B /* SPiDHybridAppTests. */,
-				DAFD37461CD9F9B200BF0DE3 /* SPiD.framework */,
+				DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -773,53 +672,6 @@
 				537D222215FF2374000ABCA6 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		537D21F415FF224C000ABCA6 /* SPiDSDK */ = {
-			isa = PBXGroup;
-			children = (
-				55A747501CC8D177003B77D9 /* iOS */,
-				E304E4D3494537377633CA3E /* NSError+SPiD.h */,
-				E304E24883200DCA88A4E70C /* NSError+SPiD.m */,
-				E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */,
-				E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */,
-				E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */,
-				E304E9C449C522B81621B33E /* SPiDAccessToken.m */,
-				E304EDA55B1715BF5E738193 /* SPiDResponse.m */,
-				E304E74CE552DDD7DA85CADB /* SPiDResponse.h */,
-				E304E29BE892318CE0CCF648 /* SPiDRequest.h */,
-				E304EB249FB072F13F1947F9 /* SPiDRequest.m */,
-				E304E27376450C44AB802870 /* SPiDUtils.h */,
-				E304E682B974C240DE9BC5E1 /* SPiDUtils.m */,
-				537D21F515FF224C000ABCA6 /* Supporting Files */,
-				535AA9B415FF31AD00D9F52B /* SPiDClient.h */,
-				535AA9B515FF31AD00D9F52B /* SPiDClient.m */,
-				E304E61B34D176733C911367 /* NSData+Base64.m */,
-				E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */,
-				E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */,
-				E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */,
-				E304E1D5F9987092B6438572 /* SPiDJwt.m */,
-				E304E028433CF8954B044781 /* SPiDJwt.h */,
-				E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */,
-				E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */,
-				E304E93DD2773BD78706B78C /* SPiDUser.m */,
-				E304E8EE461D81FA4D084AC8 /* SPiDUser.h */,
-				E304E4801E76F6F93C43AB67 /* SPiDStatus.m */,
-				E304EF14B76195254AE32548 /* SPiDStatus.h */,
-				5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */,
-				5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */,
-				DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */,
-				DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */,
-			);
-			path = SPiDSDK;
-			sourceTree = "<group>";
-		};
-		537D21F515FF224C000ABCA6 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				537D21F615FF224C000ABCA6 /* SPiDSDK-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		537D220915FF224C000ABCA6 /* SPiDSDKTests */ = {
@@ -898,16 +750,48 @@
 				55A747511CC8D177003B77D9 /* SPiDWebView.h */,
 				55A747521CC8D177003B77D9 /* SPiDWebView.m */,
 			);
-			path = iOS;
-			sourceTree = "<group>";
+			name = iOS;
+			path = SPiDSDK/iOS;
+			sourceTree = SOURCE_ROOT;
 		};
-		DAFD37471CD9F9B200BF0DE3 /* SPiD */ = {
+		DAFD37471CD9F9B200BF0DE3 /* SPiDSDK */ = {
 			isa = PBXGroup;
 			children = (
-				DAFD37481CD9F9B300BF0DE3 /* SPiD.h */,
+				55A747501CC8D177003B77D9 /* iOS */,
+				E304E4D3494537377633CA3E /* NSError+SPiD.h */,
+				E304E24883200DCA88A4E70C /* NSError+SPiD.m */,
+				E304EF216D40E5A826067322 /* SPiDKeychainWrapper.h */,
+				E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */,
+				E304E84CBC42440BD70D5DE3 /* SPiDAccessToken.h */,
+				E304E9C449C522B81621B33E /* SPiDAccessToken.m */,
+				E304EDA55B1715BF5E738193 /* SPiDResponse.m */,
+				E304E74CE552DDD7DA85CADB /* SPiDResponse.h */,
+				E304E29BE892318CE0CCF648 /* SPiDRequest.h */,
+				E304EB249FB072F13F1947F9 /* SPiDRequest.m */,
+				E304E27376450C44AB802870 /* SPiDUtils.h */,
+				E304E682B974C240DE9BC5E1 /* SPiDUtils.m */,
+				535AA9B415FF31AD00D9F52B /* SPiDClient.h */,
+				535AA9B515FF31AD00D9F52B /* SPiDClient.m */,
+				E304E61B34D176733C911367 /* NSData+Base64.m */,
+				E304EFE5D26F7D58C09687E6 /* NSData+Base64.h */,
+				E304E3E1E2B498D92CBE1882 /* SPiDTokenRequest.m */,
+				E304EEEC8E2D4142778A0E10 /* SPiDTokenRequest.h */,
+				E304E1D5F9987092B6438572 /* SPiDJwt.m */,
+				E304E028433CF8954B044781 /* SPiDJwt.h */,
+				E304E82E31EF2B3A2975D93C /* NSString+Crypto.m */,
+				E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */,
+				E304E93DD2773BD78706B78C /* SPiDUser.m */,
+				E304E8EE461D81FA4D084AC8 /* SPiDUser.h */,
+				E304E4801E76F6F93C43AB67 /* SPiDStatus.m */,
+				E304EF14B76195254AE32548 /* SPiDStatus.h */,
+				5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */,
+				5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */,
+				DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */,
+				DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */,
+				DAFD37481CD9F9B300BF0DE3 /* SPiDSDK.h */,
 				DAFD374A1CD9F9B300BF0DE3 /* Info.plist */,
 			);
-			path = SPiD;
+			path = SPiDSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -925,7 +809,7 @@
 				DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */,
 				DAFD37671CD9F9D700BF0DE3 /* (null) in Headers */,
 				DAFD37561CD9F9D700BF0DE3 /* SPiDRequest.h in Headers */,
-				DAFD37491CD9F9B300BF0DE3 /* SPiD.h in Headers */,
+				DAFD37491CD9F9B300BF0DE3 /* SPiDSDK.h in Headers */,
 				DAFD37521CD9F9D700BF0DE3 /* SPiDAccessToken.h in Headers */,
 				DAFD37651CD9F9D700BF0DE3 /* SPiDUser.h in Headers */,
 				DAFD375F1CD9F9D700BF0DE3 /* SPiDTokenRequest.h in Headers */,
@@ -988,7 +872,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5306208A16C123E1001B2A08 /* PBXTargetDependency */,
 			);
 			name = SPiDFacebookApp;
 			productName = SPiDFacebookApp;
@@ -1025,7 +908,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				532B223E16AD88C3000DBA55 /* PBXTargetDependency */,
 			);
 			name = SPiDNativeApp;
 			productName = SPiDNativeApp;
@@ -1051,23 +933,6 @@
 			productReference = 532B220416AD5786000DBA55 /* SPiDNativeAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		537D21EE15FF224C000ABCA6 /* SPiDSDK */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 537D221415FF224C000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDSDK" */;
-			buildPhases = (
-				537D21EB15FF224C000ABCA6 /* Sources */,
-				537D21EC15FF224C000ABCA6 /* Frameworks */,
-				537D21ED15FF224C000ABCA6 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SPiDSDK;
-			productName = SPiDSDK;
-			productReference = 537D21EF15FF224C000ABCA6 /* libSPiDSDK.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		537D21FF15FF224C000ABCA6 /* SPiDSDKTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 537D221715FF224C000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDSDKTests" */;
@@ -1079,7 +944,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				537D220715FF224C000ABCA6 /* PBXTargetDependency */,
 			);
 			name = SPiDSDKTests;
 			productName = SPiDSDKTests;
@@ -1097,7 +961,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				534D651E16AD893000088B3D /* PBXTargetDependency */,
 			);
 			name = SPiDExampleApp;
 			productName = SPiDExampleApp;
@@ -1123,9 +986,9 @@
 			productReference = 537D223515FF2374000ABCA6 /* SPiDExampleAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DAFD37451CD9F9B200BF0DE3 /* SPiD */ = {
+		DAFD37451CD9F9B200BF0DE3 /* SPiDSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAFD374D1CD9F9B300BF0DE3 /* Build configuration list for PBXNativeTarget "SPiD" */;
+			buildConfigurationList = DAFD374D1CD9F9B300BF0DE3 /* Build configuration list for PBXNativeTarget "SPiDSDK" */;
 			buildPhases = (
 				DAFD37411CD9F9B200BF0DE3 /* Sources */,
 				DAFD37421CD9F9B200BF0DE3 /* Frameworks */,
@@ -1136,9 +999,9 @@
 			);
 			dependencies = (
 			);
-			name = SPiD;
+			name = SPiDSDK;
 			productName = SPiD;
-			productReference = DAFD37461CD9F9B200BF0DE3 /* SPiD.framework */;
+			productReference = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1168,7 +1031,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				537D21EE15FF224C000ABCA6 /* SPiDSDK */,
 				537D21FF15FF224C000ABCA6 /* SPiDSDKTests */,
 				537D221D15FF2374000ABCA6 /* SPiDExampleApp */,
 				537D223415FF2374000ABCA6 /* SPiDExampleAppTests */,
@@ -1179,7 +1041,7 @@
 				532B21E716AD5786000DBA55 /* SPiDNativeApp */,
 				532B220316AD5786000DBA55 /* SPiDNativeAppTests */,
 				5365DB2E1615E9B1000AA6BB /* Documentation */,
-				DAFD37451CD9F9B200BF0DE3 /* SPiD */,
+				DAFD37451CD9F9B200BF0DE3 /* SPiDSDK */,
 			);
 		};
 /* End PBXProject section */
@@ -1425,29 +1287,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		537D21EB15FF224C000ABCA6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5534F8841C2407D4009F015E /* NSURLRequest+SPiD.m in Sources */,
-				DAF1DE3F1CDC78B2007B15B3 /* SPiDWebView.m in Sources */,
-				535AA9B615FF31AD00D9F52B /* SPiDClient.m in Sources */,
-				E304ECB0B148F9752A1A638B /* SPiDUtils.m in Sources */,
-				E304EC48AB115EA9F88948A4 /* SPiDRequest.m in Sources */,
-				E304E08A2EC951CAD3D1E5EB /* SPiDResponse.m in Sources */,
-				DAC183B81CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */,
-				E304E0D6037916A5052F883F /* SPiDAccessToken.m in Sources */,
-				E304EA4A8D3C359B6AB32E1D /* SPiDKeychainWrapper.m in Sources */,
-				E304E5C0409AACEABCFE6A9D /* NSError+SPiD.m in Sources */,
-				E304E1B6830AA2DC9E0934BB /* NSData+Base64.m in Sources */,
-				E304E945CCFF8AF17A52C9DD /* SPiDTokenRequest.m in Sources */,
-				E304E721E11E58542E6AA266 /* SPiDJwt.m in Sources */,
-				E304EE6DA23B3914F1207D76 /* NSString+Crypto.m in Sources */,
-				E304EFDA1BBFBD96DA46233F /* SPiDUser.m in Sources */,
-				E304E3D68825FDD570A408A9 /* SPiDStatus.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		537D21FB15FF224C000ABCA6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1504,11 +1343,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5306208A16C123E1001B2A08 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
-			targetProxy = 5306208916C123E1001B2A08 /* PBXContainerItemProxy */;
-		};
 		531E477A17782E6500AB6B6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 531E475917782E6500AB6B6B /* SPiDHybridApp */;
@@ -1523,21 +1357,6 @@
 			isa = PBXTargetDependency;
 			target = 532B21E716AD5786000DBA55 /* SPiDNativeApp */;
 			targetProxy = 532B220816AD5786000DBA55 /* PBXContainerItemProxy */;
-		};
-		532B223E16AD88C3000DBA55 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
-			targetProxy = 532B223D16AD88C3000DBA55 /* PBXContainerItemProxy */;
-		};
-		534D651E16AD893000088B3D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
-			targetProxy = 534D651D16AD893000088B3D /* PBXContainerItemProxy */;
-		};
-		537D220715FF224C000ABCA6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 537D21EE15FF224C000ABCA6 /* SPiDSDK */;
-			targetProxy = 537D220615FF224C000ABCA6 /* PBXContainerItemProxy */;
 		};
 		537D223A15FF2374000ABCA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1623,7 +1442,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridApp/SPiDHybridApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
@@ -1642,7 +1461,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridApp/SPiDHybridApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
@@ -1711,7 +1530,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookApp/SPiDFacebookApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
@@ -1738,7 +1557,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookApp/SPiDFacebookApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
@@ -1803,7 +1622,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeApp/SPiDNativeApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
@@ -1822,7 +1641,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeApp/SPiDNativeApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
@@ -1963,38 +1782,6 @@
 			};
 			name = Release;
 		};
-		537D221515FF224C000ABCA6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DSTROOT = /tmp/SPiDSDK.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		537D221615FF224C000ABCA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DSTROOT = /tmp/SPiDSDK.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SPiDSDK/SPiDSDK-Prefix.pch";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		537D221815FF224C000ABCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2039,7 +1826,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.schibsted.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2062,7 +1849,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.schibsted.${PRODUCT_NAME:rfc1034identifier}";
@@ -2127,12 +1914,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SPiD/Info.plist;
+				INFOPLIST_FILE = SPiDSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = no.schibsted.SPiD;
+				PRODUCT_BUNDLE_IDENTIFIER = no.schibsted.SPiDSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2160,12 +1947,12 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SPiD/Info.plist;
+				INFOPLIST_FILE = SPiDSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = no.schibsted.SPiD;
+				PRODUCT_BUNDLE_IDENTIFIER = no.schibsted.SPiDSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2249,15 +2036,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		537D221415FF224C000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				537D221515FF224C000ABCA6 /* Debug */,
-				537D221615FF224C000ABCA6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		537D221715FF224C000ABCA6 /* Build configuration list for PBXNativeTarget "SPiDSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2285,7 +2063,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAFD374D1CD9F9B300BF0DE3 /* Build configuration list for PBXNativeTarget "SPiD" */ = {
+		DAFD374D1CD9F9B300BF0DE3 /* Build configuration list for PBXNativeTarget "SPiDSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAFD374B1CD9F9B300BF0DE3 /* Debug */,

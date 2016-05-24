@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "537D21EE15FF224C000ABCA6"
-               BuildableName = "libSPiDSDK.a"
+               BlueprintIdentifier = "DAFD37451CD9F9B200BF0DE3"
+               BuildableName = "SPiDSDK.framework"
                BlueprintName = "SPiDSDK"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
             </BuildableReference>
@@ -42,8 +42,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537D21EE15FF224C000ABCA6"
-            BuildableName = "libSPiDSDK.a"
+            BlueprintIdentifier = "DAFD37451CD9F9B200BF0DE3"
+            BuildableName = "SPiDSDK.framework"
             BlueprintName = "SPiDSDK"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
@@ -64,8 +64,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537D21EE15FF224C000ABCA6"
-            BuildableName = "libSPiDSDK.a"
+            BlueprintIdentifier = "DAFD37451CD9F9B200BF0DE3"
+            BuildableName = "SPiDSDK.framework"
             BlueprintName = "SPiDSDK"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
@@ -82,8 +82,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537D21EE15FF224C000ABCA6"
-            BuildableName = "libSPiDSDK.a"
+            BlueprintIdentifier = "DAFD37451CD9F9B200BF0DE3"
+            BuildableName = "SPiDSDK.framework"
             BlueprintName = "SPiDSDK"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
