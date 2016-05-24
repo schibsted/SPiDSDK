@@ -1,4 +1,4 @@
-
+Carthage
 builds/*
 *.pbxuser
 !default.pbxuser
@@ -15,3 +15,4 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+.DS_Store

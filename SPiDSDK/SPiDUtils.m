@@ -5,6 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
+#import "NSCharacterSet+SPiD.h"
 #import "SPiDUtils.h"
 
 @implementation SPiDUtils
@@ -26,9 +27,9 @@
     NSString *query = @"";
     for (NSString *key in dictionary) {
         if ([query length] > 0) {
-            query = [query stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            query = [query stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeQueryParameter:key], [SPiDUtils urlEncodeQueryParameter:[dictionary objectForKey:key]]];
         } else {
-            query = [query stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            query = [query stringByAppendingFormat:@"?%@=%@", [SPiDUtils urlEncodeQueryParameter:key], [SPiDUtils urlEncodeQueryParameter:[dictionary objectForKey:key]]];
         }
     }
     return query;
@@ -38,16 +39,17 @@
     NSString *body = @"";
     for (NSString *key in dictionary) {
         if ([body length] > 0) {
-            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            body = [body stringByAppendingFormat:@"&%@=%@", [SPiDUtils urlEncodeQueryParameter:key], [SPiDUtils urlEncodeQueryParameter:[dictionary objectForKey:key]]];
         } else {
-            body = [body stringByAppendingFormat:@"%@=%@", [SPiDUtils urlEncodeString:key], [SPiDUtils urlEncodeString:[dictionary objectForKey:key]]];
+            body = [body stringByAppendingFormat:@"%@=%@", [SPiDUtils urlEncodeQueryParameter:key], [SPiDUtils urlEncodeQueryParameter:[dictionary objectForKey:key]]];
         }
     }
     return body;
 }
 
-+ (NSString *)urlEncodeString:(NSString *)unescaped {
-    return [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
++ (NSString *)urlEncodeQueryParameter:(NSString *)unescaped {
+    NSString *escapedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryPartAllowedCharacterSet]];
+    return escapedString;
 }
 
 + (NSString *)getUrlParameter:(NSURL *)url forKey:(NSString *)key {

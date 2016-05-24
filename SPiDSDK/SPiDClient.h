@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#define SPID_IOS_SDK_VERSION_STRING @"2.1.0"
+#define SPID_IOS_SDK_VERSION_STRING @"2.2.0"
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
