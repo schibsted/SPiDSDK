@@ -1,9 +1,0 @@
-//
-// Prefix header for all source files of the 'SPiDSDK' target in the 'SPiDSDK' project
-//
-
-#ifdef __OBJC__
-
-#import <Foundation/Foundation.h>
-
-#endif
