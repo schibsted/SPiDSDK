@@ -145,7 +145,12 @@
             SPiDDebugLog(@"Received response from: %@", [self.URL absoluteString]);
             SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithJSONData:data];
             NSError *spidError = [spidResponse error];
-            if (spidError && ([spidError code] == SPiDOAuth2InvalidTokenErrorCode || [spidError code] == SPiDOAuth2ExpiredTokenErrorCode)) {
+
+            if (spidError && [spidError code] == SPiDOAuth2InvalidTokenErrorCode) {
+                // Caused by the user just changing password
+                [[SPiDClient sharedInstance] removeAccessToken];
+            }
+            if (spidError && [spidError code] == SPiDOAuth2ExpiredTokenErrorCode) {
                 if ([self retryCount] < 3) {
                     SPiDDebugLog(@"Invalid token, trying to refresh");
                     [self setRetryCount:[self retryCount] + 1];
