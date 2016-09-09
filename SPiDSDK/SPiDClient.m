@@ -261,9 +261,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (BOOL)isAuthorized {
-    if (self.accessToken)
-        return !self.hasTokenExpired;
-    return NO;
+    return [self.accessToken isValid];
 }
 
 - (BOOL)isClientToken {
