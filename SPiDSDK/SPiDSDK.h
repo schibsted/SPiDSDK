@@ -27,6 +27,7 @@ FOUNDATION_EXPORT const unsigned char SPiDVersionString[];
 #import "SPiDTokenRequest.h"
 #import "SPiDUser.h"
 #import "SPiDUtils.h"
+#import "SPiDAgreements.h"
 
 #if TARGET_OS_IOS
     #import "SPiDWebView.h"

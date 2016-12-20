@@ -13,6 +13,7 @@
 #import "SPiDTokenRequest.h"
 #import "SPiDStatus.h"
 #import "NSData+Base64.h"
+#import "SPiDAgreements.h"
 
 @interface SPiDClient ()
 
@@ -474,6 +475,69 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     [self clearAuthorizationRequest];
 
     self.waitingRequests = nil;
+}
+
+@end
+
+@implementation SPiDClient (Agreements)
+
+- (BOOL)fetchAgreementsWithSuccess:(void (^)(SPiDAgreements *))success andFailure:(void (^)(NSError *))failure {
+    if([self.accessToken isClientToken] || !self.accessToken) { return NO; } // Exit early if we don't have a client token or it is a client token.
+
+    NSString *path = [NSString stringWithFormat:@"/user/%@/agreements", self.accessToken.userID];
+    [[SPiDRequest apiGetRequestWithPath:path completionHandler:^(SPiDResponse *response) {
+        // Any errors in the response?
+        if(response.error) {
+            // Make sure we have a failure block
+            if(!failure) { return; }
+
+            // And relay any errors
+            failure(response.error);
+        } else {
+            // Great, request didn't fail. Try to parse the response.
+            SPiDAgreements *agreements = [SPiDAgreements parseAgreementsFrom:response.message];
+            if(!agreements) {
+                // Make sure we have a failure block and call it.
+                if(!failure) { return; }
+                failure([NSError errorWithDomain:@"ParseError" code:1337 userInfo:nil]);
+            } else {
+                // Great success! Make sure we have a success block and call it!
+                if(!success) { return; }
+                success(agreements);
+            }
+        }
+    }] startRequestWithAccessToken];
+
+    return YES;
+}
+
+- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError *))failure {
+    if([self.accessToken isClientToken] || !self.accessToken) { return NO; } // Exit early if we don't have a client token or it is a client token.
+
+    NSString *path = [NSString stringWithFormat:@"/user/%@/agreements/accept", self.accessToken.userID];
+    [[SPiDRequest apiPostRequestWithPath:path body:nil completionHandler:^(SPiDResponse *response) {
+        // Any errors in the response?
+        if(response.error) {
+            // Make sure we have a failure block
+            if(!failure) { return; }
+
+            // And relay any errors
+            failure(response.error);
+        } else {
+            // Check if we have a successfull result
+            NSNumber *result = response.message[@"data"][@"result"];
+            if([result isKindOfClass:[NSNumber class]] && result.boolValue) {
+                if(!success) { return; }
+                success();
+            } else {
+                if(!failure) { return; }
+                failure([NSError errorWithDomain:@"ResultFailure" code:420 userInfo:nil]);
+            }
+        }
+
+    }] startRequestWithAccessToken];
+
+    return YES;
 }
 
 @end

@@ -14,6 +14,7 @@
 @class SPiDResponse;
 @class SPiDAccessToken;
 @class SPiDRequest;
+@class SPiDAgreements;
 
 static NSString *const defaultAPIVersionSPiD = @"2";
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
@@ -340,5 +341,29 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on request completion or error
  */
 - (void)emailStatusWithEmail:(NSString *)email completionHandler:(void (^)(SPiDResponse *responce)) completionHandler;
+
+@end
+
+@interface SPiDClient (Agreements)
+
+/**
+ Gets the agreements for the signed in user.
+ http://techdocs.spid.no/endpoints/GET/user/{userId}/agreements/
+
+ @param success Block called on successful request.
+ @param failure Blocket called on failure.
+ @return A bool indicating if request was sent or not.
+ */
+- (BOOL)fetchAgreementsWithSuccess:(void (^)(SPiDAgreements *agreements))success andFailure:(void (^)(NSError *error))failure;
+
+/**
+ Accepts the agreements for the signed in user.
+ http://techdocs.spid.no/endpoints/POST/user/{userId}/agreements/accept/
+
+ @param success Block called on success.
+ @param failure Block called on failure.
+ @return A bool indicating if request was sent or not.
+ */
+- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError *error))failure;
 
 @end
