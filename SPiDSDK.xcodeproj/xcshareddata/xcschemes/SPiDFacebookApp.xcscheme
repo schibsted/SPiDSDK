@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,6 +17,20 @@
                BlueprintIdentifier = "532B21B216AD5737000DBA55"
                BuildableName = "SPiDFacebookApp.app"
                BlueprintName = "SPiDFacebookApp"
+               ReferencedContainer = "container:SPiDSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "532B21CE16AD5737000DBA55"
+               BuildableName = "SPiDFacebookAppTests.octest"
+               BlueprintName = "SPiDFacebookAppTests"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
