@@ -94,6 +94,10 @@
 		553E8E5D1CF44AEA001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
 		553E8E5E1CF44AEE001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
 		553E8E5F1CF44AFF001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
+		9665D1F51E0820C300759F60 /* SPiDAgreements.h in Headers */ = {isa = PBXBuildFile; fileRef = 9665D1F31E0820C300759F60 /* SPiDAgreements.h */; };
+		9665D1F61E0820C300759F60 /* SPiDAgreements.m in Sources */ = {isa = PBXBuildFile; fileRef = 9665D1F41E0820C300759F60 /* SPiDAgreements.m */; };
+		9665D1F81E092C0000759F60 /* SPiDAgreementsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9665D1F71E092C0000759F60 /* SPiDAgreementsTests.m */; };
+		9665D1F91E092DCE00759F60 /* SPiDAgreements.m in Sources */ = {isa = PBXBuildFile; fileRef = 9665D1F41E0820C300759F60 /* SPiDAgreements.m */; };
 		DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */; };
 		DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */; };
 		DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E682B974C240DE9BC5E1 /* SPiDUtils.m */; };
@@ -276,6 +280,9 @@
 		5534F8831C2407D4009F015E /* NSURLRequest+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+SPiD.m"; path = "SPiDSDK/NSURLRequest+SPiD.m"; sourceTree = SOURCE_ROOT; };
 		55A747511CC8D177003B77D9 /* SPiDWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDWebView.h; sourceTree = "<group>"; };
 		55A747521CC8D177003B77D9 /* SPiDWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDWebView.m; sourceTree = "<group>"; };
+		9665D1F31E0820C300759F60 /* SPiDAgreements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDAgreements.h; sourceTree = "<group>"; };
+		9665D1F41E0820C300759F60 /* SPiDAgreements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAgreements.m; sourceTree = "<group>"; };
+		9665D1F71E092C0000759F60 /* SPiDAgreementsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDAgreementsTests.m; sourceTree = "<group>"; };
 		DAC183B51CDA161600D08ABD /* NSCharacterSet+SPiD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCharacterSet+SPiD.h"; path = "SPiDSDK/NSCharacterSet+SPiD.h"; sourceTree = SOURCE_ROOT; };
 		DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSCharacterSet+SPiD.m"; path = "SPiDSDK/NSCharacterSet+SPiD.m"; sourceTree = SOURCE_ROOT; };
 		DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPiDSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -679,6 +686,7 @@
 				537D220A15FF224C000ABCA6 /* Supporting Files */,
 				537D220F15FF224C000ABCA6 /* SPiDSDKTests.h */,
 				537D221015FF224C000ABCA6 /* SPiDSDKTests.m */,
+				9665D1F71E092C0000759F60 /* SPiDAgreementsTests.m */,
 			);
 			path = SPiDSDKTests;
 			sourceTree = "<group>";
@@ -789,6 +797,8 @@
 				DAC183B61CDA161600D08ABD /* NSCharacterSet+SPiD.m */,
 				DAFD37481CD9F9B300BF0DE3 /* SPiDSDK.h */,
 				DAFD374A1CD9F9B300BF0DE3 /* Info.plist */,
+				9665D1F31E0820C300759F60 /* SPiDAgreements.h */,
+				9665D1F41E0820C300759F60 /* SPiDAgreements.m */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -813,6 +823,7 @@
 				DAFD375F1CD9F9D700BF0DE3 /* SPiDTokenRequest.h in Headers */,
 				DAFD37501CD9F9D700BF0DE3 /* SPiDKeychainWrapper.h in Headers */,
 				DAFD37581CD9F9D700BF0DE3 /* SPiDUtils.h in Headers */,
+				9665D1F51E0820C300759F60 /* SPiDAgreements.h in Headers */,
 				DAFD376A1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.h in Headers */,
 				DAFD37631CD9F9D700BF0DE3 /* NSString+Crypto.h in Headers */,
 				DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */,
@@ -1009,7 +1020,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Mikael Lindström";
 				TargetAttributes = {
 					DAFD37451CD9F9B200BF0DE3 = {
@@ -1291,6 +1302,8 @@
 			files = (
 				DAF1DE3D1CDC706D007B15B3 /* NSCharacterSet+SPiD.m in Sources */,
 				537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */,
+				9665D1F91E092DCE00759F60 /* SPiDAgreements.m in Sources */,
+				9665D1F81E092C0000759F60 /* SPiDAgreementsTests.m in Sources */,
 				DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1326,6 +1339,7 @@
 				DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */,
 				DAFD375E1CD9F9D700BF0DE3 /* SPiDTokenRequest.m in Sources */,
 				DAFD37621CD9F9D700BF0DE3 /* NSString+Crypto.m in Sources */,
+				9665D1F61E0820C300759F60 /* SPiDAgreements.m in Sources */,
 				DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */,
 				DAFD37531CD9F9D700BF0DE3 /* SPiDAccessToken.m in Sources */,
 				DAF1DE3E1CDC78B1007B15B3 /* SPiDWebView.m in Sources */,
@@ -1483,7 +1497,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridAppTests/SPiDHybridAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1506,7 +1520,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDHybridApp/SPiDHybridApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDHybridAppTests/SPiDHybridAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.schibsted.payment.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1581,7 +1595,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookAppTests/SPiDFacebookAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1603,7 +1617,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDFacebookApp/SPiDFacebookApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDFacebookAppTests/SPiDFacebookAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1663,7 +1677,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeAppTests/SPiDNativeAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1685,7 +1699,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDNativeApp/SPiDNativeApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDNativeAppTests/SPiDNativeAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "no.spp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1716,7 +1730,9 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1740,7 +1756,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
@@ -1757,7 +1773,9 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1773,7 +1791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1903,7 +1921,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -1934,7 +1952,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
