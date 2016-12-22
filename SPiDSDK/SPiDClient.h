@@ -214,6 +214,9 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 /** Clears current authorization request and waiting requests */
 - (void)clearAuthorizationRequest;
 
+/** Clears access token and also removes it from the keychain */
+- (void)removeAccessToken;
+
 /** Called when authorization is complete */
 - (void)authorizationComplete;
 

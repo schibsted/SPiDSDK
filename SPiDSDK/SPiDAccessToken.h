@@ -78,4 +78,6 @@ extern NSString *const SPiDAccessTokenRefreshTokenKey;
 */
 - (BOOL)isClientToken;
 
+- (BOOL)isValid;
+
 @end

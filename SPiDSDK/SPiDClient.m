@@ -262,9 +262,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 }
 
 - (BOOL)isAuthorized {
-    if (self.accessToken)
-        return !self.hasTokenExpired;
-    return NO;
+    return [self.accessToken isValid];
 }
 
 - (BOOL)isClientToken {
@@ -468,13 +466,14 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
 - (void)logoutComplete {
     SPiDDebugLog(@"Logged out from SPiD");
-    self.accessToken = nil;
-
-    [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
-
+    [self removeAccessToken];
     [self clearAuthorizationRequest];
-
     self.waitingRequests = nil;
+}
+
+- (void)removeAccessToken {
+    self.accessToken = nil;
+    [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
 }
 
 @end

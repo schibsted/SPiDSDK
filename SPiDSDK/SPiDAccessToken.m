@@ -16,13 +16,11 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
 
 @implementation SPiDAccessToken
 
-+ (BOOL)isValidToken:(SPiDAccessToken *)accessToken {
-    if (accessToken.accessToken == nil) {
-        SPiDDebugLog(@"Could not create SPiDAccessToken, missing access_token parameter");
+- (BOOL)isValid {
+    if (self.accessToken == nil) {
         return NO;
     }
-    if (accessToken.expiresAt == nil) {
-        SPiDDebugLog(@"Could not create SPiDAccessToken, missing expires_in parameter");
+    if (self.expiresAt == nil) {
         return NO;
     }
     return YES;
@@ -36,7 +34,12 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
         _expiresAt = expiresAt;
         _refreshToken = refreshToken;
 
-        if (![SPiDAccessToken isValidToken:self]) {
+        if (accessToken == nil) {
+            SPiDDebugLog(@"Could not create SPiDAccessToken, missing access_token parameter");
+            return nil;
+        }
+        if (expiresAt == nil) {
+            SPiDDebugLog(@"Could not create SPiDAccessToken, missing expires_in parameter");
             return nil;
         }
     }
