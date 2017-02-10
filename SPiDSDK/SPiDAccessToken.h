@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** Dictionary key for user id */
 extern NSString *const SPiDAccessTokenUserIdKey;
 
@@ -79,3 +81,5 @@ extern NSString *const SPiDAccessTokenRefreshTokenKey;
 - (BOOL)isClientToken;
 
 @end
+
+NS_ASSUME_NONNULL_END

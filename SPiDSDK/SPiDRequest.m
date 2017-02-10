@@ -11,6 +11,8 @@
 #import "NSError+SPiD.h"
 #import "NSURLRequest+SPiD.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SPiDRequest ()
 
 /** Initializes a GET `SPiDRequest`
@@ -38,7 +40,7 @@
  @param completionHandler Called on request completion or error
  @return `SPiDRequest`
 */
-- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
+- (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(nullable NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Starts a SPiD request
 
@@ -49,10 +51,12 @@
 
 @property (nonatomic, strong, readwrite) NSURL *URL;
 @property (nonatomic, strong, readwrite) NSString *HTTPMethod;
-@property (nonatomic, strong, readwrite) NSString *HTTPBody;
-@property (nonatomic, copy) void (^completionHandler)(SPiDResponse *response);
+@property (nonatomic, strong, readwrite, nullable) NSString *HTTPBody;
+@property (nonatomic, copy, nullable) void (^completionHandler)(SPiDResponse *response);
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 @implementation SPiDRequest
 
@@ -136,7 +140,7 @@
     SPiDDebugLog(@"Running request: %@", request.URL);
     
     NSURLSessionDataTask *task = [[[SPiDClient sharedInstance] URLSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if(error) {
+        if (error) {
             SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
             SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithError:error];
             if (self.completionHandler)

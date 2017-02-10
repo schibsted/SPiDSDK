@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "SPiDRequest.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class SPiDAccessToken;
 
 /** `SPiDTokenRequest` handles a token request against SPiD. */
@@ -24,7 +26,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)clientTokenRequestWithCompletionHandler:(void (^)(NSError *error))completionHandler;
++ (nullable instancetype)clientTokenRequestWithCompletionHandler:(nullable void (^)(NSError * __nullable))completionHandler;
 
 /** Creates a user token request with authorization code
 
@@ -32,7 +34,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(NSError *))completionHandler;
++ (nullable instancetype)userTokenRequestWithCode:(NSString *)code completionHandler:(void (^)(NSError * __nullable))completionHandler;
 
 /** Creates a user token request with user credentials
 
@@ -41,7 +43,7 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(NSError *error))completionHandler;
++ (nullable instancetype)userTokenRequestWithUsername:(NSString *)username password:(NSString *)password completionHandler:(void (^)(NSError * __nullable error))completionHandler;
 
 /** Creates a JWT facebook token request
 
@@ -51,13 +53,15 @@
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
 */
-+ (instancetype)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError *))completionHandler;
++ (nullable instancetype)userTokenRequestWithFacebookAppID:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate completionHandler:(void (^)(NSError * __nullable))completionHandler;
 
 /** Creates a token refresh token request with the current access token
 
  @param completionHandler Called on token request completion or error
  @return The token request or nil if refresh token is missing
 */
-+ (instancetype)refreshTokenRequestWithCompletionHandler:(void (^)(NSError *))completionHandler;
++ (nullable instancetype)refreshTokenRequestWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler;
 
 @end
+
+NS_ASSUME_NONNULL_END

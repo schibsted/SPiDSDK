@@ -63,7 +63,7 @@
  @param completionHandler Called on request completion or error
  @return SPiDTokenRequest
  */
-- (instancetype)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(NSError *))completionHandler;
+- (instancetype)initPostTokenRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^ __nullable)(NSError *))completionHandler;
 
 @property (nonatomic, copy) void(^tokenCompletionHandler)(NSError *error);
 
