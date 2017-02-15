@@ -7,20 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-/** Dictionary key for user id */
-extern NSString *const SPiDAccessTokenUserIdKey;
-
-/** Dictionary key for access token */
-extern NSString *const SPiDAccessTokenKey;
-
-/** Dictionary key for expires in */
-extern NSString *const SPiDAccessTokenExpiresInKey;
-
-/** Dictionary key for expires at */
-extern NSString *const SPiDAccessTokenExpiresAtKey;
-
-/** Dictionary key for refresh token */
-extern NSString *const SPiDAccessTokenRefreshTokenKey;
+NS_ASSUME_NONNULL_BEGIN
 
 /** Contains a access token that can be saved to the keychain */
 
@@ -32,16 +19,16 @@ extern NSString *const SPiDAccessTokenRefreshTokenKey;
 
 // Note: We have not included scope since it is not used, might have to be added later
 /** User ID for the current client */
-@property(strong, nonatomic) NSString *userID;
+@property(nonatomic, copy) NSString * _Nullable userID;
 
 /** The OAuth 2.0 access token */
-@property(strong, nonatomic) NSString *accessToken;
+@property(nonatomic, copy) NSString * accessToken;
 
 /** Expiry date for the access token */
-@property(strong, nonatomic) NSDate *expiresAt;
+@property(nonatomic, copy) NSDate *expiresAt;
 
 /** Refresh token used for refreshing the access token  */
-@property(strong, nonatomic) NSString *refreshToken;
+@property(nonatomic, copy) NSString *refreshToken;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
@@ -55,16 +42,14 @@ extern NSString *const SPiDAccessTokenRefreshTokenKey;
  @param refreshToken Refresh token
  @return SPiDAccessToken or nil if token is invalid
  */
-- (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken;
+- (instancetype)initWithUserID:(NSString * _Nullable)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken;
 
 /** Initializes the AccessToken from a dictionary
 
  @param dictionary Received data from SPiD
  @return SPiDAccessToken or nil if token is invalid
  */
-- (id)initWithDictionary:(NSDictionary *)dictionary;
-
-- (NSString *)stringFromObject:(id)obj;
+- (instancetype)initWithDictionary:(NSDictionary * _Nullable)dictionary;
 
 /** Checks if the access token has expired
 
@@ -79,3 +64,5 @@ extern NSString *const SPiDAccessTokenRefreshTokenKey;
 - (BOOL)isClientToken;
 
 @end
+
+NS_ASSUME_NONNULL_END
