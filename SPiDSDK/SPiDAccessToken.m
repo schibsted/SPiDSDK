@@ -8,11 +8,11 @@
 #import "SPiDAccessToken.h"
 #import "SPiDClient.h"
 
-NSString *const SPiDAccessTokenUserIdKey = @"user_id";
-NSString *const SPiDAccessTokenKey = @"access_token";
-NSString *const SPiDAccessTokenExpiresInKey = @"expires_in";
-NSString *const SPiDAccessTokenExpiresAtKey = @"expires_at";
-NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
+static NSString *const SPiDAccessTokenUserIdKey = @"user_id";
+static NSString *const SPiDAccessTokenKey = @"access_token";
+static NSString *const SPiDAccessTokenExpiresInKey = @"expires_in";
+static NSString *const SPiDAccessTokenExpiresAtKey = @"expires_at";
+static NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
 
 @implementation SPiDAccessToken
 
@@ -28,9 +28,8 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
     return YES;
 }
 
-- (id)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken {
-    self = [super init];
-    if (self) {
+- (instancetype)initWithUserID:(NSString *)userID accessToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt refreshToken:(NSString *)refreshToken {
+    if (self = [super init]) {
         _userID = userID;
         _accessToken = accessToken;
         _expiresAt = expiresAt;
@@ -43,16 +42,32 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
     return self;
 }
 
-- (id)initWithDictionary:(NSDictionary *)dictionary {
-    NSString *userID = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenUserIdKey]];
-    NSString *accessToken = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenKey]];
-    NSString *expiresIn = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenExpiresInKey]];
-    NSString *refreshToken = [self stringFromObject:[dictionary objectForKey:SPiDAccessTokenRefreshTokenKey]];
-
-    NSDate *expiresAt;
-    if (expiresIn) {
-        expiresAt = [NSDate dateWithTimeIntervalSinceNow:[expiresIn integerValue]];
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    NSString *userID = [dictionary objectForKey:SPiDAccessTokenUserIdKey];
+    if(![userID isKindOfClass:[NSString class]]) {
+        SPiDDebugLog(@"Failed to parse access token from dictionary");
+        userID = nil; // API returns non-string values for client tokens. That stops here.
     }
+
+    NSString *accessToken = [dictionary objectForKey:SPiDAccessTokenKey];
+    if(![accessToken isKindOfClass:[NSString class]] || accessToken.length == 0) {
+        SPiDDebugLog(@"Failed to parse access token from dictionary");
+        return nil;
+    }
+
+    NSNumber *expiresIn = [dictionary objectForKey:SPiDAccessTokenExpiresInKey];
+    if(![expiresIn isKindOfClass:[NSNumber class]]) {
+        SPiDDebugLog(@"Failed to parse access token from dictionary");
+        return nil;
+    }
+    NSDate *expiresAt = [NSDate dateWithTimeIntervalSinceNow:[expiresIn integerValue]];
+
+    NSString *refreshToken = [dictionary objectForKey:SPiDAccessTokenRefreshTokenKey];
+    if(![refreshToken isKindOfClass:[NSString class]]) {
+        SPiDDebugLog(@"Failed to parse access token from dictionary");
+        return nil;
+    }
+
     return [self initWithUserID:userID accessToken:accessToken expiresAt:expiresAt refreshToken:refreshToken];
 }
 
@@ -69,17 +84,6 @@ NSString *const SPiDAccessTokenRefreshTokenKey = @"refresh_token";
     [coder encodeObject:[self accessToken] forKey:SPiDAccessTokenKey];
     [coder encodeObject:[self expiresAt] forKey:SPiDAccessTokenExpiresAtKey];
     [coder encodeObject:[self refreshToken] forKey:SPiDAccessTokenRefreshTokenKey];
-}
-
-- (NSString *)stringFromObject:(id)obj {
-    if ([obj isKindOfClass:[NSString class]]) {
-        return obj;
-    } else if ([obj isKindOfClass:[NSNumber class]]) {
-        return [obj stringValue];
-    } else {
-        SPiDDebugLog(@"Could not decode object");
-    }
-    return obj;
 }
 
 - (BOOL)hasExpired {
