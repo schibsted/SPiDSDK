@@ -205,7 +205,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on logout completion or error
  @see isAuthorized
  */
-- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler;
+- (nullable SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler;
 
 /** Tries to refresh access token and rerun waiting requests
 
@@ -259,7 +259,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @return Returns user ID
  */
-- (NSString *)currentUserID;
+- (nullable NSString *)currentUserID;
 
 /** Returns YES if `SPiDClient` has a access token
 
