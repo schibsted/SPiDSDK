@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "SPiDUtils.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class SPiDResponse;
 @class SPiDAccessToken;
 @class SPiDRequest;
@@ -120,7 +122,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 @property(strong, nonatomic) NSString *webViewInitialHTML;
 
 /** The SPiD access token */
-@property(strong, nonatomic) SPiDAccessToken *accessToken;
+@property(strong, nonatomic, nullable) SPiDAccessToken *accessToken;
 
 /** Queue for waiting requests */
 @property(nonatomic, strong, readonly) NSMutableArray *waitingRequests;
@@ -156,15 +158,15 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on login completion or error
 */
-- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *))completionHandler __WATCHOS_PROHIBITED;
+- (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler __WATCHOS_PROHIBITED;
 
 /** Redirects to safari for signup
 
  @param completionHandler Called on signup completion or error
 */
-- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError *))completionHandler __WATCHOS_PROHIBITED;
+- (void)browserRedirectSignupWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler __WATCHOS_PROHIBITED;
 
-- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError *response))completionHandler __WATCHOS_PROHIBITED;
+- (void)browserRedirectForgotPasswordWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler __WATCHOS_PROHIBITED;
 
 /** Redirects to safari for forgot password */
 - (void)browserRedirectForgotPassword __WATCHOS_PROHIBITED;
@@ -176,7 +178,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @param completionHandler Called on logout completion or error
 */
-- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError *))completionHandler __WATCHOS_PROHIBITED; // TODO: Should not care about errors...
+- (void)browserRedirectLogoutWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler __WATCHOS_PROHIBITED; // TODO: Should not care about errors...
 
 /** Handles URL redirects to the app with completion handler
  
@@ -184,7 +186,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on successful login/logout or error
  @return Returns YES if URL was handled by `SPiDClient`
  */
-- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError *response))completionHandler;
+- (BOOL)handleOpenURL:(NSURL *)url completionHandler:(void (^)(NSError * __nullable))completionHandler;
 
 /** Handles URL redirects to the app
 
@@ -203,7 +205,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param completionHandler Called on logout completion or error
  @see isAuthorized
  */
-- (SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError *response))completionHandler;
+- (nullable SPiDRequest *)logoutRequestWithCompletionHandler:(void (^)(NSError * __nullable))completionHandler;
 
 /** Tries to refresh access token and rerun waiting requests
 
@@ -257,7 +259,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
  @return Returns user ID
  */
-- (NSString *)currentUserID;
+- (nullable NSString *)currentUserID;
 
 /** Returns YES if `SPiDClient` has a access token
 
@@ -354,7 +356,7 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param failure Blocket called on failure.
  @return A bool indicating if request was sent or not.
  */
-- (BOOL)fetchAgreementsWithSuccess:(void (^)(SPiDAgreements *agreements))success andFailure:(void (^)(NSError *error))failure;
+- (BOOL)fetchAgreementsWithSuccess:(void (^)(SPiDAgreements *agreements))success andFailure:(void (^)(NSError * nullable))failure;
 
 /**
  Accepts the agreements for the signed in user.
@@ -364,6 +366,8 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param failure Block called on failure.
  @return A bool indicating if request was sent or not.
  */
-- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError *error))failure;
+- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError * nullable))failure;
 
 @end
+
+NS_ASSUME_NONNULL_END

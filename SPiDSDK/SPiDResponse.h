@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  `SPiDResponse` is created for each response from SPiD made by a `SPiDRequest`
 
@@ -22,10 +24,10 @@
 ///---------------------------------------------------------------------------------------
 
 /** Contains error if there was any, otherwise nil */
-@property(strong, nonatomic) NSError *error;
+@property(strong, nonatomic, nullable) NSError *error;
 
 /** Received JSON message converted to a dictionary */
-@property(strong, nonatomic) NSDictionary *message;
+@property(strong, nonatomic) NSDictionary<NSString *, id> *message;
 
 /** Received JSON message as a raw string */
 @property(strong, nonatomic) NSString *rawJSON;
@@ -39,13 +41,15 @@
  @param data Data received from SPiD
  @return SPiDAccessToken
  */
-- (id)initWithJSONData:(NSData *)data;
+- (instancetype)initWithJSONData:(nullable NSData *)data;
 
 /** Initializes SPiD response with a error
 
  @param error The received error
  @return SPiDAccessToken
  */
-- (id)initWithError:(NSError *)error;
+- (instancetype)initWithError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

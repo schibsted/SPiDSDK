@@ -15,12 +15,14 @@
 @class SPiDAccessToken;
 @class SPiDResponse;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SPiDRequest : NSObject
 
 @property (nonatomic, strong, readonly) NSURL *URL;
 @property (nonatomic, strong, readonly) NSString *HTTPMethod;
 @property (nonatomic, strong, readonly) NSString *HTTPBody;
-@property(nonatomic) NSInteger retryCount;
+@property (nonatomic, assign) NSInteger retryCount;
 
 ///---------------------------------------------------------------------------------------
 /// @name Public methods
@@ -32,7 +34,7 @@
  @param completionHandler Completion handler run after request is finished, will be called on the main thread.
  @return `SPiDRequest`
 */
-+ (instancetype)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (instancetype)apiGetRequestWithPath:(NSString *)requestPath completionHandler:(void (^)(SPiDResponse * response))completionHandler;
 
 /** Creates a POST `SPiDRequest`
 
@@ -41,7 +43,7 @@
  @param completionHandler Completion handler run after request is finished, will be called on the main thread.
  @return `SPiDRequest`
 */
-+ (instancetype)apiPostRequestWithPath:(NSString *)requestPath body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (instancetype)apiPostRequestWithPath:(NSString *)requestPath body:(nullable NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
 /** Creates a `SPiDRequest`
 
@@ -51,7 +53,7 @@
  @param completionHandler Completion handler run after request is finished, will be called on the main thread.
  @return `SPiDRequest`
 */
-+ (instancetype)requestWithPath:(NSString *)requestPath method:(NSString *)method body:(NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
++ (instancetype)requestWithPath:( NSString *)requestPath method:(nullable NSString *)method body:(nullable NSDictionary *)body completionHandler:(void (^ __nullable)(SPiDResponse * response))completionHandler;
 
 /** Runs the request with the current access token */
 - (void)startRequestWithAccessToken; //TODO rename
@@ -63,3 +65,5 @@
 - (void)startWithRequest:(NSURLRequest *)request;
 
 @end
+
+NS_ASSUME_NONNULL_END
