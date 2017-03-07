@@ -25,7 +25,8 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [SPiDClient setClientID:ClientID
                clientSecret:ClientSecret
                appURLScheme:AppURLScheme
-                  serverURL:[NSURL URLWithString:ServerURL]];
+                  serverURL:[NSURL URLWithString:ServerURL]
+           tokenStorageMode:SPiDTokenStorageModeDefault];
     [[SPiDClient sharedInstance] setWebViewInitialHTML:@"<html><body>Loading SPiD login page</body></html>"];
 
     [self setUseWebView:YES]; // As default, logout as logged in through webview

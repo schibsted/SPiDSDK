@@ -21,6 +21,32 @@ NS_ASSUME_NONNULL_BEGIN
 static NSString *const defaultAPIVersionSPiD = @"2";
 static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
 
+/**
+ Options for persisting user tokens.
+ 
+ Normally an app should only use the keychain to store the tokens.
+ During app iTunes account migration the options here let
+ exporting or importing the data from NSUserDefaults.
+ This is needed to keep a user logged in after migration.
+ 
+ The migration can be done in 2 steps (2 app updates):
+ 1. The first update is published to the old account with SPiDTokenStorageModeMigratePreITunesAccountMove
+    (and starts writing tokens to NSUserDefaults)
+ 2. The second update is published to the new account with SPiDTokenStorageModeMigratePostITunesAccountMove
+    (and starts reading tokens from NSUserDefaults)
+ Both versions should stay in the store for a while
+ until the most users are able to upgrade and run it.
+ Eventually a subsequent update can revert back to use SPiDTokenStorageModeDefault
+ */
+typedef NS_ENUM(NSUInteger, SPiDTokenStorageMode) {
+    /** Use only keychain to store and retrieve user tokens */
+    SPiDTokenStorageModeDefault,
+    /** Retrieve user tokens from keychain, store to both keychain and NSUserDefaults */
+    SPiDTokenStorageModeMigratePreITunesAccountMove,
+    /** Try retrieving user tokens from NSUserDefaults after keychain, store to keychain only */
+    SPiDTokenStorageModeMigratePostITunesAccountMove,
+};
+
 // debug print used by SPiDSDK
 #ifdef DEBUG
 #   define SPiDDebugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -148,11 +174,13 @@ static NSString *const AccessTokenKeychainIdentification = @"AccessToken";
  @param clientSecret The client secret provided by SPiD
  @param appURLSchema The url schema for the app (eg spidtest://)
  @param serverURL The url to SPiD
+ @param tokenStorageMode See SPiDTokenStorageMode
  */
 + (void)setClientID:(NSString *)clientID
        clientSecret:(NSString *)clientSecret
        appURLScheme:(NSString *)appURLSchema
-          serverURL:(NSURL *)serverURL;
+          serverURL:(NSURL *)serverURL
+   tokenStorageMode:(SPiDTokenStorageMode)tokenStorageMode;
 
 /** Redirects to safari for authorization
 

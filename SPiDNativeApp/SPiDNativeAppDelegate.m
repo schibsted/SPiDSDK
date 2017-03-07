@@ -27,7 +27,8 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [SPiDClient setClientID:ClientID
                clientSecret:ClientSecret
                appURLScheme:AppURLScheme
-                  serverURL:[NSURL URLWithString:ServerURL]];
+                  serverURL:[NSURL URLWithString:ServerURL]
+           tokenStorageMode:SPiDTokenStorageModeDefault];
 
     MainViewController *mainViewController = [[MainViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

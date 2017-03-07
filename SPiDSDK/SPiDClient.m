@@ -7,10 +7,11 @@
 
 #import "SPiDClient.h"
 #import "SPiDRequest.h"
-#import "SPiDKeychainWrapper.h"
+#import "SPiDAccessToken.h"
 #import "SPiDResponse.h"
 #import "NSError+SPiD.h"
 #import "SPiDTokenRequest.h"
+#import "SPiDTokenStorage.h"
 #import "SPiDStatus.h"
 #import "NSData+Base64.h"
 #import "SPiDAgreements.h"
@@ -42,6 +43,7 @@
 @property (nonatomic, strong, readwrite) NSMutableArray *waitingRequests;
 @property (nonatomic, strong) SPiDRequest *authorizationRequest;
 @property (nonatomic, copy) void (^completionHandler)(NSError *error);
+@property (nonatomic, strong) SPiDTokenStorage *tokenStorage;
 
 @end
 
@@ -57,7 +59,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
                            NSStringFromClass([self class]),
                            NSStringFromSelector(_cmd),
                            NSStringFromClass([self class]),
-                           NSStringFromSelector(@selector(setClientID:clientSecret:appURLScheme:serverURL:))];
+                           NSStringFromSelector(@selector(setClientID:clientSecret:appURLScheme:serverURL:tokenStorageMode:))];
     }
 
     return sharedSPiDClientInstance;
@@ -66,7 +68,9 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 + (void)setClientID:(NSString *)clientID
        clientSecret:(NSString *)clientSecret
        appURLScheme:(NSString *)appURLSchema
-          serverURL:(NSURL *)serverURL {
+          serverURL:(NSURL *)serverURL
+   tokenStorageMode:(SPiDTokenStorageMode)tokenStorageMode
+{
 
     if (sharedSPiDClientInstance != nil) {
         [NSException raise:NSInternalInconsistencyException
@@ -76,7 +80,8 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     }
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        sharedSPiDClientInstance = [[self alloc] init];
+        SPiDTokenStorage *tokenStorage = [self createTokenStorageInMode:tokenStorageMode];
+        sharedSPiDClientInstance = [[self alloc] initWithTokenStorage:tokenStorage];
     });
 
     [sharedSPiDClientInstance setClientID:clientID];
@@ -128,6 +133,21 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
     // Fire and forget
     [SPiDStatus runStatusRequest];
+}
+
++ (SPiDTokenStorage *)createTokenStorageInMode:(SPiDTokenStorageMode)mode
+{
+    switch (mode) {
+        case SPiDTokenStorageModeDefault:
+            return [[SPiDTokenStorage alloc] initWithReadBackendTypes:@[ @(SPiDTokenStorageBackendTypeKeychain) ]
+                                                    writeBackendTypes:@[ @(SPiDTokenStorageBackendTypeKeychain) ]];
+        case SPiDTokenStorageModeMigratePreITunesAccountMove:
+            return [[SPiDTokenStorage alloc] initWithReadBackendTypes:@[ @(SPiDTokenStorageBackendTypeKeychain) ]
+                                                    writeBackendTypes:@[ @(SPiDTokenStorageBackendTypeKeychain), @(SPiDTokenStorageBackendTypeUserDefaults) ]];
+        case SPiDTokenStorageModeMigratePostITunesAccountMove:
+            return [[SPiDTokenStorage alloc] initWithReadBackendTypes:@[ @(SPiDTokenStorageBackendTypeKeychain), @(SPiDTokenStorageBackendTypeUserDefaults) ]
+                                                    writeBackendTypes:@[ @(SPiDTokenStorageBackendTypeKeychain) ]];
+    }
 }
 
 - (void)browserRedirectAuthorizationWithCompletionHandler:(void (^)(NSError *response))completionHandler {
@@ -353,9 +373,11 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 /// @name Private methods
 ///---------------------------------------------------------------------------------------
 
-- (id)init {
+- (id)initWithTokenStorage:(SPiDTokenStorage *)tokenStorage
+{
     if (self = [super init]) {
-        self.accessToken = [SPiDKeychainWrapper accessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
+        self.tokenStorage = tokenStorage;
+        self.accessToken = [self.tokenStorage loadAccessTokenAndReplicate];
         if (![self apiVersionSPiD]) {
             [self setApiVersionSPiD:[NSString stringWithFormat:@"%@", defaultAPIVersionSPiD]];
         }
@@ -447,6 +469,15 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     }
 }
 
+- (void)setAndStoreAccessToken:(SPiDAccessToken *)accessToken {
+    self.accessToken = accessToken;
+    if (accessToken) {
+        [self.tokenStorage storeAccessTokenWithValue:accessToken];
+    } else {
+        [self.tokenStorage removeAccessToken];
+    }
+}
+
 - (void)clearAuthorizationRequest {
     @synchronized (self.authorizationRequest) {
         self.authorizationRequest = nil;
@@ -468,9 +499,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 
 - (void)logoutComplete {
     SPiDDebugLog(@"Logged out from SPiD");
-    self.accessToken = nil;
-
-    [SPiDKeychainWrapper removeAccessTokenFromKeychainForIdentifier:AccessTokenKeychainIdentification];
+    [self setAndStoreAccessToken:nil];
 
     [self clearAuthorizationRequest];
 
