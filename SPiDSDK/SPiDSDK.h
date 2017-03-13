@@ -20,7 +20,6 @@ FOUNDATION_EXPORT const unsigned char SPiDVersionString[];
 #import "SPiDAccessToken.h"
 #import "SPiDClient.h"
 #import "SPiDJwt.h"
-#import "SPiDKeychainWrapper.h"
 #import "SPiDRequest.h"
 #import "SPiDResponse.h"
 #import "SPiDStatus.h"

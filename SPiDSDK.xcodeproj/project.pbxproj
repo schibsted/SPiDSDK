@@ -21,6 +21,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		089318561E6EFAD6002CD789 /* SPiDTokenStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 089318541E6EFAD6002CD789 /* SPiDTokenStorage.h */; };
+		089318571E6EFAD6002CD789 /* SPiDTokenStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 089318551E6EFAD6002CD789 /* SPiDTokenStorage.m */; };
+		0893185A1E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 089318581E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.h */; };
+		0893185B1E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 089318591E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.m */; };
+		0893185E1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 0893185C1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.h */; };
+		0893185F1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0893185D1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.m */; };
+		089318611E716AE6002CD789 /* SPiDTokenStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 089318601E716AE6002CD789 /* SPiDTokenStorageTests.m */; };
+		089318621E717174002CD789 /* SPiDTokenStorageUserDefaultsBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 089318591E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.m */; };
+		089318641E7176DD002CD789 /* SPiDTokenStorageUserDefaultsBackendTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 089318631E7176DD002CD789 /* SPiDTokenStorageUserDefaultsBackendTests.m */; };
+		089318651E717AB9002CD789 /* SPiDTokenStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 089318551E6EFAD6002CD789 /* SPiDTokenStorage.m */; };
+		089318661E717AE6002CD789 /* SPiDTokenStorageKeychainBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0893185D1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.m */; };
+		089318671E717AF4002CD789 /* SPiDKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E86B163571BA2FDCE5BD /* SPiDKeychainWrapper.m */; };
+		089318681E717B44002CD789 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		5306208B16C12440001B2A08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E304ECEC953C2E9C143FD9E2 /* Security.framework */; };
 		5306209716C1375D001B2A08 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209616C1375D001B2A08 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5306209B16C1376F001B2A08 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5306209A16C1376F001B2A08 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -153,6 +166,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		089318541E6EFAD6002CD789 /* SPiDTokenStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenStorage.h; sourceTree = "<group>"; };
+		089318551E6EFAD6002CD789 /* SPiDTokenStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenStorage.m; sourceTree = "<group>"; };
+		089318581E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenStorageUserDefaultsBackend.h; sourceTree = "<group>"; };
+		089318591E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenStorageUserDefaultsBackend.m; sourceTree = "<group>"; };
+		0893185C1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPiDTokenStorageKeychainBackend.h; sourceTree = "<group>"; };
+		0893185D1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenStorageKeychainBackend.m; sourceTree = "<group>"; };
+		089318601E716AE6002CD789 /* SPiDTokenStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenStorageTests.m; sourceTree = "<group>"; };
+		089318631E7176DD002CD789 /* SPiDTokenStorageUserDefaultsBackendTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPiDTokenStorageUserDefaultsBackendTests.m; sourceTree = "<group>"; };
 		5306208716C082B8001B2A08 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		5306209616C1375D001B2A08 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		5306209816C13764001B2A08 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -342,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				089318681E717B44002CD789 /* Security.framework in Frameworks */,
 				537D220515FF224C000ABCA6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +556,8 @@
 				9698149C1E54942600439631 /* SPiDAccessTokenTests.m */,
 				969814A11E54972700439631 /* NSDictionary+Test.h */,
 				969814A21E54972700439631 /* NSDictionary+Test.m */,
+				089318601E716AE6002CD789 /* SPiDTokenStorageTests.m */,
+				089318631E7176DD002CD789 /* SPiDTokenStorageUserDefaultsBackendTests.m */,
 			);
 			path = SPiDSDKTests;
 			sourceTree = "<group>";
@@ -637,6 +661,12 @@
 				DAFD374A1CD9F9B300BF0DE3 /* Info.plist */,
 				9665D1F31E0820C300759F60 /* SPiDAgreements.h */,
 				9665D1F41E0820C300759F60 /* SPiDAgreements.m */,
+				089318541E6EFAD6002CD789 /* SPiDTokenStorage.h */,
+				089318551E6EFAD6002CD789 /* SPiDTokenStorage.m */,
+				089318581E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.h */,
+				089318591E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.m */,
+				0893185C1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.h */,
+				0893185D1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.m */,
 			);
 			path = SPiDSDK;
 			sourceTree = "<group>";
@@ -648,6 +678,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0893185A1E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.h in Headers */,
 				DAFD37551CD9F9D700BF0DE3 /* SPiDResponse.h in Headers */,
 				DAFD37611CD9F9D700BF0DE3 /* SPiDJwt.h in Headers */,
 				DAFD375A1CD9F9D700BF0DE3 /* SPiDClient.h in Headers */,
@@ -655,6 +686,7 @@
 				DAFD374E1CD9F9D700BF0DE3 /* NSError+SPiD.h in Headers */,
 				DAF1DE401CDC78B8007B15B3 /* SPiDWebView.h in Headers */,
 				DAFD37561CD9F9D700BF0DE3 /* SPiDRequest.h in Headers */,
+				0893185E1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.h in Headers */,
 				DAFD37491CD9F9B300BF0DE3 /* SPiDSDK.h in Headers */,
 				DAFD37521CD9F9D700BF0DE3 /* SPiDAccessToken.h in Headers */,
 				DAFD37651CD9F9D700BF0DE3 /* SPiDUser.h in Headers */,
@@ -665,6 +697,7 @@
 				DAFD376A1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.h in Headers */,
 				DAFD37631CD9F9D700BF0DE3 /* NSString+Crypto.h in Headers */,
 				DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */,
+				089318561E6EFAD6002CD789 /* SPiDTokenStorage.h in Headers */,
 				DAFD375D1CD9F9D700BF0DE3 /* NSData+Base64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -952,13 +985,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				089318661E717AE6002CD789 /* SPiDTokenStorageKeychainBackend.m in Sources */,
 				DAF1DE3D1CDC706D007B15B3 /* NSCharacterSet+SPiD.m in Sources */,
 				537D221115FF224C000ABCA6 /* SPiDSDKTests.m in Sources */,
 				9665D1F91E092DCE00759F60 /* SPiDAgreements.m in Sources */,
+				089318651E717AB9002CD789 /* SPiDTokenStorage.m in Sources */,
+				089318671E717AF4002CD789 /* SPiDKeychainWrapper.m in Sources */,
 				969814A31E54972700439631 /* NSDictionary+Test.m in Sources */,
 				9665D1F81E092C0000759F60 /* SPiDAgreementsTests.m in Sources */,
+				089318621E717174002CD789 /* SPiDTokenStorageUserDefaultsBackend.m in Sources */,
+				089318641E7176DD002CD789 /* SPiDTokenStorageUserDefaultsBackendTests.m in Sources */,
 				DAF1DE3C1CDC6F35007B15B3 /* SPiDUtils.m in Sources */,
 				9698149D1E54942600439631 /* SPiDAccessTokenTests.m in Sources */,
+				089318611E716AE6002CD789 /* SPiDTokenStorageTests.m in Sources */,
 				969814A41E549AEE00439631 /* SPiDAccessToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,12 +1019,15 @@
 			files = (
 				DAFD376B1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.m in Sources */,
 				DAFD375B1CD9F9D700BF0DE3 /* SPiDClient.m in Sources */,
+				0893185F1E6EFEA9002CD789 /* SPiDTokenStorageKeychainBackend.m in Sources */,
 				DAFD37571CD9F9D700BF0DE3 /* SPiDRequest.m in Sources */,
 				DAFD37541CD9F9D700BF0DE3 /* SPiDResponse.m in Sources */,
 				DAFD37601CD9F9D700BF0DE3 /* SPiDJwt.m in Sources */,
+				0893185B1E6EFD52002CD789 /* SPiDTokenStorageUserDefaultsBackend.m in Sources */,
 				DAC183B91CDA161600D08ABD /* NSCharacterSet+SPiD.m in Sources */,
 				DAFD375E1CD9F9D700BF0DE3 /* SPiDTokenRequest.m in Sources */,
 				DAFD37621CD9F9D700BF0DE3 /* NSString+Crypto.m in Sources */,
+				089318571E6EFAD6002CD789 /* SPiDTokenStorage.m in Sources */,
 				9665D1F61E0820C300759F60 /* SPiDAgreements.m in Sources */,
 				DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */,
 				DAFD37531CD9F9D700BF0DE3 /* SPiDAccessToken.m in Sources */,
@@ -1262,11 +1304,7 @@
 		537D221815FF224C000ABCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "SPiDSDKTests/SPiDSDKTests-Info.plist";
@@ -1278,11 +1316,7 @@
 		537D221915FF224C000ABCA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "SPiDSDKTests/SPiDSDKTests-Info.plist";
@@ -1296,10 +1330,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";
@@ -1319,10 +1350,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPiDExampleApp/SPiDExampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SPiDExampleApp/SPiDExampleApp-Info.plist";

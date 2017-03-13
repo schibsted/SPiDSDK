@@ -7,7 +7,7 @@
 
 #import "SPiDTokenRequest.h"
 #import "NSError+SPiD.h"
-#import "SPiDKeychainWrapper.h"
+#import "SPiDAccessToken.h"
 #import "SPiDJwt.h"
 
 @interface SPiDTokenRequest ()
@@ -68,6 +68,12 @@
 @property (nonatomic, copy) void(^tokenCompletionHandler)(NSError *error);
 
 @end
+
+
+@interface SPiDClient (SPiDClientPrivateAccessTokenSetter)
+- (void)setAndStoreAccessToken:(SPiDAccessToken *)accessToken;
+@end
+
 
 @implementation SPiDTokenRequest
 
@@ -215,8 +221,7 @@
                     self.tokenCompletionHandler(error);
                 } else /*if (_receivedData)*/ {
                     SPiDAccessToken *accessToken = [[SPiDAccessToken alloc] initWithDictionary:jsonObject];
-                    [SPiDKeychainWrapper storeInKeychainAccessTokenWithValue:accessToken forIdentifier:AccessTokenKeychainIdentification];
-                    [[SPiDClient sharedInstance] setAccessToken:accessToken];
+                    [[SPiDClient sharedInstance] setAndStoreAccessToken:accessToken];
                     [[SPiDClient sharedInstance] authorizationComplete];
                     self.tokenCompletionHandler(nil);
                 }

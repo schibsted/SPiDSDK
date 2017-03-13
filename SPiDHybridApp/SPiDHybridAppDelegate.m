@@ -27,7 +27,8 @@ static NSString *const ServerRedirectURI = @"your-spidserver-redirect-uri";
     [SPiDClient setClientID:ClientID
                clientSecret:ClientSecret
                appURLScheme:AppURLScheme
-                  serverURL:[NSURL URLWithString:ServerURL]];
+                  serverURL:[NSURL URLWithString:ServerURL]
+           tokenStorageMode:SPiDTokenStorageModeDefault];
     [[SPiDClient sharedInstance] setServerClientID:ServerClientID];
     [[SPiDClient sharedInstance] setServerRedirectUri:[NSURL URLWithString:ServerRedirectURI]];
 
