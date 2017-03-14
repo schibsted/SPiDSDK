@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SPiDSDK"
-  s.version      = "2.3.2"
+  s.version      = "2.4.0"
   s.summary      = "iOS SDK for using SPiD"
   s.description  = <<-DESC
   					This iOS SDK allows for a simpler interface to use the SPiD platform.
