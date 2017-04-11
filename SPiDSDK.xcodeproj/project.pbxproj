@@ -92,7 +92,7 @@
 		553E8E5D1CF44AEA001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
 		553E8E5E1CF44AEE001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
 		553E8E5F1CF44AFF001482E7 /* SPiDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFD37461CD9F9B200BF0DE3 /* SPiDSDK.framework */; };
-		9665D1F51E0820C300759F60 /* SPiDAgreements.h in Headers */ = {isa = PBXBuildFile; fileRef = 9665D1F31E0820C300759F60 /* SPiDAgreements.h */; };
+		9665D1F51E0820C300759F60 /* SPiDAgreements.h in Headers */ = {isa = PBXBuildFile; fileRef = 9665D1F31E0820C300759F60 /* SPiDAgreements.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9665D1F61E0820C300759F60 /* SPiDAgreements.m in Sources */ = {isa = PBXBuildFile; fileRef = 9665D1F41E0820C300759F60 /* SPiDAgreements.m */; };
 		9665D1F81E092C0000759F60 /* SPiDAgreementsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9665D1F71E092C0000759F60 /* SPiDAgreementsTests.m */; };
 		9665D1F91E092DCE00759F60 /* SPiDAgreements.m in Sources */ = {isa = PBXBuildFile; fileRef = 9665D1F41E0820C300759F60 /* SPiDAgreements.m */; };
@@ -132,7 +132,6 @@
 		DAFD37631CD9F9D700BF0DE3 /* NSString+Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E3A27E565B0BF8A5D1C2 /* NSString+Crypto.h */; };
 		DAFD37641CD9F9D700BF0DE3 /* SPiDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E93DD2773BD78706B78C /* SPiDUser.m */; };
 		DAFD37651CD9F9D700BF0DE3 /* SPiDUser.h in Headers */ = {isa = PBXBuildFile; fileRef = E304E8EE461D81FA4D084AC8 /* SPiDUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DAFD37661CD9F9D700BF0DE3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		DAFD37681CD9F9D700BF0DE3 /* SPiDStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E304E4801E76F6F93C43AB67 /* SPiDStatus.m */; };
 		DAFD37691CD9F9D700BF0DE3 /* SPiDStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = E304EF14B76195254AE32548 /* SPiDStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAFD376A1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.h in Headers */ = {isa = PBXBuildFile; fileRef = 5534F8821C2407D4009F015E /* NSURLRequest+SPiD.h */; };
@@ -690,10 +689,10 @@
 				DAFD37491CD9F9B300BF0DE3 /* SPiDSDK.h in Headers */,
 				DAFD37521CD9F9D700BF0DE3 /* SPiDAccessToken.h in Headers */,
 				DAFD37651CD9F9D700BF0DE3 /* SPiDUser.h in Headers */,
+				9665D1F51E0820C300759F60 /* SPiDAgreements.h in Headers */,
 				DAFD375F1CD9F9D700BF0DE3 /* SPiDTokenRequest.h in Headers */,
 				DAFD37501CD9F9D700BF0DE3 /* SPiDKeychainWrapper.h in Headers */,
 				DAFD37581CD9F9D700BF0DE3 /* SPiDUtils.h in Headers */,
-				9665D1F51E0820C300759F60 /* SPiDAgreements.h in Headers */,
 				DAFD376A1CD9F9D700BF0DE3 /* NSURLRequest+SPiD.h in Headers */,
 				DAFD37631CD9F9D700BF0DE3 /* NSString+Crypto.h in Headers */,
 				DAC183B71CDA161600D08ABD /* NSCharacterSet+SPiD.h in Headers */,
@@ -1032,7 +1031,6 @@
 				DAFD374F1CD9F9D700BF0DE3 /* NSError+SPiD.m in Sources */,
 				DAFD37531CD9F9D700BF0DE3 /* SPiDAccessToken.m in Sources */,
 				DAF1DE3E1CDC78B1007B15B3 /* SPiDWebView.m in Sources */,
-				DAFD37661CD9F9D700BF0DE3 /* (null) in Sources */,
 				DAFD37641CD9F9D700BF0DE3 /* SPiDUser.m in Sources */,
 				DAFD375C1CD9F9D700BF0DE3 /* NSData+Base64.m in Sources */,
 				DAFD37511CD9F9D700BF0DE3 /* SPiDKeychainWrapper.m in Sources */,
