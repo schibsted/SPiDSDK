@@ -394,7 +394,7 @@ typedef NS_ENUM(NSUInteger, SPiDTokenStorageMode) {
  @param failure Block called on failure.
  @return A bool indicating if request was sent or not.
  */
-- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError * nullable))failure;
+- (BOOL)acceptAgreementsWithSuccess:(void (^)(void))success andFailure:(void (^)(NSError * nullable))failure;
 
 @end
 
