@@ -363,8 +363,19 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     NSString *encodedEmail = [data sp_base64EncodedUrlSafeString];
     
     NSString *path = [NSString stringWithFormat:@"/email/%@/status", encodedEmail];
-    SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
-    [request startRequestWithAccessToken];
+    
+    SPiDAccessToken *accessToken = [SPiDClient sharedInstance].accessToken;
+    if (accessToken == nil || !accessToken.isClientToken) {
+        SPiDRequest *clientTokenRequest = [SPiDTokenRequest clientTokenRequestWithCompletionHandler:^(NSError *error) {
+            SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
+            [request startRequestWithAccessToken];
+        }];
+        [clientTokenRequest start];
+    }else {
+        SPiDRequest *request = [SPiDRequest apiGetRequestWithPath:path completionHandler:completionHandler];
+        [request startRequestWithAccessToken];
+    }
+    
 }
 
 #pragma mark Private methods
