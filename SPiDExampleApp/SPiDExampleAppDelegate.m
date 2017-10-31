@@ -49,10 +49,7 @@ static NSString *const ServerURL = @"your-spidserver-url";
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    BOOL didSPiDHandleURL = [[SPiDClient sharedInstance] handleOpenURL:url];
-
-    // Always return that the URL was handled by the application
-    return YES;
+        return [[SPiDClient sharedInstance] handleOpenURL:url];
 }
 
 @end

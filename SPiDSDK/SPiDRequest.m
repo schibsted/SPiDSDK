@@ -44,8 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** Starts a SPiD request
 
- @param urlStr The url as a string
- @param body The body
+ @param request The urlrequest to start
  */
 - (void)startWithRequest:(NSURLRequest *)request;
 
@@ -155,7 +154,7 @@ NS_ASSUME_NONNULL_END
                     [self setRetryCount:[self retryCount] + 1];
                     [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
                 } else {
-                    SPiDDebugLog(@"Retried request: %ld times, aborting", [self retryCount]);
+                    SPiDDebugLog(@"Retried request: %ld times, aborting", (long) [self retryCount]);
                     if (self.completionHandler)
                         self.completionHandler(spidResponse);
                 }
