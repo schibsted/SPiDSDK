@@ -488,7 +488,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (void)authorizationComplete {
     SPiDDebugLog(@"Received access token: %@ expires at: %@ refresh token: %@", self.accessToken.accessToken, self.accessToken.expiresAt, self.accessToken.refreshToken);
     if (self.waitingRequests) {
-        SPiDDebugLog(@"Found %lu waiting request, running again", [self.waitingRequests count]);
+        SPiDDebugLog(@"Found %lu waiting request, running again", (unsigned long) [self.waitingRequests count]);
         for (SPiDRequest *request in self.waitingRequests) {
             [request startRequestWithAccessToken];
         }
@@ -540,7 +540,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return YES;
 }
 
-- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError *))failure {
+- (BOOL)acceptAgreementsWithSuccess:(void (^)(void))success andFailure:(void (^)(NSError *))failure {
     if([self.accessToken isClientToken] || !self.accessToken) { return NO; } // Exit early if we don't have a client token or it is a client token.
 
     NSString *path = [NSString stringWithFormat:@"/user/%@/agreements/accept", self.accessToken.userID];
