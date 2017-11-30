@@ -540,7 +540,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
     return YES;
 }
 
-- (BOOL)acceptAgreementsWithSuccess:(void (^)())success andFailure:(void (^)(NSError *))failure {
+- (BOOL)acceptAgreementsWithSuccess:(void (^)(void))success andFailure:(void (^)(NSError *))failure {
     if([self.accessToken isClientToken] || !self.accessToken) { return NO; } // Exit early if we don't have a client token or it is a client token.
 
     NSString *path = [NSString stringWithFormat:@"/user/%@/agreements/accept", self.accessToken.userID];
