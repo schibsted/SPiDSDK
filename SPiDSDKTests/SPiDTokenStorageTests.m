@@ -26,7 +26,7 @@
 
 @implementation SPiDTokenStorageTests
 
-NSUserDefaults *SPiDSDKTestsCreateFreshUserDefaults();
+NSUserDefaults *SPiDSDKTestsCreateFreshUserDefaults(void);
 
 - (void)setUp
 {

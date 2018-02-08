@@ -488,7 +488,7 @@ static SPiDClient *sharedSPiDClientInstance = nil;
 - (void)authorizationComplete {
     SPiDDebugLog(@"Received access token: %@ expires at: %@ refresh token: %@", self.accessToken.accessToken, self.accessToken.expiresAt, self.accessToken.refreshToken);
     if (self.waitingRequests) {
-        SPiDDebugLog(@"Found %lu waiting request, running again", [self.waitingRequests count]);
+        SPiDDebugLog(@"Found %lu waiting request, running again", (unsigned long)[self.waitingRequests count]);
         for (SPiDRequest *request in self.waitingRequests) {
             [request startRequestWithAccessToken];
         }
