@@ -13,7 +13,6 @@
 @implementation TermsViewController
 
 @synthesize termsWebView = _termsWebView;
-@synthesize alertView = _alertView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

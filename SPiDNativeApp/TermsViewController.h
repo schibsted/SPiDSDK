@@ -11,6 +11,5 @@
 @interface TermsViewController : UIViewController
 
 @property(strong, nonatomic) UIWebView *termsWebView;
-@property(strong, nonatomic) UIAlertView *alertView;
 
 @end

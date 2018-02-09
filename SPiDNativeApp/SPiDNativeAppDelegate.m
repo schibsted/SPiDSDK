@@ -21,7 +21,7 @@ static NSString *const ServerURL = @"your-spidserver-url";
 @synthesize window = _window;
 @synthesize rootNavigationController = _rootNavigationController;
 @synthesize authNavigationController = _authNavigationController;
-@synthesize alertView = _alertView;
+@synthesize alertController = _alertController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [SPiDClient setClientID:ClientID
@@ -67,37 +67,43 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [self.rootNavigationController presentViewController:self.authNavigationController animated:animated completion:nil];
 }
 
-- (void)showActivityIndicatorAlert:(NSString *)title {
-    if (self.alertView) {
-        [self dismissAlertView];
+- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller {
+    if (self.alertController) {
+        [self dismissAlertViewFromController:controller];
     }
 
-    self.alertView = [[UIAlertView alloc] initWithTitle:title
-                                                message:nil delegate:self
-                                      cancelButtonTitle:nil otherButtonTitles:nil];
-    [self.alertView show];
+    self.alertController = [UIAlertController alertControllerWithTitle:title
+                                                               message:nil
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+    [controller presentViewController:self.alertController
+                             animated:YES
+                           completion:nil];
 
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
+    indicator.center = CGPointMake(135, 65.5);
     [indicator startAnimating];
-    [self.alertView addSubview:indicator];
+    [controller.view addSubview:indicator];
 }
 
-- (void)showAlertViewWithTitle:(NSString *)title {
-    if (self.alertView) {
-        [self dismissAlertView];
+- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller {
+    if (self.alertController) {
+        [self dismissAlertViewFromController:controller];
     }
 
-    self.alertView = [[UIAlertView alloc]
-            initWithTitle:title
-                  message:nil delegate:nil cancelButtonTitle:@"OK"
-        otherButtonTitles:nil];
-    [self.alertView show];
+    self.alertController = [UIAlertController alertControllerWithTitle:title
+                                                               message:nil
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+    [self.alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleCancel
+                                                           handler:nil]];
+    [controller presentViewController:self.alertController
+                             animated:YES
+                           completion:nil];
 }
 
-- (void)dismissAlertView {
-    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    self.alertView = nil;
+- (void)dismissAlertViewFromController:(UIViewController *)controller {
+    [controller dismissViewControllerAnimated:true completion:nil];
+    self.alertController = nil;
 }
 
 @end

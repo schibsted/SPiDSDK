@@ -104,14 +104,14 @@
     NSString *email = [self.emailTextField text];
     NSString *password = [self.passwordTextField text];
     if ([email length] == 0) {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Email is empty"];
+        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Email is empty" fromController:self];
     } else if ([password length] == 0) {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty"];
+        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty" fromController:self];
     } else {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
+        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..." fromController:self];
         SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertViewFromController:self];
                 
                 NSString *title;
                 if (error == nil) {
@@ -124,7 +124,7 @@
                 } else {
                     title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
                 }
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
+                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title fromController:self];
             });
         }];
         [tokenRequest start];
