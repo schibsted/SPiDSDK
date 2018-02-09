@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 /**
  Helper functions for parsing and encoding URL:s

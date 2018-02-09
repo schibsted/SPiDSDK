@@ -6,7 +6,7 @@
 //  Copyright © 2017 Mikael Lindström. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSDictionary (Test)
 

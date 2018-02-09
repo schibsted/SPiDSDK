@@ -6,7 +6,7 @@
 //  Copyright © 2016 Mikael Lindström. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface SPiDAgreements : NSObject
 

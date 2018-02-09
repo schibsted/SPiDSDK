@@ -6,7 +6,7 @@
 //  Copyright © 2015 Mikael Lindström. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSURLRequest (SPiD)
 

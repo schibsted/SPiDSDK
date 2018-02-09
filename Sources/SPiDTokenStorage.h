@@ -5,7 +5,7 @@
 //  Created by Daniel Lazarenko on 07/03/2017.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class SPiDAccessToken;
 

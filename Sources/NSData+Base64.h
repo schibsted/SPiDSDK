@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 /** Adds Base64 encoding/decoding to `NSData` */
 

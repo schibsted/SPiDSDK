@@ -14,10 +14,10 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="z9P-qR-bUx"/>
-                        <viewControllerLayoutGuide type="bottom" id="cVV-di-bQe"/>
+                        <viewControllerLayoutGuide type="top" id="WyZ-XY-5z7"/>
+                        <viewControllerLayoutGuide type="bottom" id="yZB-0o-xJI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

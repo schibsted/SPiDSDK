@@ -1,6 +1,6 @@
 //
 //  main.m
-//  Demo
+//  NativeDemo
 //
 //  Created by Elvis Nuñez on 09/02/2018.
 //  Copyright © 2018 Schibsted. All rights reserved.

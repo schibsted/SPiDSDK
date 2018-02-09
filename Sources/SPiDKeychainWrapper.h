@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SPiDAccessToken.h"
 
 /** `SPiDKeychainWrapper` is a wrapper used to simplfy keychain access.

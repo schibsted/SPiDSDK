@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SPiDRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN

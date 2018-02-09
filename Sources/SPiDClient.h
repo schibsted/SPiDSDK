@@ -7,7 +7,7 @@
 
 #define SPID_IOS_SDK_VERSION_STRING @"2.4.0"
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import <UIKit/UIKit.h>
 #import "SPiDUtils.h"
 

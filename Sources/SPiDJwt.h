@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Schibsted Payment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 static NSString *const JSON_WEB_ALGORITHM_HS256 = @"HS256";
 static NSString *const JSON_WEB_TOKEN_TYP_JWT = @"JWT";
