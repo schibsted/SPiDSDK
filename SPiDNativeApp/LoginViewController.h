@@ -16,6 +16,5 @@
 @property(strong, nonatomic) UIButton *loginButton;
 @property(strong, nonatomic) UIButton *signUpButton;
 @property(strong, nonatomic) UIButton *lostPasswordButton;
-@property(strong, nonatomic) UIAlertView *alertView;
 
 @end

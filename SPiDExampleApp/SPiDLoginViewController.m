@@ -58,7 +58,15 @@
                                 [[self navigationController] popToViewController:[[[self navigationController] viewControllers] objectAtIndex:0] animated:NO];
                             }
                             completion:NULL];
-            [[[UIAlertView alloc] initWithTitle:@"Error loading WebView" message:error.userInfo.description delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error loading WebView"
+                                                                           message:error.userInfo.description
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
+            [self presentViewController:alert
+                               animated:YES
+                             completion:nil];
         }
     }];
     [[webViewController view] addSubview:webView];

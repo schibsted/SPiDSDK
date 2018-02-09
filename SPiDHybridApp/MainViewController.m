@@ -52,11 +52,6 @@
 }
 
 - (void)showLoadingSpinner {
-    if (self.alertView) {
-        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-        self.alertView = nil;
-    }
-
     CGFloat horizontalCenter = self.view.frame.size.width / 2;
     CGFloat verticalCenter = self.view.frame.size.height / 2;
     CGPoint offset = [self.view convertPoint:CGPointZero toView:nil];
@@ -76,16 +71,15 @@
 }
 
 - (void)showAlertViewWithTitle:(NSString *)title {
-    if (self.alertView) {
-        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-        self.alertView = nil;
-    }
-
-    self.alertView = [[UIAlertView alloc]
-            initWithTitle:title
-                  message:nil delegate:nil cancelButtonTitle:@"OK"
-        otherButtonTitles:nil];
-    [self.alertView show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                              style:UIAlertActionStyleCancel
+                                            handler:nil]];
+    [self presentViewController:alert
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)login:(id)sender {

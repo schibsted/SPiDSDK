@@ -64,16 +64,18 @@
 
 - (void)getUserName {
     SPiDNativeAppDelegate *appDelegate = (SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate showActivityIndicatorAlert:@"Fetching current user..."];
-    [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (![response error]) {
-                [appDelegate dismissAlertView];
-                NSDictionary *data = [[response message] objectForKey:@"data"];
-                NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
-                [[self userLabel] setText:user];
-            }
-        });
+    [appDelegate showActivityIndicatorAlert:@"Fetching current user..." fromController:self completionHandler:^{
+        [[SPiDClient sharedInstance] currentUserRequestWithCompletionHandler:^(SPiDResponse *response) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (![response error]) {
+                    [appDelegate dismissAlertViewFromController:self completionHandler:^{
+                        NSDictionary *data = [[response message] objectForKey:@"data"];
+                        NSString *user = [NSString stringWithFormat:@"Welcome %@!", [data objectForKey:@"displayName"]];
+                        [[self userLabel] setText:user];
+                    }];
+                }
+            });
+        }];
     }];
 }
 

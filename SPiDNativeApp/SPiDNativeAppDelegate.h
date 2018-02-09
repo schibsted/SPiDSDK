@@ -14,14 +14,14 @@
 @property(strong, nonatomic) UIWindow *window;
 @property(strong, nonatomic) UINavigationController *rootNavigationController;
 @property(strong, nonatomic) UINavigationController *authNavigationController;
-@property(strong, nonatomic) UIAlertView *alertView;
+@property(strong, nonatomic) UIAlertController *alertController;
 
 - (void)presentLoginViewAnimated:(BOOL)animated;
 
-- (void)showAlertViewWithTitle:(NSString *)title;
+- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler;
 
-- (void)showActivityIndicatorAlert:(NSString *)title;
+- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler;
 
-- (void)dismissAlertView;
+- (void)dismissAlertViewFromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler;
 
 @end

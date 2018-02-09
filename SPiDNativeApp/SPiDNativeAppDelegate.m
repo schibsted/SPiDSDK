@@ -21,7 +21,7 @@ static NSString *const ServerURL = @"your-spidserver-url";
 @synthesize window = _window;
 @synthesize rootNavigationController = _rootNavigationController;
 @synthesize authNavigationController = _authNavigationController;
-@synthesize alertView = _alertView;
+@synthesize alertController = _alertController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [SPiDClient setClientID:ClientID
@@ -67,37 +67,63 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [self.rootNavigationController presentViewController:self.authNavigationController animated:animated completion:nil];
 }
 
-- (void)showActivityIndicatorAlert:(NSString *)title {
-    if (self.alertView) {
-        [self dismissAlertView];
+- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller  completionHandler:(void (^)(void))completionHandler {
+    if (self.alertController) {
+        [self dismissAlertViewFromController:controller completionHandler:^{
+            [self continueShowActivityIndicatorAlert:title fromController:controller completionHandler:completionHandler];
+        }];
+    } else {
+        [self continueShowActivityIndicatorAlert:title fromController:controller completionHandler:completionHandler];
     }
+}
 
-    self.alertView = [[UIAlertView alloc] initWithTitle:title
-                                                message:nil delegate:self
-                                      cancelButtonTitle:nil otherButtonTitles:nil];
-    [self.alertView show];
+- (void)continueShowActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler {
+    self.alertController = [UIAlertController alertControllerWithTitle:title
+                                                               message:nil
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+    [controller presentViewController:self.alertController
+                             animated:YES
+                           completion:nil];
 
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
+    indicator.center = CGPointMake(135, 65.5);
     [indicator startAnimating];
-    [self.alertView addSubview:indicator];
+    [controller.view addSubview:indicator];
 }
 
-- (void)showAlertViewWithTitle:(NSString *)title {
-    if (self.alertView) {
-        [self dismissAlertView];
+- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler {
+    if (self.alertController) {
+        [self dismissAlertViewFromController:controller completionHandler:^{
+            [self continueShowAlertViewWithTitle:title fromController:controller completionHandler:completionHandler];
+        }];
+    } else {
+        [self continueShowAlertViewWithTitle:title fromController:controller completionHandler:completionHandler];
     }
-
-    self.alertView = [[UIAlertView alloc]
-            initWithTitle:title
-                  message:nil delegate:nil cancelButtonTitle:@"OK"
-        otherButtonTitles:nil];
-    [self.alertView show];
 }
 
-- (void)dismissAlertView {
-    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    self.alertView = nil;
+- (void)continueShowAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller  completionHandler:(void (^)(void))completionHandler {
+    self.alertController = [UIAlertController alertControllerWithTitle:title
+                                                               message:nil
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+    [self.alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleCancel
+                                                           handler:nil]];
+    [controller presentViewController:self.alertController
+                             animated:YES
+                           completion:completionHandler];
+}
+
+
+- (void)dismissAlertViewFromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler {
+    if (self.alertController) {
+        [controller dismissViewControllerAnimated:true completion:^{
+            self.alertController = nil;
+
+            if (completionHandler) {
+                completionHandler();
+            }
+        }];
+    }
 }
 
 @end

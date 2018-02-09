@@ -18,6 +18,5 @@
 @property(strong, nonatomic) UIView *loginView;
 @property(nonatomic, strong) UIBarButtonItem *loginBarButton;
 @property(nonatomic, strong) LoadingAlertView *loadingSpinner;
-@property(nonatomic, strong) UIAlertView *alertView;
 
 @end

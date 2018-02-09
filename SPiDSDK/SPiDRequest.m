@@ -144,7 +144,9 @@ NS_ASSUME_NONNULL_END
             SPiDDebugLog(@"SPiDSDK error: %@", [error description]);
             SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithError:error];
             if (self.completionHandler)
-                self.completionHandler(spidResponse);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.completionHandler(spidResponse);
+                });
         } else {
             SPiDDebugLog(@"Received response from: %@", [self.URL absoluteString]);
             SPiDResponse *spidResponse = [[SPiDResponse alloc] initWithJSONData:data];
@@ -157,11 +159,15 @@ NS_ASSUME_NONNULL_END
                 } else {
                     SPiDDebugLog(@"Retried request: %ld times, aborting", (long)[self retryCount]);
                     if (self.completionHandler)
-                        self.completionHandler(spidResponse);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.completionHandler(spidResponse);
+                        });
                 }
             } else {
                 if (self.completionHandler)
-                    self.completionHandler(spidResponse);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.completionHandler(spidResponse);
+                    });
             }
         }
     }];

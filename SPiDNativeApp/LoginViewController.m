@@ -104,30 +104,31 @@
     NSString *email = [self.emailTextField text];
     NSString *password = [self.passwordTextField text];
     if ([email length] == 0) {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Email is empty"];
+        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Email is empty" fromController:self completionHandler:nil];
     } else if ([password length] == 0) {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty"];
+        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:@"Password is empty" fromController:self completionHandler:nil];
     } else {
-        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..."];
-        SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertView];
-                
-                NSString *title;
-                if (error == nil) {
-                    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-                    return;
-                } else if ([error code] == SPiDOAuth2UnverifiedUserErrorCode) {
-                    title = @"Unverified user, please check your email";
-                } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
-                    title = @"Invalid email and/or password";
-                } else {
-                    title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
-                }
-                [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title];
-            });
+        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showActivityIndicatorAlert:@"Logging in using SPiD\nPlease Wait..." fromController:self completionHandler:^{
+            SPiDTokenRequest *tokenRequest = [SPiDTokenRequest userTokenRequestWithUsername:email password:password completionHandler:^(NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] dismissAlertViewFromController:self completionHandler:^{
+                        NSString *title;
+                        if (error == nil) {
+                            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                            return;
+                        } else if ([error code] == SPiDOAuth2UnverifiedUserErrorCode) {
+                            title = @"Unverified user, please check your email";
+                        } else if ([error code] == SPiDOAuth2InvalidUserCredentialsErrorCode) {
+                            title = @"Invalid email and/or password";
+                        } else {
+                            title = [NSString stringWithFormat:@"Received error: %@", error.userInfo.description];
+                        }
+                        [(SPiDNativeAppDelegate *) [[UIApplication sharedApplication] delegate] showAlertViewWithTitle:title fromController:self completionHandler:nil];
+                    }];
+                });
+            }];
+            [tokenRequest start];
         }];
-        [tokenRequest start];
     }
 }
 
