@@ -5,8 +5,6 @@
 osx_image: xcode9.2
 language: objective-c
 cache: cocoapods
-before_install:
-- gem install cocoapods # Since Travis is not always on latest version
 script:
 # Run tests
 - set -o pipefail && xcodebuild test -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
@@ -17,5 +15,3 @@ script:
 - set -o pipefail && xcodebuild -scheme SPiDHybridApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
 - set -o pipefail && xcodebuild -scheme SPiDNativeApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
 - set -o pipefail && xcodebuild -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
-# And validate the pod with lib lint
-- pod lib lint
