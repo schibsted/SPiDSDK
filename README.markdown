@@ -1,6 +1,6 @@
 SPiD SDK for iOS
 ================
-[![CI Status](http://img.shields.io/travis/schibsted/sdk-ios.svg?style=flat)](https://travis-ci.org/schibsted/sdk-ios)
+[![CI Status](http://img.shields.io/travis/schibsted/sdk-ios.svg?style=flat)](https://travis-ci.org/schibsted/SPiDSDK)
 [![Version](https://img.shields.io/cocoapods/v/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
 [![License](https://img.shields.io/cocoapods/l/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
 [![Platform](https://img.shields.io/cocoapods/p/SPiDSDK.svg?style=flat)](http://cocoapods.org/pods/SPiDSDK)
