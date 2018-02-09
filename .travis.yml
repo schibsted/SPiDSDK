@@ -15,3 +15,4 @@ script:
 - set -o pipefail && xcodebuild -scheme SPiDHybridApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
 - set -o pipefail && xcodebuild -scheme SPiDNativeApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
 - set -o pipefail && xcodebuild -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
+- set -o pipefail && xcodebuild -scheme SPiDSDKTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty

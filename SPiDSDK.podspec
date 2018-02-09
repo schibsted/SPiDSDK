@@ -6,10 +6,10 @@ Pod::Spec.new do |s|
   					This iOS SDK allows for a simpler interface to use the SPiD platform.
   					For more information see http://techdocs.spid.no/
                    DESC
-  s.homepage     = "https://github.com/schibsted/sdk-ios"
+  s.homepage     = "https://github.com/schibsted/SPiDSDK"
   s.license      = "MIT"
   s.authors      = { "Mikael Lindström" => "mikael.lindstrom@schibsted.com", "Oskar Höjwall" => "oskar.hojwall@schibsted.com" }
-  s.source       = { :git => 'https://github.com/schibsted/sdk-ios.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/schibsted/SPiDSDK.git', :tag => s.version.to_s }
 
 
   s.frameworks = "Security"
