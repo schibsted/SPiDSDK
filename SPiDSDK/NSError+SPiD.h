@@ -45,7 +45,7 @@
 /**
 
  @param errorDomain Error domain string.
- @param error code from api or 0
+ @param apiError code from api or 0
  @return Returns internal SPiD code for the given error.
  */
 + (NSInteger)sp_OAuth2ErrorCodeFromDomain:(NSString *)errorDomain andAPIErrorCode:(NSInteger)apiError;

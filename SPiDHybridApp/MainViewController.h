@@ -10,7 +10,7 @@
 @class ModalLoginView;
 @class LoadingAlertView;
 
-@interface MainViewController : UIViewController <UIWebViewDelegate, UITableViewDataSource>
+@interface MainViewController : UIViewController <UIWebViewDelegate>
 
 @property(strong, nonatomic) UIButton *showLoginButton;
 @property(strong, nonatomic) UIWebView *webView;

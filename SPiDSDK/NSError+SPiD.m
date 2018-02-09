@@ -37,7 +37,7 @@
         descriptions = [NSDictionary dictionaryWithObjectsAndKeys:domain, @"error", nil];
     }
 
-    SPiDDebugLog("Received '%@' with code '%ld' and description: %@", domain, originalErrorCode, [descriptions description]);
+    SPiDDebugLog("Received '%@' with code '%ld' and description: %@", domain, (long)originalErrorCode, [descriptions description]);
     return [NSError errorWithDomain:domain code:errorCode userInfo:descriptions];
 }
 

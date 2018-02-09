@@ -155,7 +155,7 @@ NS_ASSUME_NONNULL_END
                     [self setRetryCount:[self retryCount] + 1];
                     [[SPiDClient sharedInstance] refreshAccessTokenAndRerunRequest:self];
                 } else {
-                    SPiDDebugLog(@"Retried request: %ld times, aborting", [self retryCount]);
+                    SPiDDebugLog(@"Retried request: %ld times, aborting", (long)[self retryCount]);
                     if (self.completionHandler)
                         self.completionHandler(spidResponse);
                 }
