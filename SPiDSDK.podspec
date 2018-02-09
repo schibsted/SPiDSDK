@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.frameworks = "Security"
   s.requires_arc = true
 
-  s.ios.source_files = "Sources/*.{h,m}", "SPiDSDK/iOS/*{.h,m}"
+  s.ios.source_files = "Sources/*.{h,m}", "Sources/iOS/*{.h,m}"
   s.tvos.source_files = "Sources/*.{h,m}"
   s.watchos.source_files = "Sources/*.{h,m}"
 
