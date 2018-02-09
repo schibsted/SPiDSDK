@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   s.frameworks = "Security"
   s.requires_arc = true
 
-  s.ios.source_files = "SPiDSDK/*.{h,m}", "SPiDSDK/iOS/*{.h,m}"
-  s.tvos.source_files = "SPiDSDK/*.{h,m}"
-  s.watchos.source_files = "SPiDSDK/*.{h,m}"
+  s.ios.source_files = "Sources/*.{h,m}", "Sources/iOS/*{.h,m}"
+  s.tvos.source_files = "Sources/*.{h,m}"
+  s.watchos.source_files = "Sources/*.{h,m}"
 
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'

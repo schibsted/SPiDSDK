@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14254E72202DD0C60056F5C3"
-               BuildableName = "SPiDSDK.framework"
-               BlueprintName = "SPiDSDK"
+               BlueprintIdentifier = "1449102F202DD822002DFE41"
+               BuildableName = "NativeDemo.app"
+               BlueprintName = "NativeDemo"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,23 +29,13 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14254E7E202DD0D00056F5C3"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
-               ReferencedContainer = "container:SPiDSDK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14254E72202DD0C60056F5C3"
-            BuildableName = "SPiDSDK.framework"
-            BlueprintName = "SPiDSDK"
+            BlueprintIdentifier = "1449102F202DD822002DFE41"
+            BuildableName = "NativeDemo.app"
+            BlueprintName = "NativeDemo"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,9 +57,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14254E72202DD0C60056F5C3"
-            BuildableName = "SPiDSDK.framework"
-            BlueprintName = "SPiDSDK"
+            BlueprintIdentifier = "1449102F202DD822002DFE41"
+            BuildableName = "NativeDemo.app"
+            BlueprintName = "NativeDemo"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -86,9 +76,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14254E72202DD0C60056F5C3"
-            BuildableName = "SPiDSDK.framework"
-            BlueprintName = "SPiDSDK"
+            BlueprintIdentifier = "1449102F202DD822002DFE41"
+            BuildableName = "NativeDemo.app"
+            BlueprintName = "NativeDemo"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
