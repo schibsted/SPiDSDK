@@ -14,7 +14,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+               BlueprintIdentifier = "14254E7E202DD0D00056F5C3"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+               BlueprintIdentifier = "14254E7E202DD0D00056F5C3"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
@@ -57,7 +57,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+            BlueprintIdentifier = "14254E7E202DD0D00056F5C3"
             BuildableName = "Tests.xctest"
             BlueprintName = "Tests"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
@@ -75,7 +75,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+            BlueprintIdentifier = "14254E7E202DD0D00056F5C3"
             BuildableName = "Tests.xctest"
             BlueprintName = "Tests"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">

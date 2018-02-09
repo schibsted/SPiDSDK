@@ -1,18 +1,6 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
-
 osx_image: xcode9.2
 language: objective-c
 cache: cocoapods
 script:
-# Run tests
-- set -o pipefail && xcodebuild test -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
 
-# Make sure all targets build
-- set -o pipefail && xcodebuild -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
-- set -o pipefail && xcodebuild -scheme SPiDExampleApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
-- set -o pipefail && xcodebuild -scheme SPiDHybridApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
-- set -o pipefail && xcodebuild -scheme SPiDNativeApp -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
-- set -o pipefail && xcodebuild -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
-- set -o pipefail && xcodebuild -scheme SPiDSDKTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
+- set -o pipefail && xcodebuild test -scheme SPiDSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty
