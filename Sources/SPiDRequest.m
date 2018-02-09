@@ -42,10 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 */
 - (id)initRequestWithPath:(NSString *)requestPath method:(NSString *)method body:(nullable NSDictionary *)body completionHandler:(void (^)(SPiDResponse *response))completionHandler;
 
-/** Starts a SPiD request
+/**
+ Starts a SPiD request
 
- @param urlStr The url as a string
- @param body The body
+ @param request The request
  */
 - (void)startWithRequest:(NSURLRequest *)request;
 

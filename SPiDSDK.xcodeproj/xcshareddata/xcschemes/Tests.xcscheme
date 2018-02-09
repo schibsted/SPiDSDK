@@ -14,9 +14,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "537D21FF15FF224C000ABCA6"
-               BuildableName = "SPiDSDKTests.xctest"
-               BlueprintName = "SPiDSDKTests"
+               BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "537D21FF15FF224C000ABCA6"
-               BuildableName = "SPiDSDKTests.xctest"
-               BlueprintName = "SPiDSDKTests"
+               BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:SPiDSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,9 +57,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537D21FF15FF224C000ABCA6"
-            BuildableName = "SPiDSDKTests.xctest"
-            BlueprintName = "SPiDSDKTests"
+            BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,9 +75,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537D21FF15FF224C000ABCA6"
-            BuildableName = "SPiDSDKTests.xctest"
-            BlueprintName = "SPiDSDKTests"
+            BlueprintIdentifier = "14254DD0202DC6FB0056F5C3"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
             ReferencedContainer = "container:SPiDSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

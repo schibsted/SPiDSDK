@@ -20,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Public Methods
 ///---------------------------------------------------------------------------------------
 
-/** Creates a client token request
+/**
+ Creates a client token request
 
- @param completionHandler
  @param completionHandler Called on token request completion or error
  @return The token request or nil if JWT could not be created
-*/
+ */
 + (nullable instancetype)clientTokenRequestWithCompletionHandler:(nullable void (^)(NSError * __nullable))completionHandler;
 
 /** Creates a user token request with authorization code

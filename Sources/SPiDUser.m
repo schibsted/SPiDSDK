@@ -16,19 +16,23 @@
 @interface SPiDUser ()
 
 /**
-*
-* @param
-* @param
-* @return
-*/
+ Facebook stuff
+
+ @param appId Facebook stuff
+ @param facebookToken Facebook stuff
+ @param expirationDate Facebook stuff
+ @return Facebook stuff
+ */
 + (SPiDJwt *)facebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate;
 
 /**
-*
-* @param
-* @param
-* @return
-*/
+ Facebook stuff
+
+ @param appId Facebook stuff
+ @param facebookToken Facebook stuff
+ @param expirationDate Facebook stuff
+ @return Facebook stuff
+ */
 + (SPiDJwt *)attachFacebookJwtWithAppId:(NSString *)appId facebookToken:(NSString *)facebookToken expirationDate:(NSDate *)expirationDate;
 
 /** Generates user credentials post data
