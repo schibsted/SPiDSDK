@@ -18,10 +18,10 @@
 
 - (void)presentLoginViewAnimated:(BOOL)animated;
 
-- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller;
+- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler;
 
-- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller;
+- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler;
 
-- (void)dismissAlertViewFromController:(UIViewController *)controller;
+- (void)dismissAlertViewFromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler;
 
 @end

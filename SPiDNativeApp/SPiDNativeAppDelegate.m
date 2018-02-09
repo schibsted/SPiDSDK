@@ -67,11 +67,17 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [self.rootNavigationController presentViewController:self.authNavigationController animated:animated completion:nil];
 }
 
-- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller {
+- (void)showActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller  completionHandler:(void (^)(void))completionHandler {
     if (self.alertController) {
-        [self dismissAlertViewFromController:controller];
+        [self dismissAlertViewFromController:controller completionHandler:^{
+            [self continueShowActivityIndicatorAlert:title fromController:controller completionHandler:completionHandler];
+        }];
+    } else {
+        [self continueShowActivityIndicatorAlert:title fromController:controller completionHandler:completionHandler];
     }
+}
 
+- (void)continueShowActivityIndicatorAlert:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler {
     self.alertController = [UIAlertController alertControllerWithTitle:title
                                                                message:nil
                                                         preferredStyle:UIAlertControllerStyleAlert];
@@ -85,11 +91,17 @@ static NSString *const ServerURL = @"your-spidserver-url";
     [controller.view addSubview:indicator];
 }
 
-- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller {
+- (void)showAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler {
     if (self.alertController) {
-        [self dismissAlertViewFromController:controller];
+        [self dismissAlertViewFromController:controller completionHandler:^{
+            [self continueShowAlertViewWithTitle:title fromController:controller completionHandler:completionHandler];
+        }];
+    } else {
+        [self continueShowAlertViewWithTitle:title fromController:controller completionHandler:completionHandler];
     }
+}
 
+- (void)continueShowAlertViewWithTitle:(NSString *)title fromController:(UIViewController *)controller  completionHandler:(void (^)(void))completionHandler {
     self.alertController = [UIAlertController alertControllerWithTitle:title
                                                                message:nil
                                                         preferredStyle:UIAlertControllerStyleAlert];
@@ -98,12 +110,20 @@ static NSString *const ServerURL = @"your-spidserver-url";
                                                            handler:nil]];
     [controller presentViewController:self.alertController
                              animated:YES
-                           completion:nil];
+                           completion:completionHandler];
 }
 
-- (void)dismissAlertViewFromController:(UIViewController *)controller {
-    [controller dismissViewControllerAnimated:true completion:nil];
-    self.alertController = nil;
+
+- (void)dismissAlertViewFromController:(UIViewController *)controller completionHandler:(void (^)(void))completionHandler {
+    if (self.alertController) {
+        [controller dismissViewControllerAnimated:true completion:^{
+            self.alertController = nil;
+
+            if (completionHandler) {
+                completionHandler();
+            }
+        }];
+    }
 }
 
 @end
