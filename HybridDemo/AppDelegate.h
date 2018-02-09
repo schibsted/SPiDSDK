@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 Schibsted Payment. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

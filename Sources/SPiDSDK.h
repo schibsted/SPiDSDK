@@ -6,7 +6,7 @@
 //  Copyright © 2016 Mikael Lindström. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 //! Project version number for SPiD.
 FOUNDATION_EXPORT double SPiDVersionNumber;
@@ -28,4 +28,7 @@ FOUNDATION_EXPORT const unsigned char SPiDVersionString[];
 #import "SPiDUtils.h"
 #import "SPiDAgreements.h"
 #import "SPiDKeychainWrapper.h"
+
+#if TARGET_OS_IOS
 #import "SPiDWebView.h"
+#endif

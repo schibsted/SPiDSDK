@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mikael Lindström. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "LoginViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

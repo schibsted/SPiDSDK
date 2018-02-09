@@ -8,7 +8,7 @@
 #define SPID_IOS_SDK_VERSION_STRING @"2.4.0"
 
 @import Foundation;
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "SPiDUtils.h"
 
 NS_ASSUME_NONNULL_BEGIN

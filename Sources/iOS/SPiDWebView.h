@@ -6,7 +6,7 @@
 //
 
 @import Foundation;
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 /** WebView for handling authorization against SPiD. */
 
